@@ -1,0 +1,242 @@
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+
+Project StayHealthy {
+  database_type: 'PostgreSQL'
+  Note: '''
+    # StayHealthy Database
+    **markdown content here**
+  '''
+}
+
+enum user_role {
+    user [note: 'created user']
+    admin
+}
+
+enum user_gender {
+    male
+    female
+}
+
+Table user_personal_data {
+  id integer [pk, increment]
+  user_id integer [ref: - user.id]
+  firstname varchar(255)
+  lastname varchar(255)
+  gender user_gender [default: 'male']
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: null]
+}
+
+Table user_bio_data {
+  id integer [pk, increment]
+  user_id integer [ref: - user.id]
+  weight float(8)
+  height float(8)
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: null]
+}
+
+Table account {
+    id integer [pk, increment]
+    user_id integer [ref: - user.id]
+    type varchar(255)
+    provider varchar(255)
+    providerAccountId varchar(255)
+    refresh_token varchar(255)
+    access_token varchar(255)
+    expires_at integer
+    token_type varchar(255)
+    scope varchar(255)
+    id_token varchar(255)
+    session_state varchar(255)
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: null]
+}
+Table user {
+  id integer [pk, increment]
+  username varchar(255) [not null, unique]
+  email varchar(255) [not null, unique]
+  role user_role [default: 'user', not null]
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: null]
+}
+
+Table activity {
+  id integer [pk, increment]
+  user_id integer
+  name varchar(255)
+  calories_per_hour float(8)
+  duration_minutes float(8)
+  total_calories float(8)
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: null]
+}
+
+Table exercise {
+  id integer [pk, increment]
+  name varchar(255)
+  type varchar(255)
+  muscle varchar(255)
+  equipment varchar(255)
+  difficulty varchar(255)
+  instructions varchar(255)
+  video varchar(255)
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: null]
+}
+
+Table workout_plan {
+  id integer [pk, increment]
+  user_id integer
+  workout_day_id integer
+  description varchar(255)
+  notes varchar(255)
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: null]
+  rating integer [default: 10]
+}
+
+Table workout_day {
+  id integer [pk, increment]
+  workout_plan_id integer
+  exercise_id integer
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: null]
+}
+
+
+Table food {
+  id integer [pk, increment]
+  name varchar(255)
+  calories float(8)
+  serving_size float(8) [note: 'grams']
+  protein float(8) [note: 'grams']
+  fat_total float(8) [note: 'grams']
+  fat_saturated float(8) [note: 'grams']
+  carbohydrates_total float(8) [note: 'grams']
+  fiber float(8) [note: 'grams']
+  sugar float(8) [note: 'grams']
+  sodium float(8) [note: 'miligrams']
+  potassium float(8) [note: 'miligrams']
+  cholesterol float(8) [note: 'miligrams']
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: null]
+}
+
+Table meal_type {
+  id integer [pk, increment]
+  user_id integer
+  food_id integer
+  meal_number integer
+  meal_description varchar(255)
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: null]
+}
+
+Table meal_plan {
+  id integer [pk, increment]
+  user_id integer
+  meal_type_id integer
+  description varchar(255)
+  notes varchar(255)
+  total_calories float(8)
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: null]
+  rating integer [default: 10]
+}
+
+Table favourite {
+  id integer [pk, increment]
+  user_id integer
+  exercise_id integer
+  activity_id integer
+  food_id integer
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: null]
+}
+
+
+Table recipe {
+  id integer [pk, increment]
+  user_id integer
+  food_id integer
+  description varchar(255)
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: null]
+}
+
+Table recipe_user {
+  recipe_id integer
+  user_id integer
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: null]
+}
+
+Table activity_user {
+  user_id integer
+  activity_id integer
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: null]
+}
+
+table meal_plan_meal_type {
+  meal_plan_id integer
+  meal_type_id integer
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: null]
+}
+
+table meal_plan_user {
+  meal_plan_id integer
+  user_id integer
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: null]
+}
+
+table workout_day_exercise {
+  workout_day_id integer
+  exercise_id integer
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: null]
+}
+
+table workout_day_plan {
+  workout_day_id integer
+  workout_plan_id integer
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: null]
+}
+
+table workout_plan_user {
+  workout_plan_id integer
+  user_id integer
+  created_at timestamp [default: `now()`]
+  updated_at timestamp [default: null]
+}
+
+
+
+Ref: user.id > workout_plan_user.user_id [delete: cascade, update: no action]
+Ref: workout_plan.id > workout_plan_user.workout_plan_id [delete: cascade, update: no action]
+Ref: workout_plan.id > workout_day_plan.workout_plan_id [delete: cascade, update: no action]
+Ref: workout_day.id > workout_day_plan.workout_day_id [delete: cascade, update: no action]
+Ref: exercise.id > workout_day_exercise.exercise_id [delete: cascade, update: no action]
+Ref: workout_day.id > workout_day_exercise.workout_day_id [delete: cascade, update: no action]
+Ref: meal_plan.id > meal_plan_user.meal_plan_id [delete: cascade, update: no action]
+Ref: user.id > meal_plan_user.user_id [delete: cascade, update: no action]
+Ref: meal_type.id > meal_plan_meal_type.meal_type_id [delete: cascade, update: no action]
+Ref: meal_plan.id >  meal_plan_meal_type.meal_plan_id [delete: cascade, update: no action]
+Ref: meal_type.user_id > user.id [delete: cascade, update: no action]
+Ref: meal_type.food_id < food.id [delete: cascade, update: no action]
+Ref: activity.user_id > activity_user.activity_id [delete: cascade, update: no action]
+Ref: user.id > activity_user.user_id [delete: cascade, update: no action]
+Ref: favourite.food_id > food.id [delete: cascade, update: no action]
+Ref: favourite.activity_id > activity.id [delete: cascade, update: no action]
+Ref: favourite.exercise_id > exercise.id [delete: cascade, update: no action]
+Ref: favourite.user_id > user.id [delete: cascade, update: no action]
+Ref: recipe.food_id < user.id [delete: cascade, update: no action]
+Ref: recipe.user_id > recipe_user.user_id [delete: cascade, update: no action]
+Ref: recipe_user.user_id < user.id [delete: cascade, update: no action]
+
