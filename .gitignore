@@ -19,6 +19,7 @@
 vendor/
 
 tmp
+.idea
 .env
 db/mock
 api/books
