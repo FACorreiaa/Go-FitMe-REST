@@ -1,28 +1,30 @@
+# ./Dockerfile
+
 FROM golang:1.16-alpine AS builder
 
-ENV CGO_ENABLED=0
-ENV GOOS=linux
-ENV GOARCH=amd64
-
+# Move to working directory (/build).
 WORKDIR /build
 
-COPY go.mod .
-COPY go.sum .
-
+# Copy and download dependency using go mod.
+COPY go.mod go.sum ./
 RUN go mod download
 
+# Copy the code into the container.
 COPY . .
 
-RUN go build -o main .
-
-WORKDIR /dist
-
-RUN cp /build/main .
+# Set necessary environment variables needed for our image
+# and build the API server.
+ENV CGO_ENABLED=0 GOOS=linux GOARCH=amd64
+RUN go build -ldflags="-s -w" -o apiserver .
 
 FROM scratch
 
-COPY --from=builder /dist/main /
-COPY --from=builder /build/.env /
+# Copy binary and config files from /build
+# to root folder of scratch container.
+COPY --from=builder ["/build/apiserver", "/build/.env", "/"]
 
-# Command to run
-ENTRYPOINT ["/main"]
+# Export necessary port.
+EXPOSE 5000
+
+# Command to run when starting the container.
+ENTRYPOINT ["/apiserver"]

@@ -1,16 +1,18 @@
 package domain
 
-//type NutrientRepository interface {
-//	GetNutrients(c *fiber.Ctx) ([]meal.Nutrients, error)
-//}
-//
-//type Repository struct {
-//	Nutrient NutrientRepository
-//}
+import "github.com/gofiber/fiber/v2"
 
-//func NewRepository(config Config) *Repository {
-//	psql := db.NewPostgres(config.postgresConfig)
-//	return &Repository{
-//		Nutrient: meal.NewRepository(db.GetDB()),
-//	}
-//}
+type Activity struct {
+	ID              int     `json:"id" pg:"default:gen_random_uuid()"`
+	Name            string  `json:"name"`
+	CaloriesPerHour float32 `json:"calories_per_hour"`
+	DurationMinutes float32 `json:"duration_minutes"`
+	TotalCalories   float32 `json:"total_calories"`
+}
+type ActivityRepository interface {
+	GetAll(c *fiber.Ctx) ([]Activity, error)
+}
+
+type Repository struct {
+	Activity ActivityRepository
+}

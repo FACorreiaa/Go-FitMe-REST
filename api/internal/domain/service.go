@@ -1,15 +1,9 @@
 package domain
 
-//type NutrientService interface {
-//	GetNutrients(c *fiber.Ctx) ([]meal.Nutrients, error)
-//}
-//
-//type Service struct {
-//	Nutrient NutrientService
-//}
+type Service struct {
+	Activity ActivityService
+}
 
-//func NewService(repo *Repository) *Service {
-//	return &Service{
-//		Nutrient: meal.NewService(repo),
-//	}
-//}
+type ActivityService interface {
+	GetAll() ([]Activity, error)
+}

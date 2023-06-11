@@ -7,6 +7,7 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/csrf"
 	"github.com/gofiber/fiber/v2/utils"
 	"github.com/gofiber/swagger"
+	"log"
 	"os"
 	"time"
 
@@ -56,8 +57,11 @@ func setupMiddlewares(app *fiber.App) {
 }
 
 func Create() *fiber.App {
-	db.NewPostgres(db.Config{})
-
+	err := db.SetupDatabase()
+	if err != nil {
+		log.Fatal(err)
+		panic("Something happened on creation app")
+	}
 	app := fiber.New(fiber.Config{
 		// Override default error handler
 		ErrorHandler: func(ctx *fiber.Ctx, err error) error {
