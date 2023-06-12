@@ -9,6 +9,10 @@ type ActivityQueries struct {
 	db *sqlx.DB
 }
 
+func NewActivityRepository(db *sqlx.DB) *ActivityQueries {
+	return &ActivityQueries{db: db}
+}
+
 func (a *ActivityQueries) GetAll() ([]domain.Activity, error) {
 	activities := []domain.Activity{}
 	query := `select * from activity`

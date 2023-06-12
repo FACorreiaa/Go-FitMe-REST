@@ -8,6 +8,7 @@ import (
 )
 
 func Setup(app *fiber.App) {
+	println(&activity.ActivityService{})
 	repo := domain.Repository{
 		Activity: &activity.ActivityService{},
 	}

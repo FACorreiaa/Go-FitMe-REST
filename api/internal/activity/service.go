@@ -6,12 +6,12 @@ import (
 )
 
 type ActivityService struct {
-	repo domain.Repository
+	repo *domain.Repository
 }
 
 func NewActivityService(repo *domain.Repository) *ActivityService {
 	return &ActivityService{
-		repo: *repo,
+		repo: repo,
 	}
 }
 
