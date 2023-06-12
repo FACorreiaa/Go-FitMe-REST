@@ -1,24 +1,16 @@
 package docs
 
 import (
-	"github.com/gofiber/fiber/v2"
-	"github.com/gofiber/swagger"
+	"github.com/go-chi/chi/v5"
+	httpSwagger "github.com/swaggo/http-swagger"
 )
 
-func SwaggerRoutes(router fiber.Router) {
-	router.Get("/swagger/*", swagger.HandlerDefault) // default
+func SwaggerRoutes(router *chi.Mux) {
 
-	router.Get("/swagger/*", swagger.New(swagger.Config{ // custom
-		URL:         "http://example.com/doc.json",
-		DeepLinking: false,
-		// Expand ("list") or Collapse ("none") tag groups by default
-		DocExpansion: "none",
-		// Prefill OAuth ClientId on Authorize popup
-		//OAuth: &swagger.OAuthConfig{
-		//	AppName:  "OAuth Provider",
-		//	ClientId: "21bb4edc-05a7-4afc-86f1-2e151e4ba6e2",
-		//},
-		// Ability to change OAuth2 redirect uri location
-		//OAuth2RedirectUrl: "http://localhost:8080/swagger/oauth2-redirect.html",
-	}))
+	router.Get("/api/v1/swagger/*", httpSwagger.Handler(
+		httpSwagger.URL("./doc.json"), // Use a relative URL for the Swagger documentation file
+		httpSwagger.DeepLinking(true),
+		httpSwagger.DocExpansion("none"),
+		httpSwagger.DomID("#swagger-ui"),
+	))
 }

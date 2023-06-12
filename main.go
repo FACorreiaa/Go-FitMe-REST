@@ -1,13 +1,10 @@
 package main
 
 import (
-	"github.com/FACorreiaa/Stay-Healthy-Backend/api"
-	"github.com/gofiber/fiber/v2"
-	"log"
-
-	_ "github.com/FACorreiaa/Stay-Healthy-Backend/docs"
-	"github.com/FACorreiaa/Stay-Healthy-Backend/server"
+	"context"
+	"github.com/FACorreiaa/Stay-Healthy-Backend/http/rest"
 	"github.com/joho/godotenv"
+	"log"
 )
 
 // @title Fiber Swagger Example API
@@ -27,26 +24,26 @@ import (
 // @schemes http
 
 func main() {
+	if err := run(context.Background()); err != nil {
+		log.Fatalf("%+v", err)
+	}
+}
+
+func run(ctx context.Context) error {
 	err := godotenv.Load()
 	if err != nil {
 		log.Fatal("Error loading .env file")
 	}
 
-	// Server initialization
-	app := server.Create()
-	app.Get("/", HealthCheck)
+	server, err := rest.NewServer()
 
-	//// Migrations
-	//db.DB.AutoMigrate(&books.Book{})
-	//if err != nil {
-	//	log.Fatal("Error doing migration")
-	//}
-	// Api routes
-	api.Setup(app)
-
-	if err := server.Listen(app); err != nil {
-		log.Panic(err)
+	if err != nil {
+		return err
 	}
+
+	err = server.Run(ctx)
+
+	return err
 }
 
 // HealthCheck godoc
@@ -57,14 +54,14 @@ func main() {
 // @Produce json
 // @Success 200 {object} map[string]interface{}
 // @Router / [get]
-func HealthCheck(c *fiber.Ctx) error {
-	res := map[string]interface{}{
-		"data": "Server is up and running",
-	}
-
-	if err := c.JSON(res); err != nil {
-		return err
-	}
-
-	return nil
-}
+//func HealthCheck(c *fiber.Ctx) error {
+//	res := map[string]interface{}{
+//		"data": "Server is up and running",
+//	}
+//
+//	if err := c.JSON(res); err != nil {
+//		return err
+//	}
+//
+//	return nil
+//}

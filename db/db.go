@@ -2,11 +2,10 @@ package db
 
 import (
 	"fmt"
+	"os"
+
 	_ "github.com/jackc/pgx/v5/stdlib"
 	"github.com/jmoiron/sqlx"
-	"log"
-	"os"
-	"time"
 )
 
 type PostgresInstance struct {
@@ -31,36 +30,38 @@ func (m QueryExecMode) value() string {
 }
 
 type Config struct {
-	host                 string
-	port                 string
-	username             string
-	password             string
-	dbName               string
-	sslMode              string
-	maxConnWaitingTime   time.Duration
-	defaultQueryExecMode QueryExecMode
+	host     string
+	port     string
+	username string
+	password string
+	dbName   string
+	sslMode  string
+	//maxConnWaitingTime   time.Duration
+	//defaultQueryExecMode QueryExecMode
 }
 
-func SetupDatabase() error {
+func SetupDatabase() (*sqlx.DB, error) {
 	username := os.Getenv("POSTGRES_USER")
 	password := os.Getenv("POSTGRES_PASSWORD")
 	dbName := os.Getenv("POSTGRES_DB")
 	dbHost := os.Getenv("POSTGRES_HOST")
 	dbPort := os.Getenv("POSTGREST_PORT")
 	sslMode := os.Getenv("POSTGRES_SSLMode")
-	dsn := fmt.Sprintf("user=%s password=%s dbname=%s host=%s port=%s sslmode=%s",
-		username,
-		password,
-		dbName,
-		dbHost,
-		dbPort,
-		sslMode)
-	db, err := sqlx.Open("pgx", dsn)
-	println("db")
+	db, err := sqlx.Open(
+		"pgx",
+		fmt.Sprintf(
+			"postgres://%v:%v@%v:%v/%v?sslmode=%v",
+			username,
+			password,
+			dbHost,
+			dbPort,
+			dbName,
+			sslMode,
+		),
+	)
 
 	if err != nil {
-		log.Fatal(err)
-		panic("Failed to connect database")
+		return db, nil
 	}
 
 	fmt.Println("Connection Opened to Database")
@@ -70,7 +71,7 @@ func SetupDatabase() error {
 	//if err := db.Ping(pingCtx); err != nil {
 	//	return nil, err
 	//}
-	return nil
+	return db, nil
 }
 
 func (p *PostgresInstance) GetDB() *sqlx.DB {
