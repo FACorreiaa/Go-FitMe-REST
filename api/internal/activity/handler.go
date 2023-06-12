@@ -5,11 +5,11 @@ import (
 )
 
 type Handler struct {
-	service *Service
+	service *ActivityService
 }
 
-func NewHandler(s *Service) *Handler {
-	return &Handler{service: s}
+func NewHandler(service *ActivityService) *Handler {
+	return &Handler{service: service}
 }
 
 // GetActivities func gets all existing activities

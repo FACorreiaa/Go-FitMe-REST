@@ -3,25 +3,24 @@ package api
 import (
 	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal/activity"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal/domain"
-	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal/meal"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/docs"
 	"github.com/gofiber/fiber/v2"
 )
 
 func Setup(app *fiber.App) {
-	mealRepo := &meal.MealRepository{}
-	activityRepo := &activity.ActivityQueries{}
-
-	mealService := &meal.Service{
-		Nutrient: meal.NutrientService(mealRepo), // Assign the repository instance to the Service
+	repo := domain.Repository{
+		Activity: &activity.ActivityService{},
 	}
 
-	activityService := &domain.Service{
-		Activity: activityRepo, // Assign the repository instance to the Service
-	}
-
+	//activityHandler := activity.NewActivityService(activity.NewActivityService{})
 	v1 := app.Group("/api/v1")
-	mealService.Routes(v1)
-	activityService.Routes(v1)
+	//app.Route("/api/v1/activities", func(route fiber.Router) {
+	//	route.Get("/", func(c *fiber.Ctx) error {
+	//		activityHandler.GetActivities(c)
+	//		return nil
+	//	})
+	//})
+	activity.ActivityRoutes(v1, activity.NewActivityService(&repo))
 	docs.SwaggerRoutes(v1)
+	//activity.ActivityRoutes(v1)
 }

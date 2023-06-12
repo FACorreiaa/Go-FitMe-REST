@@ -5,18 +5,16 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-//type ActivityService struct {
-//	repo *ActivityRepository
-//}
-
-/*****************
-** AIRPORT  **
-******************/
-
-type Service struct {
-	repo *domain.Repository
+type ActivityService struct {
+	repo domain.Repository
 }
 
-func (s *Service) GetActivities(c *fiber.Ctx) ([]domain.Activity, error) {
-	return s.repo.Activity.GetAll(c)
+func NewActivityService(repo *domain.Repository) *ActivityService {
+	return &ActivityService{
+		repo: *repo,
+	}
+}
+
+func (a *ActivityService) GetAll(c *fiber.Ctx) ([]domain.Activity, error) {
+	return a.repo.Activity.GetAll(c)
 }
