@@ -21,7 +21,7 @@ func Register(r chi.Router, lg *logrus.Logger, db *sqlx.DB) {
 	//logs.InitDefaultLogger()
 	//logs.DefaultLogger.Info("Config was successfully imported")
 	//configuration, err := configuration.InitConfig()
-	//_, err = rest.NewConfig(
+	//_, err = internals.NewConfig(
 	//	configuration.Repositories.Postgres.Host,
 	//	configuration.Repositories.Postgres.Port,
 	//	configuration.Repositories.Postgres.Username,
@@ -29,7 +29,7 @@ func Register(r chi.Router, lg *logrus.Logger, db *sqlx.DB) {
 	//	configuration.Repositories.Postgres.DB,
 	//	configuration.Repositories.Postgres.SSLMode,
 	//	10*time.Second,
-	//	rest.CacheStatement,
+	//	internals.CacheStatement,
 	//)
 	//logs.DefaultLogger.Info("Server was initialized")
 	//

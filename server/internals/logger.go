@@ -1,4 +1,4 @@
-package rest
+package internals
 
 import (
 	"github.com/sirupsen/logrus"

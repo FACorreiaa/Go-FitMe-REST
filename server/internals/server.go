@@ -1,4 +1,4 @@
-package rest
+package internals
 
 import (
 	"context"
@@ -6,7 +6,6 @@ import (
 	configs "github.com/FACorreiaa/Stay-Healthy-Backend/config"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/helpers/db"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/server"
-	"github.com/FACorreiaa/Stay-Healthy-Backend/server/configuration"
 	"github.com/go-chi/chi/v5"
 	"github.com/rs/cors"
 	"github.com/sirupsen/logrus"
@@ -54,8 +53,8 @@ func NewServer() (*Server, error) {
 }
 
 func (s *Server) Run(ctx context.Context) error {
-	configutation, _ := configuration.InitConfig()
-	println("%v", configutation)
+	//configutation, _ := configuration.InitConfig()
+	//println("%v", configutation)
 	serverConfig := http.Server{
 		Addr:    fmt.Sprintf(":%d", s.config.ServerPort),
 		Handler: cors.Default().Handler(s.router),

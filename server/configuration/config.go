@@ -1,7 +1,5 @@
 package configuration
 
-import "github.com/spf13/viper"
-
 type Config struct {
 	Mode     string `mapstructure:"mode"`
 	Dotenv   string `mapstructure:"dotenv"`
@@ -37,19 +35,19 @@ type Config struct {
 	}
 }
 
-func InitConfig() (Config, error) {
-
-	var config Config
-	v := viper.New()
-	v.AddConfigPath("/server/configuration")
-	viper.AddConfigPath("/app/server/configuration")
-	v.SetConfigName("configuration")
-
-	if err := v.ReadInConfig(); err != nil {
-		return config, err
-	}
-	if err := v.Unmarshal(&config); err != nil {
-		return config, err
-	}
-	return config, nil
-}
+//func InitConfig() (Config, error) {
+//
+//	var config Config
+//	v := viper.New()
+//	v.AddConfigPath("/server/configuration")
+//	viper.AddConfigPath("/app/server/configuration")
+//	v.SetConfigName("configuration")
+//
+//	if err := v.ReadInConfig(); err != nil {
+//		return config, err
+//	}
+//	if err := v.Unmarshal(&config); err != nil {
+//		return config, err
+//	}
+//	return config, nil
+//}

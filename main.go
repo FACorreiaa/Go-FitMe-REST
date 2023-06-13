@@ -2,7 +2,7 @@ package main
 
 import (
 	"context"
-	"github.com/FACorreiaa/Stay-Healthy-Backend/http/rest"
+	"github.com/FACorreiaa/Stay-Healthy-Backend/server/internals"
 	"github.com/joho/godotenv"
 	"log"
 )
@@ -34,7 +34,7 @@ func run(ctx context.Context) error {
 		log.Fatal("Error loading .env file")
 	}
 
-	server, err := rest.NewServer()
+	server, err := internals.NewServer()
 
 	if err != nil {
 		return err
