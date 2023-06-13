@@ -6,6 +6,8 @@ import (
 	configs "github.com/FACorreiaa/Stay-Healthy-Backend/config"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/helpers/db"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/server"
+	"github.com/FACorreiaa/Stay-Healthy-Backend/server/configuration"
+	"github.com/FACorreiaa/Stay-Healthy-Backend/server/logs"
 	"github.com/go-chi/chi/v5"
 	"github.com/rs/cors"
 	"github.com/sirupsen/logrus"
@@ -14,7 +16,56 @@ import (
 	"os/signal"
 	"sync"
 	"syscall"
+	"time"
 )
+
+type QueryExecMode uint
+
+const (
+	CacheStatement = iota
+)
+
+func (m QueryExecMode) value() string {
+	switch m {
+	case CacheStatement:
+		return "cache_statement"
+	default:
+		return ""
+	}
+}
+
+type Config struct {
+	host                 string
+	port                 string
+	username             string
+	password             string
+	dbName               string
+	sslMode              string
+	maxConnWaitingTime   time.Duration
+	defaultQueryExecMode QueryExecMode
+}
+
+func NewConfig(
+	host string,
+	port string,
+	username string,
+	password string,
+	dbName string,
+	sslMode string,
+	maxConnWaitingTime time.Duration,
+	defaultQueryExecMode QueryExecMode,
+) (Config, error) {
+	return Config{
+		host:                 host,
+		port:                 port,
+		username:             username,
+		password:             password,
+		dbName:               dbName,
+		sslMode:              sslMode,
+		maxConnWaitingTime:   maxConnWaitingTime,
+		defaultQueryExecMode: defaultQueryExecMode,
+	}, nil
+}
 
 type Server struct {
 	logger *logrus.Logger
@@ -53,8 +104,23 @@ func NewServer() (*Server, error) {
 }
 
 func (s *Server) Run(ctx context.Context) error {
-	//configutation, _ := configuration.InitConfig()
-	//println("%v", configutation)
+	logs.InitDefaultLogger()
+	logs.DefaultLogger.Info("Config was successfully imported")
+	c, err := configuration.InitConfig()
+	if err != nil {
+		logs.DefaultLogger.WithError(err).Error("Config was not configure")
+	}
+	_, err = NewConfig(
+		c.Repositories.Postgres.Host,
+		c.Repositories.Postgres.Port,
+		c.Repositories.Postgres.Username,
+		os.Getenv("POSTGRES_PASSWORD"),
+		c.Repositories.Postgres.DB,
+		c.Repositories.Postgres.SSLMode,
+		10*time.Second,
+		CacheStatement,
+	)
+	logs.DefaultLogger.Info("Server was initialized")
 	serverConfig := http.Server{
 		Addr:    fmt.Sprintf(":%d", s.config.ServerPort),
 		Handler: cors.Default().Handler(s.router),

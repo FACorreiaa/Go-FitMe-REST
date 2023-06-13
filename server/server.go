@@ -8,6 +8,7 @@ import (
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/cors"
+	"github.com/go-chi/httplog"
 	"github.com/go-chi/httprate"
 	"github.com/go-chi/stampede"
 	"github.com/jmoiron/sqlx"
@@ -63,13 +64,13 @@ func Register(r chi.Router, lg *logrus.Logger, db *sqlx.DB) {
 		AllowCredentials: false,
 		MaxAge:           300, // Maximum value not ignored by any of major browsers
 	}))
-	//// Logger
-	//logger := httplog.NewLogger("StayHealthy API", httplog.Options{
-	//	JSON:            true,
-	//	Concise:         true,
-	//	TimeFieldFormat: "Mon, 02 Jan 2006 15:04:05 MST",
-	//})
-	//r.Use(httplog.RequestLogger(logger))
+	// Logger
+	logger := httplog.NewLogger("StayHealthy API", httplog.Options{
+		JSON:            true,
+		Concise:         true,
+		TimeFieldFormat: "Mon, 02 Jan 2006 15:04:05 MST",
+	})
+	r.Use(httplog.RequestLogger(logger))
 
 	r.Use(middleware.Heartbeat("/ping"))
 
