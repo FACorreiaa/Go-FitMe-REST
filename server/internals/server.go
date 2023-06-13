@@ -3,7 +3,6 @@ package internals
 import (
 	"context"
 	"fmt"
-	configs "github.com/FACorreiaa/Stay-Healthy-Backend/config"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/helpers/db"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/server"
 
@@ -16,7 +15,6 @@ import (
 	"os/signal"
 	"sync"
 	"syscall"
-	"time"
 )
 
 type QueryExecMode uint
@@ -34,47 +32,47 @@ func (m QueryExecMode) value() string {
 	}
 }
 
-type Config struct {
-	host                 string
-	port                 string
-	username             string
-	password             string
-	dbName               string
-	sslMode              string
-	maxConnWaitingTime   time.Duration
-	defaultQueryExecMode QueryExecMode
-}
-
-func NewConfig(
-	host string,
-	port string,
-	username string,
-	password string,
-	dbName string,
-	sslMode string,
-	maxConnWaitingTime time.Duration,
-	defaultQueryExecMode QueryExecMode,
-) (Config, error) {
-	return Config{
-		host:                 host,
-		port:                 port,
-		username:             username,
-		password:             password,
-		dbName:               dbName,
-		sslMode:              sslMode,
-		maxConnWaitingTime:   maxConnWaitingTime,
-		defaultQueryExecMode: defaultQueryExecMode,
-	}, nil
-}
+//type Config struct {
+//	host                 string
+//	port                 string
+//	username             string
+//	password             string
+//	dbName               string
+//	sslMode              string
+//	maxConnWaitingTime   time.Duration
+//	defaultQueryExecMode QueryExecMode
+//}
+//
+//func NewConfig(
+//	host string,
+//	port string,
+//	username string,
+//	password string,
+//	dbName string,
+//	sslMode string,
+//	maxConnWaitingTime time.Duration,
+//	defaultQueryExecMode QueryExecMode,
+//) (Config, error) {
+//	return Config{
+//		host:                 host,
+//		port:                 port,
+//		username:             username,
+//		password:             password,
+//		dbName:               dbName,
+//		sslMode:              sslMode,
+//		maxConnWaitingTime:   maxConnWaitingTime,
+//		defaultQueryExecMode: defaultQueryExecMode,
+//	}, nil
+//}
 
 type Server struct {
 	logger *logrus.Logger
 	router *chi.Mux
-	config configs.Config
+	config ServerConfig
 }
 
 func NewServer() (*Server, error) {
-	cnf, err := configs.LoadEnvVariables()
+	cnf, err := LoadEnvVariables()
 	if err != nil {
 		return nil, err
 	}
@@ -106,6 +104,9 @@ func NewServer() (*Server, error) {
 func (s *Server) Run(ctx context.Context) error {
 	logs.InitDefaultLogger()
 	logs.DefaultLogger.Info("Config was successfully imported")
+	logs.DefaultLogger.ConfigureLogger(
+		logs.JSONFormatter,
+	)
 	logs.DefaultLogger.Info("Server was initialized")
 	serverConfig := http.Server{
 		Addr:    fmt.Sprintf(":%d", s.config.ServerPort),

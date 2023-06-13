@@ -1,5 +1,5 @@
 project_name = stayHealthy
-image_name = gofiber:latest
+image_name = a11199/stay-healthy-api:latest
 
 run-local:
 	go run app.go

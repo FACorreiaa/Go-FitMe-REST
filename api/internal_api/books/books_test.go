@@ -3,9 +3,9 @@ package books
 //var app *fiber.App
 //
 //func TestMain(m *testing.M) {
-//	err := godotenv.Load("../../app.env")
+//	err := godotenv.Load("../../.env")
 //	if err != nil {
-//		log.Fatal("Error loading app.env file")
+//		log.Fatal("Error loading .env file")
 //	}
 //
 //	app = server.Create()

@@ -31,7 +31,7 @@ func main() {
 func run(ctx context.Context) error {
 	err := godotenv.Load()
 	if err != nil {
-		log.Fatal("Error loading app.env file")
+		log.Fatal("Error loading .env file")
 	}
 
 	server, err := internals.NewServer()
