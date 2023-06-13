@@ -7,9 +7,9 @@ import (
 	"log"
 )
 
-// @title Fiber Swagger Example API
+// @title StayHealthy Swagger Documentation
 // @version 2.0
-// @description This is a sample server server.
+// @description Alpha server built with Go and Chi
 // @termsOfService http://swagger.io/terms/
 
 // @contact.name API Support
@@ -19,10 +19,9 @@ import (
 // @license.name Apache 2.0
 // @license.url http://www.apache.org/licenses/LICENSE-2.0.html
 
-// @host localhost:3000
+// @host localhost:8080
 // @BasePath /
 // @schemes http
-
 func main() {
 	if err := run(context.Background()); err != nil {
 		log.Fatalf("%+v", err)

@@ -1,18 +1,63 @@
 basePath: /
-host: localhost:3000
+definitions:
+  model.Activity:
+    properties:
+      calories_per_hour:
+        type: number
+      created_at:
+        type: string
+      duration_minutes:
+        type: number
+      id:
+        example: "0"
+        type: string
+      name:
+        type: string
+      total_calories:
+        type: number
+      updated_at:
+        type: string
+      user_id:
+        example: "0"
+        type: string
+    type: object
+host: localhost:8080
 info:
   contact:
     email: support@swagger.io
     name: API Support
     url: http://www.swagger.io/support
-  description: This is a sample server server.
+  description: Alpha server built with Go and Chi
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   termsOfService: http://swagger.io/terms/
-  title: Fiber Swagger Example API
+  title: StayHealthy Swagger Documentation
   version: "2.0"
-paths: {}
+paths:
+  /api/v1/activities:
+    get:
+      consumes:
+      - application/json
+      description: get activities
+      parameters:
+      - description: name search by q
+        format: email
+        in: query
+        name: q
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.Activity'
+            type: array
+      summary: Get activities
+      tags:
+      - activities
 schemes:
 - http
 swagger: "2.0"

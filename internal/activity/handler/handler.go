@@ -19,22 +19,23 @@ type service struct {
 	ctx             context.Context
 }
 
-func NewHandler(lg *logrus.Logger, db *sqlx.DB) service {
+func NewActivityHandler(lg *logrus.Logger, db *sqlx.DB) service {
 	return service{
 		logger:          lg,
 		activityService: service2.NewService(repository.NewRepository(db)),
 	}
 }
 
-// GetActivities func gets all existing activities
-// @Description Get all activities
-// @Summary Get all activities
-// @Tags activities
-// @Accept json
-// @Produce json
-// @Success 200 {array} domain.Activity
-// @Router /api/v1/activity [get]
-
+// GetActivities gets all existing activities
+//
+//	@Summary      Get activities
+//	@Description  get activities
+//	@Tags         activities
+//	@Accept       json
+//	@Produce      json
+//	@Param        q    query     string  false  "name search by q"  Format(email)
+//	@Success      200  {array}   model.Activity
+//	@Router       /api/v1/activities [get]
 func (s service) GetActivities(w http.ResponseWriter, r *http.Request) {
 	activities, err := s.activityService.GetAll(s.ctx)
 

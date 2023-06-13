@@ -66,7 +66,7 @@ func SetupDatabase() (*sqlx.DB, error) {
 
 	fmt.Println("Connection Opened to Database")
 	DB = db
-	//pingCtx, cancel := context.WithTimeout(context.Background(), config.maxConnWaitingTime)
+	//pingCtx, cancel := context.WithTimeout(context.Background(), configuration.maxConnWaitingTime)
 	//defer cancel()
 	//if err := db.Ping(pingCtx); err != nil {
 	//	return nil, err

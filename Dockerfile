@@ -19,7 +19,7 @@ RUN go build -ldflags="-s -w" -o apiserver .
 
 FROM scratch
 
-# Copy binary and config files from /build
+# Copy binary and configuration files from /build
 # to root folder of scratch container.
 COPY --from=builder ["/build/apiserver", "/build/.env", "/"]
 

@@ -1,0 +1,40 @@
+mode: "dev"
+dotenv: ".env"
+
+handlers:
+  externalAPI:
+    port: "8081"
+    certFile: "./data/localhost.crt"
+    keyFile: "./data/localhost.key"
+    enableTLS: true
+  internalAPI:
+    port: "8083"
+    certFile: "./data/localhost.crt"
+    keyFile: "./data/localhost.key"
+    enableTLS: true
+  pprof:
+    port: "8082"
+    certFile: "./data/localhost.crt"
+    keyFile: "./data/localhost.key"
+    enableTLS: true
+  prometheus:
+    port: "8084"
+    certFile: "./data/localhost.crt"
+    keyFile: "./data/localhost.key"
+    enableTLS: true
+
+services:
+  auth:
+    authTokenTTL: 5
+    refreshTokenTTL: 20160
+    pubKeyFile: "./data/id_rsa.pub"
+    pemKeyFile: "./data/id_rsa"
+
+repositories:
+  postgres:
+    host: "scarce-serval-7031.7tc.cockroachlabs.cloud"
+    port: "26257"
+    username: "knox"
+    db: "aviationdb"
+    sslmode: "verify-full"
+    maxConnWaitingTime: 10
