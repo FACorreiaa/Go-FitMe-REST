@@ -42,7 +42,7 @@ func InitConfig() (Config, error) {
 	var config Config
 	v := viper.New()
 	v.AddConfigPath("/server/configuration")
-	viper.AddConfigPath("/app/server/configuration")
+	v.AddConfigPath("/app/server/configuration")
 	v.SetConfigName("config")
 
 	if err := v.ReadInConfig(); err != nil {

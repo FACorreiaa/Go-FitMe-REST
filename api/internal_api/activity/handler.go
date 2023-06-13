@@ -1,10 +1,8 @@
-package handler
+package activity
 
 import (
 	"context"
 	"encoding/json"
-	"github.com/FACorreiaa/Stay-Healthy-Backend/internal/activity/repository"
-	service2 "github.com/FACorreiaa/Stay-Healthy-Backend/internal/activity/service"
 	"github.com/go-chi/chi/v5"
 	"github.com/jmoiron/sqlx"
 	"github.com/sirupsen/logrus"
@@ -15,14 +13,14 @@ import (
 type service struct {
 	logger          *logrus.Logger
 	router          *chi.Router
-	activityService service2.Service
+	activityService Service
 	ctx             context.Context
 }
 
 func NewActivityHandler(lg *logrus.Logger, db *sqlx.DB) service {
 	return service{
 		logger:          lg,
-		activityService: service2.NewService(repository.NewRepository(db)),
+		activityService: NewService(NewRepository(db)),
 	}
 }
 

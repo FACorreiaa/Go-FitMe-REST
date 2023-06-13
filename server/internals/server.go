@@ -6,7 +6,7 @@ import (
 	configs "github.com/FACorreiaa/Stay-Healthy-Backend/config"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/helpers/db"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/server"
-	"github.com/FACorreiaa/Stay-Healthy-Backend/server/configuration"
+
 	"github.com/FACorreiaa/Stay-Healthy-Backend/server/logs"
 	"github.com/go-chi/chi/v5"
 	"github.com/rs/cors"
@@ -74,7 +74,7 @@ type Server struct {
 }
 
 func NewServer() (*Server, error) {
-	cnf, err := configs.NewParsedConfig()
+	cnf, err := configs.LoadEnvVariables()
 	if err != nil {
 		return nil, err
 	}
@@ -106,20 +106,6 @@ func NewServer() (*Server, error) {
 func (s *Server) Run(ctx context.Context) error {
 	logs.InitDefaultLogger()
 	logs.DefaultLogger.Info("Config was successfully imported")
-	c, err := configuration.InitConfig()
-	if err != nil {
-		logs.DefaultLogger.WithError(err).Error("Config was not configure")
-	}
-	_, err = NewConfig(
-		c.Repositories.Postgres.Host,
-		c.Repositories.Postgres.Port,
-		c.Repositories.Postgres.Username,
-		os.Getenv("POSTGRES_PASSWORD"),
-		c.Repositories.Postgres.DB,
-		c.Repositories.Postgres.SSLMode,
-		10*time.Second,
-		CacheStatement,
-	)
 	logs.DefaultLogger.Info("Server was initialized")
 	serverConfig := http.Server{
 		Addr:    fmt.Sprintf(":%d", s.config.ServerPort),

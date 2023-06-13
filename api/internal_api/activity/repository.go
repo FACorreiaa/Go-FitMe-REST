@@ -1,8 +1,7 @@
-package repository
+package activity
 
 import (
 	"context"
-	"github.com/FACorreiaa/Stay-Healthy-Backend/internal/activity/model"
 	"github.com/jmoiron/sqlx"
 )
 
@@ -14,17 +13,17 @@ func NewRepository(db *sqlx.DB) Repository {
 	return Repository{db: db}
 }
 
-func (r Repository) GetAll(ctx context.Context) ([]model.Activity, error) {
+func (r Repository) GetAll(ctx context.Context) ([]Activity, error) {
 	rows, err := r.db.Query("SELECT * FROM activity")
 
 	if err != nil {
 		return nil, ctx.Err()
 	}
 	defer rows.Close()
-	result := []model.Activity{}
+	result := []Activity{}
 
 	for rows.Next() {
-		activity := model.Activity{}
+		activity := Activity{}
 		if err := rows.Scan(
 			&activity.ID, &activity.UserID, &activity.Name,
 			&activity.DurationMinutes,

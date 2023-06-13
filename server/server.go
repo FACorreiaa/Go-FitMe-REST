@@ -1,7 +1,7 @@
 package server
 
 import (
-	"github.com/FACorreiaa/Stay-Healthy-Backend/internal/activity"
+	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/activity"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/server/logs"
 	"os"
 

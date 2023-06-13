@@ -1,14 +1,13 @@
 package activity
 
 import (
-	"github.com/FACorreiaa/Stay-Healthy-Backend/internal/activity/handler"
 	"github.com/go-chi/chi/v5"
 	"github.com/jmoiron/sqlx"
 	"github.com/sirupsen/logrus"
 )
 
 func ActivityRoutes(lg *logrus.Logger, db *sqlx.DB) *chi.Mux {
-	h := handler.NewActivityHandler(lg, db)
+	h := NewActivityHandler(lg, db)
 	router := chi.NewRouter()
 
 	router.Get("/activities", h.GetActivities)

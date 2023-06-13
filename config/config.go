@@ -19,8 +19,8 @@ type Database struct {
 	SslMode  string `envconfig:"POSTGRES_SSLMODE" required:"true"`
 }
 
-func NewParsedConfig() (Config, error) {
-	_ = godotenv.Load(".env")
+func LoadEnvVariables() (Config, error) {
+	_ = godotenv.Load("app.env")
 	cnf := Config{}
 	err := envconfig.Process("", &cnf)
 	return cnf, err
