@@ -6,7 +6,8 @@ import (
 
 type ServerConfig struct {
 	Database   Database
-	ServerPort int `envconfig:"SERVER_PORT" default:"80"`
+	ServerPort int    `envconfig:"SERVER_PORT" default:"80"`
+	Env        string `envconfig:"STAY_HEALTHY_ENV"`
 }
 
 type Database struct {

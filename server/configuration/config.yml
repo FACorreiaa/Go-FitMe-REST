@@ -1,5 +1,5 @@
 mode: "dev"
-dotenv: "dev.env/dev"
+dotenv: ".env/dev"
 
 handlers:
   externalAPI:

@@ -33,11 +33,13 @@ func main() {
 }
 
 func run(ctx context.Context) error {
+	print(os.Getenv("STAY_HEALTHY_ENV"))
+	err := godotenv.Load(".env")
+
 	if os.Getenv("APP_ENV") == "dev" {
-		err := godotenv.Load("dev.env")
 		if err != nil {
 			fmt.Println(err)
-			log.Fatal("Error loading dev.env file")
+			log.Fatal("Error loading .env file")
 		}
 	}
 

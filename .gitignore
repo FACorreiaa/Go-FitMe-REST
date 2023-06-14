@@ -22,5 +22,5 @@ tmp
 .idea
 db/mock
 internal/books
-dev.env
+.env
 data
