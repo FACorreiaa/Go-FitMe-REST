@@ -32,10 +32,10 @@ func main() {
 }
 
 func run(ctx context.Context) error {
-	err := godotenv.Load()
+	err := godotenv.Load("dev.env")
 	if err != nil {
 		fmt.Println(err)
-		log.Fatal("Error loading .env file")
+		log.Fatal("Error loading dev.env file")
 	}
 
 	server, err := internals.NewServer()
