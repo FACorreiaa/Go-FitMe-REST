@@ -26,7 +26,7 @@ WORKDIR /
 COPY --from=builder /app/main .
 
 # Copy the .env file
-COPY data .
+COPY /data .
 
 # Expose port 8080 to the outside world
 EXPOSE 8080
