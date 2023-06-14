@@ -25,6 +25,7 @@ import (
 // @schemes http
 func main() {
 	if err := run(context.Background()); err != nil {
+		println(err)
 		log.Fatalf("%+v", err)
 	}
 }
@@ -32,12 +33,14 @@ func main() {
 func run(ctx context.Context) error {
 	err := godotenv.Load()
 	if err != nil {
+		println(err)
 		log.Fatal("Error loading .env file")
 	}
 
 	server, err := internals.NewServer()
 
 	if err != nil {
+		println(err)
 		return err
 	}
 
