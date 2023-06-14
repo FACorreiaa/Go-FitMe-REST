@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/server/internals"
 	"github.com/joho/godotenv"
 	_ "github.com/joho/godotenv"
@@ -25,7 +26,7 @@ import (
 // @schemes http
 func main() {
 	if err := run(context.Background()); err != nil {
-		println(err)
+		fmt.Println(err)
 		log.Fatalf("%+v", err)
 	}
 }
@@ -33,14 +34,14 @@ func main() {
 func run(ctx context.Context) error {
 	err := godotenv.Load()
 	if err != nil {
-		println(err)
+		fmt.Println(err)
 		log.Fatal("Error loading .env file")
 	}
 
 	server, err := internals.NewServer()
 
 	if err != nil {
-		println(err)
+		fmt.Println(err)
 		return err
 	}
 
