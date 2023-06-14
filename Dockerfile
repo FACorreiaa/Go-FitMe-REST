@@ -24,6 +24,9 @@ RUN apk update && apk add --no-cache git
 # Set the current working directory inside the container
 WORKDIR /app
 
+# Copy the .env file
+COPY .env ./
+
 # Copy go mod and sum files
 COPY go.mod go.sum ./
 
