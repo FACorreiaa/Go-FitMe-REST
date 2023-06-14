@@ -26,7 +26,7 @@ WORKDIR /root/
 COPY --from=builder /app/main .
 
 # Copy the dev.env file
-COPY dev.env .
+#COPY dev.env .
 
 # Expose port 8080 to the outside world
 EXPOSE 8080
