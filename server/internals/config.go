@@ -1,8 +1,10 @@
 package internals
 
 import (
+	"fmt"
 	"github.com/joho/godotenv"
 	"github.com/kelseyhightower/envconfig"
+	"log"
 )
 
 type ServerConfig struct {
@@ -23,8 +25,13 @@ type Database struct {
 // https://github.com/techschool/simplebank/blob/master/util/config.go
 // https://maneeshaindrachapa.medium.com/go-with-env-files-using-viper-1eb3d1d1d221
 func LoadEnvVariables() (ServerConfig, error) {
-	_ = godotenv.Load(".env")
+	err := godotenv.Load(".env")
+	if err != nil {
+		log.Fatalf("Error loading environment config! %v", err)
+	} else {
+		fmt.Println("Config loaded!")
+	}
 	cnf := ServerConfig{}
-	err := envconfig.Process("", &cnf)
+	err = envconfig.Process("", &cnf)
 	return cnf, err
 }
