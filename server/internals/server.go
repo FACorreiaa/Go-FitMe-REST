@@ -125,7 +125,7 @@ func (s *Server) Run(ctx context.Context) error {
 	go func(wg *sync.WaitGroup) {
 		defer wg.Done()
 		s.logger.Printf("REST API listening on port %d", s.config.ServerPort)
-		serverErrors <- serverConfig.ListenAndServeTLS("localhost.crt", "localhost.key")
+		serverErrors <- serverConfig.ListenAndServeTLS("./data/localhost.crt", "./data/localhost.key")
 	}(&wg)
 
 	// blocking run and waiting for shutdown.
