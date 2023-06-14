@@ -23,3 +23,5 @@ tmp
 db/mock
 internal/books
 dev.env
+Dockerfile
+docker-compose.yml
