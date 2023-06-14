@@ -7,6 +7,7 @@ import (
 	"github.com/joho/godotenv"
 	_ "github.com/joho/godotenv"
 	"log"
+	"os"
 )
 
 // @title StayHealthy Swagger Documentation
@@ -32,10 +33,12 @@ func main() {
 }
 
 func run(ctx context.Context) error {
-	err := godotenv.Load("dev.env")
-	if err != nil {
-		fmt.Println(err)
-		log.Fatal("Error loading dev.env file")
+	if os.Getenv("APP_ENV") == "dev" {
+		err := godotenv.Load("dev.env")
+		if err != nil {
+			fmt.Println(err)
+			log.Fatal("Error loading dev.env file")
+		}
 	}
 
 	server, err := internals.NewServer()
