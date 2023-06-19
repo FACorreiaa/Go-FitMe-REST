@@ -187,14 +187,20 @@ type CaloriesObjective struct {
 	Maintenance float64 `json:"maintenance"`
 }
 
+type GoalResponse struct {
+	Goal float64 `json:"goal"`
+}
+
 type UserInfo struct {
-	Metric            string `json:"metric"`
-	UserData          UserData
-	ActivityInfo      ActivityInfo
-	ObjectiveInfo     ObjectiveInfo
-	BMR               float64 `json:"bmr"`
-	TDEE              float64 `json:"tdee"`
-	MacrosInfo        MacrosInfo
+	Metric        string `json:"metric"`
+	UserData      UserData
+	ActivityInfo  ActivityInfo
+	ObjectiveInfo ObjectiveInfo
+	BMR           float64 `json:"bmr"`
+	TDEE          float64 `json:"tdee"`
+	MacrosInfo    MacrosInfo
+	Goal          float64 `json:"goal"`
+
 	CaloriesObjective CaloriesObjective `json:"calories-objective"`
 }
 
@@ -297,13 +303,6 @@ func calculateMacroDistribution(calorieFactor float64, calorieGoal float64, calo
 	return (calorieFactor * calorieGoal) / float64(caloriesPerGram)
 }
 
-//func calculateGoals(tdee float64) (float64, float64, float64) {
-//
-//	var fatLoss = tdee - caloricDeficit
-//	var bulk = tdee + caloricExcedent
-//	return fatLoss, tdee, bulk
-//}
-
 func calculateGoals(tdee float64) Goals {
 	var fatLoss = tdee - caloricDeficit
 	var bulk = tdee + caloricExcedent
@@ -314,13 +313,24 @@ func calculateGoals(tdee float64) Goals {
 	}
 }
 
-//func getGoal(tdee float64) map[Objective]float64 {
-//	var cut, maintain, bulk = calculateGoals(tdee)
+func getGoal(tdeeValue float64, objective Objective) float64 {
+	goals := calculateGoals(tdeeValue)
+	mapGoals := make(map[Objective]float64)
+	mapGoals[maintenance] = goals.Maintenance
+	mapGoals[cutting] = goals.Cutting
+	mapGoals[bulking] = goals.Bulking
+	return mapGoals[objective]
+}
+
+//func getGoal(tdeeValue float64, objective Objective) GoalResponse {
+//	goals := calculateGoals(tdeeValue)
 //	mapGoals := make(map[Objective]float64)
-//	mapGoals[maintenance] = maintain
-//	mapGoals[cutting] = cut
-//	mapGoals[bulking] = bulk
-//	return mapGoals
+//	mapGoals[maintenance] = goals.Maintenance
+//	mapGoals[cutting] = goals.Cutting
+//	mapGoals[bulking] = goals.Bulking
+//	return GoalResponse{
+//		Goal: mapGoals[objective],
+//	}
 //}
 
 func calculateMacroNutrients(calorieGoal float64, distribution CaloriesDistribution) Macros {
@@ -362,11 +372,9 @@ func CalculateMacros(w http.ResponseWriter, r *http.Request) {
 	o, err := mapObjective(Objective(objective))
 	v, err := mapActivityValues(Activity(activity))
 	tdee := calculateTDEE(bmr, v)
-	//caloriesObjective := getGoal(tdee)
-	//caloriesObjective := calculateGoals(tdee)
-	//macrosBulking := calculateMacroNutrients(caloriesObjective.Bulking, CaloriesDistribution(distribution))
-	//macrosCutting := calculateMacroNutrients(caloriesObjective.Cutting, CaloriesDistribution(distribution))
-	//macrosMaintenance := calculateMacroNutrients(caloriesObjective.Maintenance, CaloriesDistribution(distribution))
+	//show struct after
+	goal := getGoal(tdee, Objective(objective))
+	println(goal)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
@@ -394,6 +402,8 @@ func CalculateMacros(w http.ResponseWriter, r *http.Request) {
 			CaloriesDistribution: CaloriesDistribution(distribution),
 			Macros:               macros,
 		},
+		Goal: goal,
+
 		//CaloriesObjective: CaloriesObjective{
 		//	Bulking:     macrosBulking,
 		//	Cutting:     macrosCutting,
