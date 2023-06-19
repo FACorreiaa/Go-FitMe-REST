@@ -10,11 +10,7 @@ import (
 )
 
 func InitPprof() {
-	//profName := "my_experiment_thing"
-	//libProfile = pprof.
-	//if libProfile == nil {
-	//	libProfile = pprof.NewProfile(profName)
-	//}
+
 	router := chi.NewRouter()
 	router.Route("/debug/pprof", func(r chi.Router) {
 		r.Use(middleware.NoCache)
@@ -32,6 +28,7 @@ func InitPprof() {
 		r.Get("/heap", chiWrapper(handlerFunc(pprof.Handler("heap"))))
 		r.Get("/mutex", chiWrapper(handlerFunc(pprof.Handler("mutex"))))
 		r.Get("/threadcreate", chiWrapper(handlerFunc(pprof.Handler("threadcreate"))))
+
 		//r.Get("/threadcreate", func(w http.ResponseWriter, r *http.Request) {
 		//	pprof.Handler("threadcreate")
 		//})
@@ -45,9 +42,11 @@ func InitPprof() {
 		//	pprof.Handler("threadcreate")
 		//})
 	})
+
 	//http.HandleFunc("/functiontrack", func(rw http.ResponseWriter, req *http.Request) {
 	//	trackAFunction()
 	//})
+
 	go func() {
 		log.Println("Running pprof!")
 

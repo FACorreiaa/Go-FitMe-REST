@@ -6,18 +6,11 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-func ActivityRoutes(lg *logrus.Logger, db *sqlx.DB) *chi.Mux {
+func RoutesActivity(lg *logrus.Logger, db *sqlx.DB) *chi.Mux {
 	h := NewActivityHandler(lg, db)
 	router := chi.NewRouter()
 
-	router.Get("/activities", h.GetActivities)
-	//router.Get("/api/v1/tax/tax-name={tax_name}", taxHandler.GetTaxName)
-	//router.Get("/api/v1/tax/count", taxHandler.GetTaxesCount)
-	//
-	//router.Route("/api/v1/tax/{id}", func(r chi.Router) {
-	//	r.Get("/", taxHandler.GetTax)
-	//	r.Delete("/", taxHandler.DeleteTax)
-	//	r.Put("/", taxHandler.UpdateTax)
-	//})
+	router.Get("/", h.GetActivities)
+
 	return router
 }

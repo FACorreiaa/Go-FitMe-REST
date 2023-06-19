@@ -2,6 +2,7 @@ package server
 
 import (
 	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/activity"
+	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/calculator"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/server/logs"
 	"os"
 
@@ -44,8 +45,8 @@ func Register(r chi.Router, lg *logrus.Logger, db *sqlx.DB) {
 	//logs.DefaultLogger.Info("Main logger was initialized successfully")
 	swaggerRoute := SwaggerRoutes()
 	//activity routes
-	activityRoutes := activity.ActivityRoutes(lg, db)
-
+	RoutesActivity := activity.RoutesActivity(lg, db)
+	RoutesCalculator := calculator.RoutesCalculator()
 	r.Use(middleware.RequestID)
 	r.Use(middleware.RealIP)
 	r.Use(middleware.Logger)
@@ -77,7 +78,8 @@ func Register(r chi.Router, lg *logrus.Logger, db *sqlx.DB) {
 	InitPprof()
 	InitPrometheus(r)
 	r.Mount("/api/docs", swaggerRoute)
-	r.With(cached).Mount("/api/v1", activityRoutes)
+	r.With(cached).Mount("/api/v1/activity", RoutesActivity)
+	r.With(cached).Mount("/api/v1/calculator", RoutesCalculator)
 
 	//h := handler.NewHandler(lg, db)
 	//app.Use(handler.MiddlewareLogger())

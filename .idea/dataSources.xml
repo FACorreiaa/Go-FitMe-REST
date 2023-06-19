@@ -2,17 +2,10 @@
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
     <data-source source="LOCAL" name="stayfit@scarce-serval-7031.7tc.cockroachlabs.cloud" uuid="511d1b1a-caa3-4ec9-a22f-df16063c570a">
-      <driver-ref>postgresql</driver-ref>
+      <driver-ref>cockroach</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://scarce-serval-7031.7tc.cockroachlabs.cloud:26257/stayfit</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
-    <data-source source="LOCAL" name="postgres@localhost" uuid="bf5ebe25-4eb1-4f17-ae99-c5e7b7683638">
-      <driver-ref>postgresql</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://localhost:5432/postgres</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

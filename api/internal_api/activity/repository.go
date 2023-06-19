@@ -14,7 +14,9 @@ func NewRepository(db *sqlx.DB) Repository {
 }
 
 func (r Repository) GetAll(ctx context.Context) ([]Activity, error) {
-	rows, err := r.db.Query("SELECT * FROM activity")
+	rows, err := r.db.Query(`SELECT id, user_id, name,
+										duration_minutes, total_calories, calories_per_hour,
+										created_at, updated_at FROM activity`)
 
 	if err != nil {
 		return nil, ctx.Err()
