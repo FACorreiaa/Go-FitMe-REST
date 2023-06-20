@@ -13,7 +13,6 @@ type Objective string
 type ObjectiveDescription string
 type CaloriesDistribution string
 type CaloriesDistributionDescription string
-
 type Activity string
 type ActivityDescription string
 type ActivityValues float64
@@ -23,11 +22,30 @@ const (
 	maintenance Objective = "Maintenance"
 	bulking     Objective = "Bulking"
 	cutting     Objective = "Cutting"
-)
 
-const (
 	m = "Male"
-	f = "Female"
+
+	metric Measure = "Metric"
+
+	sedentaryActivity  Activity = "Sedentary"
+	lightActivity      Activity = "Light Activity"
+	moderateActivity   Activity = "Moderate"
+	heavyActivity      Activity = "Heavy"
+	extraHeavyActivity Activity = "Extra Heavy"
+
+	sedentaryActivityDescription  ActivityDescription = "Office Job. Very low activity during the day"
+	lightActivityDescription      ActivityDescription = "Workout 1 to 2 days per week"
+	moderateActivityDescription   ActivityDescription = "Workout 3-5 days per week"
+	heavyActivityDescription      ActivityDescription = "Workout 5 to 7 days per week"
+	extraHeavyActivityDescription ActivityDescription = "Giga Dog! Training twice a day!"
+
+	maintenanceDescription ObjectiveDescription = "You choose to keep your current weight."
+	cuttingDescription     ObjectiveDescription = "You choose to loose some weight. Ideally 250 grams or half a pound per week"
+	bulkingDescription     ObjectiveDescription = "You choose to gain weight. Ideally 300 grams or 0.70 pounds per week"
+
+	lowCarbs      CaloriesDistributionDescription = "Low Carbs diet. Protein 0.4, Fats 0.4, Carbs 0.2"
+	moderateCarbs CaloriesDistributionDescription = "Moderate Carbs diet. Protein 0.3, Fats 0.35, Carbs 0.35"
+	highCarbs     CaloriesDistributionDescription = "High Carbs diet. Protein 0.3, Fats 0.2, Carbs 0.5"
 )
 
 const (
@@ -40,44 +58,12 @@ const (
 	maleAgeFactor                          = 5
 	femaleAgeFactor                        = -161
 	caloricDeficit                         = 450.0
-	caloricExcedent                        = 350.0
+	caloricPlus                            = 350.0
 	sedentaryActivityValue  ActivityValues = 1.2
 	lightActivityValue      ActivityValues = 1.375
 	moderateActivityValue   ActivityValues = 1.55
 	heavyActivityValue      ActivityValues = 1.725
 	extraHeavyActivityValue ActivityValues = 1.9
-)
-
-const (
-	metric   Measure = "Metric"
-	imperial Measure = "Imperial"
-)
-
-const (
-	sedentaryActivity  Activity = "Sedentary"
-	lightActivity      Activity = "Light Activity"
-	moderateActivity   Activity = "Moderate"
-	heavyActivity      Activity = "Heavy"
-	extraHeavyActivity Activity = "Extra Heavy"
-)
-const (
-	sedentaryActivityDescription  ActivityDescription = "Office Job. Very low activity during the day"
-	lightActivityDescription      ActivityDescription = "Workout 1 to 2 days per week"
-	moderateActivityDescription   ActivityDescription = "Workout 3-5 days per week"
-	heavyActivityDescription      ActivityDescription = "Workout 5 to 7 days per week"
-	extraHeavyActivityDescription ActivityDescription = "Giga Dog! Training twice a day!"
-)
-
-const (
-	maintenanceDescription ObjectiveDescription = "You choose to keep your current weight."
-	cuttingDescription     ObjectiveDescription = "You choose to loose some weight. Ideally 250 grams or half a pound per week"
-	bulkingDescription     ObjectiveDescription = "You choose to gain weight. Ideally 300 grams or 0.70 pounds per week"
-)
-
-const (
-	lowCarbs    CaloriesDistributionDescription = "Low Carbs diet. Protein 0.4, Fats 0.4, Carbs 0.2"
-	mediumCarbs CaloriesDistributionDescription = "Moderate Carbs diet. Protein 0.3, Fats 0.35, Carbs 0.35"
-	highCarbs   CaloriesDistributionDescription = "High Carbs diet. Protein 0.3, Fats 0.2, Carbs 0.5"
 )
 
 type Goals struct {
@@ -100,31 +86,11 @@ type MeasureList struct {
 	Measure Measure `json:"metric"`
 }
 
-//const Low_Carb string = "Low Carb"
-//const Moderate_Carb string = "Moderate Carb"
-//const High_Carb string = "High Carb"
-//
-//const Metric_Height string = "cm"
-//const Metric_Weight string = "kg"
-//const Imperial_Height string = "lb"
-//const Imperial_Weight string = "ft"
-//
-//const Male = "male"
-//const Female = "female"
-
 type UserData struct {
 	Age    int64   `json:"age"`
 	Height float64 `json:"height"`
 	Weight float64 `json:"weight"`
 	Gender string  `json:"gender"`
-}
-
-type Response struct {
-	TDEE     float64 `json:"tdee"`
-	Goal     float64 `json:"goal"`
-	Activity string  `json:"activity"`
-	Macros   Macros  `json:"macros"`
-	BMF      float64 `json:"bmf"`
 }
 
 const (
@@ -176,9 +142,13 @@ type Macros struct {
 	Carbs   float64 `json:"carbs"`
 }
 
+type CaloriesInfo struct {
+	CaloriesDistribution            CaloriesDistribution            `json:"carbDistribution"`
+	CaloriesDistributionDescription CaloriesDistributionDescription `json:"carbDistributionDescription"`
+}
 type MacrosInfo struct {
-	CaloriesDistribution CaloriesDistribution `json:"calories-distribution"`
-	Macros               Macros
+	CaloriesInfo CaloriesInfo
+	Macros       Macros
 }
 
 type CaloriesObjective struct {
@@ -187,21 +157,21 @@ type CaloriesObjective struct {
 	Maintenance float64 `json:"maintenance"`
 }
 
-type GoalResponse struct {
-	Goal float64 `json:"goal"`
-}
+//type GoalResponse struct {
+//	Goal float64 `json:"caloric goal"`
+//}
 
 type UserInfo struct {
-	Metric        string `json:"metric"`
+	System        string `json:"system"`
 	UserData      UserData
 	ActivityInfo  ActivityInfo
 	ObjectiveInfo ObjectiveInfo
 	BMR           float64 `json:"bmr"`
 	TDEE          float64 `json:"tdee"`
 	MacrosInfo    MacrosInfo
-	Goal          float64 `json:"goal"`
+	Goal          float64 `json:"caloricGoal"`
 
-	CaloriesObjective CaloriesObjective `json:"calories-objective"`
+	// CalorieObjective CaloriesObjective `json:"calories-objective"`
 }
 
 var activityDescriptionMap = map[Activity]ActivityDescription{
@@ -224,11 +194,11 @@ var objectiveDescriptionMap = map[Objective]ObjectiveDescription{
 	cutting:     cuttingDescription,
 }
 
-//var caloricDescriptionMap = map[CaloriesDistribution]CaloriesDistributionDescription{
-//	LowCarbRatios:      lowCarbs,
-//	ModerateCarbRatios: mediumCarbs,
-//	HighCarbRatios:     highCarbs,
-//}
+var carbsDistribution = map[CaloriesDistribution]CaloriesDistributionDescription{
+	HighCarbRatios:     highCarbs,
+	LowCarbRatios:      lowCarbs,
+	ModerateCarbRatios: moderateCarbs,
+}
 
 func mapActivity(activity Activity) (*ActivityList, error) {
 	description, valid := activityDescriptionMap[activity]
@@ -254,6 +224,17 @@ func mapObjective(objective Objective) (*ObjectiveList, error) {
 	return &ObjectiveList{
 		Objective:   objective,
 		Description: description,
+	}, nil
+}
+
+func mapDistribution(distribution CaloriesDistribution) (*CaloriesInfo, error) {
+	description, valid := carbsDistribution[distribution]
+	if !valid {
+		return nil, errors.New("invalid objective")
+	}
+	return &CaloriesInfo{
+		CaloriesDistribution:            distribution,
+		CaloriesDistributionDescription: description,
 	}, nil
 }
 
@@ -299,13 +280,9 @@ func calculateTDEE(bmr float64, activityValue ActivityValues) float64 {
 	return bmr * float64(activityValue)
 }
 
-func calculateMacroDistribution(calorieFactor float64, calorieGoal float64, caloriesPerGram int) float64 {
-	return (calorieFactor * calorieGoal) / float64(caloriesPerGram)
-}
-
 func calculateGoals(tdee float64) Goals {
 	var fatLoss = tdee - caloricDeficit
-	var bulk = tdee + caloricExcedent
+	var bulk = tdee + caloricPlus
 	return Goals{
 		Cutting:     fatLoss,
 		Maintenance: tdee,
@@ -321,17 +298,6 @@ func getGoal(tdeeValue float64, objective Objective) float64 {
 	mapGoals[bulking] = goals.Bulking
 	return mapGoals[objective]
 }
-
-//func getGoal(tdeeValue float64, objective Objective) GoalResponse {
-//	goals := calculateGoals(tdeeValue)
-//	mapGoals := make(map[Objective]float64)
-//	mapGoals[maintenance] = goals.Maintenance
-//	mapGoals[cutting] = goals.Cutting
-//	mapGoals[bulking] = goals.Bulking
-//	return GoalResponse{
-//		Goal: mapGoals[objective],
-//	}
-//}
 
 func calculateMacroNutrients(calorieGoal float64, distribution CaloriesDistribution) Macros {
 	if ratios, ok := macroRatios[distribution]; ok {
@@ -349,12 +315,16 @@ func calculateMacroNutrients(calorieGoal float64, distribution CaloriesDistribut
 	return Macros{}
 }
 
+func calculateMacroDistribution(calorieFactor float64, calorieGoal float64, caloriesPerGram int) float64 {
+	return (calorieFactor * calorieGoal) / float64(caloriesPerGram)
+}
+
 func CalculateMacros(w http.ResponseWriter, r *http.Request) {
 	age, _ := strconv.ParseInt(chi.URLParam(r, "age"), 10, 64)
 	height, _ := strconv.ParseFloat(chi.URLParam(r, "height"), 64)
 	weight, _ := strconv.ParseFloat(chi.URLParam(r, "weight"), 64)
 	gender := chi.URLParam(r, "gender")
-	metric := chi.URLParam(r, "metric")
+	system := chi.URLParam(r, "system")
 	activity := chi.URLParam(r, "activity")
 	objective := chi.URLParam(r, "objective")
 	distribution := chi.URLParam(r, "calories-distribution")
@@ -367,10 +337,11 @@ func CalculateMacros(w http.ResponseWriter, r *http.Request) {
 		Weight: weight,
 		Gender: gender,
 	}
-	bmr := calculateBMR(userInputData, Measure(metric))
+	bmr := calculateBMR(userInputData, Measure(system))
 	a, err := mapActivity(Activity(activity))
 	o, err := mapObjective(Objective(objective))
 	v, err := mapActivityValues(Activity(activity))
+	d, err := mapDistribution(CaloriesDistribution(distribution))
 	tdee := calculateTDEE(bmr, v)
 	//show struct after
 	goal := getGoal(tdee, Objective(objective))
@@ -381,7 +352,7 @@ func CalculateMacros(w http.ResponseWriter, r *http.Request) {
 	}
 	macros := calculateMacroNutrients(tdee, CaloriesDistribution(distribution))
 	response := UserInfo{
-		Metric: metric,
+		System: system,
 		UserData: UserData{
 			Age:    validAge,
 			Height: validHeight,
@@ -399,8 +370,11 @@ func CalculateMacros(w http.ResponseWriter, r *http.Request) {
 		BMR:  bmr,
 		TDEE: tdee,
 		MacrosInfo: MacrosInfo{
-			CaloriesDistribution: CaloriesDistribution(distribution),
-			Macros:               macros,
+			CaloriesInfo: CaloriesInfo{
+				CaloriesDistribution:            d.CaloriesDistribution,
+				CaloriesDistributionDescription: d.CaloriesDistributionDescription,
+			},
+			Macros: macros,
 		},
 		Goal: goal,
 
