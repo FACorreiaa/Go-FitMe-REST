@@ -5,6 +5,7 @@ import (
 	"errors"
 	"github.com/go-chi/chi/v5"
 	"log"
+	"math"
 	"net/http"
 	"strconv"
 )
@@ -16,7 +17,7 @@ type CaloriesDistributionDescription string
 type Activity string
 type ActivityDescription string
 type ActivityValues float64
-type Measure string
+type System string
 
 const (
 	maintenance Objective = "Maintenance"
@@ -25,13 +26,13 @@ const (
 
 	m = "Male"
 
-	metric Measure = "Metric"
+	metric System = "Metric"
 
 	sedentaryActivity  Activity = "Sedentary"
-	lightActivity      Activity = "Light Activity"
+	lightActivity      Activity = "LightActivity"
 	moderateActivity   Activity = "Moderate"
 	heavyActivity      Activity = "Heavy"
-	extraHeavyActivity Activity = "Extra Heavy"
+	extraHeavyActivity Activity = "ExtraHeavy"
 
 	sedentaryActivityDescription  ActivityDescription = "Office Job. Very low activity during the day"
 	lightActivityDescription      ActivityDescription = "Workout 1 to 2 days per week"
@@ -40,7 +41,7 @@ const (
 	extraHeavyActivityDescription ActivityDescription = "Giga Dog! Training twice a day!"
 
 	maintenanceDescription ObjectiveDescription = "You choose to keep your current weight."
-	cuttingDescription     ObjectiveDescription = "You choose to loose some weight. Ideally 250 grams or half a pound per week"
+	cuttingDescription     ObjectiveDescription = "You choose to lose some weight. Ideally 250 grams or half a pound per week"
 	bulkingDescription     ObjectiveDescription = "You choose to gain weight. Ideally 300 grams or 0.70 pounds per week"
 
 	lowCarbs      CaloriesDistributionDescription = "Low Carbs diet. Protein 0.4, Fats 0.4, Carbs 0.2"
@@ -51,10 +52,10 @@ const (
 const (
 	minAge                                 = 0
 	maxAge                                 = 100
-	minHeight                              = 50
+	minHeight                              = 0
 	maxHeight                              = 250
 	minWeight                              = 0
-	maxWeight                              = 200
+	maxWeight                              = 500
 	maleAgeFactor                          = 5
 	femaleAgeFactor                        = -161
 	caloricDeficit                         = 450.0
@@ -82,8 +83,8 @@ type ObjectiveList struct {
 	Description ObjectiveDescription `json:"description"`
 }
 
-type MeasureList struct {
-	Measure Measure `json:"metric"`
+type SystemList struct {
+	System System `json:"metric"`
 }
 
 type UserData struct {
@@ -261,23 +262,38 @@ func validateHeight(height float64) (float64, error) {
 	return height, nil
 }
 
-func calculateBMR(userData UserData, measuringSystem Measure) float64 {
+func convertWeight(weight float64, system System) float64 {
+	if system == metric {
+		return weight
+	}
+	return weight / 0.453592 // 1 lb = 0.453592 kg
+}
+func convertHeight(height float64, system System) float64 {
+	if system == metric {
+		return height
+	}
+	return height / 2.54 // 1 in = 2.54 cm
+}
+
+func calculateBMR(userData UserData, system System) float64 {
 	var ageFactor float64
+	weight := convertWeight(userData.Weight, system)
+	height := convertHeight(userData.Height, system)
 	if userData.Gender == m {
 		ageFactor = maleAgeFactor
 	} else {
 		ageFactor = femaleAgeFactor
 	}
 
-	if measuringSystem == metric {
-		return (10*userData.Weight + 6.25*userData.Height - 5.0*(float64(userData.Age))) + ageFactor
+	if system == metric {
+		return math.Round((10*weight + 6.25*height - 5.0*(float64(userData.Age))) + ageFactor)
 	} else {
-		return (4.536*userData.Weight + 15.88*userData.Height - 5.0*(float64(userData.Age))) + ageFactor
+		return math.Round((4.536*weight + 15.88*height - 5.0*(float64(userData.Age))) + ageFactor)
 	}
 }
 
 func calculateTDEE(bmr float64, activityValue ActivityValues) float64 {
-	return bmr * float64(activityValue)
+	return math.Round(bmr * float64(activityValue))
 }
 
 func calculateGoals(tdee float64) Goals {
@@ -316,7 +332,7 @@ func calculateMacroNutrients(calorieGoal float64, distribution CaloriesDistribut
 }
 
 func calculateMacroDistribution(calorieFactor float64, calorieGoal float64, caloriesPerGram int) float64 {
-	return (calorieFactor * calorieGoal) / float64(caloriesPerGram)
+	return math.Round((calorieFactor * calorieGoal) / float64(caloriesPerGram))
 }
 
 func CalculateMacros(w http.ResponseWriter, r *http.Request) {
@@ -337,13 +353,12 @@ func CalculateMacros(w http.ResponseWriter, r *http.Request) {
 		Weight: weight,
 		Gender: gender,
 	}
-	bmr := calculateBMR(userInputData, Measure(system))
+	bmr := calculateBMR(userInputData, System(system))
 	a, err := mapActivity(Activity(activity))
 	o, err := mapObjective(Objective(objective))
 	v, err := mapActivityValues(Activity(activity))
 	d, err := mapDistribution(CaloriesDistribution(distribution))
 	tdee := calculateTDEE(bmr, v)
-	//show struct after
 	goal := getGoal(tdee, Objective(objective))
 	println(goal)
 	if err != nil {
