@@ -7,7 +7,7 @@ import (
 	"github.com/jmoiron/sqlx"
 )
 
-type ConfingDB struct {
+type ConfigDB struct {
 	Host     string
 	Port     int
 	User     string
@@ -16,7 +16,7 @@ type ConfingDB struct {
 	SslMode  string
 }
 
-func Connect(cnf ConfingDB) (*sqlx.DB, error) {
+func Connect(cnf ConfigDB) (*sqlx.DB, error) {
 	dsn := fmt.Sprintf(
 		"host=%s port=%d user=%s password=%s dbname=%s sslmode=%s",
 		cnf.Host,

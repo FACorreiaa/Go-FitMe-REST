@@ -8,6 +8,7 @@ import (
 
 func RoutesActivity(lg *logrus.Logger, db *sqlx.DB) *chi.Mux {
 	h := NewActivityHandler(lg, db)
+	
 	router := chi.NewRouter()
 
 	router.Get("/", h.GetActivities)

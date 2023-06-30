@@ -65,3 +65,17 @@ package user
 //func (u *userService) FindAll() ([]domain.User, error) {
 //	return u.userRepository.FindAll()
 //}
+
+type Service struct {
+	repo Repository
+}
+
+func NewService(repo Repository) Service {
+	return Service{
+		repo: repo,
+	}
+}
+
+func (s Service) Create(user NewUser) (int, error) {
+	return s.repo.CreateNewUser(user)
+}

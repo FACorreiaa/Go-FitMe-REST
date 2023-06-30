@@ -25,9 +25,13 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/api/v1/activities": {
+        "/users/me": {
             "get": {
-                "description": "get activities",
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "consumes": [
                     "application/json"
                 ],
@@ -35,25 +39,113 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "activities"
+                    "users"
                 ],
-                "summary": "Get activities",
+                "summary": "Get the user's info",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/auth.UserSession"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/sign-in": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "users"
+                ],
+                "summary": "Sign in a user",
                 "parameters": [
                     {
-                        "type": "string",
-                        "format": "email",
-                        "description": "name search by q",
-                        "name": "q",
-                        "in": "query"
+                        "description": "The user's email and password",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/user.signInRequestBody"
+                        }
                     }
                 ],
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/model.Activity"
+                            "$ref": "#/definitions/user.SuccessResponse"
+                        },
+                        "headers": {
+                            "Authorization": {
+                                "type": "string",
+                                "description": "contains the session id in bearer format"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users/sign-out": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "users"
+                ],
+                "summary": "Sign out a user",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/user.SuccessResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/sign-up": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "users"
+                ],
+                "summary": "Sign up a user",
+                "parameters": [
+                    {
+                        "description": "The user's first name, last name, email, and password",
+                        "name": "user",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/user.userRequestBody"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/user.signUpSuccessResponse"
+                        },
+                        "headers": {
+                            "Authorization": {
+                                "type": "string",
+                                "description": "contains the session id in bearer format"
                             }
                         }
                     }
@@ -62,34 +154,70 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "model.Activity": {
+        "auth.UserSession": {
             "type": "object",
             "properties": {
-                "calories_per_hour": {
-                    "type": "number"
-                },
-                "created_at": {
+                "email": {
                     "type": "string"
-                },
-                "duration_minutes": {
-                    "type": "number"
                 },
                 "id": {
-                    "type": "string",
-                    "example": "0"
+                    "type": "integer"
                 },
-                "name": {
+                "username": {
+                    "type": "string"
+                }
+            }
+        },
+        "user.SuccessResponse": {
+            "type": "object",
+            "properties": {
+                "success": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "user.signInRequestBody": {
+            "type": "object",
+            "required": [
+                "email",
+                "password"
+            ],
+            "properties": {
+                "email": {
                     "type": "string"
                 },
-                "total_calories": {
-                    "type": "number"
-                },
-                "updated_at": {
+                "password": {
+                    "type": "string",
+                    "minLength": 6
+                }
+            }
+        },
+        "user.signUpSuccessResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "user.userRequestBody": {
+            "type": "object",
+            "required": [
+                "email",
+                "password",
+                "username"
+            ],
+            "properties": {
+                "email": {
                     "type": "string"
                 },
-                "user_id": {
+                "password": {
                     "type": "string",
-                    "example": "0"
+                    "maxLength": 48,
+                    "minLength": 6
+                },
+                "username": {
+                    "type": "string"
                 }
             }
         }

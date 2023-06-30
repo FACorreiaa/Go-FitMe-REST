@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/helpers/db"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/server"
+	"github.com/redis/go-redis/v9"
+	"time"
 
 	"github.com/FACorreiaa/Stay-Healthy-Backend/server/logs"
 	"github.com/go-chi/chi/v5"
@@ -69,6 +71,7 @@ type Server struct {
 	logger *logrus.Logger
 	router *chi.Mux
 	config ServerConfig
+	rdb    *redis.Client
 }
 
 func NewServer() (*Server, error) {
@@ -77,7 +80,32 @@ func NewServer() (*Server, error) {
 		return nil, err
 	}
 
-	database, err := db.Connect(db.ConfingDB{
+	addr := os.Getenv("REDIS_ADDR")
+	if addr == "" {
+		addr = "localhost:6379" // Default value if environment variable is not set
+	}
+
+	rdb := redis.NewClient(&redis.Options{
+		Addr:     cnf.Redis.Addr,
+		Password: cnf.Redis.Password, // no password set
+		DB:       cnf.Redis.DB,       // use default DB
+	})
+
+	// Create a context with timeout for the Ping operation
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
+
+	// Ping the Redis server
+	pong, err := rdb.Ping(ctx).Result()
+	if err != nil {
+		fmt.Println("Failed to ping Redis:", err)
+	}
+
+	fmt.Println("Redis connection successful. Pong:", pong)
+
+	fmt.Println("Redis connection is open. PONG response:", pong)
+
+	database, err := db.Connect(db.ConfigDB{
 		Host:     cnf.Database.Host,
 		Port:     cnf.Database.Port,
 		User:     cnf.Database.User,
@@ -91,12 +119,13 @@ func NewServer() (*Server, error) {
 
 	log := NewLogger()
 	router := chi.NewRouter()
-	server.Register(router, log, database)
+	server.Register(router, log, database, rdb)
 
 	s := Server{
 		logger: log,
 		config: cnf,
 		router: router,
+		rdb:    rdb,
 	}
 	return &s, nil
 }

@@ -1,25 +1,49 @@
 basePath: /
 definitions:
-  model.Activity:
+  auth.UserSession:
     properties:
-      calories_per_hour:
-        type: number
-      created_at:
+      email:
         type: string
-      duration_minutes:
-        type: number
       id:
-        example: "0"
+        type: integer
+      username:
         type: string
-      name:
+    type: object
+  user.SuccessResponse:
+    properties:
+      success:
+        type: boolean
+    type: object
+  user.signInRequestBody:
+    properties:
+      email:
         type: string
-      total_calories:
-        type: number
-      updated_at:
+      password:
+        minLength: 6
         type: string
-      user_id:
-        example: "0"
+    required:
+    - email
+    - password
+    type: object
+  user.signUpSuccessResponse:
+    properties:
+      id:
+        type: integer
+    type: object
+  user.userRequestBody:
+    properties:
+      email:
         type: string
+      password:
+        maxLength: 48
+        minLength: 6
+        type: string
+      username:
+        type: string
+    required:
+    - email
+    - password
+    - username
     type: object
 host: localhost:8080
 info:
@@ -35,29 +59,86 @@ info:
   title: StayHealthy Swagger Documentation
   version: "2.0"
 paths:
-  /api/v1/activities:
+  /users/me:
     get:
       consumes:
       - application/json
-      description: get activities
-      parameters:
-      - description: name search by q
-        format: email
-        in: query
-        name: q
-        type: string
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            items:
-              $ref: '#/definitions/model.Activity'
-            type: array
-      summary: Get activities
+            $ref: '#/definitions/auth.UserSession'
+      security:
+      - ApiKeyAuth: []
+      summary: Get the user's info
       tags:
-      - activities
+      - users
+  /users/sign-in:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: The user's email and password
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/user.signInRequestBody'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          headers:
+            Authorization:
+              description: contains the session id in bearer format
+              type: string
+          schema:
+            $ref: '#/definitions/user.SuccessResponse'
+      summary: Sign in a user
+      tags:
+      - users
+  /users/sign-out:
+    post:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/user.SuccessResponse'
+      summary: Sign out a user
+      tags:
+      - users
+  /users/sign-up:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: The user's first name, last name, email, and password
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/user.userRequestBody'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          headers:
+            Authorization:
+              description: contains the session id in bearer format
+              type: string
+          schema:
+            $ref: '#/definitions/user.signUpSuccessResponse'
+      summary: Sign up a user
+      tags:
+      - users
 schemes:
 - http
 swagger: "2.0"

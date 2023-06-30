@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="stayfit@scarce-serval-7031.7tc.cockroachlabs.cloud" uuid="511d1b1a-caa3-4ec9-a22f-df16063c570a">
+    <data-source source="LOCAL" name="stayhealthy@scarce-serval-7031.7tc.cockroachlabs.cloud" uuid="4490fa3c-33f1-4c7d-baa3-26228591646c">
       <driver-ref>cockroach</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://scarce-serval-7031.7tc.cockroachlabs.cloud:26257/stayfit</jdbc-url>
+      <jdbc-url>jdbc:postgresql://scarce-serval-7031.7tc.cockroachlabs.cloud:26257/stayhealthy</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

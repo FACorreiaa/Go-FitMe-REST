@@ -2,10 +2,9 @@ package server
 
 import (
 	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/activity"
+	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/auth"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/calculator"
-	"github.com/FACorreiaa/Stay-Healthy-Backend/server/logs"
-	"os"
-
+	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/user"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/cors"
@@ -13,46 +12,28 @@ import (
 	"github.com/go-chi/httprate"
 	"github.com/go-chi/stampede"
 	"github.com/jmoiron/sqlx"
+	"github.com/redis/go-redis/v9"
 	"github.com/sirupsen/logrus"
 
 	"time"
 )
 
-func Register(r chi.Router, lg *logrus.Logger, db *sqlx.DB) {
-	//swagger
-	//logs.InitDefaultLogger()
-	//logs.DefaultLogger.Info("Config was successfully imported")
-	//configuration, err := configuration.InitConfig()
-	//_, err = internals.NewConfig(
-	//	configuration.Repositories.Postgres.Host,
-	//	configuration.Repositories.Postgres.Port,
-	//	configuration.Repositories.Postgres.Username,
-	//	os.Getenv("POSTGRES_PASSWORD"),
-	//	configuration.Repositories.Postgres.DB,
-	//	configuration.Repositories.Postgres.SSLMode,
-	//	10*time.Second,
-	//	internals.CacheStatement,
-	//)
-	//logs.DefaultLogger.Info("Server was initialized")
-	//
-	//if err != nil {
-	//	logs.DefaultLogger.WithError(err).Error("Config was not configure")
-	//}
-	//logs.DefaultLogger.Info("Config was successfully imported")
-	//logs.DefaultLogger.ConfigureLogger(
-	//	getLogFormatter(configuration.Mode),
-	//)
-	//logs.DefaultLogger.Info("Main logger was initialized successfully")
+func Register(r chi.Router, lg *logrus.Logger, db *sqlx.DB, rdb *redis.Client) {
 	swaggerRoute := SwaggerRoutes()
-	//activity routes
-	RoutesActivity := activity.RoutesActivity(lg, db)
-	RoutesCalculator := calculator.RoutesCalculator()
+	activityRoutes := activity.RoutesActivity(lg, db)
+	userRoutes := user.RoutesUser(lg, db)
+	calculatorRoute := calculator.RoutesCalculator()
+	sessionManager := auth.NewSessionManager(rdb, db)
+
 	r.Use(middleware.RequestID)
 	r.Use(middleware.RealIP)
 	r.Use(middleware.Logger)
 	r.Use(middleware.Recoverer)
 	r.Use(middleware.Timeout(60 * time.Second))
 	r.Use(httprate.LimitByIP(100, 1*time.Minute))
+	r.Use(auth.SessionMiddleware(sessionManager))
+
+	// Use middleware to add the session manager to the request context
 	cached := stampede.Handler(512, 1*time.Second)
 
 	r.Use(cors.Handler(cors.Options{
@@ -78,26 +59,7 @@ func Register(r chi.Router, lg *logrus.Logger, db *sqlx.DB) {
 	InitPprof()
 	InitPrometheus(r)
 	r.Mount("/api/docs", swaggerRoute)
-	r.With(cached).Mount("/api/v1/activity", RoutesActivity)
-	r.With(cached).Mount("/api/v1/calculator", RoutesCalculator)
-
-	//h := handler.NewHandler(lg, db)
-	//app.Use(handler.MiddlewareLogger())
-
-	//r.Get("/activities", h.GetActivities)
-}
-
-func getLogFormatter(mode string) logs.Formatter {
-	switch mode {
-	case "prod":
-		return logs.JSONFormatter
-	case "test":
-		return logs.DefaultFormatter
-	case "dev":
-		return logs.DefaultFormatter
-	default:
-		logs.DefaultLogger.Fatal("Mode has no match")
-		os.Exit(1)
-		return 0
-	}
+	r.With(cached).Mount("/api/v1/activity", activityRoutes)
+	r.With(cached).Mount("/api/v1/user", userRoutes)
+	r.With(cached).Mount("/api/v1/calculator", calculatorRoute)
 }

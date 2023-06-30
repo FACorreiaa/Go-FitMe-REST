@@ -171,8 +171,6 @@ type UserInfo struct {
 	TDEE          float64 `json:"tdee"`
 	MacrosInfo    MacrosInfo
 	Goal          float64 `json:"caloricGoal"`
-
-	// CalorieObjective CaloriesObjective `json:"calories-objective"`
 }
 
 var activityDescriptionMap = map[Activity]ActivityDescription{
@@ -360,7 +358,7 @@ func CalculateMacros(w http.ResponseWriter, r *http.Request) {
 	d, err := mapDistribution(CaloriesDistribution(distribution))
 	tdee := calculateTDEE(bmr, v)
 	goal := getGoal(tdee, Objective(objective))
-	println(goal)
+
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
@@ -392,11 +390,6 @@ func CalculateMacros(w http.ResponseWriter, r *http.Request) {
 			Macros: macros,
 		},
 		Goal: goal,
-
-		//CaloriesObjective: CaloriesObjective{
-		//	Bulking:     macrosBulking,
-		//	Cutting:     macrosCutting,
-		//	Maintenance: macrosMaintenance,
 	}
 
 	w.Header().Set("Content-Type", "application/json")

@@ -2,6 +2,7 @@ package activity
 
 import (
 	"context"
+	"fmt"
 	"github.com/jmoiron/sqlx"
 )
 
@@ -31,7 +32,7 @@ func (r Repository) GetAll(ctx context.Context) ([]Activity, error) {
 			&activity.DurationMinutes,
 			&activity.TotalCalories, &activity.CaloriesPerHour,
 			&activity.CreatedAt, &activity.UpdatedAt); err != nil {
-			return nil, err // Exit if we get an error
+			return nil, fmt.Errorf("error inserting values: %w", err) // Exit if we get an error
 		}
 
 		// Append Employee to Employees
