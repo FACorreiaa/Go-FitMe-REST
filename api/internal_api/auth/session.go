@@ -12,12 +12,12 @@ import (
 )
 
 type SessionManager struct {
-	Rdb  *redis.Client
-	Conn *sqlx.DB
+	Rdb *redis.Client
+	DB  *sqlx.DB
 }
 
-func NewSessionManager(rdb *redis.Client, conn *sqlx.DB) *SessionManager {
-	return &SessionManager{Rdb: rdb, Conn: conn}
+func NewSessionManager(rdb *redis.Client, db *sqlx.DB) *SessionManager {
+	return &SessionManager{Rdb: rdb, DB: db}
 }
 
 type UserSession struct {
@@ -46,7 +46,7 @@ func (s *SessionManager) GenerateSession(data UserSession) (string, error) {
 func (s *SessionManager) SignIn(email, password string) (string, error) {
 	// check if the user exists
 	var user User
-	err := s.Conn.QueryRow("select id, username, email, password from users where email = ?", email).Scan(&user.Id, &user.Username, &user.Email, &user.Password)
+	err := s.DB.QueryRow("select id, username, email, password from users where email = $1", email).Scan(&user.Id, &user.Username, &user.Email, &user.Password)
 	if err != nil {
 		return "", err
 	}
@@ -96,6 +96,7 @@ func SessionMiddleware(sessionManager *SessionManager) func(http.Handler) http.H
 	return func(next http.Handler) http.Handler {
 		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			// Initialize the session manager and add it to the request context
+			println(sessionManager)
 			ctx := context.WithValue(r.Context(), "sessionManager", sessionManager)
 			r = r.WithContext(ctx)
 

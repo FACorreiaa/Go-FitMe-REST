@@ -21,9 +21,9 @@ import (
 func Register(r chi.Router, lg *logrus.Logger, db *sqlx.DB, rdb *redis.Client) {
 	swaggerRoute := SwaggerRoutes()
 	activityRoutes := activity.RoutesActivity(lg, db)
-	userRoutes := user.RoutesUser(lg, db)
-	calculatorRoute := calculator.RoutesCalculator()
 	sessionManager := auth.NewSessionManager(rdb, db)
+	userRoutes := user.RoutesUser(lg, db, sessionManager)
+	calculatorRoute := calculator.RoutesCalculator()
 
 	r.Use(middleware.RequestID)
 	r.Use(middleware.RealIP)

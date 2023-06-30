@@ -23,10 +23,11 @@ type UserHandler struct {
 	sessionManager *auth.SessionManager
 }
 
-func NewUserHandler(lg *logrus.Logger, db *sqlx.DB) UserHandler {
+func NewUserHandler(lg *logrus.Logger, db *sqlx.DB, sessionManager *auth.SessionManager) UserHandler {
 	return UserHandler{
-		logger:      lg,
-		userService: NewService(NewUserRepository(db)),
+		logger:         lg,
+		userService:    NewService(NewUserRepository(db)),
+		sessionManager: sessionManager,
 	}
 }
 
@@ -223,7 +224,7 @@ func (u UserHandler) SignInUser(w http.ResponseWriter, r *http.Request) {
 	// Send a response
 	w.Header().Set("Authorization", fmt.Sprintf("Bearer %s", sessionId))
 	w.WriteHeader(http.StatusOK)
-	_, _ = w.Write([]byte("User created successfully"))
+	_, _ = w.Write([]byte("User logged successfully"))
 
 }
 
