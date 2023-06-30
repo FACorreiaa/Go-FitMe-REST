@@ -115,7 +115,8 @@ type signInRequestBody struct {
 // @Router		/users/sign-out [post]
 func (u UserHandler) SignOutUser(w http.ResponseWriter, r *http.Request) {
 	// get the session from the authorization header
-	sessionHeader := r.Header.Get("Authorization")
+	println(r.Header.Get("Bearer"))
+	sessionHeader := r.Header.Get("Bearer")
 
 	// ensure the session header is not empty and in the correct format
 	if sessionHeader == "" || len(sessionHeader) < 8 || sessionHeader[:7] != "Bearer " {
@@ -222,6 +223,7 @@ func (u UserHandler) SignInUser(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Send a response
+	r.Header.Set("Authorization", fmt.Sprintf("Bearer %s", sessionId))
 	w.Header().Set("Authorization", fmt.Sprintf("Bearer %s", sessionId))
 	w.WriteHeader(http.StatusOK)
 	_, _ = w.Write([]byte("User logged successfully"))
@@ -287,10 +289,6 @@ func (u UserHandler) SignUpUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Send the response
-	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("Authorization", fmt.Sprintf("Bearer %s", sessionId))
-
 	// Create the response payload
 	res := signUpSuccessResponse{
 		ID: userID,
@@ -302,4 +300,8 @@ func (u UserHandler) SignUpUser(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Failed to encode response", http.StatusInternalServerError)
 		return
 	}
+	// Send the response
+	r.Header.Set("Authorization", fmt.Sprintf("Bearer %s", sessionId))
+	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Authorization", fmt.Sprintf("Bearer %s", sessionId))
 }
