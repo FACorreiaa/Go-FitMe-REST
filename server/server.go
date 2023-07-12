@@ -59,7 +59,7 @@ func Register(r chi.Router, lg *logrus.Logger, db *sqlx.DB, rdb *redis.Client) {
 	InitPprof()
 	InitPrometheus(r)
 	r.Mount("/api/docs", swaggerRoute)
-	r.With(cached).Mount("/api/v1/activity", activityRoutes)
-	r.With(cached).Mount("/api/v1/user", userRoutes)
-	r.With(cached).Mount("/api/v1/calculator", calculatorRoute)
+	r.With(cached).Mount("/api/v1/activities", activityRoutes)
+	r.With(cached).Mount("/api/v1/users", userRoutes)
+	r.With(cached).Mount("/api/v1/calories", calculatorRoute)
 }

@@ -3,6 +3,7 @@ package activity
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"github.com/go-chi/chi/v5"
 	"github.com/jmoiron/sqlx"
 	"github.com/sirupsen/logrus"
@@ -13,14 +14,21 @@ import (
 type service struct {
 	logger          *logrus.Logger
 	router          *chi.Router
-	activityService Service
 	ctx             context.Context
+	activityService Service
 }
 
 func NewActivityHandler(lg *logrus.Logger, db *sqlx.DB) service {
+	repo, err := NewRepository(db)
+	if err != nil {
+		err := errors.New("error creating activity handler")
+		if err != nil {
+			return service{}
+		}
+	}
 	return service{
 		logger:          lg,
-		activityService: NewService(NewRepository(db)),
+		activityService: NewService(*repo),
 	}
 }
 
@@ -52,3 +60,7 @@ func (s service) GetActivities(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	_ = json.NewEncoder(w).Encode(activities)
 }
+
+func (s service) StartTracker(w http.ResponseWriter, r *http.Request)  {}
+func (s service) StopTracker(w http.ResponseWriter, r *http.Request)   {}
+func (s service) ResumeTracker(w http.ResponseWriter, r *http.Request) {}

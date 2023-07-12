@@ -16,6 +16,17 @@ type Activity struct {
 	UpdatedAt       *time.Time     `json:"updated_at"`
 }
 
+type Exercise struct {
+	Name             string
+	CaloriesBurnedPM float64
+}
+
+type ExerciseUserHistory struct {
+	ExerciceName   string
+	Duration       time.Duration
+	CaloriesBurned float64
+}
+
 type Status int
 
 const (

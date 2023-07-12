@@ -24,8 +24,7 @@ const (
 	bulking     Objective = "Bulking"
 	cutting     Objective = "Cutting"
 
-	m = "Male"
-
+	m             = "Male"
 	metric System = "Metric"
 
 	sedentaryActivity  Activity = "Sedentary"
@@ -67,33 +66,6 @@ const (
 	extraHeavyActivityValue ActivityValues = 1.9
 )
 
-type Goals struct {
-	Bulking     float64 `json:"bulking"`
-	Cutting     float64 `json:"cutting"`
-	Maintenance float64 `json:"maintenance"`
-}
-
-type ActivityList struct {
-	Activity    Activity            `json:"activity"`
-	Description ActivityDescription `json:"description"`
-}
-
-type ObjectiveList struct {
-	Objective   Objective            `json:"objective"`
-	Description ObjectiveDescription `json:"description"`
-}
-
-type SystemList struct {
-	System System `json:"metric"`
-}
-
-type UserData struct {
-	Age    int64   `json:"age"`
-	Height float64 `json:"height"`
-	Weight float64 `json:"weight"`
-	Gender string  `json:"gender"`
-}
-
 const (
 	HighCarbRatios     CaloriesDistribution = "High"
 	ModerateCarbRatios CaloriesDistribution = "Moderate"
@@ -128,6 +100,33 @@ var (
 	carbGramValue    = 4
 )
 
+type Goals struct {
+	Bulking     float64 `json:"bulking"`
+	Cutting     float64 `json:"cutting"`
+	Maintenance float64 `json:"maintenance"`
+}
+
+type ActivityList struct {
+	Activity    Activity            `json:"activity"`
+	Description ActivityDescription `json:"description"`
+}
+
+type ObjectiveList struct {
+	Objective   Objective            `json:"objective"`
+	Description ObjectiveDescription `json:"description"`
+}
+
+type SystemList struct {
+	System System `json:"metric"`
+}
+
+type UserData struct {
+	Age    int64   `json:"age"`
+	Height float64 `json:"height"`
+	Weight float64 `json:"weight"`
+	Gender string  `json:"gender"`
+}
+
 type ActivityInfo struct {
 	Activity    Activity            `json:"activity"`
 	Description ActivityDescription `json:"description"`
@@ -157,10 +156,6 @@ type CaloriesObjective struct {
 	Cutting     float64 `json:"cutting"`
 	Maintenance float64 `json:"maintenance"`
 }
-
-//type GoalResponse struct {
-//	Goal float64 `json:"caloric goal"`
-//}
 
 type UserInfo struct {
 	System        string `json:"system"`
