@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
+	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/auth"
 	"github.com/go-chi/chi/v5"
 	"github.com/jmoiron/sqlx"
 	"github.com/sirupsen/logrus"
@@ -11,24 +12,24 @@ import (
 	"net/http"
 )
 
-type service struct {
+type activityHandler struct {
 	logger          *logrus.Logger
 	router          *chi.Router
 	ctx             context.Context
-	activityService Service
+	activityService *ActivityService
+	sessionManager  *auth.SessionManager
 }
 
-func NewActivityHandler(lg *logrus.Logger, db *sqlx.DB) service {
-	repo, err := NewRepository(db)
+func NewActivityHandler(lg *logrus.Logger, db *sqlx.DB, sessionManager *auth.SessionManager) *activityHandler {
+	repo, err := NewActivityRepository(db)
 	if err != nil {
-		err := errors.New("error creating activity handler")
-		if err != nil {
-			return service{}
-		}
+		errors.New("error injecting activity service")
 	}
-	return service{
+	service := NewActivityService(repo)
+	return &activityHandler{
 		logger:          lg,
-		activityService: NewService(*repo),
+		activityService: service,
+		sessionManager:  sessionManager,
 	}
 }
 
@@ -43,8 +44,8 @@ func NewActivityHandler(lg *logrus.Logger, db *sqlx.DB) service {
 // @Success      200  {array}   model.Activity
 // @Router       /api/v1/activities [get]
 
-func (s service) GetActivities(w http.ResponseWriter, r *http.Request) {
-	activities, err := s.activityService.GetAll(s.ctx)
+func (a activityHandler) GetActivities(w http.ResponseWriter, r *http.Request) {
+	activities, err := a.activityService.GetAll(a.ctx)
 
 	if err != nil {
 		log.Printf("Error fetching activities data: %v", err)
@@ -61,6 +62,6 @@ func (s service) GetActivities(w http.ResponseWriter, r *http.Request) {
 	_ = json.NewEncoder(w).Encode(activities)
 }
 
-func (s service) StartTracker(w http.ResponseWriter, r *http.Request)  {}
-func (s service) StopTracker(w http.ResponseWriter, r *http.Request)   {}
-func (s service) ResumeTracker(w http.ResponseWriter, r *http.Request) {}
+func (s activityHandler) StartTracker(w http.ResponseWriter, r *http.Request)  {}
+func (s activityHandler) StopTracker(w http.ResponseWriter, r *http.Request)   {}
+func (s activityHandler) ResumeTracker(w http.ResponseWriter, r *http.Request) {}

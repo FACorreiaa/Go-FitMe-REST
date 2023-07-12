@@ -6,17 +6,19 @@ import (
 	"github.com/FACorreiaa/Stay-Healthy-Backend/helpers/db"
 )
 
-type Service struct {
-	repo *Repository
+type ActivityService struct {
+	repo *ActivityRepository
 }
 
-func NewService(r *Repository) *Service {
-	return &Service{
-		repo: r,
+//s
+
+func NewActivityService(repo *ActivityRepository) *ActivityService {
+	return &ActivityService{
+		repo: repo,
 	}
 }
 
-func (s Service) GetAll(ctx context.Context) ([]Activity, error) {
+func (s ActivityService) GetAll(ctx context.Context) ([]Activity, error) {
 	activities, err := s.repo.GetAll(ctx)
 	switch {
 	case err == nil:
@@ -28,7 +30,7 @@ func (s Service) GetAll(ctx context.Context) ([]Activity, error) {
 	return activities, nil
 }
 
-func (s Service) Get(ctx context.Context) ([]Activity, error) {
+func (s ActivityService) Get(ctx context.Context) ([]Activity, error) {
 	activities, err := s.repo.GetAll(ctx)
 	switch {
 	case err == nil:
@@ -40,7 +42,7 @@ func (s Service) Get(ctx context.Context) ([]Activity, error) {
 	return activities, nil
 }
 
-func (s Service) GetByName(ctx context.Context, name string) ([]Activity, error) {
+func (s ActivityService) GetByName(ctx context.Context, name string) ([]Activity, error) {
 	activities, err := s.repo.GetExerciseByName(ctx, name)
 	switch {
 	case err == nil:
@@ -52,7 +54,7 @@ func (s Service) GetByName(ctx context.Context, name string) ([]Activity, error)
 	return activities, nil
 }
 
-func (s Service) GetByID(ctx context.Context, id int) (Activity, error) {
+func (s ActivityService) GetByID(ctx context.Context, id int) (Activity, error) {
 	activity, err := s.repo.GetExerciseByID(ctx, id)
 	switch {
 	case err == nil:

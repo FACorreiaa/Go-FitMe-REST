@@ -8,20 +8,24 @@ import (
 	"github.com/jmoiron/sqlx"
 )
 
-type Repository struct {
+type ActivityRepository struct {
 	db *sqlx.DB
 }
 
-func NewRepository(db *sqlx.DB) (*Repository, error) {
-	return &Repository{db: db}, nil
+//
+
+func NewActivityRepository(db *sqlx.DB) (*ActivityRepository, error) {
+	return &ActivityRepository{db: db}, nil
 }
 
-func (r Repository) GetAll(ctx context.Context) ([]Activity, error) {
+func (r ActivityRepository) GetAll(ctx context.Context) ([]Activity, error) {
 	var activities []Activity
-	err := r.db.SelectContext(ctx, &activities, `SELECT id, user_id, name,
-										duration_minutes, total_calories, calories_per_hour,
-										created_at, updated_at
-									FROM activity`)
+	query := `SELECT id, user_id, name,
+					duration_minutes, total_calories, calories_per_hour,
+					created_at, updated_at
+			FROM activity`
+
+	err := r.db.SelectContext(ctx, &activities, query)
 
 	if err != nil {
 		if errors.Is(err, sql.ErrNoRows) {
@@ -33,7 +37,7 @@ func (r Repository) GetAll(ctx context.Context) ([]Activity, error) {
 	return activities, nil
 }
 
-func (r Repository) GetExerciseByName(ctx context.Context, name string) ([]Activity, error) {
+func (r ActivityRepository) GetExerciseByName(ctx context.Context, name string) ([]Activity, error) {
 	var activities []Activity
 
 	err := r.db.SelectContext(ctx, &activities, `SELECT id, user_id, name, duration_minutes,
@@ -51,7 +55,7 @@ func (r Repository) GetExerciseByName(ctx context.Context, name string) ([]Activ
 	return activities, nil
 }
 
-func (r Repository) GetExerciseByID(ctx context.Context, id int) (Activity, error) {
+func (r ActivityRepository) GetExerciseByID(ctx context.Context, id int) (Activity, error) {
 	var activity Activity
 
 	err := r.db.GetContext(ctx, &activity,

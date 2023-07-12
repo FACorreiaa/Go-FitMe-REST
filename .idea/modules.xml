@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../../aviation-tracker/backend/.idea/backend.iml" filepath="$PROJECT_DIR$/../../aviation-tracker/backend/.idea/backend.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/stay-healthy-backend.iml" filepath="$PROJECT_DIR$/.idea/stay-healthy-backend.iml" />
     </modules>
   </component>
