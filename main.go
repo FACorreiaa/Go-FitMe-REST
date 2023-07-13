@@ -43,14 +43,15 @@ func run(ctx context.Context) error {
 	}
 
 	server, err := internals.NewServer()
-
 	if err != nil {
+		server.Close()
 		fmt.Println(err)
+		//log.Fatalf("%+v", err)
 		return err
 	}
 
 	err = server.Run(ctx)
-
+	defer server.Close()
 	return err
 }
 

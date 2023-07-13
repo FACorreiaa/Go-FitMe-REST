@@ -12,7 +12,7 @@ import (
 	"net/http"
 )
 
-type activityHandler struct {
+type ActivityHandler struct {
 	logger          *logrus.Logger
 	router          *chi.Router
 	ctx             context.Context
@@ -20,16 +20,17 @@ type activityHandler struct {
 	sessionManager  *auth.SessionManager
 }
 
-func NewActivityHandler(lg *logrus.Logger, db *sqlx.DB, sessionManager *auth.SessionManager) *activityHandler {
+func NewActivityHandler(lg *logrus.Logger, db *sqlx.DB, sessionManager *auth.SessionManager) *ActivityHandler {
 	repo, err := NewActivityRepository(db)
 	if err != nil {
 		errors.New("error injecting activity service")
 	}
 	service := NewActivityService(repo)
-	return &activityHandler{
+	return &ActivityHandler{
 		logger:          lg,
 		activityService: service,
 		sessionManager:  sessionManager,
+		ctx:             context.Background(),
 	}
 }
 
@@ -44,7 +45,9 @@ func NewActivityHandler(lg *logrus.Logger, db *sqlx.DB, sessionManager *auth.Ses
 // @Success      200  {array}   model.Activity
 // @Router       /api/v1/activities [get]
 
-func (a activityHandler) GetActivities(w http.ResponseWriter, r *http.Request) {
+///
+
+func (a ActivityHandler) GetActivities(w http.ResponseWriter, r *http.Request) {
 	activities, err := a.activityService.GetAll(a.ctx)
 
 	if err != nil {
@@ -62,6 +65,6 @@ func (a activityHandler) GetActivities(w http.ResponseWriter, r *http.Request) {
 	_ = json.NewEncoder(w).Encode(activities)
 }
 
-func (s activityHandler) StartTracker(w http.ResponseWriter, r *http.Request)  {}
-func (s activityHandler) StopTracker(w http.ResponseWriter, r *http.Request)   {}
-func (s activityHandler) ResumeTracker(w http.ResponseWriter, r *http.Request) {}
+func (a ActivityHandler) StartTracker(w http.ResponseWriter, r *http.Request)  {}
+func (a ActivityHandler) StopTracker(w http.ResponseWriter, r *http.Request)   {}
+func (a ActivityHandler) ResumeTracker(w http.ResponseWriter, r *http.Request) {}

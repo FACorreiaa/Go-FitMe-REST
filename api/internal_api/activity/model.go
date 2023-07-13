@@ -6,14 +6,14 @@ import (
 )
 
 type Activity struct {
-	ID              int            `json:"id,string" pg:"default:gen_random_uuid()"`
-	UserID          sql.NullString `json:"user_id,string"`
-	Name            string         `json:"name"`
-	CaloriesPerHour float32        `json:"calories_per_hour"`
-	DurationMinutes float32        `json:"duration_minutes"`
-	TotalCalories   float32        `json:"total_calories"`
-	CreatedAt       time.Time      `json:"created_at"`
-	UpdatedAt       *time.Time     `json:"updated_at"`
+	ID              int            `json:"id,string" db:"id" pg:"default:gen_random_uuid()"`
+	UserID          sql.NullString `json:"user_id,string" db:"user_id"`
+	Name            string         `json:"name" db:"name"`
+	CaloriesPerHour float32        `json:"calories_per_hour" db:"calories_per_hour"`
+	DurationMinutes float32        `json:"duration_minutes" db:"duration_minutes"`
+	TotalCalories   float32        `json:"total_calories" db:"total_calories"`
+	CreatedAt       time.Time      `json:"created_at" db:"created_at"`
+	UpdatedAt       *time.Time     `json:"updated_at" db:"updated_at"`
 }
 
 type Exercise struct {

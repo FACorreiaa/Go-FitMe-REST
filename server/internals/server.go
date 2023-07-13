@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/helpers/db"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/server"
+	"github.com/jmoiron/sqlx"
 	"github.com/redis/go-redis/v9"
 	"time"
 
@@ -72,6 +73,25 @@ type Server struct {
 	router *chi.Mux
 	config ServerConfig
 	rdb    *redis.Client
+	db     *sqlx.DB
+}
+
+func (s *Server) Close() {
+	// Close the Redis client
+	if s.rdb != nil {
+		err := s.rdb.Close()
+		if err != nil {
+			s.logger.Errorf("Failed to close Redis client: %s", err)
+		}
+	}
+
+	// Close the PostgreSQL connection
+	if s.db != nil {
+		err := s.db.Close()
+		if err != nil {
+			s.logger.Errorf("Failed to close PostgreSQL connection: %s", err)
+		}
+	}
 }
 
 func NewServer() (*Server, error) {
@@ -101,8 +121,6 @@ func NewServer() (*Server, error) {
 		fmt.Println("Failed to ping Redis:", err)
 	}
 
-	fmt.Println("Redis connection successful. Pong:", pong)
-
 	fmt.Println("Redis connection is open. PONG response:", pong)
 
 	database, err := db.Connect(db.ConfigDB{
@@ -114,7 +132,7 @@ func NewServer() (*Server, error) {
 		SslMode:  cnf.Database.SslMode,
 	})
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("failed to connect to the database: %w", err)
 	}
 
 	log := NewLogger()
@@ -126,7 +144,9 @@ func NewServer() (*Server, error) {
 		config: cnf,
 		router: router,
 		rdb:    rdb,
+		db:     database,
 	}
+
 	return &s, nil
 }
 

@@ -23,7 +23,7 @@ type UserHandler struct {
 	sessionManager *auth.SessionManager
 }
 
-//
+///
 
 func NewUserHandler(lg *logrus.Logger, db *sqlx.DB, sessionManager *auth.SessionManager) UserHandler {
 	return UserHandler{

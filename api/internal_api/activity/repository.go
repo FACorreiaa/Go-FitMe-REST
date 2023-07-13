@@ -19,7 +19,7 @@ func NewActivityRepository(db *sqlx.DB) (*ActivityRepository, error) {
 }
 
 func (r ActivityRepository) GetAll(ctx context.Context) ([]Activity, error) {
-	var activities []Activity
+	var activities = make([]Activity, 0)
 	query := `SELECT id, user_id, name,
 					duration_minutes, total_calories, calories_per_hour,
 					created_at, updated_at
@@ -36,6 +36,35 @@ func (r ActivityRepository) GetAll(ctx context.Context) ([]Activity, error) {
 
 	return activities, nil
 }
+
+//func (r ActivityRepository) GetAll(ctx context.Context) ([]Activity, error) {
+//	var activities []Activity
+//	query := `SELECT id, user_id, name,
+//                    duration_minutes, total_calories, calories_per_hour,
+//                    created_at, updated_at
+//            FROM activity`
+//
+//	rows, err := r.db.Query(query)
+//	for rows.Next() {
+//		var a Activity
+//		err := rows.Scan(
+//			&a.ID, &a.UserID, &a.Name, &a.DurationMinutes, &a.TotalCalories,
+//			&a.CaloriesPerHour, &a.CreatedAt, &a.UpdatedAt)
+//
+//		if err != nil {
+//			return nil, err
+//		}
+//		activities = append(activities, a)
+//	}
+//	if err != nil {
+//		if errors.Is(err, sql.ErrNoRows) {
+//			return activities, fmt.Errorf("activities not found %w", err)
+//		}
+//		return activities, fmt.Errorf("failed to scan activities: %w", err)
+//	}
+//
+//	return activities, nil
+//}
 
 func (r ActivityRepository) GetExerciseByName(ctx context.Context, name string) ([]Activity, error) {
 	var activities []Activity
