@@ -13,9 +13,12 @@ func RoutesActivity(lg *logrus.Logger, db *sqlx.DB, sm *auth.SessionManager) *ch
 	router := chi.NewRouter()
 
 	router.Get("/", h.GetActivities)
-	router.Post("/start", h.StartTracker)
-	router.Post("/stop", h.StopTracker)
-	router.Post("/resume", h.ResumeTracker)
+	router.Get("/id={id}", h.GetActivitiesById)
+	router.Get("/name={name}", h.GetActivitiesByName)
+	router.Post("/start/session/id={id}", h.StartActivityTracker)
+	router.Post("/pause/session/id={id}", h.PauseActivityTracker)
+	router.Post("/resume/session/id={id}", h.ResumeActivityTracker)
+	router.Post("/stop/session/id={id}", h.StopActivityTracker)
 
 	return router
 }

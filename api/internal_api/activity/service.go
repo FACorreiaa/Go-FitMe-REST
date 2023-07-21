@@ -65,3 +65,16 @@ func (s ActivityService) GetByID(ctx context.Context, id int) (Activity, error) 
 	}
 	return activity, nil
 }
+
+func (s ActivityService) SaveExerciseSession(ctx context.Context, session *ExerciseSession) error {
+	err := s.repo.Save(ctx, session)
+
+	switch {
+	case err == nil:
+	case errors.As(err, &db.ErrObjectNotFound{}):
+		return db.ErrObjectNotFound{}
+	default:
+		return err
+	}
+	return nil
+}

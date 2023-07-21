@@ -16,15 +16,17 @@ type Activity struct {
 	UpdatedAt       *time.Time     `json:"updated_at" db:"updated_at"`
 }
 
-type Exercise struct {
-	Name             string
-	CaloriesBurnedPM float64
-}
-
-type ExerciseUserHistory struct {
-	ExerciceName   string
-	Duration       time.Duration
-	CaloriesBurned float64
+type ExerciseSession struct {
+	ID             int        `json:"id,string" db:"id" pg:"default:gen_random_uuid()"`
+	UserID         int        `json:"user_id" db:"user_id"`
+	ActivityID     int        `json:"activity_id" db:"activity_id"`
+	SessionName    string     `json:"session_name" db:"session_name"`
+	StartTime      time.Time  `json:"start_time" db:"start_time"`
+	EndTime        time.Time  `json:"end_time" db:"end_time"`
+	Duration       int        `json:"duration" db:"duration"`
+	CaloriesBurned int        `json:"calories_burned" db:"calories_burned"`
+	CreatedAt      time.Time  `json:"created_at" db:"created_at"`
+	UpdatedAt      *time.Time `json:"updated_at" db:"updated_at"`
 }
 
 type Status int

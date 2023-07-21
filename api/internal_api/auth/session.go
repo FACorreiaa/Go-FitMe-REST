@@ -3,10 +3,12 @@ package auth
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"github.com/google/uuid"
 	"github.com/jmoiron/sqlx"
 	"github.com/redis/go-redis/v9"
 	"golang.org/x/crypto/bcrypt"
+	"log"
 	"net/http"
 	"time"
 )
@@ -31,6 +33,32 @@ type User struct {
 	Username string
 	Email    string
 	Password string
+}
+
+func validateSessionHeader(sessionHeader string) (string, error) {
+	if sessionHeader == "" || len(sessionHeader) < 8 || sessionHeader[:7] != "Bearer " {
+		return "", fmt.Errorf("invalid session header")
+	}
+
+	return sessionHeader[7:], nil
+}
+
+func GetSessionID(w http.ResponseWriter, r *http.Request) (string, error) {
+	sessionHeader := r.Header.Get("Authorization")
+
+	// ensure the session header is not empty and in the correct format
+	sessionId, err := validateSessionHeader(sessionHeader)
+
+	if err != nil {
+		log.Printf("invalid session header")
+		http.Error(w, "Internal server error", http.StatusInternalServerError)
+
+		return "", err
+	}
+
+	sessionId = sessionHeader[7:]
+
+	return sessionId, nil
 }
 
 func (s *SessionManager) GenerateSession(data UserSession) (string, error) {

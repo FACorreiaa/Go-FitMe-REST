@@ -122,8 +122,8 @@ func (u UserHandler) SignOutUser(w http.ResponseWriter, r *http.Request) {
 	// ensure the session header is not empty and in the correct format
 	if sessionHeader == "" || len(sessionHeader) < 8 || sessionHeader[:7] != "Bearer " {
 		log.Printf("invalid session header")
-		w.WriteHeader(http.StatusInternalServerError)
-		w.Write([]byte("Internal server error"))
+		http.Error(w, "Internal server error", http.StatusInternalServerError)
+
 		return
 	}
 
@@ -135,9 +135,8 @@ func (u UserHandler) SignOutUser(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Printf("Error signing out: %v", err)
 
-		// Write an error response to the client
-		w.WriteHeader(http.StatusInternalServerError)
-		_, _ = w.Write([]byte("Internal server error"))
+		http.Error(w, "Internal server error", http.StatusInternalServerError)
+
 		return
 	}
 
@@ -160,8 +159,8 @@ func (u UserHandler) GetUserInfo(w http.ResponseWriter, r *http.Request) {
 	// ensure the session header is not empty and in the correct format
 	if sessionHeader == "" || len(sessionHeader) < 8 || sessionHeader[:7] != "Bearer " {
 		log.Printf("invalid session header")
-		w.WriteHeader(http.StatusInternalServerError)
-		w.Write([]byte("Internal server error"))
+		http.Error(w, "Internal server error", http.StatusInternalServerError)
+
 		return
 	}
 
@@ -170,8 +169,8 @@ func (u UserHandler) GetUserInfo(w http.ResponseWriter, r *http.Request) {
 	user, err := u.sessionManager.GetSession(sessionId)
 	if err != nil {
 		log.Printf("error getting session")
-		w.WriteHeader(http.StatusInternalServerError)
-		_, _ = w.Write([]byte("Internal server error"))
+		http.Error(w, "Internal server error", http.StatusInternalServerError)
+
 		return
 	}
 

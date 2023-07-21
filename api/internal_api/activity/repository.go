@@ -19,7 +19,7 @@ func NewActivityRepository(db *sqlx.DB) (*ActivityRepository, error) {
 }
 
 func (r ActivityRepository) GetAll(ctx context.Context) ([]Activity, error) {
-	var activities = make([]Activity, 0)
+	activities := make([]Activity, 0)
 	query := `SELECT id, user_id, name,
 					duration_minutes, total_calories, calories_per_hour,
 					created_at, updated_at
@@ -67,12 +67,12 @@ func (r ActivityRepository) GetAll(ctx context.Context) ([]Activity, error) {
 //}
 
 func (r ActivityRepository) GetExerciseByName(ctx context.Context, name string) ([]Activity, error) {
-	var activities []Activity
-
-	err := r.db.SelectContext(ctx, &activities, `SELECT id, user_id, name, duration_minutes,
-											total_calories, calories_per_hour, created_at, updated_at
-									FROM activity
-									WHERE name LIKE '%' || $1 || '%'`, name)
+	activities := make([]Activity, 0)
+	query := `SELECT id, user_id, name, duration_minutes,
+					total_calories, calories_per_hour, created_at, updated_at
+			  	FROM activity
+				WHERE name LIKE '%' || $1 || '%'`
+	err := r.db.SelectContext(ctx, &activities, query, name)
 
 	if err != nil {
 		if errors.Is(err, sql.ErrNoRows) {
@@ -86,11 +86,12 @@ func (r ActivityRepository) GetExerciseByName(ctx context.Context, name string) 
 
 func (r ActivityRepository) GetExerciseByID(ctx context.Context, id int) (Activity, error) {
 	var activity Activity
-
-	err := r.db.GetContext(ctx, &activity,
-		`SELECT id, user_id, name, duration_minutes, total_calories, calories_per_hour, created_at, updated_at
+	query := `SELECT 	id, user_id, name, duration_minutes,
+       					total_calories, calories_per_hour, created_at,
+       					updated_at
 			   FROM activity
-			   WHERE name = $1`, id)
+			   WHERE id = $1`
+	err := r.db.GetContext(ctx, &activity, query, id)
 
 	if err != nil {
 		if errors.Is(err, sql.ErrNoRows) {
@@ -100,4 +101,28 @@ func (r ActivityRepository) GetExerciseByID(ctx context.Context, id int) (Activi
 	}
 
 	return activity, nil
+}
+
+func (r ActivityRepository) Save(ctx context.Context, exerciseSession *ExerciseSession) error {
+	query := `
+		INSERT INTO exercise_session (user_id, activity_id, session_name, start_time, end_time, duration, calories_burned, created_at)
+		VALUES (:user_id, :activity_id, :session_name, :start_time, :end_time, :duration, :calories_burned, :created_at)
+		RETURNING id;
+	`
+
+	result, err := r.db.NamedExecContext(ctx, query, exerciseSession)
+	if err != nil {
+		return fmt.Errorf("failed to insert exercise session: %w", err)
+	}
+
+	var id int64
+	id, err = result.LastInsertId()
+	if err != nil {
+		return fmt.Errorf("failed to get inserted exercise session ID: %w", err)
+	}
+
+	// Set the ID in the exercise session struct
+	exerciseSession.ID = int(id)
+
+	return nil
 }

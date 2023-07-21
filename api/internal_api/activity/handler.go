@@ -4,38 +4,44 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/auth"
 	"github.com/go-chi/chi/v5"
 	"github.com/jmoiron/sqlx"
 	"github.com/sirupsen/logrus"
 	"log"
 	"net/http"
+	"strconv"
+	"time"
 )
 
-type ActivityHandler struct {
-	logger          *logrus.Logger
-	router          *chi.Router
-	ctx             context.Context
-	activityService *ActivityService
-	sessionManager  *auth.SessionManager
+type Handler struct {
+	logger           *logrus.Logger
+	router           *chi.Router
+	ctx              context.Context
+	activityService  *ActivityService
+	sessionManager   *auth.SessionManager
+	exerciseSessions map[string]*ExerciseSession // Map to store exercise sessions for each user
+	pausedTimers     map[string]time.Time
 }
 
-func NewActivityHandler(lg *logrus.Logger, db *sqlx.DB, sessionManager *auth.SessionManager) *ActivityHandler {
+func NewActivityHandler(lg *logrus.Logger, db *sqlx.DB, sessionManager *auth.SessionManager) *Handler {
 	repo, err := NewActivityRepository(db)
 	if err != nil {
 		errors.New("error injecting activity service")
 	}
 	service := NewActivityService(repo)
-	return &ActivityHandler{
-		logger:          lg,
-		activityService: service,
-		sessionManager:  sessionManager,
-		ctx:             context.Background(),
+	return &Handler{
+		logger:           lg,
+		activityService:  service,
+		sessionManager:   sessionManager,
+		ctx:              context.Background(),
+		exerciseSessions: make(map[string]*ExerciseSession),
+		pausedTimers:     make(map[string]time.Time),
 	}
 }
 
 // GetActivities gets all existing activities
-
 // @Summary      Get activities
 // @Description  get activities
 // @Tags         acthttps://www.youtube.com/watch?v=mYWllgYPaWsivities
@@ -44,18 +50,14 @@ func NewActivityHandler(lg *logrus.Logger, db *sqlx.DB, sessionManager *auth.Ses
 // @Param        q    query     string  false  "name search by q"  Format(email)
 // @Success      200  {array}   model.Activity
 // @Router       /api/v1/activities [get]
-
-///
-
-func (a ActivityHandler) GetActivities(w http.ResponseWriter, r *http.Request) {
+func (a Handler) GetActivities(w http.ResponseWriter, r *http.Request) {
 	activities, err := a.activityService.GetAll(a.ctx)
 
 	if err != nil {
 		log.Printf("Error fetching activities data: %v", err)
 
-		// Write an error response to the client
-		w.WriteHeader(http.StatusInternalServerError)
-		_, _ = w.Write([]byte("Internal server error"))
+		http.Error(w, "Internal server error", http.StatusInternalServerError)
+
 		return
 	}
 
@@ -65,6 +67,214 @@ func (a ActivityHandler) GetActivities(w http.ResponseWriter, r *http.Request) {
 	_ = json.NewEncoder(w).Encode(activities)
 }
 
-func (a ActivityHandler) StartTracker(w http.ResponseWriter, r *http.Request)  {}
-func (a ActivityHandler) StopTracker(w http.ResponseWriter, r *http.Request)   {}
-func (a ActivityHandler) ResumeTracker(w http.ResponseWriter, r *http.Request) {}
+// GetActivitiesByName gets all existing activities by name
+// @Summary      GetActivitiesByName
+// @Description  gets all existing activities by name
+// @Tags
+// @Accept       json
+// @Produce      json
+// @Param        q    query     string  false  "name search by name"
+// @Success      200  {array}   model.Activity
+// @Router       /api/v1/activities/name={name} [get]
+func (a Handler) GetActivitiesByName(w http.ResponseWriter, r *http.Request) {
+	name := chi.URLParam(r, "name")
+	activities, err := a.activityService.GetByName(a.ctx, name)
+	if err != nil {
+		log.Printf("Error fetching activities data: %v", err)
+
+		http.Error(w, "Internal server error", http.StatusInternalServerError)
+
+		return
+	}
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	err = json.NewEncoder(w).Encode(activities)
+	if err != nil {
+		_ = fmt.Errorf("failed to encode activities: %w", err)
+		return
+	}
+}
+
+// GetActivitiesById gets all existing activities by name
+// @Summary      GetActivitiesById
+// @Description  gets all existing activities by name
+// @Tags
+// @Accept       json
+// @Produce      json
+// @Param        q    query     string  false  "name search by id"
+// @Success      200  {array}   model.Activity
+// @Router       /api/v1/activities/id={id} [get]
+func (a Handler) GetActivitiesById(w http.ResponseWriter, r *http.Request) {
+	id, err := strconv.Atoi(chi.URLParam(r, "id"))
+	if err != nil {
+		log.Printf("Error parsing id: %v", err)
+		http.Error(w, "Internal server error", http.StatusInternalServerError)
+
+		return
+	}
+	activities, err := a.activityService.GetByID(a.ctx, id)
+	if err != nil {
+		log.Printf("Error fetching activities data: %v", err)
+
+		http.Error(w, "Internal server error", http.StatusInternalServerError)
+
+		return
+	}
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	err = json.NewEncoder(w).Encode(activities)
+	if err != nil {
+		_ = fmt.Errorf("failed to encode activities: %w", err)
+		return
+	}
+}
+
+// StartActivityTracker start activity tracker
+
+func (a Handler) StartActivityTracker(w http.ResponseWriter, r *http.Request) {
+	sessionHeader := r.Header.Get("Authorization")
+	activityID, err := strconv.Atoi(chi.URLParam(r, "id"))
+	currentTime := time.Now()
+
+	if err != nil {
+		log.Printf("Error parsing id: %v", err)
+		http.Error(w, "Internal server error", http.StatusInternalServerError)
+		return
+	}
+	// ensure the session header is not empty and in the correct format
+	if sessionHeader == "" || len(sessionHeader) < 8 || sessionHeader[:7] != "Bearer " {
+		log.Printf("invalid session header")
+		http.Error(w, "Internal server error", http.StatusInternalServerError)
+		return
+	}
+	sessionId := sessionHeader[7:]
+	session, err := a.sessionManager.GetSession(sessionId)
+	if err != nil {
+		log.Printf("Error getting session: %v", err)
+		http.Error(w, "Internal server error", http.StatusInternalServerError)
+		return
+	}
+
+	activity, err := a.activityService.GetByID(a.ctx, activityID)
+	if err != nil {
+		log.Printf("Error getting id activity: %v", err)
+		http.Error(w, "Internal server error", http.StatusInternalServerError)
+		return
+	}
+
+	exerciseSession := &ExerciseSession{
+		UserID:      session.Id,
+		ActivityID:  activity.ID,
+		SessionName: activity.Name,
+		StartTime:   currentTime,
+		CreatedAt:   currentTime,
+	}
+
+	a.exerciseSessions[sessionId] = exerciseSession
+
+	// Serialize the response as JSON and write to the response writer
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	_ = json.NewEncoder(w).Encode(exerciseSession)
+}
+
+func (a Handler) PauseActivityTracker(w http.ResponseWriter, r *http.Request) {
+	sessionHeader := r.Header.Get("Authorization")
+
+	if sessionHeader == "" || len(sessionHeader) < 8 || sessionHeader[:7] != "Bearer " {
+		http.Error(w, "Invalid session header", http.StatusUnauthorized)
+		return
+	}
+
+	sessionID := sessionHeader[7:]
+
+	session, found := a.exerciseSessions[sessionID]
+	if !found {
+		http.Error(w, "Exercise session not found", http.StatusNotFound)
+		return
+	}
+
+	a.pausedTimers[sessionID] = time.Now()
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	_ = json.NewEncoder(w).Encode(session)
+
+}
+func (a Handler) ResumeActivityTracker(w http.ResponseWriter, r *http.Request) {
+	sessionHeader := r.Header.Get("Authorization")
+
+	// Check if the session header is valid
+	if sessionHeader == "" || len(sessionHeader) < 8 || sessionHeader[:7] != "Bearer " {
+		http.Error(w, "Invalid session header", http.StatusUnauthorized)
+		return
+	}
+
+	sessionID := sessionHeader[7:]
+
+	// Get the exercise session for the user
+	session, found := a.exerciseSessions[sessionID]
+	if !found {
+		http.Error(w, "Exercise session not found", http.StatusNotFound)
+		return
+	}
+
+	// Calculate the duration of the paused state and update the start time
+	pausedDuration := time.Since(a.pausedTimers[sessionID])
+	session.StartTime = session.StartTime.Add(pausedDuration)
+
+	// Clear the paused timer for the user
+	delete(a.pausedTimers, sessionID)
+
+	// Serialize the response as JSON and write to the response writer
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	_ = json.NewEncoder(w).Encode(session)
+
+}
+func (a Handler) StopActivityTracker(w http.ResponseWriter, r *http.Request) {
+	sessionHeader := r.Header.Get("Authorization")
+
+	// Check if the session header is valid
+	if sessionHeader == "" || len(sessionHeader) < 8 || sessionHeader[:7] != "Bearer " {
+		http.Error(w, "Invalid session header", http.StatusUnauthorized)
+		return
+	}
+
+	sessionID := sessionHeader[7:]
+
+	// Get the exercise session for the user
+	session, found := a.exerciseSessions[sessionID]
+	if !found {
+		http.Error(w, "Exercise session not found", http.StatusNotFound)
+		return
+	}
+
+	// If the session is not paused, update the duration
+	if _, paused := a.pausedTimers[sessionID]; !paused {
+		session.Duration += int(time.Since(session.StartTime).Minutes())
+	}
+
+	// Calculate calories burned (assuming activity is fetched from the database)
+	activity, err := a.activityService.GetByID(a.ctx, session.ActivityID)
+	if err != nil {
+		http.Error(w, "Error getting activity", http.StatusInternalServerError)
+		return
+	}
+	hours := float32(session.Duration) / 60.0
+	session.CaloriesBurned = int(activity.CaloriesPerHour * hours)
+
+	session.EndTime = time.Now()
+
+	err = a.activityService.SaveExerciseSession(a.ctx, session)
+	if err != nil {
+		http.Error(w, "Error saving exercise session to DB", http.StatusInternalServerError)
+		return
+	}
+
+	delete(a.exerciseSessions, sessionID)
+
+	// Serialize the response as JSON and write to the response writer
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	_ = json.NewEncoder(w).Encode(session)
+}
