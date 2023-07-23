@@ -22,7 +22,7 @@ func Register(r chi.Router, db *sqlx.DB, rdb *redis.Client) {
 	userRoutes := user.RoutesUser(db)
 	calculatorRoute := calculator.RoutesCalculator()
 
-	activityRoutes := activity.RoutesActivity(db)
+	activityRoutes := activity.RoutesActivity(db, sessionManager)
 
 	r.Use(middleware.RequestID)
 	r.Use(middleware.RealIP)

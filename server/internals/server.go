@@ -7,12 +7,12 @@ import (
 	"github.com/FACorreiaa/Stay-Healthy-Backend/server"
 	"github.com/jmoiron/sqlx"
 	"github.com/redis/go-redis/v9"
+	"go.uber.org/zap"
 	"time"
 
 	"github.com/FACorreiaa/Stay-Healthy-Backend/server/logs"
 	"github.com/go-chi/chi/v5"
 	"github.com/rs/cors"
-	"github.com/sirupsen/logrus"
 	"net/http"
 	"os"
 	"os/signal"
@@ -69,7 +69,7 @@ func (m QueryExecMode) value() string {
 //}
 
 type Server struct {
-	logger *logrus.Logger
+	logger *zap.Logger
 	router *chi.Mux
 	config ServerConfig
 	rdb    *redis.Client
@@ -81,7 +81,7 @@ func (s *Server) Close() {
 	if s.rdb != nil {
 		err := s.rdb.Close()
 		if err != nil {
-			s.logger.Errorf("Failed to close Redis client: %s", err)
+			s.logger.Error("Failed to close Redis client: %s", zap.Error(err))
 		}
 	}
 
@@ -89,7 +89,7 @@ func (s *Server) Close() {
 	if s.db != nil {
 		err := s.db.Close()
 		if err != nil {
-			s.logger.Errorf("Failed to close PostgreSQL connection: %s", err)
+			s.logger.Error("Failed to close PostgreSQL connection: %s", zap.Error(err))
 		}
 	}
 }
@@ -173,7 +173,7 @@ func (s *Server) Run(ctx context.Context) error {
 	wg.Add(1)
 	go func(wg *sync.WaitGroup) {
 		defer wg.Done()
-		s.logger.Printf("REST API listening on port %d", s.config.ServerPort)
+		s.logger.Info("REST API listening on port %d", zap.Int("port", s.config.ServerPort))
 		serverErrors <- serverConfig.ListenAndServe()
 	}(&wg)
 
