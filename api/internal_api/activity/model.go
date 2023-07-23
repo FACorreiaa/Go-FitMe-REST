@@ -2,6 +2,7 @@ package activity
 
 import (
 	"database/sql"
+	"github.com/google/uuid"
 	"time"
 )
 
@@ -17,16 +18,18 @@ type Activity struct {
 }
 
 type ExerciseSession struct {
-	ID             int        `json:"id,string" db:"id" pg:"default:gen_random_uuid()"`
-	UserID         int        `json:"user_id" db:"user_id"`
-	ActivityID     int        `json:"activity_id" db:"activity_id"`
-	SessionName    string     `json:"session_name" db:"session_name"`
-	StartTime      time.Time  `json:"start_time" db:"start_time"`
-	EndTime        time.Time  `json:"end_time" db:"end_time"`
-	Duration       int        `json:"duration" db:"duration"`
-	CaloriesBurned int        `json:"calories_burned" db:"calories_burned"`
-	CreatedAt      time.Time  `json:"created_at" db:"created_at"`
-	UpdatedAt      *time.Time `json:"updated_at" db:"updated_at"`
+	ID              uuid.UUID  `json:"id,string" db:"id" pg:"default:gen_random_uuid()"`
+	UserID          int        `json:"user_id" db:"user_id"`
+	ActivityID      int        `json:"activity_id" db:"activity_id"`
+	SessionName     string     `json:"session_name" db:"session_name"`
+	StartTime       time.Time  `json:"start_time" db:"start_time"`
+	EndTime         time.Time  `json:"end_time" db:"end_time"`
+	DurationHours   int        `json:"duration_hours" db:"duration_hours"`
+	DurationMinutes int        `json:"duration_minutes" db:"duration_minutes"`
+	DurationSeconds int        `json:"duration_seconds" db:"duration_seconds"`
+	CaloriesBurned  int        `json:"calories_burned" db:"calories_burned"`
+	CreatedAt       time.Time  `json:"created_at" db:"created_at"`
+	UpdatedAt       *time.Time `json:"updated_at" db:"updated_at"`
 }
 
 type Status int

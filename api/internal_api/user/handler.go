@@ -116,10 +116,8 @@ type signInRequestBody struct {
 // @Success	200	{object}	SuccessResponse
 // @Router		/users/sign-out [post]
 func (u UserHandler) SignOutUser(w http.ResponseWriter, r *http.Request) {
-	// get the session from the authorization header
 	sessionHeader := r.Header.Get("Authorization")
 
-	// ensure the session header is not empty and in the correct format
 	if sessionHeader == "" || len(sessionHeader) < 8 || sessionHeader[:7] != "Bearer " {
 		log.Printf("invalid session header")
 		http.Error(w, "Internal server error", http.StatusInternalServerError)
@@ -127,10 +125,8 @@ func (u UserHandler) SignOutUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// get the session id
 	sessionId := sessionHeader[7:]
 
-	// delete the session
 	err := u.sessionManager.SignOut(sessionId)
 	if err != nil {
 		log.Printf("Error signing out: %v", err)

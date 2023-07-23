@@ -105,24 +105,25 @@ func (r ActivityRepository) GetExerciseByID(ctx context.Context, id int) (Activi
 
 func (r ActivityRepository) Save(ctx context.Context, exerciseSession *ExerciseSession) error {
 	query := `
-		INSERT INTO exercise_session (user_id, activity_id, session_name, start_time, end_time, duration, calories_burned, created_at)
-		VALUES (:user_id, :activity_id, :session_name, :start_time, :end_time, :duration, :calories_burned, :created_at)
+		INSERT INTO exercise_session
+		    (user_id, activity_id, session_name, start_time,
+		     end_time, duration_hours, duration_minutes, duration_seconds,
+		     calories_burned, created_at)
+		VALUES (:user_id, :activity_id, :session_name, :start_time,
+		        :end_time, :duration_hours, :duration_minutes, :duration_seconds,
+		        :calories_burned, :created_at)
 		RETURNING id;
 	`
 
-	result, err := r.db.NamedExecContext(ctx, query, exerciseSession)
+	_, err := r.db.NamedExecContext(ctx, query, exerciseSession)
 	if err != nil {
 		return fmt.Errorf("failed to insert exercise session: %w", err)
 	}
 
-	var id int64
-	id, err = result.LastInsertId()
-	if err != nil {
-		return fmt.Errorf("failed to get inserted exercise session ID: %w", err)
-	}
-
-	// Set the ID in the exercise session struct
-	exerciseSession.ID = int(id)
+	//_, err = result.LastInsertId()
+	//if err != nil {
+	//	return fmt.Errorf("failed to get inserted exercise session ID: %w", err)
+	//}
 
 	return nil
 }

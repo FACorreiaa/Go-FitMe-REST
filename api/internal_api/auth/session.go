@@ -13,14 +13,16 @@ import (
 	"time"
 )
 
+func NewSessionManager(rdb *redis.Client, db *sqlx.DB) *SessionManager {
+	return &SessionManager{Rdb: rdb, DB: db}
+}
+
 type SessionManager struct {
 	Rdb *redis.Client
 	DB  *sqlx.DB
 }
 
-func NewSessionManager(rdb *redis.Client, db *sqlx.DB) *SessionManager {
-	return &SessionManager{Rdb: rdb, DB: db}
-}
+type SessionManagerKey struct{}
 
 type UserSession struct {
 	Id       int
@@ -120,12 +122,53 @@ func (s *SessionManager) GetSession(session string) (*UserSession, error) {
 	return &userSession, nil
 }
 
-func SessionMiddleware(sessionManager *SessionManager) func(http.Handler) http.Handler {
+// SessionMiddleware adds the session manager to the request context and directly serves the activityRoutes handler.
+//func SessionMiddleware(sessionManager *SessionManager, activityRoutes http.Handler) func(http.Handler) http.Handler {
+//	return func(next http.Handler) http.Handler {
+//		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+//			// Initialize the session manager and add it to the request context
+//			ctx := context.WithValue(r.Context(), sessionManagerKey{}, sessionManager)
+//			r = r.WithContext(ctx)
+//
+//			// Serve the activityRoutes handler directly
+//			activityRoutes.ServeHTTP(w, r)
+//		})
+//	}
+//}
+
+//// ChiSessionMiddleware adds the session manager to the request context and wraps the next handler in the middleware chain.
+//func ChiSessionMiddleware(sessionManager *SessionManager) func(next http.Handler) http.Handler {
+//	return func(next http.Handler) http.Handler {
+//		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+//			// Initialize the session manager and add it to the request context
+//			ctx := context.WithValue(r.Context(), sessionManagerKey{}, sessionManager)
+//			r = r.WithContext(ctx)
+//
+//			// Call the next handler in the middleware chain
+//			next.ServeHTTP(w, r)
+//		})
+//	}
+//}
+
+func SessionMiddleware(sessionManager *SessionManager) func(next http.Handler) http.Handler {
 	return func(next http.Handler) http.Handler {
 		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-			// Initialize the session manager and add it to the request context
-			println(sessionManager)
-			ctx := context.WithValue(r.Context(), "sessionManager", sessionManager)
+
+			sessionHeader := r.Header.Get("Authorization")
+			if sessionHeader == "" || len(sessionHeader) < 8 || sessionHeader[:7] != "Bearer " {
+				http.Error(w, "Invalid session header", http.StatusUnauthorized)
+				return
+			}
+
+			sessionID := sessionHeader[7:]
+
+			userSession, err := sessionManager.GetSession(sessionID)
+			if err != nil {
+				http.Error(w, "Invalid session", http.StatusUnauthorized)
+				return
+			}
+
+			ctx := context.WithValue(r.Context(), SessionManagerKey{}, userSession)
 			r = r.WithContext(ctx)
 
 			next.ServeHTTP(w, r)

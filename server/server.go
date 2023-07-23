@@ -32,7 +32,7 @@ func Register(r chi.Router, lg *logrus.Logger, db *sqlx.DB, rdb *redis.Client) {
 	r.Use(middleware.Recoverer)
 	r.Use(middleware.Timeout(60 * time.Second))
 	r.Use(httprate.LimitByIP(100, 1*time.Minute))
-	r.Use(auth.SessionMiddleware(sessionManager))
+	//r.Use(auth.SessionMiddleware(sessionManager))
 
 	// Use middleware to add the session manager to the request context
 	cached := stampede.Handler(512, 1*time.Second)
@@ -60,7 +60,7 @@ func Register(r chi.Router, lg *logrus.Logger, db *sqlx.DB, rdb *redis.Client) {
 	InitPprof()
 	InitPrometheus(r)
 	r.Mount("/api/docs", swaggerRoute)
-	r.With(cached).Mount("/api/v1/activities", activityRoutes)
+	r.With(cached).Mount("/api/v1/activities", auth.SessionMiddleware(sessionManager)(activityRoutes))
 	r.With(cached).Mount("/api/v1/users", userRoutes)
 	r.With(cached).Mount("/api/v1/calories", calculatorRoute)
 }
