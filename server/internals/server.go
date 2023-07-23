@@ -137,7 +137,7 @@ func NewServer() (*Server, error) {
 
 	log := NewLogger()
 	router := chi.NewRouter()
-	server.Register(router, log, database, rdb)
+	server.Register(router, database, rdb)
 
 	s := Server{
 		logger: log,

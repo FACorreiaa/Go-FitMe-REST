@@ -8,7 +8,6 @@ import (
 	"github.com/go-chi/chi/v5"
 	"github.com/google/uuid"
 	"github.com/jmoiron/sqlx"
-	"github.com/sirupsen/logrus"
 	"log"
 	"net/http"
 	"strconv"
@@ -16,26 +15,22 @@ import (
 )
 
 type Handler struct {
-	logger *logrus.Logger
-	router *chi.Router
-	//ctx              context.Context
+	router           *chi.Router
 	activityService  *ActivityService
 	sessionManager   *auth.SessionManager
 	exerciseSessions map[string]*ExerciseSession // Map to store exercise sessions for each user
 	pausedTimers     map[string]time.Time
 }
 
-func NewActivityHandler(lg *logrus.Logger, db *sqlx.DB, sessionManager *auth.SessionManager) *Handler {
+func NewActivityHandler(db *sqlx.DB, sessionManager *auth.SessionManager) *Handler {
 	repo, err := NewActivityRepository(db)
 	if err != nil {
 		_ = errors.New("error injecting activity service")
 	}
 	service := NewActivityService(repo)
 	return &Handler{
-		logger:          lg,
-		activityService: service,
-		sessionManager:  sessionManager,
-		//ctx:              context.Background(),
+		activityService:  service,
+		sessionManager:   sessionManager,
 		exerciseSessions: make(map[string]*ExerciseSession),
 		pausedTimers:     make(map[string]time.Time),
 	}

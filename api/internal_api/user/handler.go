@@ -8,7 +8,6 @@ import (
 	"github.com/go-chi/chi/v5"
 	"github.com/go-playground/validator/v10"
 	"github.com/jmoiron/sqlx"
-	"github.com/sirupsen/logrus"
 	"golang.org/x/crypto/bcrypt"
 	"io"
 	"log"
@@ -16,7 +15,6 @@ import (
 )
 
 type UserHandler struct {
-	logger         *logrus.Logger
 	router         *chi.Router
 	userService    Service
 	ctx            context.Context
@@ -25,9 +23,8 @@ type UserHandler struct {
 
 ///
 
-func NewUserHandler(lg *logrus.Logger, db *sqlx.DB, sessionManager *auth.SessionManager) UserHandler {
+func NewUserHandler(db *sqlx.DB, sessionManager *auth.SessionManager) UserHandler {
 	return UserHandler{
-		logger:         lg,
 		userService:    NewService(NewUserRepository(db)),
 		sessionManager: sessionManager,
 	}

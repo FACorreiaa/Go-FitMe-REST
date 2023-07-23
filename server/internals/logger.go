@@ -2,7 +2,6 @@ package internals
 
 import (
 	"github.com/sirupsen/logrus"
-	"net/http"
 	"os"
 )
 
@@ -16,20 +15,4 @@ func NewLogger() *logrus.Logger {
 		FullTimestamp:   true,
 	})
 	return log
-}
-
-func (l *Logger) InfoWithRequest(req *http.Request, message string) {
-	l.WithFields(logrus.Fields{
-		"method": req.Method,
-		"uri":    req.RequestURI,
-		"remote": req.RemoteAddr,
-	}).Info(message)
-}
-
-func (l *Logger) ErrorWithRequest(req *http.Request, message string) {
-	l.WithFields(logrus.Fields{
-		"method": req.Method,
-		"uri":    req.RequestURI,
-		"remote": req.RemoteAddr,
-	}).Error(message)
 }

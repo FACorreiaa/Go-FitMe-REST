@@ -4,11 +4,10 @@ import (
 	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/auth"
 	"github.com/go-chi/chi/v5"
 	"github.com/jmoiron/sqlx"
-	"github.com/sirupsen/logrus"
 )
 
-func RoutesActivity(lg *logrus.Logger, db *sqlx.DB, sm *auth.SessionManager) *chi.Mux {
-	h := NewActivityHandler(lg, db, sm)
+func RoutesActivity(db *sqlx.DB, sm *auth.SessionManager) *chi.Mux {
+	h := NewActivityHandler(db, sm)
 
 	router := chi.NewRouter()
 

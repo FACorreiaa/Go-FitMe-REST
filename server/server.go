@@ -13,18 +13,16 @@ import (
 	"github.com/go-chi/stampede"
 	"github.com/jmoiron/sqlx"
 	"github.com/redis/go-redis/v9"
-	"github.com/sirupsen/logrus"
-
 	"time"
 )
 
-func Register(r chi.Router, lg *logrus.Logger, db *sqlx.DB, rdb *redis.Client) {
+func Register(r chi.Router, db *sqlx.DB, rdb *redis.Client) {
 	swaggerRoute := SwaggerRoutes()
 	sessionManager := auth.NewSessionManager(rdb, db)
-	userRoutes := user.RoutesUser(lg, db, sessionManager)
+	userRoutes := user.RoutesUser(db)
 	calculatorRoute := calculator.RoutesCalculator()
 
-	activityRoutes := activity.RoutesActivity(lg, db, sessionManager)
+	activityRoutes := activity.RoutesActivity(db)
 
 	r.Use(middleware.RequestID)
 	r.Use(middleware.RealIP)
