@@ -84,7 +84,7 @@ func (r ActivityRepository) GetExerciseByName(ctx context.Context, name string) 
 	return activities, nil
 }
 
-func (r ActivityRepository) GetExerciseByID(ctx context.Context, id int) (Activity, error) {
+func (r ActivityRepository) GetExerciseById(ctx context.Context, id int) (Activity, error) {
 	var activity Activity
 	query := `SELECT 	id, user_id, name, duration_minutes,
        					total_calories, calories_per_hour, created_at,
@@ -120,10 +120,25 @@ func (r ActivityRepository) Save(ctx context.Context, exerciseSession *ExerciseS
 		return fmt.Errorf("failed to insert exercise session: %w", err)
 	}
 
-	//_, err = result.LastInsertId()
-	//if err != nil {
-	//	return fmt.Errorf("failed to get inserted exercise session ID: %w", err)
-	//}
-
 	return nil
+}
+
+func (r ActivityRepository) GetExerciseSessions(ctx context.Context, id int) ([]ExerciseSession, error) {
+	exerciseSessions := make([]ExerciseSession, 0)
+	query := `SELECT user_id, activity_id, session_name, start_time,
+		     		end_time, duration_hours, duration_minutes,
+		     		duration_seconds,calories_burned, created_at
+				FROM exercise_session
+				WHERE user_id = $1`
+
+	err := r.db.SelectContext(ctx, &exerciseSessions, query, id)
+
+	if err != nil {
+		if errors.Is(err, sql.ErrNoRows) {
+			return exerciseSessions, fmt.Errorf("exercises not found %w", err)
+		}
+		return exerciseSessions, fmt.Errorf("failed to scan exercises: %w", err)
+	}
+
+	return exerciseSessions, nil
 }

@@ -1,7 +1,6 @@
 package activity
 
 import (
-	"context"
 	"encoding/json"
 	errors "errors"
 	"fmt"
@@ -17,9 +16,9 @@ import (
 )
 
 type Handler struct {
-	logger           *logrus.Logger
-	router           *chi.Router
-	ctx              context.Context
+	logger *logrus.Logger
+	router *chi.Router
+	//ctx              context.Context
 	activityService  *ActivityService
 	sessionManager   *auth.SessionManager
 	exerciseSessions map[string]*ExerciseSession // Map to store exercise sessions for each user
@@ -33,10 +32,10 @@ func NewActivityHandler(lg *logrus.Logger, db *sqlx.DB, sessionManager *auth.Ses
 	}
 	service := NewActivityService(repo)
 	return &Handler{
-		logger:           lg,
-		activityService:  service,
-		sessionManager:   sessionManager,
-		ctx:              context.Background(),
+		logger:          lg,
+		activityService: service,
+		sessionManager:  sessionManager,
+		//ctx:              context.Background(),
 		exerciseSessions: make(map[string]*ExerciseSession),
 		pausedTimers:     make(map[string]time.Time),
 	}
@@ -68,7 +67,7 @@ func NewActivityHandler(lg *logrus.Logger, db *sqlx.DB, sessionManager *auth.Ses
 // @Success      200  {array}   model.Activity
 // @Router       /api/v1/activities [get]
 func (a Handler) GetActivities(w http.ResponseWriter, r *http.Request) {
-	activities, err := a.activityService.GetAll(a.ctx)
+	activities, err := a.activityService.GetAll(r.Context())
 
 	if err != nil {
 		log.Printf("Error fetching activities data: %v", err)
@@ -95,7 +94,7 @@ func (a Handler) GetActivities(w http.ResponseWriter, r *http.Request) {
 // @Router       /api/v1/activities/name={name} [get]
 func (a Handler) GetActivitiesByName(w http.ResponseWriter, r *http.Request) {
 	name := chi.URLParam(r, "name")
-	activities, err := a.activityService.GetByName(a.ctx, name)
+	activities, err := a.activityService.GetByName(r.Context(), name)
 	if err != nil {
 		log.Printf("Error fetching activities data: %v", err)
 
@@ -129,7 +128,7 @@ func (a Handler) GetActivitiesById(w http.ResponseWriter, r *http.Request) {
 
 		return
 	}
-	activities, err := a.activityService.GetByID(a.ctx, id)
+	activities, err := a.activityService.GetByID(r.Context(), id)
 	if err != nil {
 		log.Printf("Error fetching activities data: %v", err)
 
@@ -175,7 +174,7 @@ func (a Handler) StartActivityTracker(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	activity, err := a.activityService.GetByID(a.ctx, activityID)
+	activity, err := a.activityService.GetByID(r.Context(), activityID)
 	if err != nil {
 		log.Printf("Error getting id activity: %v", err)
 		http.Error(w, "Internal server error", http.StatusInternalServerError)
@@ -255,7 +254,7 @@ func (a Handler) StopActivityTracker(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Calculate calories burned (assuming activity is fetched from the database)
-	activity, err := a.activityService.GetByID(a.ctx, session.ActivityID)
+	activity, err := a.activityService.GetByID(r.Context(), session.ActivityID)
 	if err != nil {
 		http.Error(w, "Error getting activity", http.StatusInternalServerError)
 		return
@@ -277,7 +276,7 @@ func (a Handler) StopActivityTracker(w http.ResponseWriter, r *http.Request) {
 
 	session.EndTime = time.Now()
 
-	err = a.activityService.SaveExerciseSession(a.ctx, session)
+	err = a.activityService.SaveExerciseSession(r.Context(), session)
 	if err != nil {
 		http.Error(w, "Error saving exercise session to DB", http.StatusInternalServerError)
 		return
@@ -289,4 +288,23 @@ func (a Handler) StopActivityTracker(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	_ = json.NewEncoder(w).Encode(session)
+}
+
+func (a Handler) GetUserExerciseSession(w http.ResponseWriter, r *http.Request) {
+
+	userSession, ok := r.Context().Value(auth.SessionManagerKey{}).(*auth.UserSession)
+	if !ok {
+		http.Error(w, "User session not found", http.StatusUnauthorized)
+		return
+	}
+
+	exerciseSession, err := a.activityService.GetExerciseSession(r.Context(), userSession.Id)
+	if err != nil {
+		http.Error(w, "Error finding exercise session", http.StatusInternalServerError)
+	}
+
+	// Serialize the response as JSON and write to the response writer
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	_ = json.NewEncoder(w).Encode(exerciseSession)
 }

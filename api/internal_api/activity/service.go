@@ -55,7 +55,7 @@ func (s ActivityService) GetByName(ctx context.Context, name string) ([]Activity
 }
 
 func (s ActivityService) GetByID(ctx context.Context, id int) (Activity, error) {
-	activity, err := s.repo.GetExerciseByID(ctx, id)
+	activity, err := s.repo.GetExerciseById(ctx, id)
 	switch {
 	case err == nil:
 	case errors.As(err, &db.ErrObjectNotFound{}):
@@ -77,4 +77,17 @@ func (s ActivityService) SaveExerciseSession(ctx context.Context, session *Exerc
 		return err
 	}
 	return nil
+}
+
+func (s ActivityService) GetExerciseSession(ctx context.Context, id int) ([]ExerciseSession, error) {
+	exerciseSession, err := s.repo.GetExerciseSessions(ctx, id)
+	switch {
+	case err == nil:
+	case errors.As(err, &db.ErrObjectNotFound{}):
+		return []ExerciseSession{}, db.ErrObjectNotFound{}
+	default:
+		return []ExerciseSession{}, err
+	}
+	return exerciseSession, nil
+
 }
