@@ -39,3 +39,13 @@ stop:
 
 start:
 	docker start $(project_name)
+
+swag-init:
+	swag init --parseDependency
+
+go-test:
+	go test -v
+
+go-bench:
+	go test -bench .
+

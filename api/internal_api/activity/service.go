@@ -6,19 +6,17 @@ import (
 	"github.com/FACorreiaa/Stay-Healthy-Backend/helpers/db"
 )
 
-type ActivityService struct {
-	repo *ActivityRepository
+type ServiceActivity struct {
+	repo *RepositoryActivity
 }
 
-//s
-
-func NewActivityService(repo *ActivityRepository) *ActivityService {
-	return &ActivityService{
+func NewActivityService(repo *RepositoryActivity) *ServiceActivity {
+	return &ServiceActivity{
 		repo: repo,
 	}
 }
 
-func (s ActivityService) GetAll(ctx context.Context) ([]Activity, error) {
+func (s ServiceActivity) GetAll(ctx context.Context) ([]Activity, error) {
 	activities, err := s.repo.GetAll(ctx)
 	switch {
 	case err == nil:
@@ -30,7 +28,7 @@ func (s ActivityService) GetAll(ctx context.Context) ([]Activity, error) {
 	return activities, nil
 }
 
-func (s ActivityService) Get(ctx context.Context) ([]Activity, error) {
+func (s ServiceActivity) Get(ctx context.Context) ([]Activity, error) {
 	activities, err := s.repo.GetAll(ctx)
 	switch {
 	case err == nil:
@@ -42,7 +40,7 @@ func (s ActivityService) Get(ctx context.Context) ([]Activity, error) {
 	return activities, nil
 }
 
-func (s ActivityService) GetByName(ctx context.Context, name string) ([]Activity, error) {
+func (s ServiceActivity) GetByName(ctx context.Context, name string) ([]Activity, error) {
 	activities, err := s.repo.GetExerciseByName(ctx, name)
 	switch {
 	case err == nil:
@@ -54,7 +52,7 @@ func (s ActivityService) GetByName(ctx context.Context, name string) ([]Activity
 	return activities, nil
 }
 
-func (s ActivityService) GetByID(ctx context.Context, id int) (Activity, error) {
+func (s ServiceActivity) GetByID(ctx context.Context, id int) (Activity, error) {
 	activity, err := s.repo.GetExerciseById(ctx, id)
 	switch {
 	case err == nil:
@@ -66,7 +64,7 @@ func (s ActivityService) GetByID(ctx context.Context, id int) (Activity, error) 
 	return activity, nil
 }
 
-func (s ActivityService) SaveExerciseSession(ctx context.Context, session *ExerciseSession) error {
+func (s ServiceActivity) SaveExerciseSession(ctx context.Context, session *ExerciseSession) error {
 	err := s.repo.Save(ctx, session)
 
 	switch {
@@ -79,7 +77,7 @@ func (s ActivityService) SaveExerciseSession(ctx context.Context, session *Exerc
 	return nil
 }
 
-func (s ActivityService) GetExerciseSession(ctx context.Context, id int) ([]ExerciseSession, error) {
+func (s ServiceActivity) GetExerciseSession(ctx context.Context, id int) ([]ExerciseSession, error) {
 	exerciseSession, err := s.repo.GetExerciseSessions(ctx, id)
 	switch {
 	case err == nil:

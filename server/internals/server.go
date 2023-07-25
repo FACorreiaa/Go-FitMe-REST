@@ -2,22 +2,24 @@ package internals
 
 import (
 	"context"
+	"errors"
 	"fmt"
+	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/activity"
+	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/user"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/helpers/db"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/server"
-	"github.com/jmoiron/sqlx"
-	"github.com/redis/go-redis/v9"
-	"go.uber.org/zap"
-	"time"
-
 	"github.com/FACorreiaa/Stay-Healthy-Backend/server/logs"
 	"github.com/go-chi/chi/v5"
+	"github.com/jmoiron/sqlx"
+	"github.com/redis/go-redis/v9"
 	"github.com/rs/cors"
+	"go.uber.org/zap"
 	"net/http"
 	"os"
 	"os/signal"
 	"sync"
 	"syscall"
+	"time"
 )
 
 type QueryExecMode uint
@@ -137,7 +139,6 @@ func NewServer() (*Server, error) {
 
 	log := NewLogger()
 	router := chi.NewRouter()
-	server.Register(router, database, rdb)
 
 	s := Server{
 		logger: log,
@@ -146,6 +147,28 @@ func NewServer() (*Server, error) {
 		rdb:    rdb,
 		db:     database,
 	}
+
+	activityRepo, err := activity.NewRepositoryActivity(s.db)
+	if err != nil {
+		_ = errors.New("error injecting activity service")
+	}
+
+	userRepo, err := user.NewUserRepository(s.db)
+	if err != nil {
+		_ = errors.New("error injecting user service")
+	}
+
+	deps := &server.AppDependencies{
+		ActivityService: activity.NewActivityService(activityRepo),
+		UserService:     user.NewUserService(userRepo),
+	}
+
+	sessionDeps := &server.SessionDependencies{
+		DB:  s.db,
+		RDB: s.rdb,
+	}
+
+	server.Register(router, deps, sessionDeps)
 
 	return &s, nil
 }

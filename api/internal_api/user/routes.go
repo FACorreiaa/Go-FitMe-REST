@@ -2,12 +2,12 @@ package user
 
 import (
 	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/auth"
+	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/dependencies"
 	"github.com/go-chi/chi/v5"
-	"github.com/jmoiron/sqlx"
 )
 
-func RoutesUser(db *sqlx.DB, sessionManager *auth.SessionManager) *chi.Mux {
-	u := NewUserHandler(db, sessionManager)
+func RoutesUser(deps dependencies.Dependencies, sessionManager *auth.SessionManager) *chi.Mux {
+	u := NewUserHandler(deps, sessionManager)
 
 	router := chi.NewRouter()
 

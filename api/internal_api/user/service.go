@@ -58,24 +58,17 @@ package user
 //	} else {
 //		return true
 //	}
-//}
-//func (u *userService) Create(user *domain.User) (*domain.User, error) {
-//	return u.userRepository.Save(user)
-//}
-//func (u *userService) FindAll() ([]domain.User, error) {
-//	return u.userRepository.FindAll()
-//}
 
-type Service struct {
-	repo Repository
+type ServiceUser struct {
+	repo *Repository
 }
 
-func NewService(repo Repository) Service {
-	return Service{
+func NewUserService(repo *Repository) *ServiceUser {
+	return &ServiceUser{
 		repo: repo,
 	}
 }
 
-func (s Service) Create(user NewUser) (int, error) {
+func (s ServiceUser) Create(user NewUser) (int, error) {
 	return s.repo.CreateNewUser(user)
 }

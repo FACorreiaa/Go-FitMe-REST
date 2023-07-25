@@ -8,17 +8,15 @@ import (
 	"github.com/jmoiron/sqlx"
 )
 
-type ActivityRepository struct {
+type RepositoryActivity struct {
 	db *sqlx.DB
 }
 
-//
-
-func NewActivityRepository(db *sqlx.DB) (*ActivityRepository, error) {
-	return &ActivityRepository{db: db}, nil
+func NewRepositoryActivity(db *sqlx.DB) (*RepositoryActivity, error) {
+	return &RepositoryActivity{db: db}, nil
 }
 
-func (r ActivityRepository) GetAll(ctx context.Context) ([]Activity, error) {
+func (r RepositoryActivity) GetAll(ctx context.Context) ([]Activity, error) {
 	activities := make([]Activity, 0)
 	query := `SELECT id, user_id, name,
 					duration_minutes, total_calories, calories_per_hour,
@@ -37,36 +35,7 @@ func (r ActivityRepository) GetAll(ctx context.Context) ([]Activity, error) {
 	return activities, nil
 }
 
-//func (r ActivityRepository) GetAll(ctx context.Context) ([]Activity, error) {
-//	var activities []Activity
-//	query := `SELECT id, user_id, name,
-//                    duration_minutes, total_calories, calories_per_hour,
-//                    created_at, updated_at
-//            FROM activity`
-//
-//	rows, err := r.db.Query(query)
-//	for rows.Next() {
-//		var a Activity
-//		err := rows.Scan(
-//			&a.ID, &a.UserID, &a.Name, &a.DurationMinutes, &a.TotalCalories,
-//			&a.CaloriesPerHour, &a.CreatedAt, &a.UpdatedAt)
-//
-//		if err != nil {
-//			return nil, err
-//		}
-//		activities = append(activities, a)
-//	}
-//	if err != nil {
-//		if errors.Is(err, sql.ErrNoRows) {
-//			return activities, fmt.Errorf("activities not found %w", err)
-//		}
-//		return activities, fmt.Errorf("failed to scan activities: %w", err)
-//	}
-//
-//	return activities, nil
-//}
-
-func (r ActivityRepository) GetExerciseByName(ctx context.Context, name string) ([]Activity, error) {
+func (r RepositoryActivity) GetExerciseByName(ctx context.Context, name string) ([]Activity, error) {
 	activities := make([]Activity, 0)
 	query := `SELECT id, user_id, name, duration_minutes,
 					total_calories, calories_per_hour, created_at, updated_at
@@ -84,7 +53,7 @@ func (r ActivityRepository) GetExerciseByName(ctx context.Context, name string) 
 	return activities, nil
 }
 
-func (r ActivityRepository) GetExerciseById(ctx context.Context, id int) (Activity, error) {
+func (r RepositoryActivity) GetExerciseById(ctx context.Context, id int) (Activity, error) {
 	var activity Activity
 	query := `SELECT 	id, user_id, name, duration_minutes,
        					total_calories, calories_per_hour, created_at,
@@ -103,7 +72,7 @@ func (r ActivityRepository) GetExerciseById(ctx context.Context, id int) (Activi
 	return activity, nil
 }
 
-func (r ActivityRepository) Save(ctx context.Context, exerciseSession *ExerciseSession) error {
+func (r RepositoryActivity) Save(ctx context.Context, exerciseSession *ExerciseSession) error {
 	query := `
 		INSERT INTO exercise_session
 		    (user_id, activity_id, session_name, start_time,
@@ -123,7 +92,7 @@ func (r ActivityRepository) Save(ctx context.Context, exerciseSession *ExerciseS
 	return nil
 }
 
-func (r ActivityRepository) GetExerciseSessions(ctx context.Context, id int) ([]ExerciseSession, error) {
+func (r RepositoryActivity) GetExerciseSessions(ctx context.Context, id int) ([]ExerciseSession, error) {
 	exerciseSessions := make([]ExerciseSession, 0)
 	query := `SELECT user_id, activity_id, session_name, start_time,
 		     		end_time, duration_hours, duration_minutes,

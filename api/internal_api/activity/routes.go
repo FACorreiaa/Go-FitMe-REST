@@ -1,13 +1,12 @@
 package activity
 
 import (
-	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/auth"
+	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/dependencies"
 	"github.com/go-chi/chi/v5"
-	"github.com/jmoiron/sqlx"
 )
 
-func RoutesActivity(db *sqlx.DB, sm *auth.SessionManager) *chi.Mux {
-	h := NewActivityHandler(db, sm)
+func RoutesActivity(deps dependencies.Dependencies) *chi.Mux {
+	h := NewActivityHandler(deps)
 
 	router := chi.NewRouter()
 

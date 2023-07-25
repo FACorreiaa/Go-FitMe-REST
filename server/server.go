@@ -11,18 +11,15 @@ import (
 	"github.com/go-chi/httplog"
 	"github.com/go-chi/httprate"
 	"github.com/go-chi/stampede"
-	"github.com/jmoiron/sqlx"
-	"github.com/redis/go-redis/v9"
 	"time"
 )
 
-func Register(r chi.Router, db *sqlx.DB, rdb *redis.Client) {
+func Register(r chi.Router, deps *AppDependencies, session *SessionDependencies) {
 	swaggerRoute := SwaggerRoutes()
-	sessionManager := auth.NewSessionManager(rdb, db)
-	userRoutes := user.RoutesUser(db)
 	calculatorRoute := calculator.RoutesCalculator()
-
-	activityRoutes := activity.RoutesActivity(db, sessionManager)
+	sessionManager := auth.NewSessionManager(session)
+	userRoutes := user.RoutesUser(deps, sessionManager)
+	activityRoutes := activity.RoutesActivity(deps)
 
 	r.Use(middleware.RequestID)
 	r.Use(middleware.RealIP)
