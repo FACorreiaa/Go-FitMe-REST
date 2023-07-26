@@ -1,4 +1,4 @@
-package dependencies
+package dependencias
 
 import (
 	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/activity"

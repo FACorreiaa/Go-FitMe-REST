@@ -2,11 +2,10 @@ package user
 
 import (
 	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/auth"
-	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/dependencies"
 	"github.com/go-chi/chi/v5"
 )
 
-func RoutesUser(deps dependencies.Dependencies, sessionManager *auth.SessionManager) *chi.Mux {
+func RoutesUser(deps DependenciesUser, sessionManager *auth.SessionManager) *chi.Mux {
 	u := NewUserHandler(deps, sessionManager)
 
 	router := chi.NewRouter()

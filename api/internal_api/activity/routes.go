@@ -1,11 +1,10 @@
 package activity
 
 import (
-	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/dependencies"
 	"github.com/go-chi/chi/v5"
 )
 
-func RoutesActivity(deps dependencies.Dependencies) *chi.Mux {
+func RoutesActivity(deps DependenciesActivity) *chi.Mux {
 	h := NewActivityHandler(deps)
 
 	router := chi.NewRouter()
@@ -18,6 +17,7 @@ func RoutesActivity(deps dependencies.Dependencies) *chi.Mux {
 	router.Post("/pause/session/id={id}", h.PauseActivityTracker)
 	router.Post("/resume/session/id={id}", h.ResumeActivityTracker)
 	router.Post("/stop/session/id={id}", h.StopActivityTracker)
+	router.Get("/user/session/total/user={user_id}", h.GetUserExerciseTotalData)
 
 	return router
 }

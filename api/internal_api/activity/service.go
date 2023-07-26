@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/helpers/db"
+	"time"
 )
 
 type ServiceActivity struct {
@@ -13,6 +14,29 @@ type ServiceActivity struct {
 func NewActivityService(repo *RepositoryActivity) *ServiceActivity {
 	return &ServiceActivity{
 		repo: repo,
+	}
+}
+
+func CalculateTotalFromJSONData(exerciseSessions []ExerciseSession, id int) TotalExerciseSession {
+	totalDurationHours := 0
+	totalDurationMinutes := 0
+	totalDurationSeconds := 0
+	totalCaloriesBurned := 0
+
+	for _, session := range exerciseSessions {
+		totalDurationHours += session.DurationHours
+		totalDurationMinutes += session.DurationMinutes
+		totalDurationSeconds += session.DurationSeconds
+		totalCaloriesBurned += session.CaloriesBurned
+	}
+
+	return TotalExerciseSession{
+		UserID:               id,
+		TotalDurationHours:   totalDurationHours,
+		TotalDurationMinutes: totalDurationMinutes,
+		TotalDurationSeconds: totalDurationSeconds,
+		TotalCaloriesBurned:  totalCaloriesBurned,
+		CreatedAt:            time.Now(),
 	}
 }
 
@@ -88,4 +112,16 @@ func (s ServiceActivity) GetExerciseSession(ctx context.Context, id int) ([]Exer
 	}
 	return exerciseSession, nil
 
+}
+
+func (s ServiceActivity) GetExerciseTotalSession(ctx context.Context, userId int) (*TotalExerciseSession, error) {
+	exerciseSessionTotalValues, err := s.repo.CalculateAndSaveTotalExerciseSession(ctx, userId)
+	switch {
+	case err == nil:
+	case errors.As(err, &db.ErrObjectNotFound{}):
+		return &TotalExerciseSession{}, db.ErrObjectNotFound{}
+	default:
+		return &TotalExerciseSession{}, err
+	}
+	return exerciseSessionTotalValues, nil
 }

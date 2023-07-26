@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/auth"
-	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/dependencies"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-playground/validator/v10"
 	"golang.org/x/crypto/bcrypt"
@@ -14,14 +13,18 @@ import (
 	"net/http"
 )
 
+type DependenciesUser interface {
+	GetUserService() *ServiceUser
+}
+
 type Handler struct {
 	router         *chi.Router
-	dependencies   dependencies.Dependencies
+	dependencies   DependenciesUser
 	ctx            context.Context
 	sessionManager *auth.SessionManager
 }
 
-func NewUserHandler(deps dependencies.Dependencies, sessionManager *auth.SessionManager) Handler {
+func NewUserHandler(deps DependenciesUser, sessionManager *auth.SessionManager) Handler {
 	return Handler{
 		dependencies:   deps,
 		sessionManager: sessionManager,

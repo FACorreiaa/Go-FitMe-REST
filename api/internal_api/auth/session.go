@@ -3,19 +3,24 @@ package auth
 import (
 	"context"
 	"encoding/json"
-	"fmt"
-	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/dependencies"
 	"github.com/google/uuid"
+	"github.com/jmoiron/sqlx"
+	"github.com/redis/go-redis/v9"
 	"golang.org/x/crypto/bcrypt"
 	"net/http"
 	"time"
 )
 
-type SessionManager struct {
-	deps dependencies.AuthDependencies
+type DependenciesAuth interface {
+	GetDB() *sqlx.DB
+	GetRedisClient() *redis.Client
 }
 
-func NewSessionManager(deps dependencies.AuthDependencies) *SessionManager {
+type SessionManager struct {
+	deps DependenciesAuth
+}
+
+func NewSessionManager(deps DependenciesAuth) *SessionManager {
 	return &SessionManager{deps: deps}
 }
 
@@ -32,14 +37,6 @@ type User struct {
 	Username string
 	Email    string
 	Password string
-}
-
-func validateSessionHeader(sessionHeader string) (string, error) {
-	if sessionHeader == "" || len(sessionHeader) < 8 || sessionHeader[:7] != "Bearer " {
-		return "", fmt.Errorf("invalid session header")
-	}
-
-	return sessionHeader[7:], nil
 }
 
 func (s *SessionManager) GenerateSession(data UserSession) (string, error) {

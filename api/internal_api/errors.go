@@ -1,4 +1,4 @@
-package handlers
+package internal_api
 
 type Error struct {
 	Status  int    `json:"status"`

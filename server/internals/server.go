@@ -37,39 +37,6 @@ func (m QueryExecMode) value() string {
 	}
 }
 
-//type Config struct {
-//	host                 string
-//	port                 string
-//	username             string
-//	password             string
-//	dbName               string
-//	sslMode              string
-//	maxConnWaitingTime   time.Duration
-//	defaultQueryExecMode QueryExecMode
-//}
-//
-//func NewConfig(
-//	host string,
-//	port string,
-//	username string,
-//	password string,
-//	dbName string,
-//	sslMode string,
-//	maxConnWaitingTime time.Duration,
-//	defaultQueryExecMode QueryExecMode,
-//) (Config, error) {
-//	return Config{
-//		host:                 host,
-//		port:                 port,
-//		username:             username,
-//		password:             password,
-//		dbName:               dbName,
-//		sslMode:              sslMode,
-//		maxConnWaitingTime:   maxConnWaitingTime,
-//		defaultQueryExecMode: defaultQueryExecMode,
-//	}, nil
-//}
-
 type Server struct {
 	logger *zap.Logger
 	router *chi.Mux

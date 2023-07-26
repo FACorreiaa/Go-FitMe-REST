@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/auth"
-	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/dependencies"
 	"github.com/go-chi/chi/v5"
 	"github.com/google/uuid"
 	"log"
@@ -13,13 +12,17 @@ import (
 	"time"
 )
 
+type DependenciesActivity interface {
+	GetActivityService() *ServiceActivity
+}
+
 type Handler struct {
-	dependencies     dependencies.Dependencies
+	dependencies     DependenciesActivity
 	exerciseSessions map[string]*ExerciseSession // Map to store exercise sessions for each user
 	pausedTimers     map[string]time.Time
 }
 
-func NewActivityHandler(deps dependencies.Dependencies) *Handler {
+func NewActivityHandler(deps DependenciesActivity) *Handler {
 	return &Handler{
 		dependencies:     deps,
 		exerciseSessions: make(map[string]*ExerciseSession),
@@ -321,4 +324,33 @@ func (a Handler) GetUserExerciseSession(w http.ResponseWriter, r *http.Request) 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	_ = json.NewEncoder(w).Encode(exerciseSession)
+}
+
+// GetUserExerciseTotalData godoc
+// @Summary      Get user exercise data
+// @Description  Get user exercise total data for durations and calories
+// @Tags         activities
+// @Accept       json
+// @Produce      json
+// @Param        id   path      int  true  "Activity ID"
+// @Success      200  {array}   ExerciseSession
+// @Router       /activities/user/session/total/user={user_id} [post]
+func (a Handler) GetUserExerciseTotalData(w http.ResponseWriter, r *http.Request) {
+	userSession, ok := r.Context().Value(auth.SessionManagerKey{}).(*auth.UserSession)
+	if !ok {
+		http.Error(w, "User session not found", http.StatusUnauthorized)
+		return
+	}
+
+	// Calculate and save the total exercise session data
+	totalExerciseSession, err := a.dependencies.GetActivityService().GetExerciseTotalSession(r.Context(), userSession.Id)
+	if err != nil {
+		http.Error(w, "Error calculating total exercise session", http.StatusInternalServerError)
+		return
+	}
+
+	// Serialize the response as JSON and write to the response writer
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	_ = json.NewEncoder(w).Encode(totalExerciseSession)
 }
