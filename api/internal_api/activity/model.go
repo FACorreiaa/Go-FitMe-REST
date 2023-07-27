@@ -49,6 +49,12 @@ type TotalExerciseSession struct {
 	UpdatedAt            time.Time `json:"updated_at" db:"updated_at"`
 }
 
+type Cache struct {
+	data map[int]*TotalExerciseSession
+	// You can add an expiration mechanism if you want the cache to be invalidated after a certain time period.
+	// For simplicity, we won't include expiration in this example.
+}
+
 type Status int
 
 const (

@@ -4,7 +4,6 @@ import (
 	"context"
 	"errors"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/helpers/db"
-	"time"
 )
 
 type ServiceActivity struct {
@@ -14,29 +13,6 @@ type ServiceActivity struct {
 func NewActivityService(repo *RepositoryActivity) *ServiceActivity {
 	return &ServiceActivity{
 		repo: repo,
-	}
-}
-
-func CalculateTotalFromJSONData(exerciseSessions []ExerciseSession, id int) TotalExerciseSession {
-	totalDurationHours := 0
-	totalDurationMinutes := 0
-	totalDurationSeconds := 0
-	totalCaloriesBurned := 0
-
-	for _, session := range exerciseSessions {
-		totalDurationHours += session.DurationHours
-		totalDurationMinutes += session.DurationMinutes
-		totalDurationSeconds += session.DurationSeconds
-		totalCaloriesBurned += session.CaloriesBurned
-	}
-
-	return TotalExerciseSession{
-		UserID:               id,
-		TotalDurationHours:   totalDurationHours,
-		TotalDurationMinutes: totalDurationMinutes,
-		TotalDurationSeconds: totalDurationSeconds,
-		TotalCaloriesBurned:  totalCaloriesBurned,
-		CreatedAt:            time.Now(),
 	}
 }
 
