@@ -354,3 +354,43 @@ func (a Handler) GetUserExerciseTotalData(w http.ResponseWriter, r *http.Request
 	w.WriteHeader(http.StatusOK)
 	_ = json.NewEncoder(w).Encode(totalExerciseSession)
 }
+
+func (a Handler) GetExerciseSessionStats(w http.ResponseWriter, r *http.Request) {
+	userSession, ok := r.Context().Value(auth.SessionManagerKey{}).(*auth.UserSession)
+	if !ok {
+		http.Error(w, "User session not found", http.StatusUnauthorized)
+		return
+	}
+
+	// Calculate and save the total exercise session data
+	sessionStats, err := a.dependencies.GetActivityService().GetExerciseSessionStats(r.Context(), userSession.Id)
+	if err != nil {
+		http.Error(w, "Error calculating session status", http.StatusInternalServerError)
+		return
+	}
+
+	// Serialize the response as JSON and write to the response writer
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	_ = json.NewEncoder(w).Encode(sessionStats)
+}
+
+func (a Handler) GetUserExerciseSessionStats(w http.ResponseWriter, r *http.Request) {
+	userSession, ok := r.Context().Value(auth.SessionManagerKey{}).(*auth.UserSession)
+	if !ok {
+		http.Error(w, "User session not found", http.StatusUnauthorized)
+		return
+	}
+
+	// Calculate and save the total exercise session data
+	sessionStats, err := a.dependencies.GetActivityService().GetUserExerciseSessionStats(r.Context(), userSession.Id)
+	if err != nil {
+		http.Error(w, "Error calculating session status", http.StatusInternalServerError)
+		return
+	}
+
+	// Serialize the response as JSON and write to the response writer
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	_ = json.NewEncoder(w).Encode(sessionStats)
+}

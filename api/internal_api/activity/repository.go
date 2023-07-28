@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"github.com/google/uuid"
 	"github.com/jmoiron/sqlx"
+	"log"
 	"time"
 )
 
@@ -114,91 +115,10 @@ func (r RepositoryActivity) GetExerciseSessions(ctx context.Context, id int) ([]
 	return exerciseSessions, nil
 }
 
-//func (r RepositoryActivity) CalculateAndSaveTotalExerciseSession(ctx context.Context, userID int) (*TotalExerciseSession, error) {
-//	// Check if the data is already present in the Redis cache
-//	cachedValue, err := r.client.Get(ctx, fmt.Sprintf("exerciseSession:%d", userID)).Result()
-//	if err != nil {
-//		// Cache hit: unmarshal the cached value and return it
-//		var totalExerciseSession TotalExerciseSession
-//		if err := json.Unmarshal([]byte(cachedValue), &totalExerciseSession); err != nil {
-//			return nil, fmt.Errorf("failed to unmarshal cached value: %w", err)
-//		}
-//		return &totalExerciseSession, nil
-//	} else if err != redis.Nil {
-//		// If there's an error other than "redis.Nil" (key not found), return the error
-//		return nil, fmt.Errorf("failed to fetch total exercise session from cache: %w", err)
-//	}
-//
-//	// Cache miss: perform the calculation from SQL
-//	query := `SELECT duration_hours, duration_minutes, duration_seconds, calories_burned FROM exercise_session WHERE user_id = $1`
-//
-//	var exerciseSessions []ExerciseSession
-//	err = r.db.SelectContext(ctx, &exerciseSessions, query, userID)
-//	if err != nil {
-//		if errors.Is(err, sql.ErrNoRows) {
-//			return nil, fmt.Errorf("error making calculations of data: %w", err)
-//		}
-//		return nil, fmt.Errorf("failed to fetch exercise sessions: %w", err)
-//	}
-//
-//	if len(exerciseSessions) == 0 {
-//		return nil, nil
-//	}
-//
-//	totalDuration := Duration{}
-//	totalCaloriesBurned := 0
-//
-//	for _, session := range exerciseSessions {
-//		totalDuration.Hours += session.DurationHours
-//		totalDuration.Minutes += session.DurationMinutes
-//		totalDuration.Seconds += session.DurationSeconds
-//		totalCaloriesBurned += session.CaloriesBurned
-//	}
-//
-//	// Create or update the total_exercise_session row in the database
-//	_, err = r.db.ExecContext(ctx, `
-//		INSERT INTO total_exercise_session (user_id, total_duration_hours, total_duration_minutes, total_duration_seconds, total_calories_burned)
-//		VALUES ($1, $2, $3, $4, $5)
-//		ON CONFLICT (user_id)
-//		DO UPDATE SET
-//			total_duration_hours = EXCLUDED.total_duration_hours,
-//			total_duration_minutes = EXCLUDED.total_duration_minutes,
-//			total_duration_seconds = EXCLUDED.total_duration_seconds,
-//			total_calories_burned = EXCLUDED.total_calories_burned,
-//			updated_at = NOW()
-//	`, userID, totalDuration.Hours, totalDuration.Minutes, totalDuration.Seconds, totalCaloriesBurned)
-//
-//	if err != nil {
-//		return nil, fmt.Errorf("failed to save total exercise session: %w", err)
-//	}
-//
-//	// Store the new calculated value in the Redis cache
-//	newTotalExerciseSession := &TotalExerciseSession{
-//		ID:                   uuid.New(),
-//		UserID:               userID,
-//		TotalDurationHours:   totalDuration.Hours,
-//		TotalDurationMinutes: totalDuration.Minutes,
-//		TotalDurationSeconds: totalDuration.Seconds,
-//		TotalCaloriesBurned:  totalCaloriesBurned,
-//		CreatedAt:            time.Now(),
-//		UpdatedAt:            time.Now(),
-//	}
-//
-//	cachedJSON, err := json.Marshal(newTotalExerciseSession)
-//	if err != nil {
-//		return nil, fmt.Errorf("failed to marshal total exercise session for cache: %w", err)
-//	}
-//
-//	err = r.client.Set(ctx, fmt.Sprintf("exerciseSession:%d", userID), cachedJSON, 0).Err()
-//	if err != nil {
-//		return nil, fmt.Errorf("failed to update Redis cache: %w", err)
-//	}
-//
-//	return newTotalExerciseSession, nil
-//}
-
 func (r RepositoryActivity) CalculateAndSaveTotalExerciseSession(ctx context.Context, userID int) (*TotalExerciseSession, error) {
-	query := `SELECT duration_hours, duration_minutes, duration_seconds, calories_burned FROM exercise_session WHERE user_id = $1`
+	query := `SELECT
+    			duration_hours, duration_minutes, duration_seconds, calories_burned
+			FROM exercise_session WHERE user_id = $1`
 
 	var exerciseSessions []ExerciseSession
 	err := r.db.SelectContext(ctx, &exerciseSessions, query, userID)
@@ -250,5 +170,118 @@ func (r RepositoryActivity) CalculateAndSaveTotalExerciseSession(ctx context.Con
 		CreatedAt:            time.Now(),
 		UpdatedAt:            time.Now(),
 	}, nil
+}
 
+// GetTotalExerciseOccurrence need to save on db as a history <<<
+// using CTEs, provides more general statistics for the most frequent activity across all users and
+// the number of times this activity occurs for each user, along with additional information from the total_exercise_session table.
+func (r RepositoryActivity) GetTotalExerciseOccurrence(ctx context.Context, userID int) ([]ExerciseCountStats, error) {
+	sessionStats := make([]ExerciseCountStats, 0)
+
+	query := `WITH total_exercise_stats AS (
+			  SELECT activity_id
+			  FROM exercise_session
+			  WHERE user_id = $1
+			  GROUP BY activity_id
+			  ORDER BY COUNT(*) DESC
+			  LIMIT 1
+			),
+			activity_counts AS (SELECT
+			                        user_id,
+									activity_id,
+									COUNT(*) AS number_of_times
+							  FROM exercise_session
+							  GROUP BY user_id, activity_id
+								LIMIT 1)
+			SELECT DISTINCT tes.id, tes.user_id,
+							ac.number_of_times, tes.activity_id,
+			  				es.session_name, tes.total_duration_hours,
+			  				tes.total_duration_minutes,
+			  				tes.total_duration_seconds,
+			  				tes.total_calories_burned
+			FROM total_exercise_session tes
+			JOIN total_exercise_stats mfa ON tes.activity_id = mfa.activity_id
+			JOIN activity_counts ac ON tes.user_id = ac.user_id AND tes.activity_id = ac.activity_id
+			JOIN exercise_session es ON tes.activity_id = es.activity_id AND tes.user_id = es.user_id`
+
+	err := r.db.SelectContext(ctx, &sessionStats, query, userID)
+
+	if err != nil {
+		if errors.Is(err, sql.ErrNoRows) {
+			return sessionStats, fmt.Errorf("exercises not found %w", err)
+		}
+		return sessionStats, fmt.Errorf("failed to scan exercises: %w", err)
+	}
+
+	tx, err := r.db.Beginx()
+	if err != nil {
+		return sessionStats, fmt.Errorf("failed to begin transaction: %w", err)
+	}
+
+	defer func() {
+		if err != nil {
+			if rb := tx.Rollback(); rb != nil {
+				log.Fatalf("query failed: %v, unable to abort: %v", err, rb)
+			}
+			log.Fatal(err)
+		}
+
+		if err := tx.Commit(); err != nil {
+			log.Fatal(err)
+		}
+	}()
+
+	stmt := `
+		INSERT INTO total_exercise_stats (user_id, activity_id, session_name, number_of_times,
+		                                  total_duration_hours, total_duration_minutes, total_duration_seconds,
+		                                  total_calories_burned, created_at, updated_at)
+		VALUES (:user_id, :activity_id, :session_name, :number_of_times,
+		        :total_duration_hours, :total_duration_minutes, :total_duration_seconds,
+		        :total_calories_burned, :created_at, :updated_at)
+		ON CONFLICT (user_id) DO UPDATE SET
+		    session_name = EXCLUDED.session_name,
+    		number_of_times = EXCLUDED.number_of_times,
+			total_duration_hours = EXCLUDED.total_duration_hours,
+			total_duration_minutes = EXCLUDED.total_duration_minutes,
+			total_duration_seconds = EXCLUDED.total_duration_seconds,
+			total_calories_burned = EXCLUDED.total_calories_burned,
+			updated_at = EXCLUDED.updated_at
+	`
+
+	for _, stats := range sessionStats {
+		_, err := tx.NamedExec(stmt, stats)
+		if err != nil {
+			return sessionStats, fmt.Errorf("failed to upsert exercise stats %w", err)
+		}
+	}
+
+	return sessionStats, nil
+}
+
+// GetExerciseOccurrenceByUser detailed statistics about the most frequently occurring combination of
+// session_name and activity_id for a specific user_id from the exercise_session table
+func (r RepositoryActivity) GetExerciseOccurrenceByUser(ctx context.Context, id int) ([]ExerciseCountStats, error) {
+	sessionStats := make([]ExerciseCountStats, 0)
+	query := `SELECT es.session_name, es.activity_id,
+       				COUNT(*) as number_of_times,
+       				SUM(es.duration_seconds) as total_duration_seconds,
+					SUM(es.duration_minutes) as total_duration_minutes,
+					SUM(es.duration_hours) as total_duration_hours,
+					SUM(es.calories_burned) as total_calories_burned
+              FROM exercise_session es
+              WHERE user_id = $1
+              GROUP BY session_name, activity_id
+              ORDER BY number_of_times DESC
+              LIMIT 1`
+
+	err := r.db.SelectContext(ctx, &sessionStats, query, id)
+
+	if err != nil {
+		if errors.Is(err, sql.ErrNoRows) {
+			return sessionStats, fmt.Errorf("exercises not found %w", err)
+		}
+		return sessionStats, fmt.Errorf("failed to scan exercises: %w", err)
+	}
+
+	return sessionStats, nil
 }

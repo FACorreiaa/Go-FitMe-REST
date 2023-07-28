@@ -26,7 +26,7 @@ func Register(r chi.Router, deps *AppDependencies, session *SessionDependencies)
 	r.Use(middleware.Logger)
 	r.Use(middleware.Recoverer)
 	r.Use(middleware.Timeout(60 * time.Second))
-	r.Use(httprate.LimitByIP(100, 1*time.Minute))
+	r.Use(httprate.LimitByIP(100, 2*time.Minute))
 	//r.Use(auth.SessionMiddleware(sessionManager))
 
 	// Use middleware to add the session manager to the request context

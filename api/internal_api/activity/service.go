@@ -101,3 +101,27 @@ func (s ServiceActivity) GetExerciseTotalSession(ctx context.Context, userId int
 	}
 	return exerciseSessionTotalValues, nil
 }
+
+func (s ServiceActivity) GetUserExerciseSessionStats(ctx context.Context, userId int) ([]ExerciseCountStats, error) {
+	sessionStats, err := s.repo.GetExerciseOccurrenceByUser(ctx, userId)
+	switch {
+	case err == nil:
+	case errors.As(err, &db.ErrObjectNotFound{}):
+		return []ExerciseCountStats{}, db.ErrObjectNotFound{}
+	default:
+		return []ExerciseCountStats{}, err
+	}
+	return sessionStats, nil
+}
+
+func (s ServiceActivity) GetExerciseSessionStats(ctx context.Context, userId int) ([]ExerciseCountStats, error) {
+	sessionStats, err := s.repo.GetTotalExerciseOccurrence(ctx, userId)
+	switch {
+	case err == nil:
+	case errors.As(err, &db.ErrObjectNotFound{}):
+		return []ExerciseCountStats{}, db.ErrObjectNotFound{}
+	default:
+		return []ExerciseCountStats{}, err
+	}
+	return sessionStats, nil
+}

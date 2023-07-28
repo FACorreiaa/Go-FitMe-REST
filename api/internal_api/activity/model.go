@@ -41,6 +41,7 @@ type Duration struct {
 type TotalExerciseSession struct {
 	ID                   uuid.UUID `json:"id,string" db:"id" pg:"default:gen_random_uuid()"`
 	UserID               int       `json:"user_id" db:"user_id"`
+	ActivityID           int       `json:"activity_id" db:"activity_id"`
 	TotalDurationHours   int       `json:"duration_hours" db:"total_duration_hours"`
 	TotalDurationMinutes int       `json:"duration_minutes" db:"total_duration_minutes"`
 	TotalDurationSeconds int       `json:"duration_seconds" db:"total_duration_seconds"`
@@ -49,10 +50,33 @@ type TotalExerciseSession struct {
 	UpdatedAt            time.Time `json:"updated_at" db:"updated_at"`
 }
 
-type Cache struct {
-	data map[int]*TotalExerciseSession
-	// You can add an expiration mechanism if you want the cache to be invalidated after a certain time period.
-	// For simplicity, we won't include expiration in this example.
+//type SessionStats struct {
+//	ID                     uuid.UUID `json:"id,string" db:"id" pg:"default:gen_random_uuid()"`
+//	TotalExerciseSessionID uuid.UUID `json:"total_exercise_session_id,string" db:"total_exercise_session_id"`
+//	ActivityID             int       `json:"activity_id" db:"activity_id"`
+//	UserID                 int       `json:"user_id" db:"user_id"`
+//	SessionName            string    `json:"session_name" db:"session_name"`
+//	NumberOfTimes          int       `json:"number_of_times" db:"number_of_times"`
+//	TotalDurationHours     int       `json:"duration_hours" db:"total_duration_hours"`
+//	TotalDurationMinutes   int       `json:"duration_minutes" db:"total_duration_minutes"`
+//	TotalDurationSeconds   int       `json:"duration_seconds" db:"total_duration_seconds"`
+//	TotalCaloriesBurned    int       `json:"calories_burned" db:"total_calories_burned"`
+//	CreatedAt              time.Time `json:"created_at" db:"created_at"`
+//	UpdatedAt              time.Time `json:"updated_at" db:"updated_at"`
+//}
+
+type ExerciseCountStats struct {
+	ID                           uuid.UUID `json:"id,string" db:"id" pg:"default:gen_random_uuid()"`
+	ActivityID                   int       `json:"activity_id,string" db:"activity_id"`
+	UserID                       int       `json:"user_id,string" db:"user_id"`
+	SessionName                  string    `json:"session_name" db:"session_name"`
+	NumberOfTimes                int       `json:"number_of_times" db:"number_of_times"`
+	TotalExerciseDurationHours   int       `json:"total_duration_hours" db:"total_duration_hours"`
+	TotalExerciseDurationMinutes int       `json:"total_duration_minutes" db:"total_duration_minutes"`
+	TotalExerciseDurationSeconds int       `json:"total_duration_seconds" db:"total_duration_seconds"`
+	TotalExerciseCaloriesBurned  int       `json:"total_calories_burned" db:"total_calories_burned"`
+	CreatedAt                    time.Time `json:"created_at" db:"created_at"`
+	UpdatedAt                    time.Time `json:"updated_at" db:"updated_at"`
 }
 
 type Status int

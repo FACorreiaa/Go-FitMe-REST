@@ -74,7 +74,7 @@ func (s *SessionManager) SignIn(email, password string) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	println(sessionId)
+
 	return sessionId, nil
 }
 
