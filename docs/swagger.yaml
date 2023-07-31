@@ -1,5 +1,53 @@
 basePath: /
 definitions:
+  activity.Activity:
+    properties:
+      calories_per_hour:
+        type: number
+      created_at:
+        type: string
+      duration_minutes:
+        type: number
+      id:
+        example: "0"
+        type: string
+      name:
+        type: string
+      total_calories:
+        type: number
+      updated_at:
+        type: string
+      user_id:
+        $ref: '#/definitions/sql.NullString'
+    type: object
+  activity.ExerciseSession:
+    properties:
+      activity_id:
+        type: integer
+      calories_burned:
+        type: integer
+      created_at:
+        type: string
+      duration_hours:
+        type: integer
+      duration_minutes:
+        type: integer
+      duration_seconds:
+        type: integer
+      end_time:
+        type: string
+      id:
+        example: ""
+        type: string
+      session_name:
+        type: string
+      start_time:
+        type: string
+      updated_at:
+        type: string
+      user_id:
+        type: integer
+    type: object
   auth.UserSession:
     properties:
       email:
@@ -8,6 +56,14 @@ definitions:
         type: integer
       username:
         type: string
+    type: object
+  sql.NullString:
+    properties:
+      string:
+        type: string
+      valid:
+        description: Valid is true if String is not NULL
+        type: boolean
     type: object
   user.SuccessResponse:
     properties:
@@ -59,6 +115,161 @@ info:
   title: StayHealthy Swagger Documentation
   version: "2.0"
 paths:
+  /activities:
+    get:
+      consumes:
+      - application/json
+      description: get activities
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/activity.Activity'
+            type: array
+      summary: Show all activities
+      tags:
+      - activities
+  /activities/id/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Get activity by id
+      parameters:
+      - description: Activity ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/activity.Activity'
+            type: array
+      summary: Show all activity by id
+      tags:
+      - activities
+  /activities/name/{name}:
+    get:
+      consumes:
+      - application/json
+      description: Get activities by name
+      parameters:
+      - description: Activity Name
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/activity.Activity'
+            type: array
+      summary: Show all activities by name
+      tags:
+      - activities
+  /activities/start/session/id/{id}:
+    post:
+      consumes:
+      - application/json
+      description: Stop Activity
+      parameters:
+      - description: Activity ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/activity.ExerciseSession'
+            type: array
+      summary: Stop activity timer
+      tags:
+      - activities
+  /activities/user/exercises/user/{user_id}:
+    post:
+      consumes:
+      - application/json
+      description: Get exercise session
+      parameters:
+      - description: Activity ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/activity.ExerciseSession'
+            type: array
+      summary: Get user exercise session
+      tags:
+      - activities
+  /activities/user/session/total/stats/{user_id}:
+    post:
+      consumes:
+      - application/json
+      description: Get user exercise total data for durations and calories
+      parameters:
+      - description: Activity ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/activity.ExerciseSession'
+            type: array
+      summary: Get user exercise data
+      tags:
+      - activities
+  /activities/user/session/total/user/{user_id}:
+    post:
+      consumes:
+      - application/json
+      description: Get user exercise total data for durations and calories
+      parameters:
+      - description: Activity ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/activity.ExerciseSession'
+            type: array
+      summary: Get user exercise data
+      tags:
+      - activities
   /users/me:
     get:
       consumes:
@@ -101,6 +312,28 @@ paths:
       tags:
       - users
   /users/sign-out:
+    get:
+      consumes:
+      - application/json
+      description: Delete current user session
+      parameters:
+      - description: sessionId string
+        in: path
+        name: sessionId
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/auth.UserSession'
+            type: array
+      summary: Delete user session
+      tags:
+      - session
     post:
       consumes:
       - application/json
@@ -139,6 +372,29 @@ paths:
       summary: Sign up a user
       tags:
       - users
+  /users/user/info:
+    get:
+      consumes:
+      - application/json
+      description: Get info about user session
+      parameters:
+      - description: session string
+        in: path
+        name: session
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/auth.UserSession'
+            type: array
+      summary: Get user session
+      tags:
+      - session
 schemes:
 - http
 swagger: "2.0"

@@ -39,6 +39,14 @@ type User struct {
 	Password string
 }
 
+// GenerateSession godoc
+// @Summary      Generates user session
+// @Description  Generates new user session
+// @Tags         session
+// @Accept       json
+// @Produce      json
+// @Param        sessionId   path      string  true  "sessionId string"
+// @Success      200  {array}   UserSession
 func (s *SessionManager) GenerateSession(data UserSession) (string, error) {
 	sessionId := uuid.NewString()
 	jsonData, _ := json.Marshal(data)
@@ -78,10 +86,28 @@ func (s *SessionManager) SignIn(email, password string) (string, error) {
 	return sessionId, nil
 }
 
+// SignOut godoc
+// @Summary      Delete user session
+// @Description  Delete current user session
+// @Tags         session
+// @Accept       json
+// @Produce      json
+// @Param        sessionId   path      string  true  "sessionId string"
+// @Success      200  {array}   UserSession
+// @Router       /users/sign-out [get]
 func (s *SessionManager) SignOut(sessionId string) error {
 	return s.deps.GetRedisClient().Del(context.Background(), sessionId).Err()
 }
 
+// GetSession godoc
+// @Summary      Get user session
+// @Description  Get info about user session
+// @Tags         session
+// @Accept       json
+// @Produce      json
+// @Param        session   path      string  true  "session string"
+// @Success      200  {array}   UserSession
+// @Router       /users/user/info [get]
 func (s *SessionManager) GetSession(session string) (*UserSession, error) {
 	data, err := s.deps.GetRedisClient().Get(context.Background(), session).Result()
 	if err != nil {

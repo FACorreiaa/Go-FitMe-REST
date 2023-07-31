@@ -63,7 +63,7 @@ func (a Handler) GetActivities(w http.ResponseWriter, r *http.Request) {
 // @Produce      json
 // @Param        name   path      string  true  "Activity Name"
 // @Success      200  {array}   Activity
-// @Router       /activities/name={name} [get]
+// @Router       /activities/name/{name} [get]
 func (a Handler) GetActivitiesByName(w http.ResponseWriter, r *http.Request) {
 	name := chi.URLParam(r, "name")
 	activities, err := a.dependencies.GetActivityService().GetByName(r.Context(), name)
@@ -91,7 +91,7 @@ func (a Handler) GetActivitiesByName(w http.ResponseWriter, r *http.Request) {
 // @Produce      json
 // @Param        id   path      int  true  "Activity ID"
 // @Success      200  {array}   Activity
-// @Router      /activities/id={id} [get]
+// @Router       /activities/id/{id} [get]
 func (a Handler) GetActivitiesById(w http.ResponseWriter, r *http.Request) {
 	id, err := strconv.Atoi(chi.URLParam(r, "id"))
 	if err != nil {
@@ -125,7 +125,7 @@ func (a Handler) GetActivitiesById(w http.ResponseWriter, r *http.Request) {
 // @Produce      json
 // @Param        id   path      int  true  "Activity ID"
 // @Success      200  {array}   ExerciseSession
-// @Router       /activities/start/session/id={id} [post]
+// @Router       /activities/start/session/id/{id} [post]
 func (a Handler) StartActivityTracker(w http.ResponseWriter, r *http.Request) {
 	activityID, err := strconv.Atoi(chi.URLParam(r, "id"))
 	currentTime := time.Now()
@@ -185,7 +185,7 @@ func (a Handler) StartActivityTracker(w http.ResponseWriter, r *http.Request) {
 // @Produce      json
 // @Param        id   path      int  true  "Activity ID"
 // @Success      200  {array}   ExerciseSession
-// @Router       /activities/start/session/id={id} [post]
+// @Router       /activities/start/session/id/{id} [post]
 func (a Handler) PauseActivityTracker(w http.ResponseWriter, r *http.Request) {
 	userSession, ok := r.Context().Value(auth.SessionManagerKey{}).(*auth.UserSession)
 	sessionId := strconv.Itoa(userSession.Id)
@@ -209,7 +209,7 @@ func (a Handler) PauseActivityTracker(w http.ResponseWriter, r *http.Request) {
 // @Produce      json
 // @Param        id   path      int  true  "Activity ID"
 // @Success      200  {array}   ExerciseSession
-// @Router       /activities/start/session/id={id} [post]
+// @Router       /activities/start/session/id/{id} [post]
 func (a Handler) ResumeActivityTracker(w http.ResponseWriter, r *http.Request) {
 	userSession, ok := r.Context().Value(auth.SessionManagerKey{}).(*auth.UserSession)
 	sessionId := strconv.Itoa(userSession.Id)
@@ -246,7 +246,7 @@ func (a Handler) ResumeActivityTracker(w http.ResponseWriter, r *http.Request) {
 // @Produce      json
 // @Param        id   path      int  true  "Activity ID"
 // @Success      200  {array}   ExerciseSession
-// @Router       /activities/start/session/id={id} [post]
+// @Router       /activities/start/session/id/{id} [post]
 func (a Handler) StopActivityTracker(w http.ResponseWriter, r *http.Request) {
 	userSession, ok := r.Context().Value(auth.SessionManagerKey{}).(*auth.UserSession)
 	sessionId := strconv.Itoa(userSession.Id)
@@ -306,7 +306,7 @@ func (a Handler) StopActivityTracker(w http.ResponseWriter, r *http.Request) {
 // @Produce      json
 // @Param        id   path      int  true  "Activity ID"
 // @Success      200  {array}   ExerciseSession
-// @Router       /activities/user/exercises/user={user_id} [post]
+// @Router       /activities/user/exercises/user/{user_id} [post]
 func (a Handler) GetUserExerciseSession(w http.ResponseWriter, r *http.Request) {
 
 	userSession, ok := r.Context().Value(auth.SessionManagerKey{}).(*auth.UserSession)
@@ -334,7 +334,7 @@ func (a Handler) GetUserExerciseSession(w http.ResponseWriter, r *http.Request) 
 // @Produce      json
 // @Param        id   path      int  true  "Activity ID"
 // @Success      200  {array}   ExerciseSession
-// @Router       /activities/user/session/total/user={user_id} [post]
+// @Router       /activities/user/session/total/user/{user_id} [post]
 func (a Handler) GetUserExerciseTotalData(w http.ResponseWriter, r *http.Request) {
 	userSession, ok := r.Context().Value(auth.SessionManagerKey{}).(*auth.UserSession)
 	if !ok {
@@ -375,6 +375,15 @@ func (a Handler) GetExerciseSessionStats(w http.ResponseWriter, r *http.Request)
 	_ = json.NewEncoder(w).Encode(sessionStats)
 }
 
+// GetUserExerciseSessionStats godoc
+// @Summary      Get user exercise data
+// @Description  Get user exercise total data for durations and calories
+// @Tags         activities
+// @Accept       json
+// @Produce      json
+// @Param        id   path      int  true  "Activity ID"
+// @Success      200  {array}   ExerciseSession
+// @Router       /activities/user/session/total/stats/{user_id} [post]
 func (a Handler) GetUserExerciseSessionStats(w http.ResponseWriter, r *http.Request) {
 	userSession, ok := r.Context().Value(auth.SessionManagerKey{}).(*auth.UserSession)
 	if !ok {
