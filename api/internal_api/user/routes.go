@@ -12,8 +12,8 @@ func RoutesUser(deps DependenciesUser, sessionManager *auth.SessionManager) *chi
 
 	router.Post("/sign-up", u.SignUpUser)
 	router.Post("/sign-in", u.SignInUser)
-	router.Get("/me", u.GetUserInfo)
 	router.Post("/sign-out", u.SignOutUser)
+	router.Get("/user/info", u.GetUserInfo)
 
 	return router
 }

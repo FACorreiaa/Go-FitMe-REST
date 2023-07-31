@@ -198,7 +198,8 @@ func (r RepositoryActivity) GetTotalExerciseOccurrence(ctx context.Context, user
 			  				es.session_name, tes.total_duration_hours,
 			  				tes.total_duration_minutes,
 			  				tes.total_duration_seconds,
-			  				tes.total_calories_burned
+			  				tes.total_calories_burned,
+			  				tes.created_at, tes.updated_at
 			FROM total_exercise_session tes
 			JOIN total_exercise_stats mfa ON tes.activity_id = mfa.activity_id
 			JOIN activity_counts ac ON tes.user_id = ac.user_id AND tes.activity_id = ac.activity_id
@@ -249,6 +250,9 @@ func (r RepositoryActivity) GetTotalExerciseOccurrence(ctx context.Context, user
 	`
 
 	for _, stats := range sessionStats {
+		stats.CreatedAt = time.Now()
+		stats.UpdatedAt = time.Now()
+
 		_, err := tx.NamedExec(stmt, stats)
 		if err != nil {
 			return sessionStats, fmt.Errorf("failed to upsert exercise stats %w", err)
