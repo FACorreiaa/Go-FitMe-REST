@@ -3,10 +3,26 @@ package calculator
 import (
 	"encoding/json"
 	"errors"
+	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/auth"
 	"log"
 	"math"
 	"net/http"
+	"time"
 )
+
+type DependenciesCalculator interface {
+	GetCalculatorService() *ServiceCalculator
+}
+
+type Handler struct {
+	dependencies DependenciesCalculator
+}
+
+func NewCalculatorHandler(deps DependenciesCalculator) *Handler {
+	return &Handler{
+		dependencies: deps,
+	}
+}
 
 func mapActivity(activity Activity) (*ActivityList, error) {
 	description, valid := activityDescriptionMap[activity]
@@ -46,14 +62,14 @@ func mapDistribution(distribution CaloriesDistribution) (*CaloriesInfo, error) {
 	}, nil
 }
 
-func validateAge(age int64) (int64, error) {
+func validateAge(age uint8) (uint8, error) {
 	if age <= minAge || age >= maxAge {
 		return 0, errors.New("invalid age")
 	}
 	return age, nil
 }
 
-func validateWeight(weight float64) (float64, error) {
+func validateWeight(weight uint16) (uint16, error) {
 	if weight <= minWeight || weight > maxWeight {
 		return 0, errors.New("invalid weight")
 	}
@@ -61,7 +77,7 @@ func validateWeight(weight float64) (float64, error) {
 	return weight, nil
 }
 
-func validateHeight(height float64) (float64, error) {
+func validateHeight(height uint8) (uint8, error) {
 	if height <= minHeight || height > maxHeight {
 		return 0, errors.New("invalid height")
 	}
@@ -69,17 +85,17 @@ func validateHeight(height float64) (float64, error) {
 	return height, nil
 }
 
-func convertWeight(weight float64, system System) float64 {
+func convertWeight(weight uint16, system System) float64 {
 	if system == metric {
-		return weight
+		return float64(weight)
 	}
-	return weight / 0.453592 // 1 lb = 0.453592 kg
+	return float64(weight) / 0.453592 // 1 lb = 0.453592 kg
 }
-func convertHeight(height float64, system System) float64 {
+func convertHeight(height uint8, system System) float64 {
 	if system == metric {
-		return height
+		return float64(height)
 	}
-	return height / 2.54 // 1 in = 2.54 cm
+	return float64(height) / 2.54 // 1 in = 2.54 cm
 }
 
 func calculateBMR(userData UserData, system System) float64 {
@@ -107,15 +123,15 @@ func calculateGoals(tdee float64) Goals {
 	var fatLoss = tdee - caloricDeficit
 	var bulk = tdee + caloricPlus
 	return Goals{
-		Cutting:     fatLoss,
-		Maintenance: tdee,
-		Bulking:     bulk,
+		Cutting:     uint16(fatLoss),
+		Maintenance: uint16(tdee),
+		Bulking:     uint16(bulk),
 	}
 }
 
-func getGoal(tdeeValue float64, objective Objective) float64 {
+func getGoal(tdeeValue float64, objective Objective) uint16 {
 	goals := calculateGoals(tdeeValue)
-	mapGoals := make(map[Objective]float64)
+	mapGoals := make(map[Objective]uint16)
 	mapGoals[maintenance] = goals.Maintenance
 	mapGoals[cutting] = goals.Cutting
 	mapGoals[bulking] = goals.Bulking
@@ -129,9 +145,9 @@ func calculateMacroNutrients(calorieGoal float64, distribution CaloriesDistribut
 		carbs := calculateMacroDistribution(ratios.CarbRatio, calorieGoal, carbGramValue)
 
 		return Macros{
-			Protein: protein,
-			Fats:    fats,
-			Carbs:   carbs,
+			Protein: uint16(protein),
+			Fats:    uint16(fats),
+			Carbs:   uint16(carbs),
 		}
 	}
 
@@ -142,42 +158,40 @@ func calculateMacroDistribution(calorieFactor float64, calorieGoal float64, calo
 	return math.Round((calorieFactor * calorieGoal) / float64(caloriesPerGram))
 }
 
-func CalculateMacros(w http.ResponseWriter, r *http.Request) {
-	var params UserParams
-	err := json.NewDecoder(r.Body).Decode(&params)
-	if err != nil {
-		http.Error(w, "Bad Request", http.StatusBadRequest)
-		return
-	}
+func validateUserInput(params UserParams) (UserData, error) {
 	validAge, _ := validateAge(params.Age)
 	validHeight, _ := validateHeight(params.Height)
 	validWeight, _ := validateWeight(params.Weight)
 	userInputData := UserData{
-		Age:    params.Age,
-		Height: params.Height,
-		Weight: params.Weight,
+		Age:    validAge,
+		Height: validHeight,
+		Weight: validWeight,
 		Gender: params.Gender,
 	}
-	bmr := calculateBMR(userInputData, System(params.System))
+	return userInputData, nil
+}
+
+func calculateUserPersonalMacros(params UserParams) (UserInfo, error) {
+	userData, err := validateUserInput(params)
+	bmr := calculateBMR(userData, System(params.System))
 	a, err := mapActivity(Activity(params.Activity))
 	o, err := mapObjective(Objective(params.Objective))
 	v, err := mapActivityValues(Activity(params.Activity))
 	d, err := mapDistribution(CaloriesDistribution(params.CaloriesDist))
 	tdee := calculateTDEE(bmr, v)
 	goal := getGoal(tdee, Objective(params.Objective))
-
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusBadRequest)
-		return
+		return UserInfo{}, err
 	}
+
 	macros := calculateMacroNutrients(tdee, CaloriesDistribution(params.CaloriesDist))
-	response := UserInfo{
+	return UserInfo{
 		System: params.System,
 		UserData: UserData{
-			Age:    validAge,
-			Height: validHeight,
-			Weight: validWeight,
-			Gender: params.Gender,
+			Age:    userData.Age,
+			Height: userData.Height,
+			Weight: userData.Weight,
+			Gender: userData.Gender,
 		},
 		ActivityInfo: ActivityInfo{
 			Activity:    a.Activity,
@@ -187,8 +201,8 @@ func CalculateMacros(w http.ResponseWriter, r *http.Request) {
 			Objective:   o.Objective,
 			Description: o.Description,
 		},
-		BMR:  bmr,
-		TDEE: tdee,
+		BMR:  uint16(bmr),
+		TDEE: uint16(tdee),
 		MacrosInfo: MacrosInfo{
 			CaloriesInfo: CaloriesInfo{
 				CaloriesDistribution:            d.CaloriesDistribution,
@@ -196,7 +210,73 @@ func CalculateMacros(w http.ResponseWriter, r *http.Request) {
 			},
 			Macros: macros,
 		},
-		Goal: goal,
+		Goal: uint16(goal),
+	}, nil
+
+}
+
+func CalculateMacrosOffline(w http.ResponseWriter, r *http.Request) {
+	var params UserParams
+	err := json.NewDecoder(r.Body).Decode(&params)
+	if err != nil {
+		http.Error(w, "Bad Request", http.StatusBadRequest)
+		return
+	}
+
+	response, err := calculateUserPersonalMacros(params)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	err = json.NewEncoder(w).Encode(response)
+	if err != nil {
+		log.Println(err)
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+}
+
+func (h Handler) CalculateMacros(w http.ResponseWriter, r *http.Request) {
+	var params UserParams
+	userSession, ok := r.Context().Value(auth.SessionManagerKey{}).(*auth.UserSession)
+	if !ok {
+		http.Error(w, "User session not found", http.StatusUnauthorized)
+		return
+	}
+
+	err := json.NewDecoder(r.Body).Decode(&params)
+	if err != nil {
+		http.Error(w, "Bad Request", http.StatusBadRequest)
+		return
+	}
+
+	macros, err := calculateUserPersonalMacros(params)
+	response, err := h.dependencies.GetCalculatorService().Create(UserMacroDistribution{
+		UserID:                          userSession.Id,
+		Age:                             params.Age,
+		Height:                          params.Height,
+		Weight:                          params.Weight,
+		Gender:                          params.Gender,
+		System:                          params.System,
+		Activity:                        string(macros.ActivityInfo.Activity),
+		ActivityDescription:             string(macros.ActivityInfo.Description),
+		Objective:                       string(macros.ObjectiveInfo.Objective),
+		ObjectiveDescription:            string(macros.ObjectiveInfo.Description),
+		CaloriesDistribution:            string(macros.MacrosInfo.CaloriesInfo.CaloriesDistribution),
+		CaloriesDistributionDescription: string(macros.MacrosInfo.CaloriesInfo.CaloriesDistributionDescription),
+		Protein:                         macros.MacrosInfo.Macros.Protein,
+		Fats:                            macros.MacrosInfo.Macros.Fats,
+		Carbs:                           macros.MacrosInfo.Macros.Carbs,
+		BMR:                             macros.BMR,
+		TDEE:                            macros.TDEE,
+		Goal:                            macros.Goal,
+		CreatedAt:                       time.Now(),
+	})
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
 	}
 
 	w.Header().Set("Content-Type", "application/json")

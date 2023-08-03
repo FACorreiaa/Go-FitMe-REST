@@ -16,7 +16,8 @@ import (
 
 func Register(r chi.Router, deps *AppDependencies, session *SessionDependencies) {
 	swaggerRoute := SwaggerRoutes()
-	calculatorRoute := calculator.RoutesCalculator()
+	calculatorRoute := calculator.RoutesCalculatorOffline()
+	userCalculatorRoute := calculator.RoutesCalculatorSession(deps)
 	sessionManager := auth.NewSessionManager(session)
 	userRoutes := user.RoutesUser(deps, sessionManager)
 	activityRoutes := activity.RoutesActivity(deps)
@@ -58,4 +59,6 @@ func Register(r chi.Router, deps *AppDependencies, session *SessionDependencies)
 	r.With(cached).Mount("/api/v1/activities", auth.SessionMiddleware(sessionManager)(activityRoutes))
 	r.With(cached).Mount("/api/v1/users", userRoutes)
 	r.With(cached).Mount("/api/v1/calories", calculatorRoute)
+	r.With(cached).Mount("/api/v1/calories/user", auth.SessionMiddleware(sessionManager)(userCalculatorRoute))
+
 }

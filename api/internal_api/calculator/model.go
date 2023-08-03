@@ -1,20 +1,59 @@
 package calculator
 
+import (
+	"github.com/google/uuid"
+	"time"
+)
+
+type UserMacroDistribution struct {
+	ID                              uuid.UUID `json:"id,string" db:"id" pg:"default:gen_random_uuid()"`
+	UserID                          int       `json:"user_id" db:"user_id"`
+	Age                             uint8     `json:"age" db:"age"`
+	Height                          uint8     `json:"height" db:"height"`
+	Weight                          uint16    `json:"weight" db:"weight"`
+	Gender                          string    `json:"gender" db:"gender"`
+	System                          string    `json:"system" db:"system"`
+	Activity                        string    `json:"activity" db:"activity"`
+	ActivityDescription             string    `json:"activity_description" db:"activity_description"`
+	Objective                       string    `json:"objective" db:"objective"`
+	ObjectiveDescription            string    `json:"objective_description" db:"objective_description"`
+	CaloriesDistribution            string    `json:"calories_distribution" db:"calories_distribution"`
+	CaloriesDistributionDescription string    `json:"calories_distribution_description" db:"calories_distribution_description"`
+	Protein                         uint16    `json:"protein" db:"protein"`
+	Fats                            uint16    `json:"fats" db:"fats"`
+	Carbs                           uint16    `json:"carbs" db:"carbs"`
+	BMR                             uint16    `json:"bmr" db:"bmr"`
+	TDEE                            uint16    `json:"tdee" db:"tdee"`
+	Goal                            uint16    `json:"goal" db:"goal"`
+	CreatedAt                       time.Time `json:"created_at" db:"created_at"`
+}
+
+type UserInfo struct {
+	System        string `json:"system" db:"system"`
+	UserData      UserData
+	ActivityInfo  ActivityInfo
+	ObjectiveInfo ObjectiveInfo
+	BMR           uint16 `json:"bmr" db:"bmr"`
+	TDEE          uint16 `json:"tdee" db:"tdee"`
+	MacrosInfo    MacrosInfo
+	Goal          uint16 `json:"dietGoal" db:"goal"`
+}
+
 type UserParams struct {
-	Age          int64   `json:"age"`
-	Height       float64 `json:"height"`
-	Weight       float64 `json:"weight"`
-	Gender       string  `json:"gender"`
-	System       string  `json:"system"`
-	Activity     string  `json:"activity"`
-	Objective    string  `json:"objective"`
-	CaloriesDist string  `json:"calories_distribution"`
+	Age          uint8  `json:"age" db:"age"`
+	Height       uint8  `json:"height" db:"height"`
+	Weight       uint16 `json:"weight" db:"weight"`
+	Gender       string `json:"gender" db:"gender"`
+	System       string `json:"system" db:"system"`
+	Activity     string `json:"activity" db:"activity"`
+	Objective    string `json:"objective" db:"objective"`
+	CaloriesDist string `json:"calories-distribution" db:"calorie_distribution"`
 }
 
 type Goals struct {
-	Bulking     float64 `json:"bulking"`
-	Cutting     float64 `json:"cutting"`
-	Maintenance float64 `json:"maintenance"`
+	Bulking     uint16 `json:"bulking"`
+	Cutting     uint16 `json:"cutting"`
+	Maintenance uint16 `json:"maintenance"`
 }
 
 type ActivityList struct {
@@ -32,25 +71,25 @@ type SystemList struct {
 }
 
 type UserData struct {
-	Age    int64   `json:"age"`
-	Height float64 `json:"height"`
-	Weight float64 `json:"weight"`
-	Gender string  `json:"gender"`
+	Age    uint8  `json:"age"`
+	Height uint8  `json:"height"`
+	Weight uint16 `json:"weight"`
+	Gender string `json:"gender"`
 }
 
 type ActivityInfo struct {
-	Activity    Activity            `json:"activity"`
-	Description ActivityDescription `json:"description"`
+	Activity    Activity            `json:"activity" db:"activity"`
+	Description ActivityDescription `json:"description" db:"activity_description"`
 }
 type ObjectiveInfo struct {
-	Objective   Objective            `json:"objective"`
-	Description ObjectiveDescription `json:"description"`
+	Objective   Objective            `json:"objective" db:"objective"`
+	Description ObjectiveDescription `json:"description" db:"objective_description"`
 }
 
 type Macros struct {
-	Protein float64 `json:"protein"`
-	Fats    float64 `json:"fats"`
-	Carbs   float64 `json:"carbs"`
+	Protein uint16 `json:"protein"`
+	Fats    uint16 `json:"fats"`
+	Carbs   uint16 `json:"carbs"`
 }
 
 type CaloriesInfo struct {
@@ -63,20 +102,9 @@ type MacrosInfo struct {
 }
 
 type CaloriesObjective struct {
-	Bulking     float64 `json:"bulking"`
-	Cutting     float64 `json:"cutting"`
-	Maintenance float64 `json:"maintenance"`
-}
-
-type UserInfo struct {
-	System        string `json:"system"`
-	UserData      UserData
-	ActivityInfo  ActivityInfo
-	ObjectiveInfo ObjectiveInfo
-	BMR           float64 `json:"bmr"`
-	TDEE          float64 `json:"tdee"`
-	MacrosInfo    MacrosInfo
-	Goal          float64 `json:"caloricGoal"`
+	Bulking     uint16 `json:"bulking"`
+	Cutting     uint16 `json:"cutting"`
+	Maintenance uint16 `json:"maintenance"`
 }
 
 type Objective string

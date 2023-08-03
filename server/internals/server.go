@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/activity"
+	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/calculator"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/user"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/helpers/db"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/server"
@@ -125,9 +126,15 @@ func NewServer() (*Server, error) {
 		_ = errors.New("error injecting user service")
 	}
 
+	calculatorRepo, err := calculator.NewCalculatorRepository(s.db)
+	if err != nil {
+		_ = errors.New("error injecting calculator service")
+	}
+
 	deps := &server.AppDependencies{
-		ActivityService: activity.NewActivityService(activityRepo),
-		UserService:     user.NewUserService(userRepo),
+		ActivityService:   activity.NewActivityService(activityRepo),
+		UserService:       user.NewUserService(userRepo),
+		CalculatorService: calculator.NewCalculatorService(calculatorRepo),
 	}
 
 	sessionDeps := &server.SessionDependencies{
