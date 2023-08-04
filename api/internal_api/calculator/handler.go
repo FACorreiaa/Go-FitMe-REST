@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"errors"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/auth"
+	"github.com/go-chi/chi/v5"
+	"github.com/google/uuid"
 	"log"
 	"math"
 	"net/http"
@@ -254,6 +256,7 @@ func (h Handler) CalculateMacros(w http.ResponseWriter, r *http.Request) {
 
 	macros, err := calculateUserPersonalMacros(params)
 	response, err := h.dependencies.GetCalculatorService().Create(UserMacroDistribution{
+		ID:                              uuid.New(),
 		UserID:                          userSession.Id,
 		Age:                             params.Age,
 		Height:                          params.Height,
@@ -286,4 +289,40 @@ func (h Handler) CalculateMacros(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 		return
 	}
+}
+
+func (h Handler) GetAllDietMacros(w http.ResponseWriter, r *http.Request) {
+	userSession, ok := r.Context().Value(auth.SessionManagerKey{}).(*auth.UserSession)
+	if !ok {
+		http.Error(w, "User session not found", http.StatusUnauthorized)
+		return
+	}
+
+	userMacros, err := h.dependencies.GetCalculatorService().GetAll(r.Context(), userSession.Id)
+	if err != nil {
+		http.Error(w, "Error finding user plan", http.StatusInternalServerError)
+	}
+
+	// Serialize the response as JSON and write to the response writer
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	_ = json.NewEncoder(w).Encode(userMacros)
+}
+
+func (h Handler) GetDietMacros(w http.ResponseWriter, r *http.Request) {
+	id, err := uuid.Parse(chi.URLParam(r, "id"))
+	if err != nil {
+		http.Error(w, "Error parsing id", http.StatusInternalServerError)
+	}
+
+	userMacros, err := h.dependencies.GetCalculatorService().Get(r.Context(), id)
+	println("err: ", err)
+	if err != nil {
+		http.Error(w, "Error finding user plan", http.StatusInternalServerError)
+	}
+
+	// Serialize the response as JSON and write to the response writer
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	_ = json.NewEncoder(w).Encode(userMacros)
 }

@@ -58,7 +58,7 @@ func Register(r chi.Router, deps *AppDependencies, session *SessionDependencies)
 	r.Mount("/api/docs", swaggerRoute)
 	r.With(cached).Mount("/api/v1/activities", auth.SessionMiddleware(sessionManager)(activityRoutes))
 	r.With(cached).Mount("/api/v1/users", userRoutes)
-	r.With(cached).Mount("/api/v1/calories", calculatorRoute)
-	r.With(cached).Mount("/api/v1/calories/user", auth.SessionMiddleware(sessionManager)(userCalculatorRoute))
+	r.With(cached).Mount("/api/v1/calculator", calculatorRoute)
+	r.With(cached).Mount("/api/v1/calculator/user", auth.SessionMiddleware(sessionManager)(userCalculatorRoute))
 
 }

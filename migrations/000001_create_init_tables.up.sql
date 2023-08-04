@@ -1,4 +1,4 @@
-CREATE TYPE "user_role" AS ENUM ('user', 'admin');
+CREATE TYPE "user_role" AS ENUM ('user', '_admin');
 CREATE TYPE "user_gender" AS ENUM ('male', 'female');
 
 CREATE TABLE "total_exercise_stats" (
