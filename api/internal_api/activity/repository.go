@@ -67,7 +67,7 @@ func (r RepositoryActivity) GetExerciseById(ctx context.Context, id int) (Activi
 
 	if err != nil {
 		if errors.Is(err, sql.ErrNoRows) {
-			return activity, fmt.Errorf("activity with id %s not found: %w", id, err)
+			return activity, fmt.Errorf("activity with id %d not found: %w", id, err)
 		}
 		return activity, fmt.Errorf("failed to scan activity: %w", err)
 	}
