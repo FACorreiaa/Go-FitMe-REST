@@ -57,6 +57,50 @@ definitions:
       username:
         type: string
     type: object
+  calculator.UserMacroDistribution:
+    properties:
+      activity:
+        type: string
+      activity_description:
+        type: string
+      age:
+        type: integer
+      bmr:
+        type: integer
+      calories_distribution:
+        type: string
+      calories_distribution_description:
+        type: string
+      carbs:
+        type: integer
+      created_at:
+        type: string
+      fats:
+        type: integer
+      gender:
+        type: string
+      goal:
+        type: integer
+      height:
+        type: integer
+      id:
+        example: ""
+        type: string
+      objective:
+        type: string
+      objective_description:
+        type: string
+      protein:
+        type: integer
+      system:
+        type: string
+      tdee:
+        type: integer
+      user_id:
+        type: integer
+      weight:
+        type: integer
+    type: object
   sql.NullString:
     properties:
       string:
@@ -115,6 +159,51 @@ info:
   title: StayHealthy Swagger Documentation
   version: "2.0"
 paths:
+  /{user_id}:
+    get:
+      consumes:
+      - application/json
+      description: Get all diet macros from user
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/calculator.UserMacroDistribution'
+            type: array
+      summary: Get all diet macros from user
+      tags:
+      - macros calculator
+    post:
+      consumes:
+      - application/json
+      description: Create all diet macros from user
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/calculator.UserMacroDistribution'
+            type: array
+      summary: Create all diet macros from user
+      tags:
+      - macros calculator
   /activities:
     get:
       consumes:
@@ -270,6 +359,29 @@ paths:
       summary: Get user exercise data
       tags:
       - activities
+  /plan/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Get diet macros
+      parameters:
+      - description: uuid formatted ID.
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/calculator.UserMacroDistribution'
+            type: array
+      summary: Get diet macros
+      tags:
+      - macros calculator
   /users/me:
     get:
       consumes:

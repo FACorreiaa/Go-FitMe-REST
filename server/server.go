@@ -4,6 +4,7 @@ import (
 	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/activity"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/auth"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/calculator"
+	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/measurement"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/user"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
@@ -21,7 +22,7 @@ func Register(r chi.Router, deps *AppDependencies, session *SessionDependencies)
 	sessionManager := auth.NewSessionManager(session)
 	userRoutes := user.RoutesUser(deps, sessionManager)
 	activityRoutes := activity.RoutesActivity(deps)
-
+	measurementRoutes := measurement.RoutesMeasurements(deps)
 	r.Use(middleware.RequestID)
 	r.Use(middleware.RealIP)
 	r.Use(middleware.Logger)
@@ -57,6 +58,7 @@ func Register(r chi.Router, deps *AppDependencies, session *SessionDependencies)
 	InitPrometheus(r)
 	r.Mount("/api/docs", swaggerRoute)
 	r.With(cached).Mount("/api/v1/activities", auth.SessionMiddleware(sessionManager)(activityRoutes))
+	r.With(cached).Mount("/api/v1/measurements", auth.SessionMiddleware(sessionManager)(measurementRoutes))
 	r.With(cached).Mount("/api/v1/users", userRoutes)
 	r.With(cached).Mount("/api/v1/calculator", calculatorRoute)
 	r.With(cached).Mount("/api/v1/calculator/user", auth.SessionMiddleware(sessionManager)(userCalculatorRoute))

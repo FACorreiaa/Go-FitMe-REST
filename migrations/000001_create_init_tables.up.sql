@@ -82,12 +82,30 @@ CREATE TABLE "users" (
   "created_at" timestamp DEFAULT (now()),
   "updated_at" timestamp DEFAULT null
 );
+
+
+CREATE TABLE IF NOT EXISTS "weight_measure" (
+                                  "id" UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+                                  "user_id" integer,
+                                  "weight_value" decimal(10,2),
+                                  "created_at" timestamp DEFAULT (now()),
+                                  "updated_at" timestamp DEFAULT null
+);
+
 CREATE TABLE "water_intake" (
-                                "id" UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  "id" UUID DEFAULT gen_random_uuid() PRIMARY KEY,
   "user_id" integer,
-  "quantity" float(8),
+  "quantity" decimal(10,2),
   "created_at" timestamp DEFAULT (now()),
   "updated_at" timestamp DEFAULT null
+);
+
+CREATE TABLE "wasite_line_measure" (
+                                "id" UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+                                "user_id" integer,
+                                "quantity" decimal(10,2),
+                                "created_at" timestamp DEFAULT (now()),
+                                "updated_at" timestamp DEFAULT null
 );
 CREATE TABLE "activity" (
                             "id" UUID DEFAULT gen_random_uuid() PRIMARY KEY,

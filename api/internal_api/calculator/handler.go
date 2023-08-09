@@ -240,6 +240,15 @@ func CalculateMacrosOffline(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// CalculateMacros godoc
+// @Summary      Create all diet macros from user
+// @Description  Create all diet macros from user
+// @Tags         macros calculator
+// @Accept       json
+// @Produce      json
+// @Param        id   path      int  true  "User ID"
+// @Success      200  {array}   UserMacroDistribution
+// @Router       /{user_id} [post]
 func (h Handler) CalculateMacros(w http.ResponseWriter, r *http.Request) {
 	var params UserParams
 	userSession, ok := r.Context().Value(auth.SessionManagerKey{}).(*auth.UserSession)
@@ -291,6 +300,15 @@ func (h Handler) CalculateMacros(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// GetAllDietMacros godoc
+// @Summary      Get all diet macros from user
+// @Description  Get all diet macros from user
+// @Tags         macros calculator
+// @Accept       json
+// @Produce      json
+// @Param        id   path      int  true  "User ID"
+// @Success      200  {array}   UserMacroDistribution
+// @Router       /{user_id} [get]
 func (h Handler) GetAllDietMacros(w http.ResponseWriter, r *http.Request) {
 	userSession, ok := r.Context().Value(auth.SessionManagerKey{}).(*auth.UserSession)
 	if !ok {
@@ -309,6 +327,15 @@ func (h Handler) GetAllDietMacros(w http.ResponseWriter, r *http.Request) {
 	_ = json.NewEncoder(w).Encode(userMacros)
 }
 
+// GetDietMacros godoc
+// @Summary      Get diet macros
+// @Description  Get diet macros
+// @Tags         macros calculator
+// @Accept       json
+// @Produce      json
+// @Param        id   path      string  true  "uuid formatted ID."
+// @Success      200  {array}   UserMacroDistribution
+// @Router       /plan/{id} [get]
 func (h Handler) GetDietMacros(w http.ResponseWriter, r *http.Request) {
 	id, err := uuid.Parse(chi.URLParam(r, "id"))
 	if err != nil {

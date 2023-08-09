@@ -2,11 +2,13 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/server/internals"
 	"github.com/joho/godotenv"
 	_ "github.com/joho/godotenv"
 	"log"
+	"net/http"
 	"os"
 )
 
@@ -63,14 +65,14 @@ func run(ctx context.Context) error {
 // @Produce json
 // @Success 200 {object} map[string]interface{}
 // @Router / [get]
-//func HealthCheck(c *fiber.Ctx) error {
-//	res := map[string]interface{}{
-//		"data": "Server is up and running",
-//	}
-//
-//	if err := c.JSON(res); err != nil {
-//		return err
-//	}
-//
-//	return nil
-//}
+func HealthCheck(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	res := map[string]interface{}{
+		"data": "Server is up and running",
+	}
+
+	err := json.NewEncoder(w).Encode(res)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+}

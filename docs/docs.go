@@ -261,6 +261,41 @@ const docTemplate = `{
                 }
             }
         },
+        "/plan/{id}": {
+            "get": {
+                "description": "Get diet macros",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "macros calculator"
+                ],
+                "summary": "Get diet macros",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "uuid formatted ID.",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/calculator.UserMacroDistribution"
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/users/me": {
             "get": {
                 "security": [
@@ -455,6 +490,74 @@ const docTemplate = `{
                     }
                 }
             }
+        },
+        "/{user_id}": {
+            "get": {
+                "description": "Get all diet macros from user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "macros calculator"
+                ],
+                "summary": "Get all diet macros from user",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "User ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/calculator.UserMacroDistribution"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Create all diet macros from user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "macros calculator"
+                ],
+                "summary": "Create all diet macros from user",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "User ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/calculator.UserMacroDistribution"
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -541,6 +644,72 @@ const docTemplate = `{
                 },
                 "username": {
                     "type": "string"
+                }
+            }
+        },
+        "calculator.UserMacroDistribution": {
+            "type": "object",
+            "properties": {
+                "activity": {
+                    "type": "string"
+                },
+                "activity_description": {
+                    "type": "string"
+                },
+                "age": {
+                    "type": "integer"
+                },
+                "bmr": {
+                    "type": "integer"
+                },
+                "calories_distribution": {
+                    "type": "string"
+                },
+                "calories_distribution_description": {
+                    "type": "string"
+                },
+                "carbs": {
+                    "type": "integer"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "fats": {
+                    "type": "integer"
+                },
+                "gender": {
+                    "type": "string"
+                },
+                "goal": {
+                    "type": "integer"
+                },
+                "height": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "string",
+                    "example": ""
+                },
+                "objective": {
+                    "type": "string"
+                },
+                "objective_description": {
+                    "type": "string"
+                },
+                "protein": {
+                    "type": "integer"
+                },
+                "system": {
+                    "type": "string"
+                },
+                "tdee": {
+                    "type": "integer"
+                },
+                "user_id": {
+                    "type": "integer"
+                },
+                "weight": {
+                    "type": "integer"
                 }
             }
         },
