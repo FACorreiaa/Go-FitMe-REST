@@ -14,6 +14,8 @@ func NewMeasurementRepository(db *sqlx.DB) (*RepositoryMeasurement, error) {
 	return &RepositoryMeasurement{db: db}, nil
 }
 
+//weight
+
 func (r *RepositoryMeasurement) InsertWeight(w Weight) (Weight, error) {
 	query := `
 		INSERT INTO weight_measure
@@ -86,4 +88,156 @@ func (r *RepositoryMeasurement) GetWeights(userID int) ([]Weight, error) {
 
 	err := r.db.Select(&weights, query, userID)
 	return weights, err
+}
+
+//water
+
+func (r *RepositoryMeasurement) InsertWater(w WaterIntake) (WaterIntake, error) {
+	query := `
+		INSERT INTO water_intake
+		    (id, user_id, quantity, created_at, updated_at)
+		VALUES (:id, :user_id, :quantity, :created_at, :updated_at)
+		RETURNING *;
+	`
+
+	result, err := r.db.PrepareNamed(query)
+	if err != nil {
+		return WaterIntake{}, fmt.Errorf("failed to insert exercise session: %w", err)
+	}
+
+	var insertedData WaterIntake
+	err = result.Get(&insertedData, w)
+	if err != nil {
+		return WaterIntake{}, err
+	}
+
+	return insertedData, nil
+}
+
+func (r *RepositoryMeasurement) UpdateWater(id uuid.UUID, userID int, updates map[string]interface{}) error {
+	query := `
+		UPDATE water_intake
+		SET quantity = :quantity, updated_at = :updated_at
+		WHERE id = :id AND user_id = :user_id
+	`
+
+	namedParams := map[string]interface{}{
+		"id":           id,
+		"user_id":      userID,
+		"weight_value": updates["quantity"],
+		"updated_at":   updates["UpdatedAt"],
+	}
+
+	_, err := r.db.NamedExec(query, namedParams)
+	return err
+}
+
+func (r *RepositoryMeasurement) DeleteWater(id uuid.UUID, userID int) error {
+	query := `
+		DELETE FROM water_intake
+		WHERE id = $1 AND user_id = $2
+	`
+
+	_, err := r.db.Exec(query, id, userID)
+	return err
+}
+
+func (r *RepositoryMeasurement) GetWater(id uuid.UUID, userID int) (WaterIntake, error) {
+	query := `
+		SELECT id, user_id, quantity, created_at, updated_at FROM water_intake
+		WHERE id = $1 AND user_id = $2
+	`
+	var water WaterIntake
+
+	err := r.db.Get(&water, query, id, userID)
+	return water, err
+}
+
+func (r *RepositoryMeasurement) GetAllWater(userID int) ([]WaterIntake, error) {
+	water := make([]WaterIntake, 0)
+
+	query := `
+		SELECT id, user_id, quantity, created_at, updated_at FROM water_intake
+		WHERE user_id = $1
+
+	`
+
+	err := r.db.Select(&water, query, userID)
+	return water, err
+}
+
+//waist line
+
+func (r *RepositoryMeasurement) InsertWaistLine(w WaistLine) (WaistLine, error) {
+	query := `
+		INSERT INTO waist_line
+		    (id, user_id, quantity, created_at, updated_at)
+		VALUES (:id, :user_id, :quantity, :created_at, :updated_at)
+		RETURNING *;
+	`
+
+	result, err := r.db.PrepareNamed(query)
+	if err != nil {
+		return WaistLine{}, fmt.Errorf("failed to insert exercise session: %w", err)
+	}
+
+	var insertedData WaistLine
+	err = result.Get(&insertedData, w)
+	if err != nil {
+		return WaistLine{}, err
+	}
+
+	return insertedData, nil
+}
+
+func (r *RepositoryMeasurement) UpdateWaistLine(id uuid.UUID, userID int, updates map[string]interface{}) error {
+	query := `
+		UPDATE waist_line
+		SET quantity = :quantity, updated_at = :updated_at
+		WHERE id = :id AND user_id = :user_id
+	`
+
+	namedParams := map[string]interface{}{
+		"id":           id,
+		"user_id":      userID,
+		"weight_value": updates["quantity"],
+		"updated_at":   updates["UpdatedAt"],
+	}
+
+	_, err := r.db.NamedExec(query, namedParams)
+	return err
+}
+
+func (r *RepositoryMeasurement) DeleteWaistLine(id uuid.UUID, userID int) error {
+	query := `
+		DELETE FROM waist_line
+		WHERE id = $1 AND user_id = $2
+	`
+
+	_, err := r.db.Exec(query, id, userID)
+	return err
+}
+
+func (r *RepositoryMeasurement) GetWaistLine(id uuid.UUID, userID int) (WaistLine, error) {
+	query := `
+		SELECT id, user_id, quantity, created_at, updated_at FROM waist_line
+		WHERE id = $1 AND user_id = $2
+	`
+	var w WaistLine
+
+	err := r.db.Get(&w, query, id, userID)
+	return w, err
+}
+
+func (r *RepositoryMeasurement) GetWaistLines(userID int) ([]WaistLine, error) {
+	w := make([]WaistLine, 0)
+
+	query := `
+		SELECT id, user_id, quantity, created_at, updated_at FROM waist_line
+		WHERE user_id = $1
+
+	`
+
+	err := r.db.Select(&w, query, userID)
+	return w, err
 }
