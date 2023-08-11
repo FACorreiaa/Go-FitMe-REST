@@ -25,6 +25,30 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/": {
+            "get": {
+                "description": "get the status of server.",
+                "consumes": [
+                    "*/*"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "root"
+                ],
+                "summary": "Show the status of server.",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
         "/activities": {
             "get": {
                 "description": "get activities",
@@ -491,6 +515,446 @@ const docTemplate = `{
                 }
             }
         },
+        "/waistline": {
+            "get": {
+                "description": "Get user waist line list",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "measurements waistline"
+                ],
+                "summary": "Get user waist line list",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/measurement.WaistLine"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Get user waist line",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "measurements waistline"
+                ],
+                "summary": "Get user waist line",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/measurement.WaistLine"
+                        }
+                    }
+                }
+            }
+        },
+        "/waistline/{id}": {
+            "get": {
+                "description": "Get user waist line",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "measurements waistline"
+                ],
+                "summary": "Get user waist line",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "WaistLine",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/measurement.WaistLine"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete user waist line",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "measurements waistline"
+                ],
+                "summary": "Delete user waist line",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "WaistLine",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/measurement.WaistLine"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "description": "Update user waist line",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "measurements waistline"
+                ],
+                "summary": "Update user waist line",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "WaistLine",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/measurement.WaistLine"
+                        }
+                    }
+                }
+            }
+        },
+        "/water": {
+            "get": {
+                "description": "Get user water intake list",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "measurements water"
+                ],
+                "summary": "Get user water intake list",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/measurement.WaterIntake"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Insert user water intake",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "measurements water"
+                ],
+                "summary": "Insert user water intake",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Water",
+                        "name": "w",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/measurement.WaterIntake"
+                        }
+                    }
+                }
+            }
+        },
+        "/water/{id}": {
+            "get": {
+                "description": "Get user water intake",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "measurements water"
+                ],
+                "summary": "Get user water intake",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Water",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/measurement.WaterIntake"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete user water intake",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "measurements water"
+                ],
+                "summary": "Delete user water intake",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Water",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/measurement.WaterIntake"
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "description": "Update user water intake",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "measurements water"
+                ],
+                "summary": "Update user water intake",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Water",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/measurement.WaterIntake"
+                        }
+                    }
+                }
+            }
+        },
+        "/weight": {
+            "post": {
+                "description": "Insert user weight",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "measurements weight"
+                ],
+                "summary": "Insert user weight",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Weight",
+                        "name": "w",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/measurement.Weight"
+                        }
+                    }
+                }
+            }
+        },
+        "/weight/{id}": {
+            "get": {
+                "description": "Get user weight",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "measurements weight"
+                ],
+                "summary": "Get user weight",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Weight",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/measurement.Weight"
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete user weight",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "measurements weight"
+                ],
+                "summary": "Delete user weight",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Weight ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/measurement.Weight"
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "description": "Update user weight",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "measurements weight"
+                ],
+                "summary": "Update user weight",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Weight ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/measurement.Weight"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/weights": {
+            "get": {
+                "description": "Get all user weight list",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "measurements weight"
+                ],
+                "summary": "Get all user weight list",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/measurement.Weight"
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/{user_id}": {
             "get": {
                 "description": "Get all diet macros from user",
@@ -710,6 +1174,69 @@ const docTemplate = `{
                 },
                 "weight": {
                     "type": "integer"
+                }
+            }
+        },
+        "measurement.WaistLine": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string",
+                    "example": ""
+                },
+                "quantity": {
+                    "type": "number"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "measurement.WaterIntake": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string",
+                    "example": ""
+                },
+                "quantity": {
+                    "type": "number"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "integer"
+                }
+            }
+        },
+        "measurement.Weight": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string",
+                    "example": ""
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "integer"
+                },
+                "weight_value": {
+                    "type": "number"
                 }
             }
         },

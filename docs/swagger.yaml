@@ -101,6 +101,48 @@ definitions:
       weight:
         type: integer
     type: object
+  measurement.WaistLine:
+    properties:
+      created_at:
+        type: string
+      id:
+        example: ""
+        type: string
+      quantity:
+        type: number
+      updated_at:
+        type: string
+      user_id:
+        type: integer
+    type: object
+  measurement.WaterIntake:
+    properties:
+      created_at:
+        type: string
+      id:
+        example: ""
+        type: string
+      quantity:
+        type: number
+      updated_at:
+        type: string
+      user_id:
+        type: integer
+    type: object
+  measurement.Weight:
+    properties:
+      created_at:
+        type: string
+      id:
+        example: ""
+        type: string
+      updated_at:
+        type: string
+      user_id:
+        type: integer
+      weight_value:
+        type: number
+    type: object
   sql.NullString:
     properties:
       string:
@@ -159,6 +201,22 @@ info:
   title: StayHealthy Swagger Documentation
   version: "2.0"
 paths:
+  /:
+    get:
+      consumes:
+      - '*/*'
+      description: get the status of server.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Show the status of server.
+      tags:
+      - root
   /{user_id}:
     get:
       consumes:
@@ -507,6 +565,297 @@ paths:
       summary: Get user session
       tags:
       - session
+  /waistline:
+    get:
+      consumes:
+      - application/json
+      description: Get user waist line list
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/measurement.WaistLine'
+      summary: Get user waist line list
+      tags:
+      - measurements waistline
+    post:
+      consumes:
+      - application/json
+      description: Get user waist line
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/measurement.WaistLine'
+      summary: Get user waist line
+      tags:
+      - measurements waistline
+  /waistline/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete user waist line
+      parameters:
+      - description: WaistLine
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/measurement.WaistLine'
+      summary: Delete user waist line
+      tags:
+      - measurements waistline
+    get:
+      consumes:
+      - application/json
+      description: Get user waist line
+      parameters:
+      - description: WaistLine
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/measurement.WaistLine'
+      summary: Get user waist line
+      tags:
+      - measurements waistline
+    patch:
+      consumes:
+      - application/json
+      description: Update user waist line
+      parameters:
+      - description: WaistLine
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/measurement.WaistLine'
+      summary: Update user waist line
+      tags:
+      - measurements waistline
+  /water:
+    get:
+      consumes:
+      - application/json
+      description: Get user water intake list
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/measurement.WaterIntake'
+      summary: Get user water intake list
+      tags:
+      - measurements water
+    post:
+      consumes:
+      - application/json
+      description: Insert user water intake
+      parameters:
+      - description: Water
+        in: path
+        name: w
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/measurement.WaterIntake'
+      summary: Insert user water intake
+      tags:
+      - measurements water
+  /water/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete user water intake
+      parameters:
+      - description: Water
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/measurement.WaterIntake'
+      summary: Delete user water intake
+      tags:
+      - measurements water
+    get:
+      consumes:
+      - application/json
+      description: Get user water intake
+      parameters:
+      - description: Water
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/measurement.WaterIntake'
+      summary: Get user water intake
+      tags:
+      - measurements water
+    patch:
+      consumes:
+      - application/json
+      description: Update user water intake
+      parameters:
+      - description: Water
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/measurement.WaterIntake'
+      summary: Update user water intake
+      tags:
+      - measurements water
+  /weight:
+    post:
+      consumes:
+      - application/json
+      description: Insert user weight
+      parameters:
+      - description: Weight
+        in: path
+        name: w
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/measurement.Weight'
+      summary: Insert user weight
+      tags:
+      - measurements weight
+  /weight/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete user weight
+      parameters:
+      - description: Weight ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/measurement.Weight'
+            type: array
+      summary: Delete user weight
+      tags:
+      - measurements weight
+    get:
+      consumes:
+      - application/json
+      description: Get user weight
+      parameters:
+      - description: Weight
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/measurement.Weight'
+            type: array
+      summary: Get user weight
+      tags:
+      - measurements weight
+    patch:
+      consumes:
+      - application/json
+      description: Update user weight
+      parameters:
+      - description: Weight ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/measurement.Weight'
+            type: array
+      summary: Update user weight
+      tags:
+      - measurements weight
+  /weights:
+    get:
+      consumes:
+      - application/json
+      description: Get all user weight list
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/measurement.Weight'
+            type: array
+      summary: Get all user weight list
+      tags:
+      - measurements weight
 schemes:
 - http
 swagger: "2.0"

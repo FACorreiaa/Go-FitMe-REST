@@ -26,6 +26,15 @@ func NewMeasurementHandler(deps DependenciesMeasurements) *Handler {
 
 // weight
 
+// InsertWeight godoc
+// @Summary      Insert user weight
+// @Description  Insert user weight
+// @Tags         measurements weight
+// @Accept       json
+// @Produce      json
+// @Param        w   path      int  true  "Weight"
+// @Success      200  {object}   Weight
+// @Router       /weight [post]
 func (h Handler) InsertWeight(w http.ResponseWriter, r *http.Request) {
 	var input struct {
 		WeightValue float32 `json:"weight_value"`
@@ -65,6 +74,15 @@ func (h Handler) InsertWeight(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// UpdateWeight godoc
+// @Summary      Update user weight
+// @Description  Update user weight
+// @Tags         measurements weight
+// @Accept       json
+// @Produce      json
+// @Param        id   path      int  true  "Weight ID"
+// @Success      200  {array}   Weight
+// @Router       /weight/{id} [patch]
 func (h Handler) UpdateWeight(w http.ResponseWriter, r *http.Request) {
 	id, err := uuid.Parse(chi.URLParam(r, "id"))
 	if err != nil {
@@ -95,6 +113,15 @@ func (h Handler) UpdateWeight(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 }
 
+// DeleteWeight godoc
+// @Summary      Delete user weight
+// @Description  Delete user weight
+// @Tags         measurements weight
+// @Accept       json
+// @Produce      json
+// @Param        id   path      int  true  "Weight ID"
+// @Success      200  {array}   Weight
+// @Router       /weight/{id} [delete]
 func (h Handler) DeleteWeight(w http.ResponseWriter, r *http.Request) {
 	id, err := uuid.Parse(chi.URLParam(r, "id"))
 	if err != nil {
@@ -119,6 +146,15 @@ func (h Handler) DeleteWeight(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 }
 
+// GetWeight godoc
+// @Summary      Get user weight
+// @Description  Get user weight
+// @Tags         measurements weight
+// @Accept       json
+// @Produce      json
+// @Param        id   path      int  true  "Weight"
+// @Success      200  {array}   Weight
+// @Router       /weight/{id} [get]
 func (h Handler) GetWeight(w http.ResponseWriter, r *http.Request) {
 	id, err := uuid.Parse(chi.URLParam(r, "id"))
 	if err != nil {
@@ -144,6 +180,14 @@ func (h Handler) GetWeight(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(weight)
 }
 
+// GetWeights godoc
+// @Summary      Get all user weight list
+// @Description  Get all user weight list
+// @Tags         measurements weight
+// @Accept       json
+// @Produce      json
+// @Success      200  {array}   Weight
+// @Router       /weights [get]
 func (h Handler) GetWeights(w http.ResponseWriter, r *http.Request) {
 	userSession, ok := r.Context().Value(auth.SessionManagerKey{}).(*auth.UserSession)
 	if !ok {
@@ -165,6 +209,15 @@ func (h Handler) GetWeights(w http.ResponseWriter, r *http.Request) {
 
 //water intake
 
+// InsertWaterIntake godoc
+// @Summary      Insert user water intake
+// @Description  Insert user water intake
+// @Tags         measurements water
+// @Accept       json
+// @Produce      json
+// @Param        w   path      int  true  "Water"
+// @Success      200  {object}   WaterIntake
+// @Router       /water [post]
 func (h Handler) InsertWaterIntake(w http.ResponseWriter, r *http.Request) {
 	var input struct {
 		Quantity float32 `json:"quantity"`
@@ -204,6 +257,15 @@ func (h Handler) InsertWaterIntake(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// UpdateWaterIntake godoc
+// @Summary      Update user water intake
+// @Description  Update user water intake
+// @Tags         measurements water
+// @Accept       json
+// @Produce      json
+// @Param        id   path      int  true  "Water"
+// @Success      200  {object}   WaterIntake
+// @Router       /water/{id} [patch]
 func (h Handler) UpdateWaterIntake(w http.ResponseWriter, r *http.Request) {
 	id, err := uuid.Parse(chi.URLParam(r, "id"))
 	if err != nil {
@@ -234,6 +296,15 @@ func (h Handler) UpdateWaterIntake(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 }
 
+// DeleteWaterIntake godoc
+// @Summary      Delete user water intake
+// @Description  Delete user water intake
+// @Tags         measurements water
+// @Accept       json
+// @Produce      json
+// @Param        id   path      int  true  "Water"
+// @Success      200  {object}   WaterIntake
+// @Router       /water/{id} [delete]
 func (h Handler) DeleteWaterIntake(w http.ResponseWriter, r *http.Request) {
 	id, err := uuid.Parse(chi.URLParam(r, "id"))
 	if err != nil {
@@ -258,6 +329,15 @@ func (h Handler) DeleteWaterIntake(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 }
 
+// GetWaterIntake godoc
+// @Summary      Get user water intake
+// @Description  Get user water intake
+// @Tags         measurements water
+// @Accept       json
+// @Produce      json
+// @Param        id   path      int  true  "Water"
+// @Success      200  {object}   WaterIntake
+// @Router       /water/{id} [get]
 func (h Handler) GetWaterIntake(w http.ResponseWriter, r *http.Request) {
 	id, err := uuid.Parse(chi.URLParam(r, "id"))
 	if err != nil {
@@ -283,6 +363,14 @@ func (h Handler) GetWaterIntake(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(weight)
 }
 
+// GetWaterIntakes godoc
+// @Summary      Get user water intake list
+// @Description  Get user water intake list
+// @Tags         measurements water
+// @Accept       json
+// @Produce      json
+// @Success      200  {object}   WaterIntake
+// @Router       /water [get]
 func (h Handler) GetWaterIntakes(w http.ResponseWriter, r *http.Request) {
 	userSession, ok := r.Context().Value(auth.SessionManagerKey{}).(*auth.UserSession)
 	if !ok {
@@ -302,8 +390,16 @@ func (h Handler) GetWaterIntakes(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(weight)
 }
 
-//waiste line
+//waist line
 
+// InsertWaistLine godoc
+// @Summary      Get user waist line
+// @Description  Get user waist line
+// @Tags         measurements waistline
+// @Accept       json
+// @Produce      json
+// @Success      200  {object}   WaistLine
+// @Router       /waistline [post]
 func (h Handler) InsertWaistLine(w http.ResponseWriter, r *http.Request) {
 	var input struct {
 		Quantity float32 `json:"quantity"`
@@ -343,6 +439,15 @@ func (h Handler) InsertWaistLine(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// UpdateWaistLine godoc
+// @Summary      Update user waist line
+// @Description  Update user waist line
+// @Tags         measurements waistline
+// @Accept       json
+// @Produce      json
+// @Param        id   path      int  true  "WaistLine"
+// @Success      200  {object}   WaistLine
+// @Router       /waistline/{id} [patch]
 func (h Handler) UpdateWaistLine(w http.ResponseWriter, r *http.Request) {
 	id, err := uuid.Parse(chi.URLParam(r, "id"))
 	if err != nil {
@@ -373,6 +478,15 @@ func (h Handler) UpdateWaistLine(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 }
 
+// DeleteWaistLine godoc
+// @Summary      Delete user waist line
+// @Description  Delete user waist line
+// @Tags         measurements waistline
+// @Accept       json
+// @Produce      json
+// @Param        id   path      int  true  "WaistLine"
+// @Success      200  {object}   WaistLine
+// @Router       /waistline/{id} [delete]
 func (h Handler) DeleteWaistLine(w http.ResponseWriter, r *http.Request) {
 	id, err := uuid.Parse(chi.URLParam(r, "id"))
 	if err != nil {
@@ -397,6 +511,15 @@ func (h Handler) DeleteWaistLine(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 }
 
+// GetWaistLine godoc
+// @Summary      Get user waist line
+// @Description  Get user waist line
+// @Tags         measurements waistline
+// @Accept       json
+// @Produce      json
+// @Param        id   path      int  true  "WaistLine"
+// @Success      200  {object}   WaistLine
+// @Router       /waistline/{id} [get]
 func (h Handler) GetWaistLine(w http.ResponseWriter, r *http.Request) {
 	id, err := uuid.Parse(chi.URLParam(r, "id"))
 	if err != nil {
@@ -422,6 +545,14 @@ func (h Handler) GetWaistLine(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(res)
 }
 
+// GetWaistLines godoc
+// @Summary      Get user waist line list
+// @Description  Get user waist line list
+// @Tags         measurements waistline
+// @Accept       json
+// @Produce      json
+// @Success      200  {object}   WaistLine
+// @Router       /waistline [get]
 func (h Handler) GetWaistLines(w http.ResponseWriter, r *http.Request) {
 	userSession, ok := r.Context().Value(auth.SessionManagerKey{}).(*auth.UserSession)
 	if !ok {
