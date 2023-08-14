@@ -100,7 +100,7 @@ func NewServer() (*Server, error) {
 		User:     cnf.Database.User,
 		Password: cnf.Database.Password,
 		Name:     cnf.Database.Name,
-		SslMode:  cnf.Database.SslMode,
+		SSLMODE:  cnf.Database.SSLMODE,
 	})
 	if err != nil {
 		return nil, fmt.Errorf("failed to connect to the database: %w", err)

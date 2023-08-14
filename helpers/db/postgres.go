@@ -13,18 +13,18 @@ type ConfigDB struct {
 	User     string
 	Password string
 	Name     string
-	SslMode  string
+	SSLMODE  string
 }
 
 func Connect(cnf ConfigDB) (*sqlx.DB, error) {
 	dsn := fmt.Sprintf(
-		"host=%s port=%d user=%s password=%s dbname=%s sslmode=%s",
+		"host=%s port=%d user=%s password=%s dbname=%s SSLMODE=%s",
 		cnf.Host,
 		cnf.Port,
 		cnf.User,
 		cnf.Password,
 		cnf.Name,
-		cnf.SslMode,
+		cnf.SSLMODE,
 	)
 	db, err := sqlx.Connect("pgx", dsn)
 	return db, err

@@ -17,7 +17,7 @@ type Database struct {
 	User     string `envconfig:"POSTGRES_USER" required:"true"`
 	Password string `envconfig:"POSTGRES_PASSWORD" required:"true"`
 	Name     string `envconfig:"POSTGRES_DB" required:"true"`
-	SslMode  string `envconfig:"POSTGRES_SSLMODE" required:"true"`
+	SSLMODE  string `envconfig:"POSTGRES_SSLMODE" required:"true"`
 }
 
 type Redis struct {
