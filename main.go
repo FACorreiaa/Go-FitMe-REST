@@ -45,6 +45,7 @@ func run(ctx context.Context) error {
 	}
 
 	server, err := internals.NewServer()
+	//println("err %+v", err)
 	if err != nil {
 		server.Close()
 		fmt.Println(err)

@@ -55,3 +55,9 @@ go-test:
 go-bench:
 	go test -bench .
 
+run-app:
+	docker compose run --rm app air init
+
+run-tidy:
+	docker compose run --rm app go mod tidy
+
