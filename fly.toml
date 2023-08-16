@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for dry-river-6740 on 2023-08-14T19:45:16+02:00
+# fly.toml app configuration file generated for falling-haze-7949 on 2023-08-16T15:04:14+02:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "dry-river-6740"
+app = "falling-haze-7949"
 primary_region = "ams"
 
 [build]

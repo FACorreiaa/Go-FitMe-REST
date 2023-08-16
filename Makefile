@@ -1,5 +1,5 @@
 project_name = stay-healthy-backend
-image_name = stay-healthy-backend:latest
+image_name = stay-healthy-backend
 
 run-local:
 	go run app.go

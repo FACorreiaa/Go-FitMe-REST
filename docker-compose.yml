@@ -20,6 +20,7 @@ services:
       - "5432:5432"
   redis:
     image: redis:latest
+    restart: always
     environment:
       REDIS_HOST: ${REDIS_HOST}
       REDIS_PASSWORD: ${REDIS_PASSWORD}
