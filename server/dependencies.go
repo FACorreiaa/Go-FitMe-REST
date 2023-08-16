@@ -5,6 +5,7 @@ import (
 	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/calculator"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/measurement"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/user"
+	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/workouts"
 	"github.com/jmoiron/sqlx"
 	"github.com/redis/go-redis/v9"
 )
@@ -14,6 +15,7 @@ type AppDependencies struct {
 	UserService        *user.ServiceUser
 	CalculatorService  *calculator.ServiceCalculator
 	MeasurementService *measurement.ServiceMeasurements
+	WorkoutService     *workouts.ServiceWorkout
 	// You may add other dependencies here if needed
 }
 
@@ -31,6 +33,10 @@ func (ad *AppDependencies) GetCalculatorService() *calculator.ServiceCalculator 
 
 func (ad *AppDependencies) GetMeasurementService() *measurement.ServiceMeasurements {
 	return ad.MeasurementService
+}
+
+func (ad *AppDependencies) GetWorkoutsService() *workouts.ServiceWorkout {
+	return ad.WorkoutService
 }
 
 type SessionDependencies struct {

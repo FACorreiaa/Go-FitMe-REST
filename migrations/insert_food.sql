@@ -12,8 +12,8 @@ INSERT INTO food(
     potassium,
     cholesterol
   )
-VALUES (
-    'protein',
+VALUES (gen_random_uuid(),
+    ')protein',
     343,
     100,
     1.6,
@@ -26,7 +26,7 @@ VALUES (
     3.1,
     0
   ),
-  (
+  (gen_random_uuid(),
     'hemp',
     546.1,
     100,
@@ -40,7 +40,7 @@ VALUES (
     4,
     1.5
   ),
-  (
+  (gen_random_uuid(),
     'protein',
     343,
     100,
@@ -54,7 +54,7 @@ VALUES (
     3.1,
     0
   ),
-  (
+  (gen_random_uuid(),
     'mahi mahi',
     107.5,
     100,
@@ -68,7 +68,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'pea protein',
     341.5,
     100,
@@ -82,7 +82,7 @@ VALUES (
     3.1,
     0
   ),
-  (
+  (gen_random_uuid(),
     'soy protein',
     335.7,
     100,
@@ -96,7 +96,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'swordfish',
     177,
     100,
@@ -110,7 +110,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'tuna steak',
     129.3,
     100,
@@ -124,7 +124,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'whey',
     360.9,
     100,
@@ -138,7 +138,7 @@ VALUES (
     3.1,
     0
   ),
-  (
+  (gen_random_uuid(),
     'whey protein',
     351,
     100,
@@ -152,7 +152,7 @@ VALUES (
     3.1,
     0
   ),
-  (
+  (gen_random_uuid(),
     'agave nectar',
     313.1,
     100,
@@ -166,7 +166,7 @@ VALUES (
     0.1,
     67.6
   ),
-  (
+  (gen_random_uuid(),
     'almond butter',
     628.3,
     100,
@@ -180,7 +180,7 @@ VALUES (
     10.3,
     4.5
   ),
-  (
+  (gen_random_uuid(),
     'almond flour',
     581.9,
     100,
@@ -194,7 +194,7 @@ VALUES (
     12.7,
     4.3
   ),
-  (
+  (gen_random_uuid(),
     'almond milk',
     22,
     100,
@@ -208,7 +208,7 @@ VALUES (
     0.3,
     2.9
   ),
-  (
+  (gen_random_uuid(),
     'almonds',
     603.7,
     100,
@@ -222,7 +222,7 @@ VALUES (
     11.1,
     4.6
   ),
-  (
+  (gen_random_uuid(),
     'amaranth',
     100.7,
     100,
@@ -236,7 +236,7 @@ VALUES (
     2.1,
     0
   ),
-  (
+  (gen_random_uuid(),
     'anchovies',
     214.3,
     100,
@@ -250,7 +250,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'anchovies',
     214.3,
     100,
@@ -264,7 +264,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'apples',
     53.4,
     100,
@@ -278,7 +278,7 @@ VALUES (
     2.4,
     10.3
   ),
-  (
+  (gen_random_uuid(),
     'apples',
     53.4,
     100,
@@ -292,7 +292,7 @@ VALUES (
     2.4,
     10.3
   ),
-  (
+  (gen_random_uuid(),
     'apricots',
     49.1,
     100,
@@ -306,7 +306,7 @@ VALUES (
     2,
     9.3
   ),
-  (
+  (gen_random_uuid(),
     'apricots',
     49.1,
     100,
@@ -320,7 +320,7 @@ VALUES (
     2,
     9.3
   ),
-  (
+  (gen_random_uuid(),
     'arrowroot',
     64.7,
     100,
@@ -334,7 +334,7 @@ VALUES (
     1.3,
     0
   ),
-  (
+  (gen_random_uuid(),
     'artichokes',
     52.6,
     100,
@@ -348,7 +348,7 @@ VALUES (
     5.8,
     1
   ),
-  (
+  (gen_random_uuid(),
     'artichokes',
     52.6,
     100,
@@ -362,7 +362,7 @@ VALUES (
     5.8,
     1
   ),
-  (
+  (gen_random_uuid(),
     'arugula',
     25.5,
     100,
@@ -376,7 +376,7 @@ VALUES (
     1.6,
     2.1
   ),
-  (
+  (gen_random_uuid(),
     'asparagus',
     21.4,
     100,
@@ -390,7 +390,7 @@ VALUES (
     2,
     1.3
   ),
-  (
+  (gen_random_uuid(),
     'asparagus',
     21.4,
     100,
@@ -404,7 +404,7 @@ VALUES (
     2,
     1.3
   ),
-  (
+  (gen_random_uuid(),
     'avocado',
     167.2,
     100,
@@ -418,7 +418,7 @@ VALUES (
     6.7,
     0.3
   ),
-  (
+  (gen_random_uuid(),
     'baba ganoush',
     131,
     100,
@@ -432,7 +432,7 @@ VALUES (
     2.7,
     2.4
   ),
-  (
+  (gen_random_uuid(),
     'bacon',
     466.4,
     100,
@@ -446,7 +446,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'bacon',
     466.4,
     100,
@@ -460,7 +460,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'bagels',
     265.4,
     100,
@@ -474,7 +474,7 @@ VALUES (
     1.6,
     8.4
   ),
-  (
+  (gen_random_uuid(),
     'baguette',
     274.2,
     100,
@@ -488,7 +488,7 @@ VALUES (
     2.2,
     4.7
   ),
-  (
+  (gen_random_uuid(),
     'baklava',
     402.8,
     100,
@@ -502,7 +502,7 @@ VALUES (
     2.4,
     20.5
   ),
-  (
+  (gen_random_uuid(),
     'balsamic vinegar',
     90.1,
     100,
@@ -516,7 +516,7 @@ VALUES (
     0,
     14.8
   ),
-  (
+  (gen_random_uuid(),
     'bamboo shoots',
     18.5,
     100,
@@ -530,7 +530,7 @@ VALUES (
     1.4,
     1.9
   ),
-  (
+  (gen_random_uuid(),
     'bananas',
     87.4,
     100,
@@ -544,7 +544,7 @@ VALUES (
     2.6,
     12.2
   ),
-  (
+  (gen_random_uuid(),
     'bananas',
     87.4,
     100,
@@ -558,7 +558,7 @@ VALUES (
     2.6,
     12.2
   ),
-  (
+  (gen_random_uuid(),
     'barbecue sauce',
     167.6,
     100,
@@ -572,7 +572,7 @@ VALUES (
     0.9,
     33.4
   ),
-  (
+  (gen_random_uuid(),
     'barley',
     124.8,
     100,
@@ -586,8 +586,8 @@ VALUES (
     3.9,
     0.3
   ),
-  ('basil', 24.4, 100, 0, 0, 4, 4, 56, 0, 2, 2, 0),
-  (
+  (gen_random_uuid(),'basil', 24.4, 100, 0, 0, 4, 4, 56, 0, 2, 2, 0),
+  (gen_random_uuid(),
     'bean curd',
     113.8,
     100,
@@ -601,7 +601,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'bean sprouts',
     20.5,
     100,
@@ -615,7 +615,7 @@ VALUES (
     0.8,
     2.9
   ),
-  (
+  (gen_random_uuid(),
     'bean',
     129.5,
     100,
@@ -629,7 +629,7 @@ VALUES (
     6.4,
     0.3
   ),
-  (
+  (gen_random_uuid(),
     'noodles',
     161.8,
     100,
@@ -643,7 +643,7 @@ VALUES (
     1.8,
     0.6
   ),
-  (
+  (gen_random_uuid(),
     'beef',
     291.9,
     100,
@@ -657,7 +657,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'beef',
     291.9,
     100,
@@ -671,7 +671,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'beef steak',
     283.6,
     100,
@@ -685,7 +685,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'beer',
     43.3,
     100,
@@ -699,7 +699,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'beer nuts',
     594.8,
     100,
@@ -713,7 +713,7 @@ VALUES (
     8.4,
     4.9
   ),
-  (
+  (gen_random_uuid(),
     'beet greens',
     27.2,
     100,
@@ -727,7 +727,7 @@ VALUES (
     2.9,
     0.6
   ),
-  (
+  (gen_random_uuid(),
     'beet greens',
     27.2,
     100,
@@ -741,7 +741,7 @@ VALUES (
     2.9,
     0.6
   ),
-  (
+  (gen_random_uuid(),
     'beets',
     44.3,
     100,
@@ -755,7 +755,7 @@ VALUES (
     2,
     8
   ),
-  (
+  (gen_random_uuid(),
     'beets',
     44.3,
     100,
@@ -769,7 +769,7 @@ VALUES (
     2,
     8
   ),
-  (
+  (gen_random_uuid(),
     'beets',
     44.3,
     100,
@@ -783,7 +783,7 @@ VALUES (
     2,
     8
   ),
-  (
+  (gen_random_uuid(),
     'bell peppers',
     27.3,
     100,
@@ -797,7 +797,7 @@ VALUES (
     1.2,
     3.2
   ),
-  (
+  (gen_random_uuid(),
     'bell peppers',
     27.3,
     100,
@@ -811,7 +811,7 @@ VALUES (
     1.2,
     3.2
   ),
-  (
+  (gen_random_uuid(),
     'berbere',
     249.3,
     100,
@@ -825,7 +825,7 @@ VALUES (
     28.8,
     6.4
   ),
-  (
+  (gen_random_uuid(),
     'berries',
     46.5,
     100,
@@ -839,7 +839,7 @@ VALUES (
     3.9,
     6.1
   ),
-  (
+  (gen_random_uuid(),
     'biryani',
     142.9,
     100,
@@ -853,7 +853,7 @@ VALUES (
     0.7,
     1.6
   ),
-  (
+  (gen_random_uuid(),
     'black bean sauce',
     149,
     100,
@@ -867,7 +867,7 @@ VALUES (
     1.1,
     0.6
   ),
-  (
+  (gen_random_uuid(),
     'black beans',
     132.5,
     100,
@@ -881,7 +881,7 @@ VALUES (
     8.8,
     0.3
   ),
-  (
+  (gen_random_uuid(),
     'black beans',
     132.5,
     100,
@@ -895,7 +895,7 @@ VALUES (
     8.8,
     0.3
   ),
-  (
+  (gen_random_uuid(),
     'currants',
     289.8,
     100,
@@ -909,7 +909,7 @@ VALUES (
     6.8,
     67.9
   ),
-  (
+  (gen_random_uuid(),
     'black forest cake',
     212.3,
     100,
@@ -923,7 +923,7 @@ VALUES (
     1.1,
     11.8
   ),
-  (
+  (gen_random_uuid(),
     'mustard seeds',
     519,
     100,
@@ -937,7 +937,7 @@ VALUES (
     11.8,
     7
   ),
-  (
+  (gen_random_uuid(),
     'black olives',
     118.2,
     100,
@@ -951,7 +951,7 @@ VALUES (
     3.2,
     0
   ),
-  (
+  (gen_random_uuid(),
     'black pepper',
     245.3,
     100,
@@ -965,7 +965,7 @@ VALUES (
     24.8,
     0.4
   ),
-  (
+  (gen_random_uuid(),
     'black rice',
     131.1,
     100,
@@ -979,7 +979,7 @@ VALUES (
     0.4,
     0.1
   ),
-  (
+  (gen_random_uuid(),
     'black rice',
     131.1,
     100,
@@ -993,7 +993,7 @@ VALUES (
     0.4,
     0.1
   ),
-  (
+  (gen_random_uuid(),
     'rice vinegar',
     18.1,
     100,
@@ -1007,8 +1007,8 @@ VALUES (
     0,
     0.1
   ),
-  ('salt', 0, 100, 0, 0, 0, 38395, 0, 0, 0, 0, 0),
-  (
+  (gen_random_uuid(),'salt', 0, 100, 0, 0, 0, 38395, 0, 0, 0, 0, 0),
+  (gen_random_uuid(),
     'sesame seeds',
     575.8,
     100,
@@ -1022,8 +1022,8 @@ VALUES (
     14,
     0
   ),
-  ('black tea', 1, 100, 0, 0, 0, 0, 0, 0, 0.3, 0, 0),
-  (
+  (gen_random_uuid(),'black tea', 1, 100, 0, 0, 0, 0, 0, 0, 0.3, 0, 0),
+  (gen_random_uuid(),
     'black truffle',
     31.5,
     100,
@@ -1037,7 +1037,7 @@ VALUES (
     2.8,
     0.6
   ),
-  (
+  (gen_random_uuid(),
     'pea salad',
     224.5,
     100,
@@ -1051,7 +1051,7 @@ VALUES (
     2.1,
     2.3
   ),
-  (
+  (gen_random_uuid(),
     'peas',
     82.4,
     100,
@@ -1065,7 +1065,7 @@ VALUES (
     5.4,
     5.9
   ),
-  (
+  (gen_random_uuid(),
     'blackberries',
     41.8,
     100,
@@ -1079,7 +1079,7 @@ VALUES (
     5.3,
     4.9
   ),
-  (
+  (gen_random_uuid(),
     'blackberries',
     41.8,
     100,
@@ -1093,7 +1093,7 @@ VALUES (
     5.3,
     4.9
   ),
-  (
+  (gen_random_uuid(),
     'chicken',
     222.6,
     100,
@@ -1107,7 +1107,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'oranges',
     49.8,
     100,
@@ -1121,7 +1121,7 @@ VALUES (
     2.2,
     8.6
   ),
-  (
+  (gen_random_uuid(),
     'blue cheese',
     346.9,
     100,
@@ -1135,7 +1135,7 @@ VALUES (
     0,
     0.5
   ),
-  (
+  (gen_random_uuid(),
     'blue cheese dressing',
     483.2,
     100,
@@ -1149,7 +1149,7 @@ VALUES (
     0.4,
     3.4
   ),
-  (
+  (gen_random_uuid(),
     'blue crab',
     83,
     100,
@@ -1163,7 +1163,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'cocktail',
     139.7,
     100,
@@ -1177,7 +1177,7 @@ VALUES (
     0.1,
     8.4
   ),
-  (
+  (gen_random_uuid(),
     'blueberries',
     55.7,
     100,
@@ -1191,7 +1191,7 @@ VALUES (
     2.2,
     10.3
   ),
-  (
+  (gen_random_uuid(),
     'blueberries',
     55.7,
     100,
@@ -1205,7 +1205,7 @@ VALUES (
     2.2,
     10.3
   ),
-  (
+  (gen_random_uuid(),
     'tuna',
     133.3,
     100,
@@ -1219,7 +1219,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'tuna',
     133.3,
     100,
@@ -1233,7 +1233,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'boiled peanuts',
     311.5,
     100,
@@ -1247,7 +1247,7 @@ VALUES (
     8.8,
     2.5
   ),
-  (
+  (gen_random_uuid(),
     'boiled shrimp',
     122,
     100,
@@ -1261,7 +1261,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'bolillo',
     308.8,
     100,
@@ -1275,7 +1275,7 @@ VALUES (
     2.2,
     3.5
   ),
-  (
+  (gen_random_uuid(),
     'bolognese sauce',
     131.1,
     100,
@@ -1289,7 +1289,7 @@ VALUES (
     1.1,
     1.9
   ),
-  (
+  (gen_random_uuid(),
     'bonito flakes',
     286.6,
     100,
@@ -1303,7 +1303,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'beans',
     91.3,
     100,
@@ -1317,7 +1317,7 @@ VALUES (
     4.1,
     7.9
   ),
-  (
+  (gen_random_uuid(),
     'borscht',
     40.7,
     100,
@@ -1331,7 +1331,7 @@ VALUES (
     0.9,
     1.6
   ),
-  (
+  (gen_random_uuid(),
     'bouillabaisse',
     116.9,
     100,
@@ -1345,7 +1345,7 @@ VALUES (
     0.3,
     0.4
   ),
-  (
+  (gen_random_uuid(),
     'bouillon',
     267.4,
     100,
@@ -1359,7 +1359,7 @@ VALUES (
     0,
     17.5
   ),
-  (
+  (gen_random_uuid(),
     'bran muffins',
     277.8,
     100,
@@ -1373,7 +1373,7 @@ VALUES (
     4.6,
     8.2
   ),
-  (
+  (gen_random_uuid(),
     'bread crumbs',
     391.7,
     100,
@@ -1387,7 +1387,7 @@ VALUES (
     4.5,
     6.3
   ),
-  (
+  (gen_random_uuid(),
     'bread pudding',
     192.2,
     100,
@@ -1401,7 +1401,7 @@ VALUES (
     0.6,
     27.7
   ),
-  (
+  (gen_random_uuid(),
     'breadfruit',
     105.9,
     100,
@@ -1415,7 +1415,7 @@ VALUES (
     4.9,
     11
   ),
-  (
+  (gen_random_uuid(),
     'brie cheese',
     328.1,
     100,
@@ -1429,7 +1429,7 @@ VALUES (
     0,
     0.5
   ),
-  (
+  (gen_random_uuid(),
     'brisket',
     289.3,
     100,
@@ -1443,7 +1443,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'broccoli',
     35,
     100,
@@ -1457,7 +1457,7 @@ VALUES (
     3.3,
     1.4
   ),
-  (
+  (gen_random_uuid(),
     'broccoli',
     35,
     100,
@@ -1471,7 +1471,7 @@ VALUES (
     3.3,
     1.4
   ),
-  (
+  (gen_random_uuid(),
     'broccoli casserole',
     129.6,
     100,
@@ -1485,7 +1485,7 @@ VALUES (
     1.1,
     1
   ),
-  (
+  (gen_random_uuid(),
     'broccoli casserole',
     129.6,
     100,
@@ -1499,7 +1499,7 @@ VALUES (
     1.1,
     1
   ),
-  (
+  (gen_random_uuid(),
     'broccoli cheese soup',
     91.8,
     100,
@@ -1513,7 +1513,7 @@ VALUES (
     0.8,
     0.7
   ),
-  (
+  (gen_random_uuid(),
     'broccoli cheese soup',
     91.8,
     100,
@@ -1527,7 +1527,7 @@ VALUES (
     0.8,
     0.7
   ),
-  (
+  (gen_random_uuid(),
     'broccoli rabe',
     22.3,
     100,
@@ -1541,7 +1541,7 @@ VALUES (
     2.7,
     0.4
   ),
-  (
+  (gen_random_uuid(),
     'broccoli rabe',
     22.3,
     100,
@@ -1555,7 +1555,7 @@ VALUES (
     2.7,
     0.4
   ),
-  (
+  (gen_random_uuid(),
     'broccoli salad',
     73,
     100,
@@ -1569,7 +1569,7 @@ VALUES (
     2.3,
     4
   ),
-  (
+  (gen_random_uuid(),
     'broccoli slaw',
     33.7,
     100,
@@ -1583,7 +1583,7 @@ VALUES (
     2.6,
     2.8
   ),
-  (
+  (gen_random_uuid(),
     'broccoli slaw',
     33.7,
     100,
@@ -1597,7 +1597,7 @@ VALUES (
     2.6,
     2.8
   ),
-  (
+  (gen_random_uuid(),
     'broccoli soup',
     88,
     100,
@@ -1611,7 +1611,7 @@ VALUES (
     0.7,
     0.7
   ),
-  (
+  (gen_random_uuid(),
     'broccoli soup',
     88,
     100,
@@ -1625,7 +1625,7 @@ VALUES (
     0.7,
     0.7
   ),
-  (
+  (gen_random_uuid(),
     'broccolini',
     29.6,
     100,
@@ -1639,7 +1639,7 @@ VALUES (
     3.1,
     1.2
   ),
-  (
+  (gen_random_uuid(),
     'broccolini',
     29.6,
     100,
@@ -1653,7 +1653,7 @@ VALUES (
     3.1,
     1.2
   ),
-  (
+  (gen_random_uuid(),
     'brown gravy',
     54.5,
     100,
@@ -1667,7 +1667,7 @@ VALUES (
     0.4,
     0.2
   ),
-  (
+  (gen_random_uuid(),
     'brown rice',
     110,
     100,
@@ -1681,7 +1681,7 @@ VALUES (
     1.8,
     0
   ),
-  (
+  (gen_random_uuid(),
     'brown sugar',
     381.1,
     100,
@@ -1695,7 +1695,7 @@ VALUES (
     0,
     97.8
   ),
-  (
+  (gen_random_uuid(),
     'brownie',
     458.2,
     100,
@@ -1709,7 +1709,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'bruschetta',
     210.8,
     100,
@@ -1723,7 +1723,7 @@ VALUES (
     1.3,
     3
   ),
-  (
+  (gen_random_uuid(),
     'brussel sprouts',
     35.1,
     100,
@@ -1737,7 +1737,7 @@ VALUES (
     2.6,
     1.7
   ),
-  (
+  (gen_random_uuid(),
     'buckwheat',
     92.5,
     100,
@@ -1751,7 +1751,7 @@ VALUES (
     2.7,
     0.9
   ),
-  (
+  (gen_random_uuid(),
     'buckwheat',
     92.5,
     100,
@@ -1765,7 +1765,7 @@ VALUES (
     2.7,
     0.9
   ),
-  (
+  (gen_random_uuid(),
     'pancakes',
     230.7,
     100,
@@ -1779,7 +1779,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'buckwheat',
     92.5,
     100,
@@ -1793,7 +1793,7 @@ VALUES (
     2.7,
     0.9
   ),
-  (
+  (gen_random_uuid(),
     'soba',
     98.9,
     100,
@@ -1807,7 +1807,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'buffalo chicken dip',
     273.7,
     100,
@@ -1821,7 +1821,7 @@ VALUES (
     0.6,
     2.4
   ),
-  (
+  (gen_random_uuid(),
     'buffalo chicken',
     160.6,
     100,
@@ -1835,7 +1835,7 @@ VALUES (
     0,
     0.2
   ),
-  (
+  (gen_random_uuid(),
     'wings',
     330.8,
     100,
@@ -1849,7 +1849,7 @@ VALUES (
     0.4,
     0.2
   ),
-  (
+  (gen_random_uuid(),
     'bulgogi',
     249.8,
     100,
@@ -1863,7 +1863,7 @@ VALUES (
     0.8,
     6.1
   ),
-  (
+  (gen_random_uuid(),
     'bulgogi',
     249.8,
     100,
@@ -1877,7 +1877,7 @@ VALUES (
     0.8,
     6.1
   ),
-  (
+  (gen_random_uuid(),
     'marinade',
     233.8,
     100,
@@ -1891,7 +1891,7 @@ VALUES (
     0.5,
     6.5
   ),
-  (
+  (gen_random_uuid(),
     'bulgogi',
     249.8,
     100,
@@ -1905,7 +1905,7 @@ VALUES (
     0.8,
     6.1
   ),
-  (
+  (gen_random_uuid(),
     'sauce',
     48.8,
     100,
@@ -1919,7 +1919,7 @@ VALUES (
     1.8,
     5
   ),
-  (
+  (gen_random_uuid(),
     'bulgur',
     85.4,
     100,
@@ -1933,7 +1933,7 @@ VALUES (
     4.5,
     0.1
   ),
-  (
+  (gen_random_uuid(),
     'bundt cake',
     369.6,
     100,
@@ -1947,7 +1947,7 @@ VALUES (
     0.7,
     0
   ),
-  (
+  (gen_random_uuid(),
     'burrito',
     184.4,
     100,
@@ -1961,7 +1961,7 @@ VALUES (
     3.6,
     2.1
   ),
-  (
+  (gen_random_uuid(),
     'butternut squash',
     40.8,
     100,
@@ -1975,7 +1975,7 @@ VALUES (
     3.2,
     2
   ),
-  (
+  (gen_random_uuid(),
     'butternut squash',
     40.8,
     100,
@@ -1989,7 +1989,7 @@ VALUES (
     3.2,
     2
   ),
-  (
+  (gen_random_uuid(),
     'butternut squash soup',
     45.3,
     100,
@@ -2003,7 +2003,7 @@ VALUES (
     1.5,
     1.9
   ),
-  (
+  (gen_random_uuid(),
     'butterscotch',
     385.8,
     100,
@@ -2017,7 +2017,7 @@ VALUES (
     0,
     79.7
   ),
-  (
+  (gen_random_uuid(),
     'butterscotch',
     385.8,
     100,
@@ -2031,7 +2031,7 @@ VALUES (
     0,
     79.7
   ),
-  (
+  (gen_random_uuid(),
     'pudding',
     132.8,
     100,
@@ -2045,7 +2045,7 @@ VALUES (
     0,
     17.1
   ),
-  (
+  (gen_random_uuid(),
     'cabbage',
     23.4,
     100,
@@ -2059,7 +2059,7 @@ VALUES (
     1.9,
     2.8
   ),
-  (
+  (gen_random_uuid(),
     'cabbage',
     23.4,
     100,
@@ -2073,7 +2073,7 @@ VALUES (
     1.9,
     2.8
   ),
-  (
+  (gen_random_uuid(),
     'cabbage',
     23.4,
     100,
@@ -2087,7 +2087,7 @@ VALUES (
     1.9,
     2.8
   ),
-  (
+  (gen_random_uuid(),
     'cabernet',
     82.6,
     100,
@@ -2101,7 +2101,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'cacao powder',
     409.1,
     100,
@@ -2115,7 +2115,7 @@ VALUES (
     20,
     0
   ),
-  (
+  (gen_random_uuid(),
     'caesar dressing',
     534.6,
     100,
@@ -2129,7 +2129,7 @@ VALUES (
     0.5,
     2.8
   ),
-  (
+  (gen_random_uuid(),
     'caesar salad',
     160.4,
     100,
@@ -2143,7 +2143,7 @@ VALUES (
     1.9,
     1.6
   ),
-  (
+  (gen_random_uuid(),
     'calamari',
     194.2,
     100,
@@ -2157,7 +2157,7 @@ VALUES (
     0.8,
     0.4
   ),
-  (
+  (gen_random_uuid(),
     'calamari',
     194.2,
     100,
@@ -2171,7 +2171,7 @@ VALUES (
     0.8,
     0.4
   ),
-  (
+  (gen_random_uuid(),
     'calamari',
     194.2,
     100,
@@ -2185,7 +2185,7 @@ VALUES (
     0.8,
     0.4
   ),
-  (
+  (gen_random_uuid(),
     'calamari salad',
     124.8,
     100,
@@ -2199,7 +2199,7 @@ VALUES (
     0.6,
     0.7
   ),
-  (
+  (gen_random_uuid(),
     'calzone',
     308.9,
     100,
@@ -2213,7 +2213,7 @@ VALUES (
     0.7,
     0.7
   ),
-  (
+  (gen_random_uuid(),
     'camembert',
     293.2,
     100,
@@ -2227,7 +2227,7 @@ VALUES (
     0,
     0.5
   ),
-  (
+  (gen_random_uuid(),
     'bacon',
     466.4,
     100,
@@ -2241,7 +2241,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'nuts',
     613.2,
     100,
@@ -2255,7 +2255,7 @@ VALUES (
     6.9,
     4.1
   ),
-  (
+  (gen_random_uuid(),
     'candied pecans',
     537.1,
     100,
@@ -2269,7 +2269,7 @@ VALUES (
     6.3,
     30.9
   ),
-  (
+  (gen_random_uuid(),
     'cane sugar',
     383.9,
     100,
@@ -2283,7 +2283,7 @@ VALUES (
     0,
     98.8
   ),
-  (
+  (gen_random_uuid(),
     'corn',
     93.9,
     100,
@@ -2297,7 +2297,7 @@ VALUES (
     2.4,
     4.6
   ),
-  (
+  (gen_random_uuid(),
     'tomatoes',
     18.5,
     100,
@@ -2311,7 +2311,7 @@ VALUES (
     1.2,
     2.6
   ),
-  (
+  (gen_random_uuid(),
     'cannellini beans',
     139.4,
     100,
@@ -2325,7 +2325,7 @@ VALUES (
     6.4,
     0.3
   ),
-  (
+  (gen_random_uuid(),
     'cantaloupe',
     33.8,
     100,
@@ -2339,7 +2339,7 @@ VALUES (
     0.9,
     7.8
   ),
-  (
+  (gen_random_uuid(),
     'cantaloupe',
     33.8,
     100,
@@ -2353,7 +2353,7 @@ VALUES (
     0.9,
     7.8
   ),
-  (
+  (gen_random_uuid(),
     'cantaloupe',
     33.8,
     100,
@@ -2367,7 +2367,7 @@ VALUES (
     0.9,
     7.8
   ),
-  (
+  (gen_random_uuid(),
     'juice',
     53.7,
     100,
@@ -2381,7 +2381,7 @@ VALUES (
     0.1,
     12.2
   ),
-  (
+  (gen_random_uuid(),
     'caper',
     23.2,
     100,
@@ -2395,7 +2395,7 @@ VALUES (
     3.3,
     0.5
   ),
-  (
+  (gen_random_uuid(),
     'berries',
     46.5,
     100,
@@ -2409,7 +2409,7 @@ VALUES (
     3.9,
     6.1
   ),
-  (
+  (gen_random_uuid(),
     'capers',
     23.4,
     100,
@@ -2423,7 +2423,7 @@ VALUES (
     3.2,
     0.5
   ),
-  (
+  (gen_random_uuid(),
     'caramel apple',
     108.1,
     100,
@@ -2437,7 +2437,7 @@ VALUES (
     1.5,
     26.2
   ),
-  (
+  (gen_random_uuid(),
     'caramel cake',
     328.1,
     100,
@@ -2451,7 +2451,7 @@ VALUES (
     0.2,
     31.4
   ),
-  (
+  (gen_random_uuid(),
     'caramel candy',
     370.6,
     100,
@@ -2465,7 +2465,7 @@ VALUES (
     0,
     65.4
   ),
-  (
+  (gen_random_uuid(),
     'caramel corn',
     422.4,
     100,
@@ -2479,7 +2479,7 @@ VALUES (
     5.1,
     53.5
   ),
-  (
+  (gen_random_uuid(),
     'caramel dip',
     209.9,
     100,
@@ -2493,7 +2493,7 @@ VALUES (
     0,
     57.5
   ),
-  (
+  (gen_random_uuid(),
     'caramel',
     215.8,
     100,
@@ -2507,7 +2507,7 @@ VALUES (
     0,
     57.3
   ),
-  (
+  (gen_random_uuid(),
     'caramel ice cream',
     212.5,
     100,
@@ -2521,7 +2521,7 @@ VALUES (
     0.6,
     27.2
   ),
-  (
+  (gen_random_uuid(),
     'caramel latte',
     59.8,
     100,
@@ -2535,7 +2535,7 @@ VALUES (
     0,
     4.4
   ),
-  (
+  (gen_random_uuid(),
     'caramel macchiato',
     69.5,
     100,
@@ -2549,7 +2549,7 @@ VALUES (
     0,
     5.7
   ),
-  (
+  (gen_random_uuid(),
     'caramel popcorn',
     441.9,
     100,
@@ -2563,7 +2563,7 @@ VALUES (
     5.1,
     53.4
   ),
-  (
+  (gen_random_uuid(),
     'caramel sauce',
     220.6,
     100,
@@ -2577,7 +2577,7 @@ VALUES (
     0,
     57.3
   ),
-  (
+  (gen_random_uuid(),
     'caramel sauce',
     220.6,
     100,
@@ -2591,7 +2591,7 @@ VALUES (
     0,
     57.3
   ),
-  (
+  (gen_random_uuid(),
     'carbonara',
     192.8,
     100,
@@ -2605,7 +2605,7 @@ VALUES (
     1.4,
     0.5
   ),
-  (
+  (gen_random_uuid(),
     'sauce',
     48.8,
     100,
@@ -2619,7 +2619,7 @@ VALUES (
     1.8,
     5
   ),
-  (
+  (gen_random_uuid(),
     'carne asada',
     221.6,
     100,
@@ -2633,7 +2633,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'carne guisada',
     110.6,
     100,
@@ -2647,7 +2647,7 @@ VALUES (
     1,
     1.8
   ),
-  (
+  (gen_random_uuid(),
     'carrot cake',
     334.7,
     100,
@@ -2661,7 +2661,7 @@ VALUES (
     0.9,
     29.6
   ),
-  (
+  (gen_random_uuid(),
     'carrot salad',
     207.2,
     100,
@@ -2675,7 +2675,7 @@ VALUES (
     1.8,
     13.4
   ),
-  (
+  (gen_random_uuid(),
     'carrot salad',
     207.2,
     100,
@@ -2689,7 +2689,7 @@ VALUES (
     1.8,
     13.4
   ),
-  (
+  (gen_random_uuid(),
     'carrots',
     35.1,
     100,
@@ -2703,7 +2703,7 @@ VALUES (
     3,
     3.4
   ),
-  (
+  (gen_random_uuid(),
     'carrots',
     35.1,
     100,
@@ -2717,7 +2717,7 @@ VALUES (
     3,
     3.4
   ),
-  (
+  (gen_random_uuid(),
     'cashew butter',
     606.9,
     100,
@@ -2731,7 +2731,7 @@ VALUES (
     3,
     9.1
   ),
-  (
+  (gen_random_uuid(),
     'cashew chicken',
     107.3,
     100,
@@ -2745,7 +2745,7 @@ VALUES (
     0.7,
     2.9
   ),
-  (
+  (gen_random_uuid(),
     'cashew',
     587.1,
     100,
@@ -2759,7 +2759,7 @@ VALUES (
     3.2,
     5.1
   ),
-  (
+  (gen_random_uuid(),
     'cream',
     347.4,
     100,
@@ -2773,7 +2773,7 @@ VALUES (
     0,
     2.9
   ),
-  (
+  (gen_random_uuid(),
     'cashew milk',
     23,
     100,
@@ -2787,7 +2787,7 @@ VALUES (
     0.3,
     2.9
   ),
-  (
+  (gen_random_uuid(),
     'cashew nut',
     570.5,
     100,
@@ -2801,7 +2801,7 @@ VALUES (
     3.2,
     5.1
   ),
-  (
+  (gen_random_uuid(),
     'butter',
     721.5,
     100,
@@ -2815,7 +2815,7 @@ VALUES (
     0,
     0.1
   ),
-  (
+  (gen_random_uuid(),
     'cashew',
     587.1,
     100,
@@ -2829,7 +2829,7 @@ VALUES (
     3.2,
     5.1
   ),
-  (
+  (gen_random_uuid(),
     'yogurt',
     64.2,
     100,
@@ -2843,7 +2843,7 @@ VALUES (
     0,
     7.1
   ),
-  (
+  (gen_random_uuid(),
     'cashews',
     558.6,
     100,
@@ -2857,7 +2857,7 @@ VALUES (
     3.1,
     5.1
   ),
-  (
+  (gen_random_uuid(),
     'catfish',
     142.9,
     100,
@@ -2871,7 +2871,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'cauliflower',
     22.4,
     100,
@@ -2885,7 +2885,7 @@ VALUES (
     2.3,
     2.1
   ),
-  (
+  (gen_random_uuid(),
     'cauliflower',
     22.4,
     100,
@@ -2899,7 +2899,7 @@ VALUES (
     2.3,
     2.1
   ),
-  (
+  (gen_random_uuid(),
     'cauliflower',
     22.4,
     100,
@@ -2913,7 +2913,7 @@ VALUES (
     2.3,
     2.1
   ),
-  (
+  (gen_random_uuid(),
     'alfredo',
     427.6,
     100,
@@ -2927,7 +2927,7 @@ VALUES (
     0.1,
     1.3
   ),
-  (
+  (gen_random_uuid(),
     'cauliflower',
     22.4,
     100,
@@ -2941,7 +2941,7 @@ VALUES (
     2.3,
     2.1
   ),
-  (
+  (gen_random_uuid(),
     'alfredo',
     427.6,
     100,
@@ -2955,7 +2955,7 @@ VALUES (
     0.1,
     1.3
   ),
-  (
+  (gen_random_uuid(),
     'cauliflower',
     22.4,
     100,
@@ -2969,7 +2969,7 @@ VALUES (
     2.3,
     2.1
   ),
-  (
+  (gen_random_uuid(),
     'cheese',
     393.9,
     100,
@@ -2983,7 +2983,7 @@ VALUES (
     0,
     0.5
   ),
-  (
+  (gen_random_uuid(),
     'cauliflower',
     22.4,
     100,
@@ -2997,7 +2997,7 @@ VALUES (
     2.3,
     2.1
   ),
-  (
+  (gen_random_uuid(),
     'cheese',
     393.9,
     100,
@@ -3011,7 +3011,7 @@ VALUES (
     0,
     0.5
   ),
-  (
+  (gen_random_uuid(),
     'cauliflower',
     22.4,
     100,
@@ -3025,7 +3025,7 @@ VALUES (
     2.3,
     2.1
   ),
-  (
+  (gen_random_uuid(),
     'couscous',
     114.1,
     100,
@@ -3039,7 +3039,7 @@ VALUES (
     1.4,
     0.1
   ),
-  (
+  (gen_random_uuid(),
     'cauliflower',
     22.4,
     100,
@@ -3053,7 +3053,7 @@ VALUES (
     2.3,
     2.1
   ),
-  (
+  (gen_random_uuid(),
     'couscous',
     114.1,
     100,
@@ -3067,7 +3067,7 @@ VALUES (
     1.4,
     0.1
   ),
-  (
+  (gen_random_uuid(),
     'cauliflower',
     22.4,
     100,
@@ -3081,7 +3081,7 @@ VALUES (
     2.3,
     2.1
   ),
-  (
+  (gen_random_uuid(),
     'cauliflower',
     22.4,
     100,
@@ -3095,7 +3095,7 @@ VALUES (
     2.3,
     2.1
   ),
-  (
+  (gen_random_uuid(),
     'cauliflower fried',
     170.4,
     100,
@@ -3109,7 +3109,7 @@ VALUES (
     2.2,
     2.3
   ),
-  (
+  (gen_random_uuid(),
     'rice',
     127.4,
     100,
@@ -3123,7 +3123,7 @@ VALUES (
     0.4,
     0.1
   ),
-  (
+  (gen_random_uuid(),
     'cauliflower fried',
     170.4,
     100,
@@ -3137,7 +3137,7 @@ VALUES (
     2.2,
     2.3
   ),
-  (
+  (gen_random_uuid(),
     'rice',
     127.4,
     100,
@@ -3151,7 +3151,7 @@ VALUES (
     0.4,
     0.1
   ),
-  (
+  (gen_random_uuid(),
     'cauliflower mash',
     89.6,
     100,
@@ -3165,7 +3165,7 @@ VALUES (
     2,
     1.9
   ),
-  (
+  (gen_random_uuid(),
     'cauliflower mash',
     89.6,
     100,
@@ -3179,7 +3179,7 @@ VALUES (
     2,
     1.9
   ),
-  (
+  (gen_random_uuid(),
     'cauliflower pizza',
     125,
     100,
@@ -3193,7 +3193,7 @@ VALUES (
     1.4,
     2
   ),
-  (
+  (gen_random_uuid(),
     'cauliflower pizza',
     125,
     100,
@@ -3207,7 +3207,7 @@ VALUES (
     1.4,
     2
   ),
-  (
+  (gen_random_uuid(),
     'cauliflower rice',
     25.1,
     100,
@@ -3221,7 +3221,7 @@ VALUES (
     2,
     1.9
   ),
-  (
+  (gen_random_uuid(),
     'cauliflower rice',
     25.1,
     100,
@@ -3235,7 +3235,7 @@ VALUES (
     2,
     1.9
   ),
-  (
+  (gen_random_uuid(),
     'cauliflower soup',
     53,
     100,
@@ -3249,7 +3249,7 @@ VALUES (
     1.4,
     1.6
   ),
-  (
+  (gen_random_uuid(),
     'cauliflower',
     22.4,
     100,
@@ -3263,7 +3263,7 @@ VALUES (
     2.3,
     2.1
   ),
-  (
+  (gen_random_uuid(),
     'steak',
     273.4,
     100,
@@ -3277,7 +3277,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'cauliflower',
     22.4,
     100,
@@ -3291,7 +3291,7 @@ VALUES (
     2.3,
     2.1
   ),
-  (
+  (gen_random_uuid(),
     'steak',
     273.4,
     100,
@@ -3305,7 +3305,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'caviar',
     263.9,
     100,
@@ -3319,7 +3319,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'cayenne',
     309.1,
     100,
@@ -3333,7 +3333,7 @@ VALUES (
     27,
     10.5
   ),
-  (
+  (gen_random_uuid(),
     'cayenne pepper',
     319.8,
     100,
@@ -3347,7 +3347,7 @@ VALUES (
     27.1,
     10.6
   ),
-  (
+  (gen_random_uuid(),
     'celery',
     17.9,
     100,
@@ -3361,7 +3361,7 @@ VALUES (
     1.6,
     2.4
   ),
-  (
+  (gen_random_uuid(),
     'celery',
     17.9,
     100,
@@ -3375,7 +3375,7 @@ VALUES (
     1.6,
     2.4
   ),
-  (
+  (gen_random_uuid(),
     'ceviche',
     70,
     100,
@@ -3389,7 +3389,7 @@ VALUES (
     0.4,
     0.8
   ),
-  (
+  (gen_random_uuid(),
     'chai latte',
     65,
     100,
@@ -3403,7 +3403,7 @@ VALUES (
     0.3,
     8.6
   ),
-  (
+  (gen_random_uuid(),
     'chai tea',
     2,
     100,
@@ -3417,7 +3417,7 @@ VALUES (
     0.1,
     0
   ),
-  (
+  (gen_random_uuid(),
     'challah',
     242.5,
     100,
@@ -3431,7 +3431,7 @@ VALUES (
     1.5,
     7.1
   ),
-  (
+  (gen_random_uuid(),
     'champagne',
     83.2,
     100,
@@ -3445,7 +3445,7 @@ VALUES (
     0,
     1
   ),
-  (
+  (gen_random_uuid(),
     'chana masala',
     146.6,
     100,
@@ -3459,7 +3459,7 @@ VALUES (
     3.9,
     3.6
   ),
-  (
+  (gen_random_uuid(),
     'chard',
     19.4,
     100,
@@ -3473,7 +3473,7 @@ VALUES (
     2.1,
     1.1
   ),
-  (
+  (gen_random_uuid(),
     'chard',
     19.4,
     100,
@@ -3487,7 +3487,7 @@ VALUES (
     2.1,
     1.1
   ),
-  (
+  (gen_random_uuid(),
     'chayote',
     24.4,
     100,
@@ -3501,7 +3501,7 @@ VALUES (
     2.9,
     1.9
   ),
-  (
+  (gen_random_uuid(),
     'squash',
     22.6,
     100,
@@ -3515,7 +3515,7 @@ VALUES (
     1.1,
     2.5
   ),
-  (
+  (gen_random_uuid(),
     'chayote',
     24.4,
     100,
@@ -3529,7 +3529,7 @@ VALUES (
     2.9,
     1.9
   ),
-  (
+  (gen_random_uuid(),
     'squash',
     22.6,
     100,
@@ -3543,7 +3543,7 @@ VALUES (
     1.1,
     2.5
   ),
-  (
+  (gen_random_uuid(),
     'cheddar cheese',
     405.3,
     100,
@@ -3557,7 +3557,7 @@ VALUES (
     0,
     0.5
   ),
-  (
+  (gen_random_uuid(),
     'cheese and crackers',
     416.5,
     100,
@@ -3571,7 +3571,7 @@ VALUES (
     2.3,
     5.3
   ),
-  (
+  (gen_random_uuid(),
     'cheese',
     393.9,
     100,
@@ -3585,7 +3585,7 @@ VALUES (
     0,
     0.5
   ),
-  (
+  (gen_random_uuid(),
     'tomato sandwich',
     192.6,
     100,
@@ -3599,7 +3599,7 @@ VALUES (
     1.7,
     3.8
   ),
-  (
+  (gen_random_uuid(),
     'cheese ball',
     413.6,
     100,
@@ -3613,7 +3613,7 @@ VALUES (
     1.8,
     2.9
   ),
-  (
+  (gen_random_uuid(),
     'cheese crackers',
     489,
     100,
@@ -3627,7 +3627,7 @@ VALUES (
     2.3,
     4.6
   ),
-  (
+  (gen_random_uuid(),
     'cheese curds',
     397.4,
     100,
@@ -3641,7 +3641,7 @@ VALUES (
     0,
     0.5
   ),
-  (
+  (gen_random_uuid(),
     'cheese dip',
     179.1,
     100,
@@ -3655,7 +3655,7 @@ VALUES (
     0.5,
     0.4
   ),
-  (
+  (gen_random_uuid(),
     'cheese enchiladas',
     217.8,
     100,
@@ -3669,7 +3669,7 @@ VALUES (
     2.1,
     2.8
   ),
-  (
+  (gen_random_uuid(),
     'cheese fondue',
     265,
     100,
@@ -3683,7 +3683,7 @@ VALUES (
     0.1,
     0.6
   ),
-  (
+  (gen_random_uuid(),
     'cheese fondue',
     265,
     100,
@@ -3697,7 +3697,7 @@ VALUES (
     0.1,
     0.6
   ),
-  (
+  (gen_random_uuid(),
     'cheese fries',
     287.5,
     100,
@@ -3711,7 +3711,7 @@ VALUES (
     0.4,
     0.3
   ),
-  (
+  (gen_random_uuid(),
     'cheese grits',
     148.3,
     100,
@@ -3725,7 +3725,7 @@ VALUES (
     0.6,
     0.1
   ),
-  (
+  (gen_random_uuid(),
     'cheese grits',
     148.3,
     100,
@@ -3739,7 +3739,7 @@ VALUES (
     0.6,
     0.1
   ),
-  (
+  (gen_random_uuid(),
     'cheese manicotti',
     173.6,
     100,
@@ -3753,7 +3753,7 @@ VALUES (
     0.9,
     2.2
   ),
-  (
+  (gen_random_uuid(),
     'cheese',
     393.9,
     100,
@@ -3767,7 +3767,7 @@ VALUES (
     0,
     0.5
   ),
-  (
+  (gen_random_uuid(),
     'omelette',
     176.7,
     100,
@@ -3781,7 +3781,7 @@ VALUES (
     0,
     0.3
   ),
-  (
+  (gen_random_uuid(),
     'cheese pizza',
     259.6,
     100,
@@ -3795,7 +3795,7 @@ VALUES (
     2.3,
     3.6
   ),
-  (
+  (gen_random_uuid(),
     'cheese pizza',
     259.6,
     100,
@@ -3809,7 +3809,7 @@ VALUES (
     2.3,
     3.6
   ),
-  (
+  (gen_random_uuid(),
     'cheese quesadilla',
     368.3,
     100,
@@ -3823,7 +3823,7 @@ VALUES (
     1.7,
     2.2
   ),
-  (
+  (gen_random_uuid(),
     'cheese quesadilla',
     368.3,
     100,
@@ -3837,7 +3837,7 @@ VALUES (
     1.7,
     2.2
   ),
-  (
+  (gen_random_uuid(),
     'cheese ravioli',
     181.5,
     100,
@@ -3851,7 +3851,7 @@ VALUES (
     1.1,
     0.5
   ),
-  (
+  (gen_random_uuid(),
     'cheese ravioli',
     181.5,
     100,
@@ -3865,7 +3865,7 @@ VALUES (
     1.1,
     0.5
   ),
-  (
+  (gen_random_uuid(),
     'cheese sandwich',
     338.6,
     100,
@@ -3879,7 +3879,7 @@ VALUES (
     1.3,
     5.1
   ),
-  (
+  (gen_random_uuid(),
     'cheese sauce',
     173.7,
     100,
@@ -3893,7 +3893,7 @@ VALUES (
     0.5,
     0.4
   ),
-  (
+  (gen_random_uuid(),
     'cheese sauce',
     173.7,
     100,
@@ -3907,7 +3907,7 @@ VALUES (
     0.5,
     0.4
   ),
-  (
+  (gen_random_uuid(),
     'cheese souffle',
     197.5,
     100,
@@ -3921,7 +3921,7 @@ VALUES (
     0.2,
     2.1
   ),
-  (
+  (gen_random_uuid(),
     'cheese souffle',
     197.5,
     100,
@@ -3935,7 +3935,7 @@ VALUES (
     0.2,
     2.1
   ),
-  (
+  (gen_random_uuid(),
     'cheese',
     393.9,
     100,
@@ -3949,7 +3949,7 @@ VALUES (
     0,
     0.5
   ),
-  (
+  (gen_random_uuid(),
     'cheese',
     393.9,
     100,
@@ -3963,7 +3963,7 @@ VALUES (
     0,
     0.5
   ),
-  (
+  (gen_random_uuid(),
     'cheese',
     393.9,
     100,
@@ -3977,7 +3977,7 @@ VALUES (
     0,
     0.5
   ),
-  (
+  (gen_random_uuid(),
     'cheese tortellini',
     298.6,
     100,
@@ -3991,7 +3991,7 @@ VALUES (
     1.9,
     1
   ),
-  (
+  (gen_random_uuid(),
     'cheeseburger',
     275.8,
     100,
@@ -4005,7 +4005,7 @@ VALUES (
     1.2,
     3.6
   ),
-  (
+  (gen_random_uuid(),
     'cheeseburger',
     275.8,
     100,
@@ -4019,7 +4019,7 @@ VALUES (
     1.2,
     3.6
   ),
-  (
+  (gen_random_uuid(),
     'cheesecake',
     314.5,
     100,
@@ -4033,7 +4033,7 @@ VALUES (
     0.4,
     21.8
   ),
-  (
+  (gen_random_uuid(),
     'cheesecake',
     314.5,
     100,
@@ -4047,7 +4047,7 @@ VALUES (
     0.4,
     21.8
   ),
-  (
+  (gen_random_uuid(),
     'cheesy garlic bread',
     381.1,
     100,
@@ -4061,7 +4061,7 @@ VALUES (
     1.2,
     2.2
   ),
-  (
+  (gen_random_uuid(),
     'cheesy garlic bread',
     381.1,
     100,
@@ -4075,7 +4075,7 @@ VALUES (
     1.2,
     2.2
   ),
-  (
+  (gen_random_uuid(),
     'pasta',
     156,
     100,
@@ -4089,7 +4089,7 @@ VALUES (
     1.8,
     0.6
   ),
-  (
+  (gen_random_uuid(),
     'potato casserole',
     169,
     100,
@@ -4103,7 +4103,7 @@ VALUES (
     1.1,
     1.2
   ),
-  (
+  (gen_random_uuid(),
     'cheesy potatoes',
     167.1,
     100,
@@ -4117,7 +4117,7 @@ VALUES (
     1,
     1.2
   ),
-  (
+  (gen_random_uuid(),
     'cheesy rice',
     155.7,
     100,
@@ -4131,7 +4131,7 @@ VALUES (
     0,
     0.7
   ),
-  (
+  (gen_random_uuid(),
     'chef salad',
     130.1,
     100,
@@ -4145,7 +4145,7 @@ VALUES (
     1.5,
     1.8
   ),
-  (
+  (gen_random_uuid(),
     'cherries',
     63.8,
     100,
@@ -4159,7 +4159,7 @@ VALUES (
     2.1,
     12.8
   ),
-  (
+  (gen_random_uuid(),
     'cherries',
     63.8,
     100,
@@ -4173,7 +4173,7 @@ VALUES (
     2.1,
     12.8
   ),
-  (
+  (gen_random_uuid(),
     'cherry pie',
     277.3,
     100,
@@ -4187,7 +4187,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'cherry tomatoes',
     17.8,
     100,
@@ -4201,7 +4201,7 @@ VALUES (
     1.2,
     2.6
   ),
-  (
+  (gen_random_uuid(),
     'chia',
     495.6,
     100,
@@ -4215,7 +4215,7 @@ VALUES (
     34.3,
     0
   ),
-  (
+  (gen_random_uuid(),
     'flour',
     362.6,
     100,
@@ -4229,7 +4229,7 @@ VALUES (
     2.7,
     0.3
   ),
-  (
+  (gen_random_uuid(),
     'chia seeds',
     475.3,
     100,
@@ -4243,7 +4243,7 @@ VALUES (
     34,
     0
   ),
-  (
+  (gen_random_uuid(),
     'chicken',
     222.6,
     100,
@@ -4257,7 +4257,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'chicken',
     222.6,
     100,
@@ -4271,7 +4271,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'chicken alfredo',
     256.9,
     100,
@@ -4285,7 +4285,7 @@ VALUES (
     0.8,
     1
   ),
-  (
+  (gen_random_uuid(),
     'chicken and broccoli',
     103.2,
     100,
@@ -4299,7 +4299,7 @@ VALUES (
     1.3,
     2.5
   ),
-  (
+  (gen_random_uuid(),
     'chicken and dumplings',
     137.5,
     100,
@@ -4313,7 +4313,7 @@ VALUES (
     0.8,
     1.3
   ),
-  (
+  (gen_random_uuid(),
     'chicken',
     222.6,
     100,
@@ -4327,7 +4327,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'mushrooms',
     27.9,
     100,
@@ -4341,7 +4341,7 @@ VALUES (
     2.2,
     2.3
   ),
-  (
+  (gen_random_uuid(),
     'chicken and rice',
     143.5,
     100,
@@ -4355,7 +4355,7 @@ VALUES (
     0.3,
     0.3
   ),
-  (
+  (gen_random_uuid(),
     'chicken and waffles',
     310.5,
     100,
@@ -4369,7 +4369,7 @@ VALUES (
     0.7,
     14.5
   ),
-  (
+  (gen_random_uuid(),
     'chicken biryani',
     140.2,
     100,
@@ -4383,7 +4383,7 @@ VALUES (
     0.7,
     1.5
   ),
-  (
+  (gen_random_uuid(),
     'chicken breast',
     166.2,
     100,
@@ -4397,7 +4397,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'chicken curry',
     106.3,
     100,
@@ -4411,7 +4411,7 @@ VALUES (
     0.6,
     0.9
   ),
-  (
+  (gen_random_uuid(),
     'chicken drumsticks',
     181.7,
     100,
@@ -4425,7 +4425,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'chicken enchiladas',
     214.7,
     100,
@@ -4439,7 +4439,7 @@ VALUES (
     1.8,
     2
   ),
-  (
+  (gen_random_uuid(),
     'chicken fajitas',
     197.3,
     100,
@@ -4453,7 +4453,7 @@ VALUES (
     1.4,
     1.1
   ),
-  (
+  (gen_random_uuid(),
     'chicken fried rice',
     159.9,
     100,
@@ -4467,7 +4467,7 @@ VALUES (
     0.5,
     0.5
   ),
-  (
+  (gen_random_uuid(),
     'chicken katsu',
     243.2,
     100,
@@ -4481,7 +4481,7 @@ VALUES (
     1,
     1.3
   ),
-  (
+  (gen_random_uuid(),
     'chicken marsala',
     250,
     100,
@@ -4495,7 +4495,7 @@ VALUES (
     0.4,
     0.6
   ),
-  (
+  (gen_random_uuid(),
     'chicken noodle',
     25.4,
     100,
@@ -4509,7 +4509,7 @@ VALUES (
     0.2,
     0.3
   ),
-  (
+  (gen_random_uuid(),
     'casserole',
     143.3,
     100,
@@ -4523,7 +4523,7 @@ VALUES (
     1,
     0.7
   ),
-  (
+  (gen_random_uuid(),
     'chicken noodle soup',
     25.4,
     100,
@@ -4537,7 +4537,7 @@ VALUES (
     0.2,
     0.3
   ),
-  (
+  (gen_random_uuid(),
     'chicken nuggets',
     313.4,
     100,
@@ -4551,7 +4551,7 @@ VALUES (
     0.9,
     0.1
   ),
-  (
+  (gen_random_uuid(),
     'chicken parmesan',
     203.5,
     100,
@@ -4565,7 +4565,7 @@ VALUES (
     0.9,
     2.8
   ),
-  (
+  (gen_random_uuid(),
     'chicken pot pie',
     201.6,
     100,
@@ -4579,7 +4579,7 @@ VALUES (
     1.1,
     2.2
   ),
-  (
+  (gen_random_uuid(),
     'chicken salad',
     231.4,
     100,
@@ -4593,7 +4593,7 @@ VALUES (
     0.3,
     2.2
   ),
-  (
+  (gen_random_uuid(),
     'chicken salad sandwich',
     238.1,
     100,
@@ -4607,7 +4607,7 @@ VALUES (
     0.9,
     3
   ),
-  (
+  (gen_random_uuid(),
     'chicken',
     222.6,
     100,
@@ -4621,7 +4621,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'satay',
     208.9,
     100,
@@ -4635,7 +4635,7 @@ VALUES (
     1.2,
     7
   ),
-  (
+  (gen_random_uuid(),
     'chicken',
     222.6,
     100,
@@ -4649,7 +4649,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'chicken',
     222.6,
     100,
@@ -4663,7 +4663,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'shawarma',
     195.9,
     100,
@@ -4677,7 +4677,7 @@ VALUES (
     0.7,
     0.8
   ),
-  (
+  (gen_random_uuid(),
     'chicken',
     222.6,
     100,
@@ -4691,7 +4691,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'chicken taco',
     183.8,
     100,
@@ -4705,7 +4705,7 @@ VALUES (
     1.2,
     1.3
   ),
-  (
+  (gen_random_uuid(),
     'chicken tenders',
     297.2,
     100,
@@ -4719,7 +4719,7 @@ VALUES (
     0.9,
     0.2
   ),
-  (
+  (gen_random_uuid(),
     'chicken thighs',
     210.2,
     100,
@@ -4733,7 +4733,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'chicken tikka',
     115.7,
     100,
@@ -4747,7 +4747,7 @@ VALUES (
     0.9,
     2.2
   ),
-  (
+  (gen_random_uuid(),
     'chicken tikka masala',
     149.9,
     100,
@@ -4761,7 +4761,7 @@ VALUES (
     0.8,
     2.4
   ),
-  (
+  (gen_random_uuid(),
     'chicken tortilla soup',
     52.4,
     100,
@@ -4775,7 +4775,7 @@ VALUES (
     1.2,
     1.6
   ),
-  (
+  (gen_random_uuid(),
     'chicken vindaloo',
     86.6,
     100,
@@ -4789,7 +4789,7 @@ VALUES (
     0.8,
     2.3
   ),
-  (
+  (gen_random_uuid(),
     'chicken wings',
     261.2,
     100,
@@ -4803,7 +4803,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'chicken wings',
     261.2,
     100,
@@ -4817,7 +4817,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'chickpea curry',
     141.4,
     100,
@@ -4831,7 +4831,7 @@ VALUES (
     3,
     3.6
   ),
-  (
+  (gen_random_uuid(),
     'chickpea flour',
     392,
     100,
@@ -4845,7 +4845,7 @@ VALUES (
     10.6,
     10.8
   ),
-  (
+  (gen_random_uuid(),
     'chickpea salad',
     128.8,
     100,
@@ -4859,7 +4859,7 @@ VALUES (
     4.5,
     3.4
   ),
-  (
+  (gen_random_uuid(),
     'chickpea soup',
     82.9,
     100,
@@ -4873,7 +4873,7 @@ VALUES (
     2.6,
     1.9
   ),
-  (
+  (gen_random_uuid(),
     'chickpea',
     165.1,
     100,
@@ -4887,7 +4887,7 @@ VALUES (
     7.7,
     4.8
   ),
-  (
+  (gen_random_uuid(),
     'stew',
     106.6,
     100,
@@ -4901,7 +4901,7 @@ VALUES (
     1.3,
     1.8
   ),
-  (
+  (gen_random_uuid(),
     'chickpea',
     165.1,
     100,
@@ -4915,7 +4915,7 @@ VALUES (
     7.7,
     4.8
   ),
-  (
+  (gen_random_uuid(),
     'tacos',
     205.5,
     100,
@@ -4929,7 +4929,7 @@ VALUES (
     2.9,
     1.6
   ),
-  (
+  (gen_random_uuid(),
     'chickpea',
     165.1,
     100,
@@ -4943,7 +4943,7 @@ VALUES (
     7.7,
     4.8
   ),
-  (
+  (gen_random_uuid(),
     'tikka masala',
     146.8,
     100,
@@ -4957,7 +4957,7 @@ VALUES (
     0.8,
     2.4
   ),
-  (
+  (gen_random_uuid(),
     'chickpea',
     165.1,
     100,
@@ -4971,7 +4971,7 @@ VALUES (
     7.7,
     4.8
   ),
-  (
+  (gen_random_uuid(),
     'vegetable soup',
     32.3,
     100,
@@ -4985,7 +4985,7 @@ VALUES (
     0.7,
     0.8
   ),
-  (
+  (gen_random_uuid(),
     'chickpea',
     165.1,
     100,
@@ -4999,7 +4999,7 @@ VALUES (
     7.7,
     4.8
   ),
-  (
+  (gen_random_uuid(),
     'wrap',
     333.5,
     100,
@@ -5013,7 +5013,7 @@ VALUES (
     3.3,
     0
   ),
-  (
+  (gen_random_uuid(),
     'chickpeas',
     166.1,
     100,
@@ -5027,7 +5027,7 @@ VALUES (
     7.5,
     4.8
   ),
-  (
+  (gen_random_uuid(),
     'chilaquiles',
     196.7,
     100,
@@ -5041,7 +5041,7 @@ VALUES (
     1.8,
     2.8
   ),
-  (
+  (gen_random_uuid(),
     'chile',
     39.2,
     100,
@@ -5055,7 +5055,7 @@ VALUES (
     1.5,
     5.2
   ),
-  (
+  (gen_random_uuid(),
     'chili cheese fries',
     215.1,
     100,
@@ -5069,7 +5069,7 @@ VALUES (
     1.7,
     0.6
   ),
-  (
+  (gen_random_uuid(),
     'chili con carne',
     149.2,
     100,
@@ -5083,7 +5083,7 @@ VALUES (
     2.7,
     2.3
   ),
-  (
+  (gen_random_uuid(),
     'chili dog',
     257,
     100,
@@ -5097,7 +5097,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'chili powder',
     279.5,
     100,
@@ -5111,7 +5111,7 @@ VALUES (
     34.5,
     7
   ),
-  (
+  (gen_random_uuid(),
     'chili powder',
     279.5,
     100,
@@ -5125,7 +5125,7 @@ VALUES (
     34.5,
     7
   ),
-  (
+  (gen_random_uuid(),
     'chili sauce',
     90.7,
     100,
@@ -5139,7 +5139,7 @@ VALUES (
     2.4,
     13.3
   ),
-  (
+  (gen_random_uuid(),
     'chimichanga',
     217,
     100,
@@ -5153,7 +5153,7 @@ VALUES (
     1.9,
     0.9
   ),
-  (
+  (gen_random_uuid(),
     'chimichurri',
     508.9,
     100,
@@ -5167,7 +5167,7 @@ VALUES (
     2.3,
     0.4
   ),
-  (
+  (gen_random_uuid(),
     'chipotle mayo',
     445.1,
     100,
@@ -5181,7 +5181,7 @@ VALUES (
     1.3,
     2.7
   ),
-  (
+  (gen_random_uuid(),
     'peppers',
     27.6,
     100,
@@ -5195,7 +5195,7 @@ VALUES (
     1.2,
     3.2
   ),
-  (
+  (gen_random_uuid(),
     'chive cream cheese',
     281.3,
     100,
@@ -5209,7 +5209,7 @@ VALUES (
     0.6,
     3.3
   ),
-  (
+  (gen_random_uuid(),
     'chocolate',
     540.2,
     100,
@@ -5223,7 +5223,7 @@ VALUES (
     3.4,
     51.4
   ),
-  (
+  (gen_random_uuid(),
     'chocolate',
     540.2,
     100,
@@ -5237,7 +5237,7 @@ VALUES (
     3.4,
     51.4
   ),
-  (
+  (gen_random_uuid(),
     'chocolate brownie',
     479,
     100,
@@ -5251,7 +5251,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'chocolate cake',
     391.8,
     100,
@@ -5265,7 +5265,7 @@ VALUES (
     2.2,
     39.6
   ),
-  (
+  (gen_random_uuid(),
     'chocolate chip cookies',
     478.6,
     100,
@@ -5279,7 +5279,7 @@ VALUES (
     2,
     32.8
   ),
-  (
+  (gen_random_uuid(),
     'chocolate chip muffins',
     335,
     100,
@@ -5293,7 +5293,7 @@ VALUES (
     1.8,
     21.3
   ),
-  (
+  (gen_random_uuid(),
     'chocolate chip pancakes',
     245.4,
     100,
@@ -5307,7 +5307,7 @@ VALUES (
     1.4,
     8.3
   ),
-  (
+  (gen_random_uuid(),
     'chocolate chip',
     482.9,
     100,
@@ -5321,7 +5321,7 @@ VALUES (
     6,
     54.4
   ),
-  (
+  (gen_random_uuid(),
     'scones',
     336.8,
     100,
@@ -5335,7 +5335,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'chocolate chip waffles',
     306.3,
     100,
@@ -5349,7 +5349,7 @@ VALUES (
     0.4,
     3.6
   ),
-  (
+  (gen_random_uuid(),
     'chocolate chips',
     467.3,
     100,
@@ -5363,7 +5363,7 @@ VALUES (
     5.9,
     54
   ),
-  (
+  (gen_random_uuid(),
     'chocolate cookies',
     502.6,
     100,
@@ -5377,7 +5377,7 @@ VALUES (
     2.1,
     41.7
   ),
-  (
+  (gen_random_uuid(),
     'chocolate covered strawberries',
     165.3,
     100,
@@ -5391,7 +5391,7 @@ VALUES (
     2.4,
     17.5
   ),
-  (
+  (gen_random_uuid(),
     'chocolate',
     540.2,
     100,
@@ -5405,7 +5405,7 @@ VALUES (
     3.4,
     51.4
   ),
-  (
+  (gen_random_uuid(),
     'croissant',
     395,
     100,
@@ -5419,7 +5419,7 @@ VALUES (
     2.6,
     11.2
   ),
-  (
+  (gen_random_uuid(),
     'chocolate',
     540.2,
     100,
@@ -5433,7 +5433,7 @@ VALUES (
     3.4,
     51.4
   ),
-  (
+  (gen_random_uuid(),
     'cupcakes',
     379.2,
     100,
@@ -5447,7 +5447,7 @@ VALUES (
     2.2,
     40
   ),
-  (
+  (gen_random_uuid(),
     'chocolate',
     540.2,
     100,
@@ -5461,7 +5461,7 @@ VALUES (
     3.4,
     51.4
   ),
-  (
+  (gen_random_uuid(),
     'fondue',
     269.7,
     100,
@@ -5475,7 +5475,7 @@ VALUES (
     0.1,
     0.6
   ),
-  (
+  (gen_random_uuid(),
     'chocolate frosting',
     389.1,
     100,
@@ -5489,7 +5489,7 @@ VALUES (
     0.9,
     57.7
   ),
-  (
+  (gen_random_uuid(),
     'chocolate ice cream',
     218.4,
     100,
@@ -5503,7 +5503,7 @@ VALUES (
     1.2,
     25.6
   ),
-  (
+  (gen_random_uuid(),
     'chocolate lava cake',
     438.7,
     100,
@@ -5517,7 +5517,7 @@ VALUES (
     2.3,
     30.7
   ),
-  (
+  (gen_random_uuid(),
     'chocolate milk',
     81.7,
     100,
@@ -5531,7 +5531,7 @@ VALUES (
     0.8,
     9.5
   ),
-  (
+  (gen_random_uuid(),
     'chocolate mousse',
     227,
     100,
@@ -5545,7 +5545,7 @@ VALUES (
     0.6,
     14.9
   ),
-  (
+  (gen_random_uuid(),
     'chocolate peanut butter',
     543.1,
     100,
@@ -5559,7 +5559,7 @@ VALUES (
     6.3,
     21.7
   ),
-  (
+  (gen_random_uuid(),
     'chocolate pudding',
     140.1,
     100,
@@ -5573,7 +5573,7 @@ VALUES (
     0,
     17
   ),
-  (
+  (gen_random_uuid(),
     'chocolate sauce',
     284,
     100,
@@ -5587,7 +5587,7 @@ VALUES (
     2.6,
     49.8
   ),
-  (
+  (gen_random_uuid(),
     'chocolate souffle',
     312.1,
     100,
@@ -5601,7 +5601,7 @@ VALUES (
     5.2,
     15.2
   ),
-  (
+  (gen_random_uuid(),
     'chocolate syrup',
     272.8,
     100,
@@ -5615,7 +5615,7 @@ VALUES (
     2.6,
     49.3
   ),
-  (
+  (gen_random_uuid(),
     'chocolate truffles',
     495.9,
     100,
@@ -5629,7 +5629,7 @@ VALUES (
     2.5,
     38.2
   ),
-  (
+  (gen_random_uuid(),
     'pretzels',
     389.1,
     100,
@@ -5643,7 +5643,7 @@ VALUES (
     3.4,
     2.2
   ),
-  (
+  (gen_random_uuid(),
     'chow mein',
     165.3,
     100,
@@ -5657,7 +5657,7 @@ VALUES (
     0.9,
     1.1
   ),
-  (
+  (gen_random_uuid(),
     'chowder',
     79.1,
     100,
@@ -5671,7 +5671,7 @@ VALUES (
     1,
     0.2
   ),
-  (
+  (gen_random_uuid(),
     'ciabatta',
     270.4,
     100,
@@ -5685,7 +5685,7 @@ VALUES (
     2.7,
     5.6
   ),
-  (
+  (gen_random_uuid(),
     'cilantro',
     22.9,
     100,
@@ -5699,7 +5699,7 @@ VALUES (
     2.8,
     0.8
   ),
-  (
+  (gen_random_uuid(),
     'cilantro lime rice',
     124.5,
     100,
@@ -5713,7 +5713,7 @@ VALUES (
     0.1,
     0.1
   ),
-  (
+  (gen_random_uuid(),
     'cilantro',
     22.9,
     100,
@@ -5727,7 +5727,7 @@ VALUES (
     2.8,
     0.8
   ),
-  (
+  (gen_random_uuid(),
     'pesto',
     502.4,
     100,
@@ -5741,7 +5741,7 @@ VALUES (
     1.1,
     0.8
   ),
-  (
+  (gen_random_uuid(),
     'cilantro sauce',
     445.2,
     100,
@@ -5755,7 +5755,7 @@ VALUES (
     0.3,
     4.5
   ),
-  (
+  (gen_random_uuid(),
     'cinnamon',
     247.4,
     100,
@@ -5769,7 +5769,7 @@ VALUES (
     53.8,
     2.3
   ),
-  (
+  (gen_random_uuid(),
     'cinnamon bread',
     341,
     100,
@@ -5783,7 +5783,7 @@ VALUES (
     3.2,
     31.9
   ),
-  (
+  (gen_random_uuid(),
     'cinnamon buns',
     462.9,
     100,
@@ -5797,7 +5797,7 @@ VALUES (
     1.2,
     25.6
   ),
-  (
+  (gen_random_uuid(),
     'cinnamon rolls',
     334.6,
     100,
@@ -5811,7 +5811,7 @@ VALUES (
     1.4,
     21.5
   ),
-  (
+  (gen_random_uuid(),
     'cinnamon sugar',
     360.4,
     100,
@@ -5825,7 +5825,7 @@ VALUES (
     9.2,
     82.4
   ),
-  (
+  (gen_random_uuid(),
     'salad',
     23.6,
     100,
@@ -5839,7 +5839,7 @@ VALUES (
     1.9,
     2.2
   ),
-  (
+  (gen_random_uuid(),
     'clam chowder',
     79,
     100,
@@ -5853,7 +5853,7 @@ VALUES (
     1,
     0.2
   ),
-  (
+  (gen_random_uuid(),
     'clams',
     152.1,
     100,
@@ -5867,7 +5867,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'cream',
     347.4,
     100,
@@ -5881,7 +5881,7 @@ VALUES (
     0,
     2.9
   ),
-  (
+  (gen_random_uuid(),
     'cochinita pibil',
     138.8,
     100,
@@ -5895,7 +5895,7 @@ VALUES (
     0.7,
     3.3
   ),
-  (
+  (gen_random_uuid(),
     'cocktail sauce',
     122.9,
     100,
@@ -5909,7 +5909,7 @@ VALUES (
     1.8,
     11.9
   ),
-  (
+  (gen_random_uuid(),
     'coconut cake',
     364.4,
     100,
@@ -5923,7 +5923,7 @@ VALUES (
     1,
     57.2
   ),
-  (
+  (gen_random_uuid(),
     'coconut candy',
     363,
     100,
@@ -5937,7 +5937,7 @@ VALUES (
     3.6,
     54.6
   ),
-  (
+  (gen_random_uuid(),
     'coconut chicken',
     213.6,
     100,
@@ -5951,7 +5951,7 @@ VALUES (
     0.6,
     1.2
   ),
-  (
+  (gen_random_uuid(),
     'coconut cookies',
     438,
     100,
@@ -5965,7 +5965,7 @@ VALUES (
     2.4,
     38.2
   ),
-  (
+  (gen_random_uuid(),
     'coconut cream',
     357.4,
     100,
@@ -5979,7 +5979,7 @@ VALUES (
     0.2,
     51.6
   ),
-  (
+  (gen_random_uuid(),
     'coconut cream pie',
     292.3,
     100,
@@ -5993,7 +5993,7 @@ VALUES (
     1.3,
     18.7
   ),
-  (
+  (gen_random_uuid(),
     'coconut curry',
     137,
     100,
@@ -6007,7 +6007,7 @@ VALUES (
     0.6,
     1
   ),
-  (
+  (gen_random_uuid(),
     'coconut custard',
     321.7,
     100,
@@ -6021,7 +6021,7 @@ VALUES (
     1.3,
     16.6
   ),
-  (
+  (gen_random_uuid(),
     'pie',
     232.2,
     100,
@@ -6035,7 +6035,7 @@ VALUES (
     1.6,
     15.7
   ),
-  (
+  (gen_random_uuid(),
     'coconut',
     455.3,
     100,
@@ -6049,7 +6049,7 @@ VALUES (
     9.9,
     36.9
   ),
-  (
+  (gen_random_uuid(),
     'donuts',
     420.2,
     100,
@@ -6063,7 +6063,7 @@ VALUES (
     2.1,
     22.5
   ),
-  (
+  (gen_random_uuid(),
     'coconut flakes',
     461.9,
     100,
@@ -6077,7 +6077,7 @@ VALUES (
     9.7,
     36.6
   ),
-  (
+  (gen_random_uuid(),
     'coconut flakes',
     461.9,
     100,
@@ -6091,7 +6091,7 @@ VALUES (
     9.7,
     36.6
   ),
-  (
+  (gen_random_uuid(),
     'coconut flour',
     456.9,
     100,
@@ -6105,7 +6105,7 @@ VALUES (
     9,
     14.8
   ),
-  (
+  (gen_random_uuid(),
     'coconut',
     455.3,
     100,
@@ -6119,7 +6119,7 @@ VALUES (
     9.9,
     36.9
   ),
-  (
+  (gen_random_uuid(),
     'frosting',
     401,
     100,
@@ -6133,7 +6133,7 @@ VALUES (
     0.9,
     57.7
   ),
-  (
+  (gen_random_uuid(),
     'coconut ice cream',
     262.1,
     100,
@@ -6147,7 +6147,7 @@ VALUES (
     1.9,
     27.1
   ),
-  (
+  (gen_random_uuid(),
     'coconut milk',
     197.2,
     100,
@@ -6161,7 +6161,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'coconut milk',
     197.2,
     100,
@@ -6175,7 +6175,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'coconut oil',
     881.6,
     100,
@@ -6189,7 +6189,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'coconut',
     455.3,
     100,
@@ -6203,7 +6203,7 @@ VALUES (
     9.9,
     36.9
   ),
-  (
+  (gen_random_uuid(),
     'pancakes',
     230.7,
     100,
@@ -6217,7 +6217,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'coconut',
     455.3,
     100,
@@ -6231,7 +6231,7 @@ VALUES (
     9.9,
     36.9
   ),
-  (
+  (gen_random_uuid(),
     'pudding',
     132.8,
     100,
@@ -6245,7 +6245,7 @@ VALUES (
     0,
     17.1
   ),
-  (
+  (gen_random_uuid(),
     'coconut shrimp',
     240.8,
     100,
@@ -6259,7 +6259,7 @@ VALUES (
     1.5,
     0.1
   ),
-  (
+  (gen_random_uuid(),
     'coconut',
     455.3,
     100,
@@ -6273,7 +6273,7 @@ VALUES (
     9.9,
     36.9
   ),
-  (
+  (gen_random_uuid(),
     'sorbet',
     118.7,
     100,
@@ -6287,7 +6287,7 @@ VALUES (
     0.3,
     29.5
   ),
-  (
+  (gen_random_uuid(),
     'coconut sugar',
     381.6,
     100,
@@ -6301,7 +6301,7 @@ VALUES (
     0,
     99.3
   ),
-  (
+  (gen_random_uuid(),
     'coconut water',
     19.1,
     100,
@@ -6315,7 +6315,7 @@ VALUES (
     1.1,
     2.6
   ),
-  (
+  (gen_random_uuid(),
     'coconut water',
     19.1,
     100,
@@ -6329,7 +6329,7 @@ VALUES (
     1.1,
     2.6
   ),
-  (
+  (gen_random_uuid(),
     'coconut yogurt',
     94.9,
     100,
@@ -6343,7 +6343,7 @@ VALUES (
     0,
     18.9
   ),
-  (
+  (gen_random_uuid(),
     'coffee cake',
     424.9,
     100,
@@ -6357,7 +6357,7 @@ VALUES (
     2,
     0
   ),
-  (
+  (gen_random_uuid(),
     'coffee ice cream',
     211.5,
     100,
@@ -6371,7 +6371,7 @@ VALUES (
     0,
     17.7
   ),
-  (
+  (gen_random_uuid(),
     'coffee liqueur',
     304,
     100,
@@ -6385,7 +6385,7 @@ VALUES (
     0,
     31.9
   ),
-  (
+  (gen_random_uuid(),
     'coffee syrup',
     366.7,
     100,
@@ -6399,7 +6399,7 @@ VALUES (
     0,
     94.7
   ),
-  (
+  (gen_random_uuid(),
     'coleslaw',
     160.8,
     100,
@@ -6413,7 +6413,7 @@ VALUES (
     1.9,
     9.6
   ),
-  (
+  (gen_random_uuid(),
     'collard greens',
     33.5,
     100,
@@ -6427,7 +6427,7 @@ VALUES (
     4,
     0.4
   ),
-  (
+  (gen_random_uuid(),
     'conch',
     128.9,
     100,
@@ -6441,7 +6441,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'fritters',
     264,
     100,
@@ -6455,7 +6455,7 @@ VALUES (
     2.8,
     3.9
   ),
-  (
+  (gen_random_uuid(),
     'conch',
     128.9,
     100,
@@ -6469,7 +6469,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'salad',
     23.6,
     100,
@@ -6483,7 +6483,7 @@ VALUES (
     1.9,
     2.2
   ),
-  (
+  (gen_random_uuid(),
     'condensed milk',
     328.5,
     100,
@@ -6497,7 +6497,7 @@ VALUES (
     0,
     54.5
   ),
-  (
+  (gen_random_uuid(),
     'coney',
     264.4,
     100,
@@ -6511,7 +6511,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'congee',
     73,
     100,
@@ -6525,7 +6525,7 @@ VALUES (
     0,
     1.4
   ),
-  (
+  (gen_random_uuid(),
     'cookie dough',
     459.6,
     100,
@@ -6539,7 +6539,7 @@ VALUES (
     1.5,
     37.8
   ),
-  (
+  (gen_random_uuid(),
     'cookie dough ice cream',
     229.5,
     100,
@@ -6553,7 +6553,7 @@ VALUES (
     0.8,
     23.2
   ),
-  (
+  (gen_random_uuid(),
     'cookies and cream ice cream',
     248.5,
     100,
@@ -6567,7 +6567,7 @@ VALUES (
     1.1,
     24.4
   ),
-  (
+  (gen_random_uuid(),
     'coq au vin',
     110.3,
     100,
@@ -6581,7 +6581,7 @@ VALUES (
     0.6,
     1.5
   ),
-  (
+  (gen_random_uuid(),
     'coriander',
     306.3,
     100,
@@ -6595,7 +6595,7 @@ VALUES (
     41,
     0
   ),
-  (
+  (gen_random_uuid(),
     'corn',
     93.9,
     100,
@@ -6609,7 +6609,7 @@ VALUES (
     2.4,
     4.6
   ),
-  (
+  (gen_random_uuid(),
     'corn bread',
     264.2,
     100,
@@ -6623,7 +6623,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'corn',
     93.9,
     100,
@@ -6637,7 +6637,7 @@ VALUES (
     2.4,
     4.6
   ),
-  (
+  (gen_random_uuid(),
     'casserole',
     143.3,
     100,
@@ -6651,7 +6651,7 @@ VALUES (
     1,
     0.7
   ),
-  (
+  (gen_random_uuid(),
     'corn chowder',
     104.9,
     100,
@@ -6665,7 +6665,7 @@ VALUES (
     0.5,
     1.5
   ),
-  (
+  (gen_random_uuid(),
     'corn dogs',
     270.4,
     100,
@@ -6679,7 +6679,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'corn flakes',
     366.8,
     100,
@@ -6693,7 +6693,7 @@ VALUES (
     3.3,
     9.6
   ),
-  (
+  (gen_random_uuid(),
     'corn fritters',
     233.3,
     100,
@@ -6707,7 +6707,7 @@ VALUES (
     1.8,
     5.5
   ),
-  (
+  (gen_random_uuid(),
     'corn muffins',
     297.8,
     100,
@@ -6721,7 +6721,7 @@ VALUES (
     3.4,
     17.7
   ),
-  (
+  (gen_random_uuid(),
     'corn on the cob',
     97.9,
     100,
@@ -6735,7 +6735,7 @@ VALUES (
     2.4,
     4.5
   ),
-  (
+  (gen_random_uuid(),
     'corn',
     93.9,
     100,
@@ -6749,7 +6749,7 @@ VALUES (
     2.4,
     4.6
   ),
-  (
+  (gen_random_uuid(),
     'pancakes',
     230.7,
     100,
@@ -6763,7 +6763,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'corn salsa',
     102.1,
     100,
@@ -6777,7 +6777,7 @@ VALUES (
     1.7,
     3.1
   ),
-  (
+  (gen_random_uuid(),
     'cornbread stuffing',
     178.3,
     100,
@@ -6791,7 +6791,7 @@ VALUES (
     2.9,
     0
   ),
-  (
+  (gen_random_uuid(),
     'corned beef',
     250.7,
     100,
@@ -6805,7 +6805,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'corned beef',
     250.7,
     100,
@@ -6819,7 +6819,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'corned beef',
     250.7,
     100,
@@ -6833,7 +6833,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'cabbage',
     23.4,
     100,
@@ -6847,7 +6847,7 @@ VALUES (
     1.9,
     2.8
   ),
-  (
+  (gen_random_uuid(),
     'corned beef hash',
     168,
     100,
@@ -6861,7 +6861,7 @@ VALUES (
     1.1,
     0.3
   ),
-  (
+  (gen_random_uuid(),
     'corned beef sandwich',
     199.8,
     100,
@@ -6875,7 +6875,7 @@ VALUES (
     2.5,
     1.9
   ),
-  (
+  (gen_random_uuid(),
     'cornmeal mush',
     81.1,
     100,
@@ -6889,7 +6889,7 @@ VALUES (
     0.8,
     0.1
   ),
-  (
+  (gen_random_uuid(),
     'cornmeal',
     368.6,
     100,
@@ -6903,7 +6903,7 @@ VALUES (
     7.3,
     0.6
   ),
-  (
+  (gen_random_uuid(),
     'porridge',
     91,
     100,
@@ -6917,8 +6917,8 @@ VALUES (
     1.2,
     0.1
   ),
-  ('corona', 42.8, 100, 0, 0, 0, 0, 0, 0, 4.1, 0, 0),
-  (
+  (gen_random_uuid(),'corona', 42.8, 100, 0, 0, 0, 0, 0, 0, 4.1, 0, 0),
+  (gen_random_uuid(),
     'beer',
     43.3,
     100,
@@ -6932,7 +6932,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'cosmopolitan',
     144.3,
     100,
@@ -6946,7 +6946,7 @@ VALUES (
     0.1,
     8.4
   ),
-  (
+  (gen_random_uuid(),
     'cocktail',
     139.7,
     100,
@@ -6960,7 +6960,7 @@ VALUES (
     0.1,
     8.4
   ),
-  (
+  (gen_random_uuid(),
     'cotija cheese',
     375.6,
     100,
@@ -6974,7 +6974,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'cottage cheese',
     98.3,
     100,
@@ -6988,7 +6988,7 @@ VALUES (
     0,
     2.7
   ),
-  (
+  (gen_random_uuid(),
     'pie',
     232.2,
     100,
@@ -7002,7 +7002,7 @@ VALUES (
     1.6,
     15.7
   ),
-  (
+  (gen_random_uuid(),
     'cotton candy',
     378.2,
     100,
@@ -7016,7 +7016,7 @@ VALUES (
     0,
     99.7
   ),
-  (
+  (gen_random_uuid(),
     'country fried steak',
     178.2,
     100,
@@ -7030,7 +7030,7 @@ VALUES (
     0.3,
     0.7
   ),
-  (
+  (gen_random_uuid(),
     'courgette',
     15.1,
     100,
@@ -7044,7 +7044,7 @@ VALUES (
     1,
     1.7
   ),
-  (
+  (gen_random_uuid(),
     'fritters',
     264,
     100,
@@ -7058,7 +7058,7 @@ VALUES (
     2.8,
     3.9
   ),
-  (
+  (gen_random_uuid(),
     'courgette',
     15.1,
     100,
@@ -7072,7 +7072,7 @@ VALUES (
     1,
     1.7
   ),
-  (
+  (gen_random_uuid(),
     'noodles',
     161.8,
     100,
@@ -7086,7 +7086,7 @@ VALUES (
     1.8,
     0.6
   ),
-  (
+  (gen_random_uuid(),
     'courgette',
     15.1,
     100,
@@ -7100,7 +7100,7 @@ VALUES (
     1,
     1.7
   ),
-  (
+  (gen_random_uuid(),
     'soup',
     24.6,
     100,
@@ -7114,7 +7114,7 @@ VALUES (
     0.2,
     0.3
   ),
-  (
+  (gen_random_uuid(),
     'couscous',
     114.1,
     100,
@@ -7128,7 +7128,7 @@ VALUES (
     1.4,
     0.1
   ),
-  (
+  (gen_random_uuid(),
     'crab',
     80.9,
     100,
@@ -7142,7 +7142,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'crab',
     80.9,
     100,
@@ -7156,7 +7156,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'crab cakes',
     168.7,
     100,
@@ -7170,7 +7170,7 @@ VALUES (
     0.5,
     1.4
   ),
-  (
+  (gen_random_uuid(),
     'crab dip',
     249.8,
     100,
@@ -7184,7 +7184,7 @@ VALUES (
     0,
     1.5
   ),
-  (
+  (gen_random_uuid(),
     'crab',
     80.9,
     100,
@@ -7198,7 +7198,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'crab meat',
     80.5,
     100,
@@ -7212,7 +7212,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'crab rangoon',
     273.8,
     100,
@@ -7226,7 +7226,7 @@ VALUES (
     0.9,
     1.1
   ),
-  (
+  (gen_random_uuid(),
     'crab salad',
     153.5,
     100,
@@ -7240,7 +7240,7 @@ VALUES (
     0.1,
     0.5
   ),
-  (
+  (gen_random_uuid(),
     'crab',
     80.9,
     100,
@@ -7254,7 +7254,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'sandwich',
     269.5,
     100,
@@ -7268,7 +7268,7 @@ VALUES (
     4,
     5.9
   ),
-  (
+  (gen_random_uuid(),
     'crab',
     80.9,
     100,
@@ -7282,7 +7282,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'soup',
     24.6,
     100,
@@ -7296,7 +7296,7 @@ VALUES (
     0.2,
     0.3
   ),
-  (
+  (gen_random_uuid(),
     'mushrooms',
     27.9,
     100,
@@ -7310,7 +7310,7 @@ VALUES (
     2.2,
     2.3
   ),
-  (
+  (gen_random_uuid(),
     'cranberries',
     47.1,
     100,
@@ -7324,7 +7324,7 @@ VALUES (
     3.7,
     4.3
   ),
-  (
+  (gen_random_uuid(),
     'cranberry juice',
     43.7,
     100,
@@ -7338,7 +7338,7 @@ VALUES (
     0.1,
     9.9
   ),
-  (
+  (gen_random_uuid(),
     'cranberry sauce',
     161.3,
     100,
@@ -7352,7 +7352,7 @@ VALUES (
     1.1,
     31.6
   ),
-  (
+  (gen_random_uuid(),
     'cranberry scones',
     302.5,
     100,
@@ -7366,7 +7366,7 @@ VALUES (
     1.9,
     15.6
   ),
-  (
+  (gen_random_uuid(),
     'cranberry',
     45.4,
     100,
@@ -7380,7 +7380,7 @@ VALUES (
     3.6,
     4.3
   ),
-  (
+  (gen_random_uuid(),
     'tart',
     282.3,
     100,
@@ -7394,7 +7394,7 @@ VALUES (
     1.5,
     25.4
   ),
-  (
+  (gen_random_uuid(),
     'cranberry walnut bread',
     279.5,
     100,
@@ -7408,7 +7408,7 @@ VALUES (
     1.9,
     20.3
   ),
-  (
+  (gen_random_uuid(),
     'cream',
     347.4,
     100,
@@ -7422,7 +7422,7 @@ VALUES (
     0,
     2.9
   ),
-  (
+  (gen_random_uuid(),
     'cream cheese',
     342,
     100,
@@ -7436,7 +7436,7 @@ VALUES (
     0,
     3.7
   ),
-  (
+  (gen_random_uuid(),
     'creamed corn',
     72.8,
     100,
@@ -7450,7 +7450,7 @@ VALUES (
     1.2,
     3.3
   ),
-  (
+  (gen_random_uuid(),
     'chicken',
     222.6,
     100,
@@ -7464,7 +7464,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'pasta',
     156,
     100,
@@ -7478,7 +7478,7 @@ VALUES (
     1.8,
     0.6
   ),
-  (
+  (gen_random_uuid(),
     'polenta',
     79.6,
     100,
@@ -7492,7 +7492,7 @@ VALUES (
     0.8,
     0.1
   ),
-  (
+  (gen_random_uuid(),
     'creme brulee',
     337.3,
     100,
@@ -7506,7 +7506,7 @@ VALUES (
     0,
     15.1
   ),
-  (
+  (gen_random_uuid(),
     'creme fraiche',
     392.2,
     100,
@@ -7520,7 +7520,7 @@ VALUES (
     0,
     2.4
   ),
-  (
+  (gen_random_uuid(),
     'crepe',
     168.6,
     100,
@@ -7534,7 +7534,7 @@ VALUES (
     0.5,
     0.1
   ),
-  (
+  (gen_random_uuid(),
     'cake',
     393.6,
     100,
@@ -7548,7 +7548,7 @@ VALUES (
     0.3,
     42.1
   ),
-  (
+  (gen_random_uuid(),
     'crepes',
     166.8,
     100,
@@ -7562,7 +7562,7 @@ VALUES (
     0.5,
     0.1
   ),
-  (
+  (gen_random_uuid(),
     'duck',
     329.3,
     100,
@@ -7576,7 +7576,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'fried chicken',
     261.5,
     100,
@@ -7590,7 +7590,7 @@ VALUES (
     0.1,
     0
   ),
-  (
+  (gen_random_uuid(),
     'croissants',
     416.8,
     100,
@@ -7604,7 +7604,7 @@ VALUES (
     2.6,
     11.2
   ),
-  (
+  (gen_random_uuid(),
     'crostini',
     491.5,
     100,
@@ -7618,7 +7618,7 @@ VALUES (
     1.3,
     2.9
   ),
-  (
+  (gen_random_uuid(),
     'crouton',
     466.7,
     100,
@@ -7632,7 +7632,7 @@ VALUES (
     5,
     4.4
   ),
-  (
+  (gen_random_uuid(),
     'salad',
     23.6,
     100,
@@ -7646,7 +7646,7 @@ VALUES (
     1.9,
     2.2
   ),
-  (
+  (gen_random_uuid(),
     'crouton',
     466.7,
     100,
@@ -7660,7 +7660,7 @@ VALUES (
     5,
     4.4
   ),
-  (
+  (gen_random_uuid(),
     'soup',
     24.6,
     100,
@@ -7674,7 +7674,7 @@ VALUES (
     0.2,
     0.3
   ),
-  (
+  (gen_random_uuid(),
     'croutons',
     459.5,
     100,
@@ -7688,7 +7688,7 @@ VALUES (
     4.9,
     4.5
   ),
-  (
+  (gen_random_uuid(),
     'bacon',
     466.4,
     100,
@@ -7702,7 +7702,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'cucumber salad',
     28.9,
     100,
@@ -7716,7 +7716,7 @@ VALUES (
     0.4,
     5.4
   ),
-  (
+  (gen_random_uuid(),
     'cucumber sandwich',
     250.3,
     100,
@@ -7730,7 +7730,7 @@ VALUES (
     1.5,
     4
   ),
-  (
+  (gen_random_uuid(),
     'cucumber water',
     1.2,
     100,
@@ -7744,7 +7744,7 @@ VALUES (
     0.1,
     0.1
   ),
-  (
+  (gen_random_uuid(),
     'cucumbers',
     15.1,
     100,
@@ -7758,7 +7758,7 @@ VALUES (
     0.5,
     1.7
   ),
-  (
+  (gen_random_uuid(),
     'cucumbers',
     15.1,
     100,
@@ -7772,7 +7772,7 @@ VALUES (
     0.5,
     1.7
   ),
-  (
+  (gen_random_uuid(),
     'cucumbers',
     15.1,
     100,
@@ -7786,7 +7786,7 @@ VALUES (
     0.5,
     1.7
   ),
-  (
+  (gen_random_uuid(),
     'onions',
     44.5,
     100,
@@ -7800,7 +7800,7 @@ VALUES (
     1.4,
     4.8
   ),
-  (
+  (gen_random_uuid(),
     'cumin',
     379.3,
     100,
@@ -7814,7 +7814,7 @@ VALUES (
     10.5,
     2.4
   ),
-  (
+  (gen_random_uuid(),
     'curry chicken',
     101.4,
     100,
@@ -7828,7 +7828,7 @@ VALUES (
     0.6,
     0.9
   ),
-  (
+  (gen_random_uuid(),
     'curry leaves',
     24.3,
     100,
@@ -7842,7 +7842,7 @@ VALUES (
     2,
     0
   ),
-  (
+  (gen_random_uuid(),
     'curry paste',
     110.8,
     100,
@@ -7856,7 +7856,7 @@ VALUES (
     2.9,
     2.7
   ),
-  (
+  (gen_random_uuid(),
     'curry powder',
     329.7,
     100,
@@ -7870,7 +7870,7 @@ VALUES (
     53.6,
     3
   ),
-  (
+  (gen_random_uuid(),
     'curry sauce',
     69.5,
     100,
@@ -7884,7 +7884,7 @@ VALUES (
     1,
     1.4
   ),
-  (
+  (gen_random_uuid(),
     'custard pie',
     193.7,
     100,
@@ -7898,7 +7898,7 @@ VALUES (
     0.5,
     18.1
   ),
-  (
+  (gen_random_uuid(),
     'custard tart',
     241.5,
     100,
@@ -7912,7 +7912,7 @@ VALUES (
     0.6,
     14.5
   ),
-  (
+  (gen_random_uuid(),
     'dal makhani',
     170.9,
     100,
@@ -7926,7 +7926,7 @@ VALUES (
     5.3,
     2.4
   ),
-  (
+  (gen_random_uuid(),
     'dal',
     102.2,
     100,
@@ -7940,7 +7940,7 @@ VALUES (
     5.9,
     2.1
   ),
-  (
+  (gen_random_uuid(),
     'dandelion greens',
     45.3,
     100,
@@ -7954,7 +7954,7 @@ VALUES (
     3.5,
     0.7
   ),
-  (
+  (gen_random_uuid(),
     'dark chocolate',
     542,
     100,
@@ -7968,7 +7968,7 @@ VALUES (
     7,
     48.3
   ),
-  (
+  (gen_random_uuid(),
     'dates',
     276.5,
     100,
@@ -7982,7 +7982,7 @@ VALUES (
     8.1,
     63.3
   ),
-  (
+  (gen_random_uuid(),
     'dates',
     276.5,
     100,
@@ -7996,7 +7996,7 @@ VALUES (
     8.1,
     63.3
   ),
-  (
+  (gen_random_uuid(),
     'deep dish pizza',
     211.4,
     100,
@@ -8010,7 +8010,7 @@ VALUES (
     1.4,
     2.1
   ),
-  (
+  (gen_random_uuid(),
     'oreos',
     460.6,
     100,
@@ -8024,7 +8024,7 @@ VALUES (
     3,
     41.1
   ),
-  (
+  (gen_random_uuid(),
     'steak',
     273.4,
     100,
@@ -8038,7 +8038,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'sugar',
     385.6,
     100,
@@ -8052,7 +8052,7 @@ VALUES (
     0,
     100.1
   ),
-  (
+  (gen_random_uuid(),
     'deviled eggs',
     222.2,
     100,
@@ -8066,7 +8066,7 @@ VALUES (
     0.4,
     0.4
   ),
-  (
+  (gen_random_uuid(),
     'ham',
     141.6,
     100,
@@ -8080,7 +8080,7 @@ VALUES (
     0,
     1.1
   ),
-  (
+  (gen_random_uuid(),
     'dijon mustard',
     57.5,
     100,
@@ -8094,8 +8094,8 @@ VALUES (
     3.9,
     0.9
   ),
-  ('dill', 44.3, 100, 1, 0, 3, 61, 66, 0, 7.1, 2, 0),
-  (
+  (gen_random_uuid(),'dill', 44.3, 100, 1, 0, 3, 61, 66, 0, 7.1, 2, 0),
+  (gen_random_uuid(),
     'dill pickles',
     12,
     100,
@@ -8109,7 +8109,7 @@ VALUES (
     1,
     1.1
   ),
-  (
+  (gen_random_uuid(),
     'dim sum',
     203.5,
     100,
@@ -8123,7 +8123,7 @@ VALUES (
     1.5,
     2.9
   ),
-  (
+  (gen_random_uuid(),
     'dosa',
     170.5,
     100,
@@ -8137,7 +8137,7 @@ VALUES (
     0.9,
     0.2
   ),
-  (
+  (gen_random_uuid(),
     'double cheeseburger',
     272.4,
     100,
@@ -8151,7 +8151,7 @@ VALUES (
     1,
     3.5
   ),
-  (
+  (gen_random_uuid(),
     'dragon fruit',
     30.2,
     100,
@@ -8165,7 +8165,7 @@ VALUES (
     1.5,
     4.5
   ),
-  (
+  (gen_random_uuid(),
     'dragonfruit',
     31.3,
     100,
@@ -8179,7 +8179,7 @@ VALUES (
     1.5,
     4.5
   ),
-  (
+  (gen_random_uuid(),
     'dried apples',
     245.9,
     100,
@@ -8193,7 +8193,7 @@ VALUES (
     8.6,
     57.2
   ),
-  (
+  (gen_random_uuid(),
     'dried apples',
     245.9,
     100,
@@ -8207,7 +8207,7 @@ VALUES (
     8.6,
     57.2
   ),
-  (
+  (gen_random_uuid(),
     'dried apricots',
     236.3,
     100,
@@ -8221,7 +8221,7 @@ VALUES (
     7.5,
     53.9
   ),
-  (
+  (gen_random_uuid(),
     'dried apricots',
     236.3,
     100,
@@ -8235,7 +8235,7 @@ VALUES (
     7.5,
     53.9
   ),
-  (
+  (gen_random_uuid(),
     'dried basil',
     233.6,
     100,
@@ -8249,7 +8249,7 @@ VALUES (
     36.7,
     1.4
   ),
-  (
+  (gen_random_uuid(),
     'blueberries',
     55.7,
     100,
@@ -8263,7 +8263,7 @@ VALUES (
     2.2,
     10.3
   ),
-  (
+  (gen_random_uuid(),
     'blueberries',
     55.7,
     100,
@@ -8277,7 +8277,7 @@ VALUES (
     2.2,
     10.3
   ),
-  (
+  (gen_random_uuid(),
     'dried cherries',
     336.1,
     100,
@@ -8291,7 +8291,7 @@ VALUES (
     2.5,
     67
   ),
-  (
+  (gen_random_uuid(),
     'dried cherries',
     336.1,
     100,
@@ -8305,7 +8305,7 @@ VALUES (
     2.5,
     67
   ),
-  (
+  (gen_random_uuid(),
     'dried cranberries',
     308.8,
     100,
@@ -8319,7 +8319,7 @@ VALUES (
     5.3,
     73.2
   ),
-  (
+  (gen_random_uuid(),
     'dried cranberries',
     308.8,
     100,
@@ -8333,7 +8333,7 @@ VALUES (
     5.3,
     73.2
   ),
-  (
+  (gen_random_uuid(),
     'currants',
     289.8,
     100,
@@ -8347,7 +8347,7 @@ VALUES (
     6.8,
     67.9
   ),
-  (
+  (gen_random_uuid(),
     'currants',
     289.8,
     100,
@@ -8361,7 +8361,7 @@ VALUES (
     6.8,
     67.9
   ),
-  (
+  (gen_random_uuid(),
     'dates',
     276.5,
     100,
@@ -8375,7 +8375,7 @@ VALUES (
     8.1,
     63.3
   ),
-  (
+  (gen_random_uuid(),
     'dates',
     276.5,
     100,
@@ -8389,7 +8389,7 @@ VALUES (
     8.1,
     63.3
   ),
-  (
+  (gen_random_uuid(),
     'dried figs',
     248.8,
     100,
@@ -8403,7 +8403,7 @@ VALUES (
     9.6,
     48.4
   ),
-  (
+  (gen_random_uuid(),
     'dried figs',
     248.8,
     100,
@@ -8417,7 +8417,7 @@ VALUES (
     9.6,
     48.4
   ),
-  (
+  (gen_random_uuid(),
     'dried fruit',
     243.5,
     100,
@@ -8431,7 +8431,7 @@ VALUES (
     7.8,
     50.8
   ),
-  (
+  (gen_random_uuid(),
     'dried herbs',
     278.7,
     100,
@@ -8445,7 +8445,7 @@ VALUES (
     41.4,
     1.6
   ),
-  (
+  (gen_random_uuid(),
     'dried mango',
     310.6,
     100,
@@ -8459,7 +8459,7 @@ VALUES (
     2.4,
     66.1
   ),
-  (
+  (gen_random_uuid(),
     'dried mango',
     310.6,
     100,
@@ -8473,7 +8473,7 @@ VALUES (
     2.4,
     66.1
   ),
-  (
+  (gen_random_uuid(),
     'dried mango',
     310.6,
     100,
@@ -8487,7 +8487,7 @@ VALUES (
     2.4,
     66.1
   ),
-  (
+  (gen_random_uuid(),
     'dried mushrooms',
     294.7,
     100,
@@ -8501,7 +8501,7 @@ VALUES (
     11.5,
     2.2
   ),
-  (
+  (gen_random_uuid(),
     'oregano',
     269,
     100,
@@ -8515,7 +8515,7 @@ VALUES (
     42.2,
     4
   ),
-  (
+  (gen_random_uuid(),
     'papaya',
     43,
     100,
@@ -8529,7 +8529,7 @@ VALUES (
     1.7,
     7.8
   ),
-  (
+  (gen_random_uuid(),
     'papaya',
     43,
     100,
@@ -8543,7 +8543,7 @@ VALUES (
     1.7,
     7.8
   ),
-  (
+  (gen_random_uuid(),
     'dried peaches',
     245.8,
     100,
@@ -8557,7 +8557,7 @@ VALUES (
     8.2,
     41.6
   ),
-  (
+  (gen_random_uuid(),
     'dried peaches',
     245.8,
     100,
@@ -8571,7 +8571,7 @@ VALUES (
     8.2,
     41.6
   ),
-  (
+  (gen_random_uuid(),
     'pears',
     58.7,
     100,
@@ -8585,7 +8585,7 @@ VALUES (
     3.1,
     9.8
   ),
-  (
+  (gen_random_uuid(),
     'pears',
     58.7,
     100,
@@ -8599,7 +8599,7 @@ VALUES (
     3.1,
     9.8
   ),
-  (
+  (gen_random_uuid(),
     'dried pineapple',
     286.1,
     100,
@@ -8613,7 +8613,7 @@ VALUES (
     0.4,
     72.9
   ),
-  (
+  (gen_random_uuid(),
     'dried pineapple',
     286.1,
     100,
@@ -8627,7 +8627,7 @@ VALUES (
     0.4,
     72.9
   ),
-  (
+  (gen_random_uuid(),
     'dried pineapple',
     286.1,
     100,
@@ -8641,7 +8641,7 @@ VALUES (
     0.4,
     72.9
   ),
-  (
+  (gen_random_uuid(),
     'dried plums',
     244.3,
     100,
@@ -8655,7 +8655,7 @@ VALUES (
     7.1,
     38.5
   ),
-  (
+  (gen_random_uuid(),
     'dried plums',
     244.3,
     100,
@@ -8669,7 +8669,7 @@ VALUES (
     7.1,
     38.5
   ),
-  (
+  (gen_random_uuid(),
     'prunes',
     234.8,
     100,
@@ -8683,7 +8683,7 @@ VALUES (
     7,
     38.4
   ),
-  (
+  (gen_random_uuid(),
     'prunes',
     234.8,
     100,
@@ -8697,7 +8697,7 @@ VALUES (
     7,
     38.4
   ),
-  (
+  (gen_random_uuid(),
     'raisins',
     294.3,
     100,
@@ -8711,7 +8711,7 @@ VALUES (
     3.7,
     59.4
   ),
-  (
+  (gen_random_uuid(),
     'raisins',
     294.3,
     100,
@@ -8725,7 +8725,7 @@ VALUES (
     3.7,
     59.4
   ),
-  (
+  (gen_random_uuid(),
     'sage',
     313.2,
     100,
@@ -8739,7 +8739,7 @@ VALUES (
     39.9,
     1.4
   ),
-  (
+  (gen_random_uuid(),
     'strawberries',
     31.3,
     100,
@@ -8753,7 +8753,7 @@ VALUES (
     2,
     4.9
   ),
-  (
+  (gen_random_uuid(),
     'strawberries',
     31.3,
     100,
@@ -8767,7 +8767,7 @@ VALUES (
     2,
     4.9
   ),
-  (
+  (gen_random_uuid(),
     'thyme',
     102.7,
     100,
@@ -8781,7 +8781,7 @@ VALUES (
     13.6,
     0
   ),
-  (
+  (gen_random_uuid(),
     'tomatoes',
     18.5,
     100,
@@ -8795,7 +8795,7 @@ VALUES (
     1.2,
     2.6
   ),
-  (
+  (gen_random_uuid(),
     'duck',
     329.3,
     100,
@@ -8809,7 +8809,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'duck',
     329.3,
     100,
@@ -8823,7 +8823,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'duck breast',
     207.5,
     100,
@@ -8837,7 +8837,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'duck',
     329.3,
     100,
@@ -8851,7 +8851,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'duck eggs',
     189.4,
     100,
@@ -8865,7 +8865,7 @@ VALUES (
     0,
     0.9
   ),
-  (
+  (gen_random_uuid(),
     'duck fat',
     856.6,
     100,
@@ -8879,7 +8879,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'duck',
     329.3,
     100,
@@ -8893,7 +8893,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'dumplings',
     235.9,
     100,
@@ -8907,7 +8907,7 @@ VALUES (
     1.2,
     1.6
   ),
-  (
+  (gen_random_uuid(),
     'durian',
     151.1,
     100,
@@ -8921,7 +8921,7 @@ VALUES (
     3.8,
     0
   ),
-  (
+  (gen_random_uuid(),
     'fruit',
     60.8,
     100,
@@ -8935,7 +8935,7 @@ VALUES (
     2,
     10.1
   ),
-  (
+  (gen_random_uuid(),
     'dutch baby',
     209.7,
     100,
@@ -8949,7 +8949,7 @@ VALUES (
     0.4,
     1.9
   ),
-  (
+  (gen_random_uuid(),
     'pancake',
     226,
     100,
@@ -8963,7 +8963,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'earl grey tea',
     1,
     100,
@@ -8977,7 +8977,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'earth balance',
     725.1,
     100,
@@ -8991,7 +8991,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'chicken',
     222.6,
     100,
@@ -9005,7 +9005,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'edam cheese',
     348.8,
     100,
@@ -9019,7 +9019,7 @@ VALUES (
     0,
     1.5
   ),
-  (
+  (gen_random_uuid(),
     'edamame beans',
     122.9,
     100,
@@ -9033,7 +9033,7 @@ VALUES (
     5.3,
     2.2
   ),
-  (
+  (gen_random_uuid(),
     'egg drop soup',
     22.4,
     100,
@@ -9047,7 +9047,7 @@ VALUES (
     0,
     0.5
   ),
-  (
+  (gen_random_uuid(),
     'egg',
     147,
     100,
@@ -9061,7 +9061,7 @@ VALUES (
     0,
     0.4
   ),
-  (
+  (gen_random_uuid(),
     'egg',
     147,
     100,
@@ -9075,7 +9075,7 @@ VALUES (
     0,
     0.4
   ),
-  (
+  (gen_random_uuid(),
     'fried rice',
     174.5,
     100,
@@ -9089,7 +9089,7 @@ VALUES (
     1.1,
     0.6
   ),
-  (
+  (gen_random_uuid(),
     'egg noodles',
     137.2,
     100,
@@ -9103,7 +9103,7 @@ VALUES (
     1.2,
     0.4
   ),
-  (
+  (gen_random_uuid(),
     'egg roll',
     242.9,
     100,
@@ -9117,7 +9117,7 @@ VALUES (
     2.6,
     0
   ),
-  (
+  (gen_random_uuid(),
     'egg salad',
     217.8,
     100,
@@ -9131,7 +9131,7 @@ VALUES (
     0.5,
     1.1
   ),
-  (
+  (gen_random_uuid(),
     'egg salad sandwich',
     222.9,
     100,
@@ -9145,7 +9145,7 @@ VALUES (
     1,
     2.1
   ),
-  (
+  (gen_random_uuid(),
     'egg tart',
     257.4,
     100,
@@ -9159,7 +9159,7 @@ VALUES (
     0.5,
     14.6
   ),
-  (
+  (gen_random_uuid(),
     'eggnog',
     88.7,
     100,
@@ -9173,7 +9173,7 @@ VALUES (
     0,
     8
   ),
-  (
+  (gen_random_uuid(),
     'eggplant',
     34.7,
     100,
@@ -9187,7 +9187,7 @@ VALUES (
     2.5,
     3.2
   ),
-  (
+  (gen_random_uuid(),
     'eggplant',
     34.7,
     100,
@@ -9201,7 +9201,7 @@ VALUES (
     2.5,
     3.2
   ),
-  (
+  (gen_random_uuid(),
     'eggplant casserole',
     114.2,
     100,
@@ -9215,7 +9215,7 @@ VALUES (
     1.3,
     1.9
   ),
-  (
+  (gen_random_uuid(),
     'eggplant lasagna',
     121.7,
     100,
@@ -9229,7 +9229,7 @@ VALUES (
     1.5,
     2.4
   ),
-  (
+  (gen_random_uuid(),
     'eggplant parmesan',
     152.9,
     100,
@@ -9243,7 +9243,7 @@ VALUES (
     1.6,
     2.2
   ),
-  (
+  (gen_random_uuid(),
     'eggplant parmigiana',
     160.3,
     100,
@@ -9257,7 +9257,7 @@ VALUES (
     1.5,
     2.1
   ),
-  (
+  (gen_random_uuid(),
     'eggplant',
     34.7,
     100,
@@ -9271,7 +9271,7 @@ VALUES (
     2.5,
     3.2
   ),
-  (
+  (gen_random_uuid(),
     'elote',
     184.6,
     100,
@@ -9285,7 +9285,7 @@ VALUES (
     1.7,
     3.4
   ),
-  (
+  (gen_random_uuid(),
     'empanada',
     332.2,
     100,
@@ -9299,7 +9299,7 @@ VALUES (
     2,
     1.8
   ),
-  (
+  (gen_random_uuid(),
     'empanada',
     332.2,
     100,
@@ -9313,7 +9313,7 @@ VALUES (
     2,
     1.8
   ),
-  (
+  (gen_random_uuid(),
     'dough',
     436.4,
     100,
@@ -9327,7 +9327,7 @@ VALUES (
     1.8,
     0
   ),
-  (
+  (gen_random_uuid(),
     'enchilada sauce',
     40,
     100,
@@ -9341,7 +9341,7 @@ VALUES (
     1.7,
     6.7
   ),
-  (
+  (gen_random_uuid(),
     'enchiladas',
     239.7,
     100,
@@ -9355,7 +9355,7 @@ VALUES (
     1.8,
     2
   ),
-  (
+  (gen_random_uuid(),
     'endive',
     17.4,
     100,
@@ -9369,7 +9369,7 @@ VALUES (
     3.1,
     0
   ),
-  (
+  (gen_random_uuid(),
     'salad',
     23.6,
     100,
@@ -9383,7 +9383,7 @@ VALUES (
     1.9,
     2.2
   ),
-  (
+  (gen_random_uuid(),
     'energy bars',
     339.6,
     100,
@@ -9397,7 +9397,7 @@ VALUES (
     7.5,
     31.5
   ),
-  (
+  (gen_random_uuid(),
     'english breakfast',
     207.2,
     100,
@@ -9411,8 +9411,8 @@ VALUES (
     1.5,
     3.3
   ),
-  ('tea', 1, 100, 0, 0, 0, 0, 1, 0, 0.3, 0, 0),
-  (
+  (gen_random_uuid(),'tea', 1, 100, 0, 0, 0, 0, 1, 0, 0.3, 0, 0),
+  (gen_random_uuid(),
     'english muffin',
     239.1,
     100,
@@ -9426,7 +9426,7 @@ VALUES (
     2.7,
     0
   ),
-  (
+  (gen_random_uuid(),
     'espresso',
     8.9,
     100,
@@ -9440,7 +9440,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'espresso',
     8.9,
     100,
@@ -9454,7 +9454,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'martini',
     236.9,
     100,
@@ -9468,7 +9468,7 @@ VALUES (
     0.1,
     1.3
   ),
-  (
+  (gen_random_uuid(),
     'falafel sandwich',
     223.1,
     100,
@@ -9482,7 +9482,7 @@ VALUES (
     1.6,
     1.1
   ),
-  (
+  (gen_random_uuid(),
     'falafel wrap',
     235,
     100,
@@ -9496,7 +9496,7 @@ VALUES (
     1.6,
     1.1
   ),
-  (
+  (gen_random_uuid(),
     'farfalle pasta',
     157.4,
     100,
@@ -9510,7 +9510,7 @@ VALUES (
     1.8,
     0.6
   ),
-  (
+  (gen_random_uuid(),
     'farro',
     334.7,
     100,
@@ -9524,7 +9524,7 @@ VALUES (
     11.1,
     7.9
   ),
-  (
+  (gen_random_uuid(),
     'fava beans',
     108.6,
     100,
@@ -9538,7 +9538,7 @@ VALUES (
     5.4,
     1.8
   ),
-  (
+  (gen_random_uuid(),
     'feijoada',
     141.2,
     100,
@@ -9552,7 +9552,7 @@ VALUES (
     2.8,
     0.8
   ),
-  (
+  (gen_random_uuid(),
     'fennel',
     30.7,
     100,
@@ -9566,7 +9566,7 @@ VALUES (
     3.1,
     3.9
   ),
-  (
+  (gen_random_uuid(),
     'fennel seeds',
     336.1,
     100,
@@ -9580,7 +9580,7 @@ VALUES (
     39.4,
     0
   ),
-  (
+  (gen_random_uuid(),
     'black beans',
     132.5,
     100,
@@ -9594,7 +9594,7 @@ VALUES (
     8.8,
     0.3
   ),
-  (
+  (gen_random_uuid(),
     'feta cheese',
     264.9,
     100,
@@ -9608,7 +9608,7 @@ VALUES (
     0,
     4.1
   ),
-  (
+  (gen_random_uuid(),
     'fig jam',
     282.5,
     100,
@@ -9622,7 +9622,7 @@ VALUES (
     1.1,
     48.5
   ),
-  (
+  (gen_random_uuid(),
     'figs',
     74.1,
     100,
@@ -9636,7 +9636,7 @@ VALUES (
     2.8,
     16.1
   ),
-  (
+  (gen_random_uuid(),
     'figs',
     74.1,
     100,
@@ -9650,7 +9650,7 @@ VALUES (
     2.8,
     16.1
   ),
-  (
+  (gen_random_uuid(),
     'figs',
     74.1,
     100,
@@ -9664,7 +9664,7 @@ VALUES (
     2.8,
     16.1
   ),
-  (
+  (gen_random_uuid(),
     'filet mignon',
     259.4,
     100,
@@ -9678,7 +9678,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'fireball',
     239.6,
     100,
@@ -9692,8 +9692,8 @@ VALUES (
     0,
     25.1
   ),
-  ('whiskey', 226.2, 100, 0, 0, 0, 1, 3, 0, 0, 0, 0),
-  (
+  (gen_random_uuid(),'whiskey', 226.2, 100, 0, 0, 0, 1, 3, 0, 0, 0, 0),
+  (gen_random_uuid(),
     'fish',
     129.2,
     100,
@@ -9707,7 +9707,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'fish',
     129.2,
     100,
@@ -9721,7 +9721,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'fish and chips',
     136.5,
     100,
@@ -9735,7 +9735,7 @@ VALUES (
     0.9,
     0.4
   ),
-  (
+  (gen_random_uuid(),
     'fish cakes',
     143.6,
     100,
@@ -9749,7 +9749,7 @@ VALUES (
     0.7,
     0.4
   ),
-  (
+  (gen_random_uuid(),
     'fish chowder',
     116,
     100,
@@ -9763,7 +9763,7 @@ VALUES (
     0.6,
     2.7
   ),
-  (
+  (gen_random_uuid(),
     'fish curry',
     142.6,
     100,
@@ -9777,7 +9777,7 @@ VALUES (
     0.5,
     1.3
   ),
-  (
+  (gen_random_uuid(),
     'fish fillet',
     112.1,
     100,
@@ -9791,7 +9791,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'fish fry',
     130.9,
     100,
@@ -9805,7 +9805,7 @@ VALUES (
     0.9,
     0.4
   ),
-  (
+  (gen_random_uuid(),
     'fish sandwich',
     281.5,
     100,
@@ -9819,7 +9819,7 @@ VALUES (
     0.8,
     3.6
   ),
-  (
+  (gen_random_uuid(),
     'fish tacos',
     196,
     100,
@@ -9833,7 +9833,7 @@ VALUES (
     1.2,
     1.1
   ),
-  (
+  (gen_random_uuid(),
     'flank steak',
     186.9,
     100,
@@ -9847,7 +9847,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'flax seeds',
     526.6,
     100,
@@ -9861,7 +9861,7 @@ VALUES (
     27.2,
     1.6
   ),
-  (
+  (gen_random_uuid(),
     'flaxseed meal',
     541,
     100,
@@ -9875,7 +9875,7 @@ VALUES (
     27.3,
     1.5
   ),
-  (
+  (gen_random_uuid(),
     'flaxseed oil',
     898.2,
     100,
@@ -9889,7 +9889,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'flour tortillas',
     330.7,
     100,
@@ -9903,7 +9903,7 @@ VALUES (
     3.3,
     0
   ),
-  (
+  (gen_random_uuid(),
     'focaccia bread',
     249,
     100,
@@ -9917,7 +9917,7 @@ VALUES (
     1.8,
     1.8
   ),
-  (
+  (gen_random_uuid(),
     'foie gras',
     468.6,
     100,
@@ -9931,7 +9931,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'fortune cookies',
     375.3,
     100,
@@ -9945,7 +9945,7 @@ VALUES (
     1.6,
     45.7
   ),
-  (
+  (gen_random_uuid(),
     'french bread',
     271.1,
     100,
@@ -9959,7 +9959,7 @@ VALUES (
     2.2,
     4.7
   ),
-  (
+  (gen_random_uuid(),
     'french dip',
     204.9,
     100,
@@ -9973,7 +9973,7 @@ VALUES (
     1.2,
     0.3
   ),
-  (
+  (gen_random_uuid(),
     'sandwich',
     269.5,
     100,
@@ -9987,7 +9987,7 @@ VALUES (
     4,
     5.9
   ),
-  (
+  (gen_random_uuid(),
     'french fries',
     312.5,
     100,
@@ -10001,7 +10001,7 @@ VALUES (
     3.8,
     0.3
   ),
-  (
+  (gen_random_uuid(),
     'french onion dip',
     198.4,
     100,
@@ -10015,7 +10015,7 @@ VALUES (
     0.3,
     3.9
   ),
-  (
+  (gen_random_uuid(),
     'french onion soup',
     137.8,
     100,
@@ -10029,7 +10029,7 @@ VALUES (
     0.7,
     1.8
   ),
-  (
+  (gen_random_uuid(),
     'french toast',
     226,
     100,
@@ -10043,7 +10043,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'vanilla',
     282.7,
     100,
@@ -10057,8 +10057,8 @@ VALUES (
     0,
     12.7
   ),
-  ('coffee', 1, 100, 0, 0, 0.1, 1, 2, 0, 0, 0, 0),
-  (
+  (gen_random_uuid(),'coffee', 1, 100, 0, 0, 0.1, 1, 2, 0, 0, 0, 0),
+  (gen_random_uuid(),
     'calamari',
     194.2,
     100,
@@ -10072,7 +10072,7 @@ VALUES (
     0.8,
     0.4
   ),
-  (
+  (gen_random_uuid(),
     'fried chicken',
     261.5,
     100,
@@ -10086,7 +10086,7 @@ VALUES (
     0.1,
     0
   ),
-  (
+  (gen_random_uuid(),
     'chicken sandwich',
     243.9,
     100,
@@ -10100,7 +10100,7 @@ VALUES (
     1.4,
     3.6
   ),
-  (
+  (gen_random_uuid(),
     'fried egg sandwich',
     200.9,
     100,
@@ -10114,7 +10114,7 @@ VALUES (
     0.8,
     2.7
   ),
-  (
+  (gen_random_uuid(),
     'green tomatoes',
     22.8,
     100,
@@ -10128,7 +10128,7 @@ VALUES (
     1.1,
     4
   ),
-  (
+  (gen_random_uuid(),
     'okra',
     22.5,
     100,
@@ -10142,7 +10142,7 @@ VALUES (
     2.5,
     2.4
   ),
-  (
+  (gen_random_uuid(),
     'fried onions',
     362.5,
     100,
@@ -10156,7 +10156,7 @@ VALUES (
     2.6,
     4.7
   ),
-  (
+  (gen_random_uuid(),
     'pickles',
     11.9,
     100,
@@ -10170,7 +10170,7 @@ VALUES (
     1,
     1.1
   ),
-  (
+  (gen_random_uuid(),
     'fried plantains',
     231.5,
     100,
@@ -10184,7 +10184,7 @@ VALUES (
     3.2,
     21.9
   ),
-  (
+  (gen_random_uuid(),
     'fried rice',
     174.5,
     100,
@@ -10198,7 +10198,7 @@ VALUES (
     1.1,
     0.6
   ),
-  (
+  (gen_random_uuid(),
     'fried zucchini',
     132,
     100,
@@ -10212,7 +10212,7 @@ VALUES (
     1.1,
     3.2
   ),
-  (
+  (gen_random_uuid(),
     'fries',
     317.7,
     100,
@@ -10226,7 +10226,7 @@ VALUES (
     3.8,
     0.3
   ),
-  (
+  (gen_random_uuid(),
     'frittata',
     159.7,
     100,
@@ -10240,7 +10240,7 @@ VALUES (
     0.2,
     0.9
   ),
-  (
+  (gen_random_uuid(),
     'frozen yogurt',
     130.6,
     100,
@@ -10254,7 +10254,7 @@ VALUES (
     0,
     19.8
   ),
-  (
+  (gen_random_uuid(),
     'fruit cake',
     332.4,
     100,
@@ -10268,7 +10268,7 @@ VALUES (
     3.7,
     27.7
   ),
-  (
+  (gen_random_uuid(),
     'fruit cocktail',
     74.9,
     100,
@@ -10282,7 +10282,7 @@ VALUES (
     1,
     17.9
   ),
-  (
+  (gen_random_uuid(),
     'fruit',
     60.8,
     100,
@@ -10296,7 +10296,7 @@ VALUES (
     2,
     10.1
   ),
-  (
+  (gen_random_uuid(),
     'fruit',
     60.8,
     100,
@@ -10310,7 +10310,7 @@ VALUES (
     2,
     10.1
   ),
-  (
+  (gen_random_uuid(),
     'kabobs',
     224.5,
     100,
@@ -10324,7 +10324,7 @@ VALUES (
     0.6,
     0.9
   ),
-  (
+  (gen_random_uuid(),
     'fruit salad',
     58.7,
     100,
@@ -10338,7 +10338,7 @@ VALUES (
     2,
     10.2
   ),
-  (
+  (gen_random_uuid(),
     'fry sauce',
     483,
     100,
@@ -10352,7 +10352,7 @@ VALUES (
     0.1,
     7.8
   ),
-  (
+  (gen_random_uuid(),
     'fudge',
     406.9,
     100,
@@ -10366,7 +10366,7 @@ VALUES (
     1.7,
     73.7
   ),
-  (
+  (gen_random_uuid(),
     'brownies',
     460.4,
     100,
@@ -10380,7 +10380,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'fudge cake',
     385.3,
     100,
@@ -10394,7 +10394,7 @@ VALUES (
     2.2,
     40
   ),
-  (
+  (gen_random_uuid(),
     'fudge sauce',
     341.5,
     100,
@@ -10408,7 +10408,7 @@ VALUES (
     2.8,
     35
   ),
-  (
+  (gen_random_uuid(),
     'pinto',
     145.7,
     100,
@@ -10422,7 +10422,7 @@ VALUES (
     9,
     0.3
   ),
-  (
+  (gen_random_uuid(),
     'garam masala',
     318,
     100,
@@ -10436,7 +10436,7 @@ VALUES (
     24,
     1.4
   ),
-  (
+  (gen_random_uuid(),
     'garbanzo beans',
     164.8,
     100,
@@ -10450,7 +10450,7 @@ VALUES (
     7.7,
     4.8
   ),
-  (
+  (gen_random_uuid(),
     'garlic',
     144.8,
     100,
@@ -10464,7 +10464,7 @@ VALUES (
     2,
     1
   ),
-  (
+  (gen_random_uuid(),
     'garlic',
     144.8,
     100,
@@ -10478,7 +10478,7 @@ VALUES (
     2,
     1
   ),
-  (
+  (gen_random_uuid(),
     'garlic bread',
     339.5,
     100,
@@ -10492,7 +10492,7 @@ VALUES (
     2.6,
     3.7
   ),
-  (
+  (gen_random_uuid(),
     'garlic butter',
     688.8,
     100,
@@ -10506,7 +10506,7 @@ VALUES (
     0.1,
     0.1
   ),
-  (
+  (gen_random_uuid(),
     'garlic chicken',
     161.4,
     100,
@@ -10520,7 +10520,7 @@ VALUES (
     0.3,
     0.3
   ),
-  (
+  (gen_random_uuid(),
     'garlic knots',
     347,
     100,
@@ -10534,7 +10534,7 @@ VALUES (
     2.5,
     3.7
   ),
-  (
+  (gen_random_uuid(),
     'garlic mashed potatoes',
     122.5,
     100,
@@ -10548,7 +10548,7 @@ VALUES (
     1.3,
     1.5
   ),
-  (
+  (gen_random_uuid(),
     'garlic naan',
     285.6,
     100,
@@ -10562,7 +10562,7 @@ VALUES (
     2.2,
     3.5
   ),
-  (
+  (gen_random_uuid(),
     'garlic paste',
     432.4,
     100,
@@ -10576,7 +10576,7 @@ VALUES (
     1.1,
     0.6
   ),
-  (
+  (gen_random_uuid(),
     'garlic powder',
     331.9,
     100,
@@ -10590,7 +10590,7 @@ VALUES (
     9.1,
     2.6
   ),
-  (
+  (gen_random_uuid(),
     'garlic',
     144.8,
     100,
@@ -10604,7 +10604,7 @@ VALUES (
     2,
     1
   ),
-  (
+  (gen_random_uuid(),
     'prawns',
     122,
     100,
@@ -10618,7 +10618,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'garlic sauce',
     144.4,
     100,
@@ -10632,7 +10632,7 @@ VALUES (
     0.4,
     8.4
   ),
-  (
+  (gen_random_uuid(),
     'garlic shrimp',
     151.1,
     100,
@@ -10646,7 +10646,7 @@ VALUES (
     0.1,
     0
   ),
-  (
+  (gen_random_uuid(),
     'gazpacho soup',
     50.3,
     100,
@@ -10660,7 +10660,7 @@ VALUES (
     0.9,
     2.6
   ),
-  (
+  (gen_random_uuid(),
     'gelato',
     193,
     100,
@@ -10674,7 +10674,7 @@ VALUES (
     0,
     18
   ),
-  (
+  (gen_random_uuid(),
     'genoa salami',
     418.9,
     100,
@@ -10688,7 +10688,7 @@ VALUES (
     0,
     1.2
   ),
-  (
+  (gen_random_uuid(),
     'german chocolate cake',
     384.7,
     100,
@@ -10702,7 +10702,7 @@ VALUES (
     1.7,
     34
   ),
-  (
+  (gen_random_uuid(),
     'ghee',
     893.6,
     100,
@@ -10716,7 +10716,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'gherkins',
     89.4,
     100,
@@ -10730,7 +10730,7 @@ VALUES (
     1,
     18.4
   ),
-  (
+  (gen_random_uuid(),
     'pepper',
     248.5,
     100,
@@ -10744,7 +10744,7 @@ VALUES (
     25.4,
     0.4
   ),
-  (
+  (gen_random_uuid(),
     'gravy',
     46.8,
     100,
@@ -10758,7 +10758,7 @@ VALUES (
     0.1,
     0.3
   ),
-  (
+  (gen_random_uuid(),
     'gimbap',
     152,
     100,
@@ -10772,7 +10772,7 @@ VALUES (
     0.6,
     4
   ),
-  (
+  (gen_random_uuid(),
     'ginger',
     78.3,
     100,
@@ -10786,7 +10786,7 @@ VALUES (
     2,
     1.5
   ),
-  (
+  (gen_random_uuid(),
     'ginger',
     78.3,
     100,
@@ -10800,7 +10800,7 @@ VALUES (
     2,
     1.5
   ),
-  (
+  (gen_random_uuid(),
     'ginger ale',
     33.6,
     100,
@@ -10814,7 +10814,7 @@ VALUES (
     0,
     8.8
   ),
-  (
+  (gen_random_uuid(),
     'ginger beer',
     47.5,
     100,
@@ -10828,7 +10828,7 @@ VALUES (
     0,
     12.5
   ),
-  (
+  (gen_random_uuid(),
     'ginger chicken',
     228.3,
     100,
@@ -10842,7 +10842,7 @@ VALUES (
     0.2,
     15.3
   ),
-  (
+  (gen_random_uuid(),
     'ginger cookies',
     408.8,
     100,
@@ -10856,7 +10856,7 @@ VALUES (
     2.2,
     19.9
   ),
-  (
+  (gen_random_uuid(),
     'ginger garlic paste',
     317,
     100,
@@ -10870,7 +10870,7 @@ VALUES (
     1.4,
     1
   ),
-  (
+  (gen_random_uuid(),
     'ginger root',
     79.7,
     100,
@@ -10884,7 +10884,7 @@ VALUES (
     2,
     1.5
   ),
-  (
+  (gen_random_uuid(),
     'gingerbread',
     316.8,
     100,
@@ -10898,7 +10898,7 @@ VALUES (
     0.9,
     30.6
   ),
-  (
+  (gen_random_uuid(),
     'gingerbread cookies',
     364.2,
     100,
@@ -10912,7 +10912,7 @@ VALUES (
     1.6,
     32.7
   ),
-  (
+  (gen_random_uuid(),
     'gingerbread house',
     399.4,
     100,
@@ -10926,7 +10926,7 @@ VALUES (
     1.4,
     38.4
   ),
-  (
+  (gen_random_uuid(),
     'gingerbread',
     316.8,
     100,
@@ -10940,7 +10940,7 @@ VALUES (
     0.9,
     30.6
   ),
-  (
+  (gen_random_uuid(),
     'pancakes',
     230.7,
     100,
@@ -10954,7 +10954,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'gingerbread',
     316.8,
     100,
@@ -10968,7 +10968,7 @@ VALUES (
     0.9,
     30.6
   ),
-  (
+  (gen_random_uuid(),
     'syrup',
     262.8,
     100,
@@ -10982,7 +10982,7 @@ VALUES (
     0,
     42
   ),
-  (
+  (gen_random_uuid(),
     'gingerbread',
     316.8,
     100,
@@ -10996,7 +10996,7 @@ VALUES (
     0.9,
     30.6
   ),
-  (
+  (gen_random_uuid(),
     'waffles',
     299.3,
     100,
@@ -11010,7 +11010,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'bread',
     261.6,
     100,
@@ -11024,7 +11024,7 @@ VALUES (
     2.7,
     5.7
   ),
-  (
+  (gen_random_uuid(),
     'gnocchi',
     202.6,
     100,
@@ -11038,7 +11038,7 @@ VALUES (
     2,
     0.6
   ),
-  (
+  (gen_random_uuid(),
     'goat cheese',
     363.6,
     100,
@@ -11052,7 +11052,7 @@ VALUES (
     0,
     0.1
   ),
-  (
+  (gen_random_uuid(),
     'goat cheese',
     363.6,
     100,
@@ -11066,7 +11066,7 @@ VALUES (
     0,
     0.1
   ),
-  (
+  (gen_random_uuid(),
     'goat',
     143.4,
     100,
@@ -11080,7 +11080,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'curry',
     101,
     100,
@@ -11094,7 +11094,7 @@ VALUES (
     0.6,
     0.9
   ),
-  (
+  (gen_random_uuid(),
     'goat meat',
     142.4,
     100,
@@ -11108,7 +11108,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'goat milk',
     68.3,
     100,
@@ -11122,7 +11122,7 @@ VALUES (
     0,
     4.5
   ),
-  (
+  (gen_random_uuid(),
     'goat',
     143.4,
     100,
@@ -11136,7 +11136,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'stew',
     106.6,
     100,
@@ -11150,7 +11150,7 @@ VALUES (
     1.3,
     1.8
   ),
-  (
+  (gen_random_uuid(),
     'goat',
     143.4,
     100,
@@ -11164,7 +11164,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'yogurt',
     64.2,
     100,
@@ -11178,7 +11178,7 @@ VALUES (
     0,
     7.1
   ),
-  (
+  (gen_random_uuid(),
     'goji berries',
     344.5,
     100,
@@ -11192,7 +11192,7 @@ VALUES (
     12.7,
     45.3
   ),
-  (
+  (gen_random_uuid(),
     'goji berries',
     344.5,
     100,
@@ -11206,7 +11206,7 @@ VALUES (
     12.7,
     45.3
   ),
-  (
+  (gen_random_uuid(),
     'syrup',
     262.8,
     100,
@@ -11220,7 +11220,7 @@ VALUES (
     0,
     42
   ),
-  (
+  (gen_random_uuid(),
     'gouda cheese',
     353.4,
     100,
@@ -11234,7 +11234,7 @@ VALUES (
     0,
     2.2
   ),
-  (
+  (gen_random_uuid(),
     'gouda cheese',
     353.4,
     100,
@@ -11248,7 +11248,7 @@ VALUES (
     0,
     2.2
   ),
-  (
+  (gen_random_uuid(),
     'goulash',
     106.5,
     100,
@@ -11262,7 +11262,7 @@ VALUES (
     1.6,
     1.8
   ),
-  (
+  (gen_random_uuid(),
     'granola',
     475.7,
     100,
@@ -11276,7 +11276,7 @@ VALUES (
     9,
     20
   ),
-  (
+  (gen_random_uuid(),
     'granola bars',
     406.2,
     100,
@@ -11290,7 +11290,7 @@ VALUES (
     3.7,
     29.1
   ),
-  (
+  (gen_random_uuid(),
     'granola cereal',
     417.1,
     100,
@@ -11304,7 +11304,7 @@ VALUES (
     10.2,
     20.2
   ),
-  (
+  (gen_random_uuid(),
     'granola',
     475.7,
     100,
@@ -11318,7 +11318,7 @@ VALUES (
     9,
     20
   ),
-  (
+  (gen_random_uuid(),
     'grape juice',
     60,
     100,
@@ -11332,7 +11332,7 @@ VALUES (
     0.2,
     14.3
   ),
-  (
+  (gen_random_uuid(),
     'grape leaves',
     70.2,
     100,
@@ -11346,7 +11346,7 @@ VALUES (
     10,
     0
   ),
-  (
+  (gen_random_uuid(),
     'grapefruit',
     41.2,
     100,
@@ -11360,7 +11360,7 @@ VALUES (
     1.6,
     6.9
   ),
-  (
+  (gen_random_uuid(),
     'grapefruit',
     41.2,
     100,
@@ -11374,7 +11374,7 @@ VALUES (
     1.6,
     6.9
   ),
-  (
+  (gen_random_uuid(),
     'grapefruit',
     41.2,
     100,
@@ -11388,7 +11388,7 @@ VALUES (
     1.6,
     6.9
   ),
-  (
+  (gen_random_uuid(),
     'grapefruit juice',
     39.1,
     100,
@@ -11402,7 +11402,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'grapefruit',
     41.2,
     100,
@@ -11416,7 +11416,7 @@ VALUES (
     1.6,
     6.9
   ),
-  (
+  (gen_random_uuid(),
     'salad',
     23.6,
     100,
@@ -11430,7 +11430,7 @@ VALUES (
     1.9,
     2.2
   ),
-  (
+  (gen_random_uuid(),
     'grapes',
     69.6,
     100,
@@ -11444,7 +11444,7 @@ VALUES (
     0.9,
     15.5
   ),
-  (
+  (gen_random_uuid(),
     'grapes',
     69.6,
     100,
@@ -11458,7 +11458,7 @@ VALUES (
     0.9,
     15.5
   ),
-  (
+  (gen_random_uuid(),
     'grapes',
     69.6,
     100,
@@ -11472,7 +11472,7 @@ VALUES (
     0.9,
     15.5
   ),
-  (
+  (gen_random_uuid(),
     'gravy',
     46.8,
     100,
@@ -11486,7 +11486,7 @@ VALUES (
     0.1,
     0.3
   ),
-  (
+  (gen_random_uuid(),
     'green beans',
     34.8,
     100,
@@ -11500,7 +11500,7 @@ VALUES (
     3.2,
     3.6
   ),
-  (
+  (gen_random_uuid(),
     'green beans',
     34.8,
     100,
@@ -11514,7 +11514,7 @@ VALUES (
     3.2,
     3.6
   ),
-  (
+  (gen_random_uuid(),
     'green beans',
     34.8,
     100,
@@ -11528,7 +11528,7 @@ VALUES (
     3.2,
     3.6
   ),
-  (
+  (gen_random_uuid(),
     'chili',
     118.7,
     100,
@@ -11542,7 +11542,7 @@ VALUES (
     0.5,
     1.1
   ),
-  (
+  (gen_random_uuid(),
     'green curry',
     136,
     100,
@@ -11556,7 +11556,7 @@ VALUES (
     1.1,
     3.4
   ),
-  (
+  (gen_random_uuid(),
     'green goddess dressing',
     439.7,
     100,
@@ -11570,7 +11570,7 @@ VALUES (
     0.1,
     6.7
   ),
-  (
+  (gen_random_uuid(),
     'lentils',
     116.2,
     100,
@@ -11584,7 +11584,7 @@ VALUES (
     8,
     1.8
   ),
-  (
+  (gen_random_uuid(),
     'green olives',
     148.8,
     100,
@@ -11598,7 +11598,7 @@ VALUES (
     3.3,
     0.4
   ),
-  (
+  (gen_random_uuid(),
     'green onions',
     31,
     100,
@@ -11612,7 +11612,7 @@ VALUES (
     2.6,
     2.3
   ),
-  (
+  (gen_random_uuid(),
     'green peas',
     82.6,
     100,
@@ -11626,7 +11626,7 @@ VALUES (
     5.6,
     5.9
   ),
-  (
+  (gen_random_uuid(),
     'green pepper',
     27.5,
     100,
@@ -11640,7 +11640,7 @@ VALUES (
     1.2,
     3.2
   ),
-  (
+  (gen_random_uuid(),
     'green salad',
     23.4,
     100,
@@ -11654,7 +11654,7 @@ VALUES (
     1.9,
     2.2
   ),
-  (
+  (gen_random_uuid(),
     'green smoothie',
     58.1,
     100,
@@ -11668,9 +11668,9 @@ VALUES (
     2.2,
     7.1
   ),
-  ('green tea', 1, 100, 0, 0, 0.2, 1, 0, 0, 0, 0, 0),
-  ('green tea', 1, 100, 0, 0, 0.2, 1, 0, 0, 0, 0, 0),
-  (
+  (gen_random_uuid(),'green tea', 1, 100, 0, 0, 0.2, 1, 0, 0, 0, 0, 0),
+  (gen_random_uuid(),'green tea', 1, 100, 0, 0, 0.2, 1, 0, 0, 0, 0, 0),
+  (gen_random_uuid(),
     'green tea ice cream',
     202.5,
     100,
@@ -11684,7 +11684,7 @@ VALUES (
     0.7,
     21.3
   ),
-  (
+  (gen_random_uuid(),
     'grilled cheese',
     340.4,
     100,
@@ -11698,7 +11698,7 @@ VALUES (
     1.3,
     5.1
   ),
-  (
+  (gen_random_uuid(),
     'grilled cheese sandwich',
     352,
     100,
@@ -11712,7 +11712,7 @@ VALUES (
     1.3,
     5.2
   ),
-  (
+  (gen_random_uuid(),
     'grilled chicken',
     152.4,
     100,
@@ -11726,7 +11726,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'grilled chicken sandwich',
     178.8,
     100,
@@ -11740,7 +11740,7 @@ VALUES (
     0.9,
     3.1
   ),
-  (
+  (gen_random_uuid(),
     'grilled fish',
     113.4,
     100,
@@ -11754,7 +11754,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'mushrooms',
     27.9,
     100,
@@ -11768,7 +11768,7 @@ VALUES (
     2.2,
     2.3
   ),
-  (
+  (gen_random_uuid(),
     'grilled onions',
     70,
     100,
@@ -11782,7 +11782,7 @@ VALUES (
     1.6,
     4.7
   ),
-  (
+  (gen_random_uuid(),
     'grilled salmon',
     204.6,
     100,
@@ -11796,7 +11796,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'shrimp',
     119,
     100,
@@ -11810,7 +11810,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'grits',
     64.8,
     100,
@@ -11824,7 +11824,7 @@ VALUES (
     0.7,
     0.1
   ),
-  (
+  (gen_random_uuid(),
     'ground beef',
     278.6,
     100,
@@ -11838,7 +11838,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'ground beef',
     278.6,
     100,
@@ -11852,7 +11852,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'ground chicken',
     186.5,
     100,
@@ -11866,7 +11866,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'ground cinnamon',
     247.1,
     100,
@@ -11880,8 +11880,8 @@ VALUES (
     54,
     2.3
   ),
-  ('coffee', 1, 100, 0, 0, 0.1, 1, 2, 0, 0, 0, 0),
-  (
+  (gen_random_uuid(),'coffee', 1, 100, 0, 0, 0.1, 1, 2, 0, 0, 0, 0),
+  (gen_random_uuid(),
     'ground coriander',
     302.7,
     100,
@@ -11895,7 +11895,7 @@ VALUES (
     42.2,
     0
   ),
-  (
+  (gen_random_uuid(),
     'ground cumin',
     380.7,
     100,
@@ -11909,7 +11909,7 @@ VALUES (
     10.3,
     2.4
   ),
-  (
+  (gen_random_uuid(),
     'flaxseed',
     549.8,
     100,
@@ -11923,7 +11923,7 @@ VALUES (
     27.5,
     1.5
   ),
-  (
+  (gen_random_uuid(),
     'ground lamb',
     282.1,
     100,
@@ -11937,7 +11937,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'ground nutmeg',
     509.9,
     100,
@@ -11951,7 +11951,7 @@ VALUES (
     20.7,
     3.2
   ),
-  (
+  (gen_random_uuid(),
     'ground pork',
     294.6,
     100,
@@ -11965,7 +11965,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'ground turkey',
     258.1,
     100,
@@ -11979,7 +11979,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'guacamole',
     149.5,
     100,
@@ -11993,7 +11993,7 @@ VALUES (
     6.2,
     0.5
   ),
-  (
+  (gen_random_uuid(),
     'guava',
     67.7,
     100,
@@ -12007,7 +12007,7 @@ VALUES (
     5.5,
     8.9
   ),
-  (
+  (gen_random_uuid(),
     'guava',
     67.7,
     100,
@@ -12021,7 +12021,7 @@ VALUES (
     5.5,
     8.9
   ),
-  (
+  (gen_random_uuid(),
     'guava',
     67.7,
     100,
@@ -12035,7 +12035,7 @@ VALUES (
     5.5,
     8.9
   ),
-  (
+  (gen_random_uuid(),
     'guava juice',
     62.3,
     100,
@@ -12049,7 +12049,7 @@ VALUES (
     1,
     13.1
   ),
-  (
+  (gen_random_uuid(),
     'guava',
     67.7,
     100,
@@ -12063,7 +12063,7 @@ VALUES (
     5.5,
     8.9
   ),
-  (
+  (gen_random_uuid(),
     'gumbo',
     61.8,
     100,
@@ -12077,7 +12077,7 @@ VALUES (
     0.2,
     0.3
   ),
-  (
+  (gen_random_uuid(),
     'gyoza',
     210.1,
     100,
@@ -12091,7 +12091,7 @@ VALUES (
     1.3,
     1
   ),
-  (
+  (gen_random_uuid(),
     'haddock',
     89.8,
     100,
@@ -12105,7 +12105,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'haggis',
     284.2,
     100,
@@ -12119,7 +12119,7 @@ VALUES (
     0.7,
     0.6
   ),
-  (
+  (gen_random_uuid(),
     'chicken rice',
     134.9,
     100,
@@ -12133,7 +12133,7 @@ VALUES (
     0.7,
     0.6
   ),
-  (
+  (gen_random_uuid(),
     'half and half',
     126.6,
     100,
@@ -12147,7 +12147,7 @@ VALUES (
     0,
     4.2
   ),
-  (
+  (gen_random_uuid(),
     'halibut',
     114,
     100,
@@ -12161,7 +12161,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'ham',
     141.6,
     100,
@@ -12175,7 +12175,7 @@ VALUES (
     0,
     1.1
   ),
-  (
+  (gen_random_uuid(),
     'ham',
     141.6,
     100,
@@ -12189,7 +12189,7 @@ VALUES (
     0,
     1.1
   ),
-  (
+  (gen_random_uuid(),
     'ham',
     141.6,
     100,
@@ -12203,7 +12203,7 @@ VALUES (
     0,
     1.1
   ),
-  (
+  (gen_random_uuid(),
     'ham',
     141.6,
     100,
@@ -12217,7 +12217,7 @@ VALUES (
     0,
     1.1
   ),
-  (
+  (gen_random_uuid(),
     'ham and cheese sandwich',
     277.6,
     100,
@@ -12231,7 +12231,7 @@ VALUES (
     1.2,
     2
   ),
-  (
+  (gen_random_uuid(),
     'ham',
     141.6,
     100,
@@ -12245,7 +12245,7 @@ VALUES (
     0,
     1.1
   ),
-  (
+  (gen_random_uuid(),
     'eggs',
     144.3,
     100,
@@ -12259,7 +12259,7 @@ VALUES (
     0,
     0.4
   ),
-  (
+  (gen_random_uuid(),
     'ham',
     141.6,
     100,
@@ -12273,7 +12273,7 @@ VALUES (
     0,
     1.1
   ),
-  (
+  (gen_random_uuid(),
     'pineapple pizza',
     228.3,
     100,
@@ -12287,7 +12287,7 @@ VALUES (
     2.1,
     4.6
   ),
-  (
+  (gen_random_uuid(),
     'ham salad',
     215.5,
     100,
@@ -12301,7 +12301,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'ham sandwich',
     167.7,
     100,
@@ -12315,7 +12315,7 @@ VALUES (
     1.9,
     2.5
   ),
-  (
+  (gen_random_uuid(),
     'ham steak',
     122.7,
     100,
@@ -12329,7 +12329,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'hamburger',
     242.5,
     100,
@@ -12343,7 +12343,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'hamburger bun',
     281.4,
     100,
@@ -12357,7 +12357,7 @@ VALUES (
     1.8,
     7.2
   ),
-  (
+  (gen_random_uuid(),
     'hamburger',
     242.5,
     100,
@@ -12371,7 +12371,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'hamburger',
     242.5,
     100,
@@ -12385,7 +12385,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'meat',
     221.2,
     100,
@@ -12399,7 +12399,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'hamburger',
     242.5,
     100,
@@ -12413,7 +12413,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'hawaiian pizza',
     229.8,
     100,
@@ -12427,7 +12427,7 @@ VALUES (
     2.1,
     3.9
   ),
-  (
+  (gen_random_uuid(),
     'hazelnut coffee',
     1,
     100,
@@ -12441,7 +12441,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'hazelnut',
     656.2,
     100,
@@ -12455,7 +12455,7 @@ VALUES (
     9.4,
     4.9
   ),
-  (
+  (gen_random_uuid(),
     'hazelnut',
     656.2,
     100,
@@ -12469,7 +12469,7 @@ VALUES (
     9.4,
     4.9
   ),
-  (
+  (gen_random_uuid(),
     'hazelnuts',
     662.2,
     100,
@@ -12483,7 +12483,7 @@ VALUES (
     9.2,
     4.9
   ),
-  (
+  (gen_random_uuid(),
     'hazelnuts',
     662.2,
     100,
@@ -12497,7 +12497,7 @@ VALUES (
     9.2,
     4.9
   ),
-  (
+  (gen_random_uuid(),
     'hearts of palm',
     28.4,
     100,
@@ -12511,7 +12511,7 @@ VALUES (
     2.4,
     0
   ),
-  (
+  (gen_random_uuid(),
     'hemp seeds',
     565.8,
     100,
@@ -12525,7 +12525,7 @@ VALUES (
     4,
     1.5
   ),
-  (
+  (gen_random_uuid(),
     'hemp seeds',
     565.8,
     100,
@@ -12539,7 +12539,7 @@ VALUES (
     4,
     1.5
   ),
-  (
+  (gen_random_uuid(),
     'herbes',
     178.6,
     100,
@@ -12553,7 +12553,7 @@ VALUES (
     14.7,
     2.9
   ),
-  (
+  (gen_random_uuid(),
     'herring',
     204.1,
     100,
@@ -12567,7 +12567,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'hibiscus tea',
     1,
     100,
@@ -12581,7 +12581,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'hoagie',
     210.7,
     100,
@@ -12595,7 +12595,7 @@ VALUES (
     1.2,
     3.2
   ),
-  (
+  (gen_random_uuid(),
     'roll',
     313,
     100,
@@ -12609,7 +12609,7 @@ VALUES (
     3.7,
     4.3
   ),
-  (
+  (gen_random_uuid(),
     'hoagie',
     210.7,
     100,
@@ -12623,7 +12623,7 @@ VALUES (
     1.2,
     3.2
   ),
-  (
+  (gen_random_uuid(),
     'sandwich',
     269.5,
     100,
@@ -12637,7 +12637,7 @@ VALUES (
     4,
     5.9
   ),
-  (
+  (gen_random_uuid(),
     'hoisin sauce',
     215.3,
     100,
@@ -12651,7 +12651,7 @@ VALUES (
     2.8,
     27.4
   ),
-  (
+  (gen_random_uuid(),
     'hoisin sauce',
     215.3,
     100,
@@ -12665,7 +12665,7 @@ VALUES (
     2.8,
     27.4
   ),
-  (
+  (gen_random_uuid(),
     'hoisin sauce',
     215.3,
     100,
@@ -12679,7 +12679,7 @@ VALUES (
     2.8,
     27.4
   ),
-  (
+  (gen_random_uuid(),
     'hollandaise sauce',
     461.5,
     100,
@@ -12693,7 +12693,7 @@ VALUES (
     0.7,
     0.6
   ),
-  (
+  (gen_random_uuid(),
     'honey',
     302.9,
     100,
@@ -12707,7 +12707,7 @@ VALUES (
     0.2,
     82.6
   ),
-  (
+  (gen_random_uuid(),
     'honey',
     302.9,
     100,
@@ -12721,7 +12721,7 @@ VALUES (
     0.2,
     82.6
   ),
-  (
+  (gen_random_uuid(),
     'baked ham',
     139.6,
     100,
@@ -12735,7 +12735,7 @@ VALUES (
     0,
     1
   ),
-  (
+  (gen_random_uuid(),
     'honey',
     302.9,
     100,
@@ -12749,7 +12749,7 @@ VALUES (
     0.2,
     82.6
   ),
-  (
+  (gen_random_uuid(),
     'bbq sauce',
     166.9,
     100,
@@ -12763,7 +12763,7 @@ VALUES (
     0.9,
     33.5
   ),
-  (
+  (gen_random_uuid(),
     'honey butter',
     595.7,
     100,
@@ -12777,7 +12777,7 @@ VALUES (
     0.1,
     27.6
   ),
-  (
+  (gen_random_uuid(),
     'honey cake',
     328,
     100,
@@ -12791,7 +12791,7 @@ VALUES (
     0.9,
     34.7
   ),
-  (
+  (gen_random_uuid(),
     'honey chicken',
     192,
     100,
@@ -12805,7 +12805,7 @@ VALUES (
     0.3,
     15.9
   ),
-  (
+  (gen_random_uuid(),
     'honey',
     302.9,
     100,
@@ -12819,7 +12819,7 @@ VALUES (
     0.2,
     82.6
   ),
-  (
+  (gen_random_uuid(),
     'glazed carrots',
     95.4,
     100,
@@ -12833,7 +12833,7 @@ VALUES (
     2.5,
     9.4
   ),
-  (
+  (gen_random_uuid(),
     'honey',
     302.9,
     100,
@@ -12847,7 +12847,7 @@ VALUES (
     0.2,
     82.6
   ),
-  (
+  (gen_random_uuid(),
     'glazed salmon',
     230.5,
     100,
@@ -12861,7 +12861,7 @@ VALUES (
     0.1,
     12.6
   ),
-  (
+  (gen_random_uuid(),
     'honey ham',
     125.5,
     100,
@@ -12875,7 +12875,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'honey mustard',
     458.4,
     100,
@@ -12889,7 +12889,7 @@ VALUES (
     0.4,
     15.8
   ),
-  (
+  (gen_random_uuid(),
     'honey mustard dressing',
     462.8,
     100,
@@ -12903,7 +12903,7 @@ VALUES (
     0.4,
     15.7
   ),
-  (
+  (gen_random_uuid(),
     'honey mustard sauce',
     474.1,
     100,
@@ -12917,7 +12917,7 @@ VALUES (
     0.4,
     15.9
   ),
-  (
+  (gen_random_uuid(),
     'honey roasted peanuts',
     586,
     100,
@@ -12931,7 +12931,7 @@ VALUES (
     8.4,
     14.4
   ),
-  (
+  (gen_random_uuid(),
     'honey roasted turkey',
     112,
     100,
@@ -12945,7 +12945,7 @@ VALUES (
     0.4,
     4
   ),
-  (
+  (gen_random_uuid(),
     'honeydew melon',
     36.9,
     100,
@@ -12959,7 +12959,7 @@ VALUES (
     0.8,
     8.1
   ),
-  (
+  (gen_random_uuid(),
     'honeydew melon',
     36.9,
     100,
@@ -12973,7 +12973,7 @@ VALUES (
     0.8,
     8.1
   ),
-  (
+  (gen_random_uuid(),
     'honeydew melon',
     36.9,
     100,
@@ -12987,7 +12987,7 @@ VALUES (
     0.8,
     8.1
   ),
-  (
+  (gen_random_uuid(),
     'horchata',
     55.2,
     100,
@@ -13001,7 +13001,7 @@ VALUES (
     0,
     9.4
   ),
-  (
+  (gen_random_uuid(),
     'hormel chili',
     101.7,
     100,
@@ -13015,7 +13015,7 @@ VALUES (
     3.2,
     1.7
   ),
-  (
+  (gen_random_uuid(),
     'horseradish',
     48.3,
     100,
@@ -13029,7 +13029,7 @@ VALUES (
     3.3,
     8
   ),
-  (
+  (gen_random_uuid(),
     'hot and sour soup',
     37.9,
     100,
@@ -13043,7 +13043,7 @@ VALUES (
     0.5,
     0.4
   ),
-  (
+  (gen_random_uuid(),
     'hot chocolate',
     54.2,
     100,
@@ -13057,7 +13057,7 @@ VALUES (
     0.5,
     9
   ),
-  (
+  (gen_random_uuid(),
     'hot dog',
     330.3,
     100,
@@ -13071,7 +13071,7 @@ VALUES (
     0,
     1.3
   ),
-  (
+  (gen_random_uuid(),
     'hot dog buns',
     277.7,
     100,
@@ -13085,7 +13085,7 @@ VALUES (
     1.8,
     7.3
   ),
-  (
+  (gen_random_uuid(),
     'hot dog chili',
     116.1,
     100,
@@ -13099,7 +13099,7 @@ VALUES (
     0.7,
     4.2
   ),
-  (
+  (gen_random_uuid(),
     'hot dog',
     330.3,
     100,
@@ -13113,7 +13113,7 @@ VALUES (
     0,
     1.3
   ),
-  (
+  (gen_random_uuid(),
     'condiments',
     260.6,
     100,
@@ -13127,7 +13127,7 @@ VALUES (
     1.5,
     7.6
   ),
-  (
+  (gen_random_uuid(),
     'hot dog rolls',
     278.4,
     100,
@@ -13141,7 +13141,7 @@ VALUES (
     1.8,
     7.3
   ),
-  (
+  (gen_random_uuid(),
     'hot dog sauce',
     116.5,
     100,
@@ -13155,7 +13155,7 @@ VALUES (
     0.7,
     4.3
   ),
-  (
+  (gen_random_uuid(),
     'hot fudge',
     340.1,
     100,
@@ -13169,7 +13169,7 @@ VALUES (
     2.8,
     34.9
   ),
-  (
+  (gen_random_uuid(),
     'fudge sauce',
     341.5,
     100,
@@ -13183,7 +13183,7 @@ VALUES (
     2.8,
     35
   ),
-  (
+  (gen_random_uuid(),
     'honey',
     302.9,
     100,
@@ -13197,7 +13197,7 @@ VALUES (
     0.2,
     82.6
   ),
-  (
+  (gen_random_uuid(),
     'hot wings',
     332,
     100,
@@ -13211,7 +13211,7 @@ VALUES (
     0.4,
     0.2
   ),
-  (
+  (gen_random_uuid(),
     'hummus',
     163.5,
     100,
@@ -13225,7 +13225,7 @@ VALUES (
     6,
     0
   ),
-  (
+  (gen_random_uuid(),
     'hummus',
     163.5,
     100,
@@ -13239,7 +13239,7 @@ VALUES (
     6,
     0
   ),
-  (
+  (gen_random_uuid(),
     'hush puppies',
     331,
     100,
@@ -13253,7 +13253,7 @@ VALUES (
     2.8,
     2.1
   ),
-  (
+  (gen_random_uuid(),
     'ice cream',
     207.1,
     100,
@@ -13267,7 +13267,7 @@ VALUES (
     0.7,
     21.3
   ),
-  (
+  (gen_random_uuid(),
     'ice cream cake',
     264.7,
     100,
@@ -13281,7 +13281,7 @@ VALUES (
     1.1,
     26.6
   ),
-  (
+  (gen_random_uuid(),
     'ice cream cone',
     219.6,
     100,
@@ -13295,7 +13295,7 @@ VALUES (
     0.8,
     21.6
   ),
-  (
+  (gen_random_uuid(),
     'ice cream',
     207.1,
     100,
@@ -13309,7 +13309,7 @@ VALUES (
     0.7,
     21.3
   ),
-  (
+  (gen_random_uuid(),
     'ice cream sandwich',
     239.2,
     100,
@@ -13323,7 +13323,7 @@ VALUES (
     0,
     18.7
   ),
-  (
+  (gen_random_uuid(),
     'ice cream sundae',
     233.5,
     100,
@@ -13337,7 +13337,7 @@ VALUES (
     1.1,
     23.9
   ),
-  (
+  (gen_random_uuid(),
     'iced coffee',
     1,
     100,
@@ -13351,8 +13351,8 @@ VALUES (
     0,
     0
   ),
-  ('iced tea', 1, 100, 0, 0, 0, 3, 1, 0, 0.3, 0, 0),
-  (
+  (gen_random_uuid(),'iced tea', 1, 100, 0, 0, 0, 3, 1, 0, 0.3, 0, 0),
+  (gen_random_uuid(),
     'idli',
     153.9,
     100,
@@ -13366,7 +13366,7 @@ VALUES (
     1.4,
     0.3
   ),
-  (
+  (gen_random_uuid(),
     'meat',
     221.2,
     100,
@@ -13380,7 +13380,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'imitation crab',
     94.7,
     100,
@@ -13394,7 +13394,7 @@ VALUES (
     0.5,
     6.3
   ),
-  (
+  (gen_random_uuid(),
     'bread',
     261.6,
     100,
@@ -13408,7 +13408,7 @@ VALUES (
     2.7,
     5.7
   ),
-  (
+  (gen_random_uuid(),
     'indian cuisine',
     149.5,
     100,
@@ -13422,7 +13422,7 @@ VALUES (
     0.8,
     2.4
   ),
-  (
+  (gen_random_uuid(),
     'curry',
     101,
     100,
@@ -13436,7 +13436,7 @@ VALUES (
     0.6,
     0.9
   ),
-  (
+  (gen_random_uuid(),
     'spices',
     272.3,
     100,
@@ -13450,7 +13450,7 @@ VALUES (
     38.2,
     3.5
   ),
-  (
+  (gen_random_uuid(),
     'instant coffee',
     2,
     100,
@@ -13464,7 +13464,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'instant noodles',
     69.3,
     100,
@@ -13478,7 +13478,7 @@ VALUES (
     0.5,
     0.2
   ),
-  (
+  (gen_random_uuid(),
     'irish coffee',
     111.4,
     100,
@@ -13492,7 +13492,7 @@ VALUES (
     0,
     4.9
   ),
-  (
+  (gen_random_uuid(),
     'irish cream',
     312.7,
     100,
@@ -13506,7 +13506,7 @@ VALUES (
     0,
     32.2
   ),
-  (
+  (gen_random_uuid(),
     'liqueur',
     258.4,
     100,
@@ -13520,7 +13520,7 @@ VALUES (
     0,
     21
   ),
-  (
+  (gen_random_uuid(),
     'soda bread',
     283.4,
     100,
@@ -13534,7 +13534,7 @@ VALUES (
     2.6,
     0
   ),
-  (
+  (gen_random_uuid(),
     'italian bread',
     265.5,
     100,
@@ -13548,7 +13548,7 @@ VALUES (
     3.2,
     3.1
   ),
-  (
+  (gen_random_uuid(),
     'italian dressing',
     245.2,
     100,
@@ -13562,7 +13562,7 @@ VALUES (
     0,
     10.8
   ),
-  (
+  (gen_random_uuid(),
     'herbs',
     171.3,
     100,
@@ -13576,7 +13576,7 @@ VALUES (
     14.6,
     2.9
   ),
-  (
+  (gen_random_uuid(),
     'italian sausage',
     340,
     100,
@@ -13590,7 +13590,7 @@ VALUES (
     0.1,
     1.9
   ),
-  (
+  (gen_random_uuid(),
     'italian seasoning',
     283.3,
     100,
@@ -13604,7 +13604,7 @@ VALUES (
     39.1,
     3.5
   ),
-  (
+  (gen_random_uuid(),
     'jaggery',
     371.9,
     100,
@@ -13618,7 +13618,7 @@ VALUES (
     0,
     97.6
   ),
-  (
+  (gen_random_uuid(),
     'jalapeno cheddar',
     402.6,
     100,
@@ -13632,7 +13632,7 @@ VALUES (
     0,
     0.5
   ),
-  (
+  (gen_random_uuid(),
     'jalapeno cream cheese',
     258.4,
     100,
@@ -13646,7 +13646,7 @@ VALUES (
     0,
     3.2
   ),
-  (
+  (gen_random_uuid(),
     'jalapeno peppers',
     29.5,
     100,
@@ -13660,7 +13660,7 @@ VALUES (
     2.8,
     4.1
   ),
-  (
+  (gen_random_uuid(),
     'jalapenos',
     28.7,
     100,
@@ -13674,7 +13674,7 @@ VALUES (
     2.8,
     4.2
   ),
-  (
+  (gen_random_uuid(),
     'jerk seasoning',
     463.8,
     100,
@@ -13688,7 +13688,7 @@ VALUES (
     2.1,
     53
   ),
-  (
+  (gen_random_uuid(),
     'jamaican patty',
     285,
     100,
@@ -13702,7 +13702,7 @@ VALUES (
     1.3,
     0.7
   ),
-  (
+  (gen_random_uuid(),
     'jambalaya',
     155.8,
     100,
@@ -13716,7 +13716,7 @@ VALUES (
     0.4,
     0.7
   ),
-  (
+  (gen_random_uuid(),
     'jarlsberg cheese',
     388.7,
     100,
@@ -13730,7 +13730,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'jelly beans',
     375.8,
     100,
@@ -13744,7 +13744,7 @@ VALUES (
     0.2,
     70
   ),
-  (
+  (gen_random_uuid(),
     'jelly',
     284.7,
     100,
@@ -13758,7 +13758,7 @@ VALUES (
     1.1,
     49
   ),
-  (
+  (gen_random_uuid(),
     'doughnut',
     425.6,
     100,
@@ -13772,7 +13772,7 @@ VALUES (
     2.1,
     22.6
   ),
-  (
+  (gen_random_uuid(),
     'jerusalem artichoke',
     71.4,
     100,
@@ -13786,7 +13786,7 @@ VALUES (
     1.6,
     9.7
   ),
-  (
+  (gen_random_uuid(),
     'jicama',
     38.2,
     100,
@@ -13800,7 +13800,7 @@ VALUES (
     4.9,
     1.8
   ),
-  (
+  (gen_random_uuid(),
     'rice',
     127.4,
     100,
@@ -13814,7 +13814,7 @@ VALUES (
     0.4,
     0.1
   ),
-  (
+  (gen_random_uuid(),
     'bacon',
     466.4,
     100,
@@ -13828,7 +13828,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'berries',
     46.5,
     100,
@@ -13842,7 +13842,7 @@ VALUES (
     3.9,
     6.1
   ),
-  (
+  (gen_random_uuid(),
     'kaffir lime leaves',
     318.9,
     100,
@@ -13856,7 +13856,7 @@ VALUES (
     25.1,
     0
   ),
-  (
+  (gen_random_uuid(),
     'kale',
     27.2,
     100,
@@ -13870,7 +13870,7 @@ VALUES (
     2,
     1.3
   ),
-  (
+  (gen_random_uuid(),
     'kale',
     27.2,
     100,
@@ -13884,7 +13884,7 @@ VALUES (
     2,
     1.3
   ),
-  (
+  (gen_random_uuid(),
     'kale',
     27.2,
     100,
@@ -13898,7 +13898,7 @@ VALUES (
     2,
     1.3
   ),
-  (
+  (gen_random_uuid(),
     'kale chips',
     141,
     100,
@@ -13912,7 +13912,7 @@ VALUES (
     3,
     1.9
   ),
-  (
+  (gen_random_uuid(),
     'kale salad',
     217.7,
     100,
@@ -13926,7 +13926,7 @@ VALUES (
     2.3,
     5.6
   ),
-  (
+  (gen_random_uuid(),
     'kale',
     27.2,
     100,
@@ -13940,7 +13940,7 @@ VALUES (
     2,
     1.3
   ),
-  (
+  (gen_random_uuid(),
     'smoothie',
     79.7,
     100,
@@ -13954,7 +13954,7 @@ VALUES (
     1.4,
     11.7
   ),
-  (
+  (gen_random_uuid(),
     'katsu',
     248.3,
     100,
@@ -13968,7 +13968,7 @@ VALUES (
     1,
     1.3
   ),
-  (
+  (gen_random_uuid(),
     'sauce',
     48.8,
     100,
@@ -13982,7 +13982,7 @@ VALUES (
     1.8,
     5
   ),
-  (
+  (gen_random_uuid(),
     'katsudon',
     160.7,
     100,
@@ -13996,7 +13996,7 @@ VALUES (
     0.5,
     2.1
   ),
-  (
+  (gen_random_uuid(),
     'kelp',
     42.1,
     100,
@@ -14010,7 +14010,7 @@ VALUES (
     1.3,
     0.6
   ),
-  (
+  (gen_random_uuid(),
     'noodles',
     161.8,
     100,
@@ -14024,7 +14024,7 @@ VALUES (
     1.8,
     0.6
   ),
-  (
+  (gen_random_uuid(),
     'ketchup',
     100.7,
     100,
@@ -14038,7 +14038,7 @@ VALUES (
     0.3,
     21.3
   ),
-  (
+  (gen_random_uuid(),
     'ketchup',
     100.7,
     100,
@@ -14052,7 +14052,7 @@ VALUES (
     0.3,
     21.3
   ),
-  (
+  (gen_random_uuid(),
     'lime',
     29.6,
     100,
@@ -14066,7 +14066,7 @@ VALUES (
     2.9,
     1.7
   ),
-  (
+  (gen_random_uuid(),
     'key lime pie',
     308.6,
     100,
@@ -14080,7 +14080,7 @@ VALUES (
     0.4,
     28.9
   ),
-  (
+  (gen_random_uuid(),
     'kidney beans',
     128.1,
     100,
@@ -14094,7 +14094,7 @@ VALUES (
     6.3,
     0.3
   ),
-  (
+  (gen_random_uuid(),
     'kidney beans',
     128.1,
     100,
@@ -14108,7 +14108,7 @@ VALUES (
     6.3,
     0.3
   ),
-  (
+  (gen_random_uuid(),
     'kimchi',
     30.2,
     100,
@@ -14122,7 +14122,7 @@ VALUES (
     3.1,
     1.3
   ),
-  (
+  (gen_random_uuid(),
     'kimchi',
     30.2,
     100,
@@ -14136,7 +14136,7 @@ VALUES (
     3.1,
     1.3
   ),
-  (
+  (gen_random_uuid(),
     'kimchi fried rice',
     152.4,
     100,
@@ -14150,7 +14150,7 @@ VALUES (
     0.9,
     0.7
   ),
-  (
+  (gen_random_uuid(),
     'kimchi jjigae',
     147,
     100,
@@ -14164,7 +14164,7 @@ VALUES (
     1.2,
     1.9
   ),
-  (
+  (gen_random_uuid(),
     'kimchi',
     30.2,
     100,
@@ -14178,7 +14178,7 @@ VALUES (
     3.1,
     1.3
   ),
-  (
+  (gen_random_uuid(),
     'pancake',
     226,
     100,
@@ -14192,7 +14192,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'king crab',
     96.8,
     100,
@@ -14206,7 +14206,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'king crab legs',
     96.3,
     100,
@@ -14220,7 +14220,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'oyster mushrooms',
     33.9,
     100,
@@ -14234,7 +14234,7 @@ VALUES (
     2.3,
     1.1
   ),
-  (
+  (gen_random_uuid(),
     'prawns',
     122,
     100,
@@ -14248,7 +14248,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'kiwi',
     59.5,
     100,
@@ -14262,7 +14262,7 @@ VALUES (
     3,
     9.1
   ),
-  (
+  (gen_random_uuid(),
     'kiwi',
     59.5,
     100,
@@ -14276,7 +14276,7 @@ VALUES (
     3,
     9.1
   ),
-  (
+  (gen_random_uuid(),
     'kiwi fruit',
     62.2,
     100,
@@ -14290,7 +14290,7 @@ VALUES (
     3.1,
     9.1
   ),
-  (
+  (gen_random_uuid(),
     'kobe beef',
     190.2,
     100,
@@ -14304,7 +14304,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'kombucha',
     14.1,
     100,
@@ -14318,7 +14318,7 @@ VALUES (
     0.8,
     0.8
   ),
-  (
+  (gen_random_uuid(),
     'kombucha',
     14.1,
     100,
@@ -14332,7 +14332,7 @@ VALUES (
     0.8,
     0.8
   ),
-  (
+  (gen_random_uuid(),
     'kosher salt',
     0,
     100,
@@ -14346,7 +14346,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'kung pao chicken',
     131,
     100,
@@ -14360,7 +14360,7 @@ VALUES (
     1.5,
     3
   ),
-  (
+  (gen_random_uuid(),
     'ladyfingers',
     373.5,
     100,
@@ -14374,7 +14374,7 @@ VALUES (
     1,
     0
   ),
-  (
+  (gen_random_uuid(),
     'lager',
     42.3,
     100,
@@ -14388,7 +14388,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'beer',
     43.3,
     100,
@@ -14402,7 +14402,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'lamb',
     301.2,
     100,
@@ -14416,7 +14416,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'lamb',
     301.2,
     100,
@@ -14430,7 +14430,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'lamb',
     301.2,
     100,
@@ -14444,7 +14444,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'lamb',
     301.2,
     100,
@@ -14458,7 +14458,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'biryani',
     142.9,
     100,
@@ -14472,7 +14472,7 @@ VALUES (
     0.7,
     1.6
   ),
-  (
+  (gen_random_uuid(),
     'lamb chops',
     312.2,
     100,
@@ -14486,7 +14486,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'lamb curry',
     153.3,
     100,
@@ -14500,7 +14500,7 @@ VALUES (
     0.6,
     0.9
   ),
-  (
+  (gen_random_uuid(),
     'lamb',
     301.2,
     100,
@@ -14514,7 +14514,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'kebab',
     110.6,
     100,
@@ -14528,7 +14528,7 @@ VALUES (
     1.1,
     13.1
   ),
-  (
+  (gen_random_uuid(),
     'lamb',
     301.2,
     100,
@@ -14542,7 +14542,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'kofta',
     248.5,
     100,
@@ -14556,7 +14556,7 @@ VALUES (
     1.6,
     0.6
   ),
-  (
+  (gen_random_uuid(),
     'lamb meatballs',
     286.6,
     100,
@@ -14570,7 +14570,7 @@ VALUES (
     0.6,
     0.2
   ),
-  (
+  (gen_random_uuid(),
     'lamb',
     301.2,
     100,
@@ -14584,7 +14584,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'shawarma',
     195.9,
     100,
@@ -14598,7 +14598,7 @@ VALUES (
     0.7,
     0.8
   ),
-  (
+  (gen_random_uuid(),
     'lamb',
     301.2,
     100,
@@ -14612,7 +14612,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'stew',
     106.6,
     100,
@@ -14626,7 +14626,7 @@ VALUES (
     1.3,
     1.8
   ),
-  (
+  (gen_random_uuid(),
     'lamb',
     301.2,
     100,
@@ -14640,7 +14640,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'vindaloo',
     97.5,
     100,
@@ -14654,7 +14654,7 @@ VALUES (
     0.8,
     2.3
   ),
-  (
+  (gen_random_uuid(),
     'lasagna',
     157.7,
     100,
@@ -14668,7 +14668,7 @@ VALUES (
     1,
     2.9
   ),
-  (
+  (gen_random_uuid(),
     'lasagna',
     157.7,
     100,
@@ -14682,7 +14682,7 @@ VALUES (
     1,
     2.9
   ),
-  (
+  (gen_random_uuid(),
     'noodles',
     161.8,
     100,
@@ -14696,7 +14696,7 @@ VALUES (
     1.8,
     0.6
   ),
-  (
+  (gen_random_uuid(),
     'honey',
     302.9,
     100,
@@ -14710,7 +14710,7 @@ VALUES (
     0.2,
     82.6
   ),
-  (
+  (gen_random_uuid(),
     'syrup',
     262.8,
     100,
@@ -14724,7 +14724,7 @@ VALUES (
     0,
     42
   ),
-  (
+  (gen_random_uuid(),
     'leek',
     31.9,
     100,
@@ -14738,7 +14738,7 @@ VALUES (
     1,
     2.1
   ),
-  (
+  (gen_random_uuid(),
     'potato soup',
     110.1,
     100,
@@ -14752,7 +14752,7 @@ VALUES (
     0.9,
     0.6
   ),
-  (
+  (gen_random_uuid(),
     'leek soup',
     82.4,
     100,
@@ -14766,7 +14766,7 @@ VALUES (
     0.8,
     1.8
   ),
-  (
+  (gen_random_uuid(),
     'leeks',
     30.3,
     100,
@@ -14780,7 +14780,7 @@ VALUES (
     1,
     2.1
   ),
-  (
+  (gen_random_uuid(),
     'leeks',
     30.3,
     100,
@@ -14794,7 +14794,7 @@ VALUES (
     1,
     2.1
   ),
-  (
+  (gen_random_uuid(),
     'leeks',
     30.3,
     100,
@@ -14808,7 +14808,7 @@ VALUES (
     1,
     2.1
   ),
-  (
+  (gen_random_uuid(),
     'lamb',
     301.2,
     100,
@@ -14822,7 +14822,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'lemon bars',
     375,
     100,
@@ -14836,7 +14836,7 @@ VALUES (
     0.7,
     33.1
   ),
-  (
+  (gen_random_uuid(),
     'lemon cake',
     338,
     100,
@@ -14850,7 +14850,7 @@ VALUES (
     0.7,
     37.1
   ),
-  (
+  (gen_random_uuid(),
     'lemon chicken',
     258.3,
     100,
@@ -14864,7 +14864,7 @@ VALUES (
     1,
     8.3
   ),
-  (
+  (gen_random_uuid(),
     'lemon cookies',
     399.9,
     100,
@@ -14878,7 +14878,7 @@ VALUES (
     0.9,
     36.5
   ),
-  (
+  (gen_random_uuid(),
     'lemon cream pie',
     307.4,
     100,
@@ -14892,7 +14892,7 @@ VALUES (
     0.4,
     20.7
   ),
-  (
+  (gen_random_uuid(),
     'lemon curd',
     303,
     100,
@@ -14906,7 +14906,7 @@ VALUES (
     0.1,
     40.6
   ),
-  (
+  (gen_random_uuid(),
     'lemon drizzle cake',
     372.2,
     100,
@@ -14920,7 +14920,7 @@ VALUES (
     0.7,
     30
   ),
-  (
+  (gen_random_uuid(),
     'lemon',
     29,
     100,
@@ -14934,7 +14934,7 @@ VALUES (
     2.7,
     2.5
   ),
-  (
+  (gen_random_uuid(),
     'garlic shrimp',
     151.1,
     100,
@@ -14948,7 +14948,7 @@ VALUES (
     0.1,
     0
   ),
-  (
+  (gen_random_uuid(),
     'lemon',
     29,
     100,
@@ -14962,7 +14962,7 @@ VALUES (
     2.7,
     2.5
   ),
-  (
+  (gen_random_uuid(),
     'icing',
     405.3,
     100,
@@ -14976,7 +14976,7 @@ VALUES (
     0.9,
     57.5
   ),
-  (
+  (gen_random_uuid(),
     'lemon juice',
     16.5,
     100,
@@ -14990,7 +14990,7 @@ VALUES (
     0.8,
     1.6
   ),
-  (
+  (gen_random_uuid(),
     'lemon meringue pie',
     273.9,
     100,
@@ -15004,7 +15004,7 @@ VALUES (
     1.2,
     23.9
   ),
-  (
+  (gen_random_uuid(),
     'lemon pepper seasoning',
     102.4,
     100,
@@ -15018,7 +15018,7 @@ VALUES (
     10.7,
     0
   ),
-  (
+  (gen_random_uuid(),
     'lemon poppy seed muffins',
     349.3,
     100,
@@ -15032,7 +15032,7 @@ VALUES (
     0.7,
     33.2
   ),
-  (
+  (gen_random_uuid(),
     'lemon pudding',
     117.4,
     100,
@@ -15046,7 +15046,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'lemon',
     29,
     100,
@@ -15060,7 +15060,7 @@ VALUES (
     2.7,
     2.5
   ),
-  (
+  (gen_random_uuid(),
     'ricotta',
     134,
     100,
@@ -15074,7 +15074,7 @@ VALUES (
     0,
     0.3
   ),
-  (
+  (gen_random_uuid(),
     'pancakes',
     230.7,
     100,
@@ -15088,7 +15088,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'lemon',
     29,
     100,
@@ -15102,7 +15102,7 @@ VALUES (
     2.7,
     2.5
   ),
-  (
+  (gen_random_uuid(),
     'sauce',
     48.8,
     100,
@@ -15116,7 +15116,7 @@ VALUES (
     1.8,
     5
   ),
-  (
+  (gen_random_uuid(),
     'lemon sorbet',
     121.4,
     100,
@@ -15130,7 +15130,7 @@ VALUES (
     0.3,
     29.8
   ),
-  (
+  (gen_random_uuid(),
     'lemon tart',
     366.4,
     100,
@@ -15144,7 +15144,7 @@ VALUES (
     0.8,
     35.5
   ),
-  (
+  (gen_random_uuid(),
     'lemon tea',
     1.2,
     100,
@@ -15158,7 +15158,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'lemon water',
     0.1,
     100,
@@ -15172,7 +15172,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'lemongrass',
     101.7,
     100,
@@ -15186,7 +15186,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'lemongrass',
     101.7,
     100,
@@ -15200,7 +15200,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'lemons',
     28.5,
     100,
@@ -15214,7 +15214,7 @@ VALUES (
     2.8,
     2.5
   ),
-  (
+  (gen_random_uuid(),
     'lemons',
     28.5,
     100,
@@ -15228,7 +15228,7 @@ VALUES (
     2.8,
     2.5
   ),
-  (
+  (gen_random_uuid(),
     'lentils',
     116.2,
     100,
@@ -15242,7 +15242,7 @@ VALUES (
     8,
     1.8
   ),
-  (
+  (gen_random_uuid(),
     'lettuce',
     17,
     100,
@@ -15256,7 +15256,7 @@ VALUES (
     2.1,
     1.2
   ),
-  (
+  (gen_random_uuid(),
     'lettuce',
     17,
     100,
@@ -15270,7 +15270,7 @@ VALUES (
     2.1,
     1.2
   ),
-  (
+  (gen_random_uuid(),
     'lettuce',
     17,
     100,
@@ -15284,7 +15284,7 @@ VALUES (
     2.1,
     1.2
   ),
-  (
+  (gen_random_uuid(),
     'lettuce wraps',
     103.6,
     100,
@@ -15298,7 +15298,7 @@ VALUES (
     1.6,
     1.8
   ),
-  (
+  (gen_random_uuid(),
     'licorice',
     340.3,
     100,
@@ -15312,7 +15312,7 @@ VALUES (
     0,
     40
   ),
-  (
+  (gen_random_uuid(),
     'licorice candy',
     347.9,
     100,
@@ -15326,7 +15326,7 @@ VALUES (
     0,
     39.5
   ),
-  (
+  (gen_random_uuid(),
     'lime',
     29.6,
     100,
@@ -15340,7 +15340,7 @@ VALUES (
     2.9,
     1.7
   ),
-  (
+  (gen_random_uuid(),
     'lime',
     29.6,
     100,
@@ -15354,7 +15354,7 @@ VALUES (
     2.9,
     1.7
   ),
-  (
+  (gen_random_uuid(),
     'lime juice',
     24.9,
     100,
@@ -15368,7 +15368,7 @@ VALUES (
     0.4,
     1.7
   ),
-  (
+  (gen_random_uuid(),
     'limeade',
     51.6,
     100,
@@ -15382,7 +15382,7 @@ VALUES (
     0,
     13.2
   ),
-  (
+  (gen_random_uuid(),
     'limeade',
     51.6,
     100,
@@ -15396,7 +15396,7 @@ VALUES (
     0,
     13.2
   ),
-  (
+  (gen_random_uuid(),
     'limoncello',
     296.7,
     100,
@@ -15410,7 +15410,7 @@ VALUES (
     0.1,
     38
   ),
-  (
+  (gen_random_uuid(),
     'lingonberry',
     58.5,
     100,
@@ -15424,7 +15424,7 @@ VALUES (
     2.4,
     10
   ),
-  (
+  (gen_random_uuid(),
     'lingonberry',
     58.5,
     100,
@@ -15438,7 +15438,7 @@ VALUES (
     2.4,
     10
   ),
-  (
+  (gen_random_uuid(),
     'jam',
     285.3,
     100,
@@ -15452,7 +15452,7 @@ VALUES (
     1.1,
     48.3
   ),
-  (
+  (gen_random_uuid(),
     'lingonberry sauce',
     129.4,
     100,
@@ -15466,7 +15466,7 @@ VALUES (
     1.7,
     30.4
   ),
-  (
+  (gen_random_uuid(),
     'linguine',
     156.4,
     100,
@@ -15480,7 +15480,7 @@ VALUES (
     1.8,
     0.6
   ),
-  (
+  (gen_random_uuid(),
     'linguine pasta',
     156,
     100,
@@ -15494,7 +15494,7 @@ VALUES (
     1.8,
     0.6
   ),
-  (
+  (gen_random_uuid(),
     'liquid smoke',
     6.3,
     100,
@@ -15508,7 +15508,7 @@ VALUES (
     0,
     1.1
   ),
-  (
+  (gen_random_uuid(),
     'lo mein noodles',
     123.6,
     100,
@@ -15522,7 +15522,7 @@ VALUES (
     1.3,
     2.7
   ),
-  (
+  (gen_random_uuid(),
     'lobster',
     143.7,
     100,
@@ -15536,7 +15536,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'lobster',
     143.7,
     100,
@@ -15550,7 +15550,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'lobster',
     143.7,
     100,
@@ -15564,7 +15564,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'lobster bisque',
     103.2,
     100,
@@ -15578,7 +15578,7 @@ VALUES (
     0.2,
     2.1
   ),
-  (
+  (gen_random_uuid(),
     'lobster roll',
     193.7,
     100,
@@ -15592,7 +15592,7 @@ VALUES (
     0.8,
     0.4
   ),
-  (
+  (gen_random_uuid(),
     'lobster salad',
     186.5,
     100,
@@ -15606,7 +15606,7 @@ VALUES (
     0.5,
     0.6
   ),
-  (
+  (gen_random_uuid(),
     'lobster tail',
     143.1,
     100,
@@ -15620,7 +15620,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'longan',
     58.8,
     100,
@@ -15634,7 +15634,7 @@ VALUES (
     1.2,
     0
   ),
-  (
+  (gen_random_uuid(),
     'fruit',
     60.8,
     100,
@@ -15648,7 +15648,7 @@ VALUES (
     2,
     10.1
   ),
-  (
+  (gen_random_uuid(),
     'lotus root',
     64.3,
     100,
@@ -15662,7 +15662,7 @@ VALUES (
     3.1,
     0.5
   ),
-  (
+  (gen_random_uuid(),
     'crab meat',
     80.5,
     100,
@@ -15676,7 +15676,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'lumpia',
     235.5,
     100,
@@ -15690,7 +15690,7 @@ VALUES (
     1,
     0.7
   ),
-  (
+  (gen_random_uuid(),
     'meat',
     221.2,
     100,
@@ -15704,7 +15704,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'mac and cheese',
     193.7,
     100,
@@ -15718,7 +15718,7 @@ VALUES (
     1.2,
     4.3
   ),
-  (
+  (gen_random_uuid(),
     'mac and cheese bites',
     284,
     100,
@@ -15732,7 +15732,7 @@ VALUES (
     1,
     0.7
   ),
-  (
+  (gen_random_uuid(),
     'macadamia',
     711.1,
     100,
@@ -15746,7 +15746,7 @@ VALUES (
     8.6,
     4.6
   ),
-  (
+  (gen_random_uuid(),
     'macadamia nuts',
     728.5,
     100,
@@ -15760,7 +15760,7 @@ VALUES (
     8.8,
     4.6
   ),
-  (
+  (gen_random_uuid(),
     'macadamia nuts',
     728.5,
     100,
@@ -15774,7 +15774,7 @@ VALUES (
     8.8,
     4.6
   ),
-  (
+  (gen_random_uuid(),
     'macarons',
     390.7,
     100,
@@ -15788,7 +15788,7 @@ VALUES (
     4.3,
     45.9
   ),
-  (
+  (gen_random_uuid(),
     'mackerel',
     254.4,
     100,
@@ -15802,7 +15802,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'curry',
     101,
     100,
@@ -15816,7 +15816,7 @@ VALUES (
     0.6,
     0.9
   ),
-  (
+  (gen_random_uuid(),
     'sauce',
     48.8,
     100,
@@ -15830,7 +15830,7 @@ VALUES (
     1.8,
     5
   ),
-  (
+  (gen_random_uuid(),
     'pasta',
     156,
     100,
@@ -15844,7 +15844,7 @@ VALUES (
     1.8,
     0.6
   ),
-  (
+  (gen_random_uuid(),
     'mahi mahi',
     107.5,
     100,
@@ -15858,7 +15858,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'mai tai',
     118.8,
     100,
@@ -15872,7 +15872,7 @@ VALUES (
     0.2,
     7.1
   ),
-  (
+  (gen_random_uuid(),
     'flour',
     362.6,
     100,
@@ -15886,7 +15886,7 @@ VALUES (
     2.7,
     0.3
   ),
-  (
+  (gen_random_uuid(),
     'maitake mushrooms',
     31.9,
     100,
@@ -15900,7 +15900,7 @@ VALUES (
     2.7,
     2.1
   ),
-  (
+  (gen_random_uuid(),
     'malt',
     311.5,
     100,
@@ -15914,7 +15914,7 @@ VALUES (
     0,
     71.3
   ),
-  (
+  (gen_random_uuid(),
     'vinegar',
     18.1,
     100,
@@ -15928,7 +15928,7 @@ VALUES (
     0,
     0.1
   ),
-  (
+  (gen_random_uuid(),
     'milk',
     51.3,
     100,
@@ -15942,7 +15942,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'mandarin oranges',
     37.3,
     100,
@@ -15956,7 +15956,7 @@ VALUES (
     1.2,
     8.3
   ),
-  (
+  (gen_random_uuid(),
     'mango',
     61.6,
     100,
@@ -15970,7 +15970,7 @@ VALUES (
     1.6,
     13.6
   ),
-  (
+  (gen_random_uuid(),
     'mango chutney',
     192.6,
     100,
@@ -15984,7 +15984,7 @@ VALUES (
     1.2,
     46.3
   ),
-  (
+  (gen_random_uuid(),
     'mango juice',
     49.7,
     100,
@@ -15998,7 +15998,7 @@ VALUES (
     0.3,
     12.4
   ),
-  (
+  (gen_random_uuid(),
     'mango lassi',
     77.5,
     100,
@@ -16012,7 +16012,7 @@ VALUES (
     0.7,
     14
   ),
-  (
+  (gen_random_uuid(),
     'mango pickle',
     206.1,
     100,
@@ -16026,7 +16026,7 @@ VALUES (
     4.6,
     10.5
   ),
-  (
+  (gen_random_uuid(),
     'mango salsa',
     52.3,
     100,
@@ -16040,7 +16040,7 @@ VALUES (
     1.6,
     10.3
   ),
-  (
+  (gen_random_uuid(),
     'mango smoothie',
     59.3,
     100,
@@ -16054,7 +16054,7 @@ VALUES (
     0.8,
     8.3
   ),
-  (
+  (gen_random_uuid(),
     'mango sorbet',
     116.1,
     100,
@@ -16068,7 +16068,7 @@ VALUES (
     0.3,
     29.6
   ),
-  (
+  (gen_random_uuid(),
     'mangoes',
     58.7,
     100,
@@ -16082,7 +16082,7 @@ VALUES (
     1.6,
     13.7
   ),
-  (
+  (gen_random_uuid(),
     'mangoes',
     58.7,
     100,
@@ -16096,7 +16096,7 @@ VALUES (
     1.6,
     13.7
   ),
-  (
+  (gen_random_uuid(),
     'manicotti',
     172.3,
     100,
@@ -16110,7 +16110,7 @@ VALUES (
     0.9,
     2.2
   ),
-  (
+  (gen_random_uuid(),
     'manicotti pasta',
     163.8,
     100,
@@ -16124,7 +16124,7 @@ VALUES (
     0.9,
     2.2
   ),
-  (
+  (gen_random_uuid(),
     'bacon',
     466.4,
     100,
@@ -16138,7 +16138,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'cookies',
     489.2,
     100,
@@ -16152,7 +16152,7 @@ VALUES (
     2,
     32.7
   ),
-  (
+  (gen_random_uuid(),
     'glaze',
     299,
     100,
@@ -16166,7 +16166,7 @@ VALUES (
     0,
     69.6
   ),
-  (
+  (gen_random_uuid(),
     'maple syrup',
     267.5,
     100,
@@ -16180,7 +16180,7 @@ VALUES (
     0,
     59.9
   ),
-  (
+  (gen_random_uuid(),
     'maple syrup',
     267.5,
     100,
@@ -16194,7 +16194,7 @@ VALUES (
     0,
     59.9
   ),
-  (
+  (gen_random_uuid(),
     'mapo tofu',
     93.8,
     100,
@@ -16208,7 +16208,7 @@ VALUES (
     1.6,
     1.2
   ),
-  (
+  (gen_random_uuid(),
     'maraschino cherries',
     163.6,
     100,
@@ -16222,7 +16222,7 @@ VALUES (
     3.2,
     38.6
   ),
-  (
+  (gen_random_uuid(),
     'margarine',
     700.5,
     100,
@@ -16236,7 +16236,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'margarita',
     98.7,
     100,
@@ -16250,7 +16250,7 @@ VALUES (
     0.1,
     8.6
   ),
-  (
+  (gen_random_uuid(),
     'margarita mix',
     384.4,
     100,
@@ -16264,7 +16264,7 @@ VALUES (
     0,
     96.5
   ),
-  (
+  (gen_random_uuid(),
     'marinara sauce',
     50.4,
     100,
@@ -16278,7 +16278,7 @@ VALUES (
     1.8,
     5
   ),
-  (
+  (gen_random_uuid(),
     'artichokes',
     52.6,
     100,
@@ -16292,7 +16292,7 @@ VALUES (
     5.8,
     1
   ),
-  (
+  (gen_random_uuid(),
     'olives',
     113.4,
     100,
@@ -16306,7 +16306,7 @@ VALUES (
     3.2,
     0
   ),
-  (
+  (gen_random_uuid(),
     'tomatoes',
     18.5,
     100,
@@ -16320,7 +16320,7 @@ VALUES (
     1.2,
     2.6
   ),
-  (
+  (gen_random_uuid(),
     'marjoram',
     271.9,
     100,
@@ -16334,7 +16334,7 @@ VALUES (
     39.8,
     3.4
   ),
-  (
+  (gen_random_uuid(),
     'marsala wine',
     49.7,
     100,
@@ -16348,7 +16348,7 @@ VALUES (
     0,
     1.6
   ),
-  (
+  (gen_random_uuid(),
     'marshmallow creme',
     321.1,
     100,
@@ -16362,7 +16362,7 @@ VALUES (
     0.2,
     57.2
   ),
-  (
+  (gen_random_uuid(),
     'marshmallows',
     313.3,
     100,
@@ -16376,7 +16376,7 @@ VALUES (
     0.1,
     57.6
   ),
-  (
+  (gen_random_uuid(),
     'marshmallows',
     313.3,
     100,
@@ -16390,7 +16390,7 @@ VALUES (
     0.1,
     57.6
   ),
-  (
+  (gen_random_uuid(),
     'marzipan',
     398.6,
     100,
@@ -16404,7 +16404,7 @@ VALUES (
     2.1,
     68.5
   ),
-  (
+  (gen_random_uuid(),
     'masa harina',
     357.3,
     100,
@@ -16418,7 +16418,7 @@ VALUES (
     6.4,
     1.6
   ),
-  (
+  (gen_random_uuid(),
     'masala chai',
     2,
     100,
@@ -16432,7 +16432,7 @@ VALUES (
     0.1,
     0
   ),
-  (
+  (gen_random_uuid(),
     'dal',
     102.2,
     100,
@@ -16446,7 +16446,7 @@ VALUES (
     5.9,
     2.1
   ),
-  (
+  (gen_random_uuid(),
     'matcha green tea',
     1,
     100,
@@ -16460,7 +16460,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'matcha powder',
     1,
     100,
@@ -16474,7 +16474,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'matzo',
     391.2,
     100,
@@ -16488,7 +16488,7 @@ VALUES (
     3,
     0.3
   ),
-  (
+  (gen_random_uuid(),
     'matzo ball soup',
     69.9,
     100,
@@ -16502,7 +16502,7 @@ VALUES (
     0.1,
     1.4
   ),
-  (
+  (gen_random_uuid(),
     'matzo',
     391.2,
     100,
@@ -16516,7 +16516,7 @@ VALUES (
     3,
     0.3
   ),
-  (
+  (gen_random_uuid(),
     'mayo',
     678.7,
     100,
@@ -16530,7 +16530,7 @@ VALUES (
     0,
     0.6
   ),
-  (
+  (gen_random_uuid(),
     'mayonnaise',
     689.3,
     100,
@@ -16544,7 +16544,7 @@ VALUES (
     0,
     0.6
   ),
-  (
+  (gen_random_uuid(),
     'meat pie',
     304.9,
     100,
@@ -16558,7 +16558,7 @@ VALUES (
     1.8,
     2
   ),
-  (
+  (gen_random_uuid(),
     'meat sauce',
     77.8,
     100,
@@ -16572,7 +16572,7 @@ VALUES (
     2.3,
     7.6
   ),
-  (
+  (gen_random_uuid(),
     'meatball',
     289.5,
     100,
@@ -16586,7 +16586,7 @@ VALUES (
     2.3,
     3.5
   ),
-  (
+  (gen_random_uuid(),
     'meatball sub',
     233.4,
     100,
@@ -16600,7 +16600,7 @@ VALUES (
     1.4,
     3.1
   ),
-  (
+  (gen_random_uuid(),
     'meatloaf',
     179.5,
     100,
@@ -16614,7 +16614,7 @@ VALUES (
     0.7,
     3.3
   ),
-  (
+  (gen_random_uuid(),
     'medjool dates',
     273.3,
     100,
@@ -16628,7 +16628,7 @@ VALUES (
     6.7,
     66.2
   ),
-  (
+  (gen_random_uuid(),
     'melon',
     33.6,
     100,
@@ -16642,7 +16642,7 @@ VALUES (
     0.9,
     7.8
   ),
-  (
+  (gen_random_uuid(),
     'melon',
     33.6,
     100,
@@ -16656,7 +16656,7 @@ VALUES (
     0.9,
     7.8
   ),
-  (
+  (gen_random_uuid(),
     'melon',
     33.6,
     100,
@@ -16670,7 +16670,7 @@ VALUES (
     0.9,
     7.8
   ),
-  (
+  (gen_random_uuid(),
     'salad',
     23.6,
     100,
@@ -16684,7 +16684,7 @@ VALUES (
     1.9,
     2.2
   ),
-  (
+  (gen_random_uuid(),
     'menudo',
     42.9,
     100,
@@ -16698,7 +16698,7 @@ VALUES (
     2.1,
     0.7
   ),
-  (
+  (gen_random_uuid(),
     'meringue',
     282.1,
     100,
@@ -16712,7 +16712,7 @@ VALUES (
     0,
     67.5
   ),
-  (
+  (gen_random_uuid(),
     'meringue cookies',
     370.1,
     100,
@@ -16726,7 +16726,7 @@ VALUES (
     2.7,
     62.8
   ),
-  (
+  (gen_random_uuid(),
     'mesclun greens',
     28.1,
     100,
@@ -16740,7 +16740,7 @@ VALUES (
     2,
     0.9
   ),
-  (
+  (gen_random_uuid(),
     'seasoning',
     51.2,
     100,
@@ -16754,7 +16754,7 @@ VALUES (
     6.7,
     0.8
   ),
-  (
+  (gen_random_uuid(),
     'mettwurst',
     257.5,
     100,
@@ -16768,7 +16768,7 @@ VALUES (
     0.1,
     0
   ),
-  (
+  (gen_random_uuid(),
     'milk',
     51.3,
     100,
@@ -16782,7 +16782,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'milk chocolate',
     549,
     100,
@@ -16796,7 +16796,7 @@ VALUES (
     3.4,
     51.5
   ),
-  (
+  (gen_random_uuid(),
     'milk',
     51.3,
     100,
@@ -16810,7 +16810,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'milkshake',
     120.4,
     100,
@@ -16824,7 +16824,7 @@ VALUES (
     0.3,
     20.7
   ),
-  (
+  (gen_random_uuid(),
     'milky way',
     465.9,
     100,
@@ -16838,7 +16838,7 @@ VALUES (
     1,
     59.3
   ),
-  (
+  (gen_random_uuid(),
     'millet',
     122.2,
     100,
@@ -16852,7 +16852,7 @@ VALUES (
     1.3,
     0.1
   ),
-  (
+  (gen_random_uuid(),
     'mimosa',
     70.5,
     100,
@@ -16866,7 +16866,7 @@ VALUES (
     0.1,
     3.5
   ),
-  (
+  (gen_random_uuid(),
     'mint',
     405.2,
     100,
@@ -16880,7 +16880,7 @@ VALUES (
     0,
     63.5
   ),
-  (
+  (gen_random_uuid(),
     'mint',
     405.2,
     100,
@@ -16894,7 +16894,7 @@ VALUES (
     0,
     63.5
   ),
-  (
+  (gen_random_uuid(),
     'mint chocolate',
     550.4,
     100,
@@ -16908,7 +16908,7 @@ VALUES (
     0.2,
     59.4
   ),
-  (
+  (gen_random_uuid(),
     'chocolate chip',
     482.9,
     100,
@@ -16922,7 +16922,7 @@ VALUES (
     6,
     54.4
   ),
-  (
+  (gen_random_uuid(),
     'mint chocolate chip ice cream',
     214.9,
     100,
@@ -16936,7 +16936,7 @@ VALUES (
     0.9,
     22.5
   ),
-  (
+  (gen_random_uuid(),
     'mint chocolate chip ice cream',
     214.9,
     100,
@@ -16950,7 +16950,7 @@ VALUES (
     0.9,
     22.5
   ),
-  (
+  (gen_random_uuid(),
     'mint',
     405.2,
     100,
@@ -16964,7 +16964,7 @@ VALUES (
     0,
     63.5
   ),
-  (
+  (gen_random_uuid(),
     'mint jelly',
     171.4,
     100,
@@ -16978,7 +16978,7 @@ VALUES (
     1,
     41.3
   ),
-  (
+  (gen_random_uuid(),
     'mint leaves',
     42.8,
     100,
@@ -16992,8 +16992,8 @@ VALUES (
     6.9,
     0
   ),
-  ('mint tea', 1, 100, 0, 0, 0, 1, 0, 0, 0.2, 0, 0),
-  (
+  (gen_random_uuid(),'mint tea', 1, 100, 0, 0, 0, 1, 0, 0, 0.2, 0, 0),
+  (gen_random_uuid(),
     'mirin',
     242.9,
     100,
@@ -17007,7 +17007,7 @@ VALUES (
     0,
     44.5
   ),
-  (
+  (gen_random_uuid(),
     'miso',
     195.3,
     100,
@@ -17021,7 +17021,7 @@ VALUES (
     5.4,
     6.2
   ),
-  (
+  (gen_random_uuid(),
     'miso paste',
     201.9,
     100,
@@ -17035,7 +17035,7 @@ VALUES (
     5.4,
     6.2
   ),
-  (
+  (gen_random_uuid(),
     'miso paste',
     201.9,
     100,
@@ -17049,7 +17049,7 @@ VALUES (
     5.4,
     6.2
   ),
-  (
+  (gen_random_uuid(),
     'miso soup',
     26.1,
     100,
@@ -17063,7 +17063,7 @@ VALUES (
     0.5,
     0.5
   ),
-  (
+  (gen_random_uuid(),
     'miso soup',
     26.1,
     100,
@@ -17077,7 +17077,7 @@ VALUES (
     0.5,
     0.5
   ),
-  (
+  (gen_random_uuid(),
     'mixed berries',
     46.5,
     100,
@@ -17091,7 +17091,7 @@ VALUES (
     3.9,
     6.1
   ),
-  (
+  (gen_random_uuid(),
     'mixed nuts',
     611,
     100,
@@ -17105,7 +17105,7 @@ VALUES (
     9.2,
     4.8
   ),
-  (
+  (gen_random_uuid(),
     'mixed vegetables',
     33.3,
     100,
@@ -17119,7 +17119,7 @@ VALUES (
     2.9,
     2.6
   ),
-  (
+  (gen_random_uuid(),
     'molasses',
     287.4,
     100,
@@ -17133,7 +17133,7 @@ VALUES (
     0,
     74.4
   ),
-  (
+  (gen_random_uuid(),
     'mozzarella cheese',
     300.8,
     100,
@@ -17147,7 +17147,7 @@ VALUES (
     0,
     1
   ),
-  (
+  (gen_random_uuid(),
     'mozzarella cheese',
     300.8,
     100,
@@ -17161,7 +17161,7 @@ VALUES (
     0,
     1
   ),
-  (
+  (gen_random_uuid(),
     'mozzarella cheese sticks',
     301.1,
     100,
@@ -17175,7 +17175,7 @@ VALUES (
     0,
     1
   ),
-  (
+  (gen_random_uuid(),
     'muesli',
     351,
     100,
@@ -17189,7 +17189,7 @@ VALUES (
     8.9,
     20.1
   ),
-  (
+  (gen_random_uuid(),
     'muesli',
     351,
     100,
@@ -17203,7 +17203,7 @@ VALUES (
     8.9,
     20.1
   ),
-  (
+  (gen_random_uuid(),
     'muffin',
     384.4,
     100,
@@ -17217,7 +17217,7 @@ VALUES (
     1.1,
     31.6
   ),
-  (
+  (gen_random_uuid(),
     'cider',
     46.3,
     100,
@@ -17231,7 +17231,7 @@ VALUES (
     0.2,
     9.6
   ),
-  (
+  (gen_random_uuid(),
     'mulled wine',
     72.3,
     100,
@@ -17245,7 +17245,7 @@ VALUES (
     0.1,
     9.4
   ),
-  (
+  (gen_random_uuid(),
     'multigrain bread',
     262.1,
     100,
@@ -17259,7 +17259,7 @@ VALUES (
     7.5,
     6.4
   ),
-  (
+  (gen_random_uuid(),
     'mung bean sprouts',
     21,
     100,
@@ -17273,7 +17273,7 @@ VALUES (
     0.8,
     2.8
   ),
-  (
+  (gen_random_uuid(),
     'mung beans',
     102.6,
     100,
@@ -17287,7 +17287,7 @@ VALUES (
     7.7,
     2
   ),
-  (
+  (gen_random_uuid(),
     'mung beans',
     102.6,
     100,
@@ -17301,7 +17301,7 @@ VALUES (
     7.7,
     2
   ),
-  (
+  (gen_random_uuid(),
     'mushroom',
     28,
     100,
@@ -17315,7 +17315,7 @@ VALUES (
     2.1,
     2.3
   ),
-  (
+  (gen_random_uuid(),
     'mushroom risotto',
     84.7,
     100,
@@ -17329,7 +17329,7 @@ VALUES (
     0.3,
     1.3
   ),
-  (
+  (gen_random_uuid(),
     'mushroom soup',
     79.7,
     100,
@@ -17343,7 +17343,7 @@ VALUES (
     0.7,
     0.4
   ),
-  (
+  (gen_random_uuid(),
     'mushrooms',
     27.9,
     100,
@@ -17357,7 +17357,7 @@ VALUES (
     2.2,
     2.3
   ),
-  (
+  (gen_random_uuid(),
     'mushrooms',
     27.9,
     100,
@@ -17371,7 +17371,7 @@ VALUES (
     2.2,
     2.3
   ),
-  (
+  (gen_random_uuid(),
     'mussels',
     172.9,
     100,
@@ -17385,7 +17385,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'mustard',
     58.3,
     100,
@@ -17399,7 +17399,7 @@ VALUES (
     4,
     1
   ),
-  (
+  (gen_random_uuid(),
     'mustard',
     58.3,
     100,
@@ -17413,7 +17413,7 @@ VALUES (
     4,
     1
   ),
-  (
+  (gen_random_uuid(),
     'mustard greens',
     26.4,
     100,
@@ -17427,7 +17427,7 @@ VALUES (
     3.2,
     1.3
   ),
-  (
+  (gen_random_uuid(),
     'mustard',
     58.3,
     100,
@@ -17441,8 +17441,8 @@ VALUES (
     4,
     1
   ),
-  ('oil', 883, 100, 100.8, 6.6, 0, 0, 0, 0, 0, 0, 0),
-  (
+  (gen_random_uuid(),'oil', 883, 100, 100.8, 6.6, 0, 0, 0, 0, 0, 0, 0),
+  (gen_random_uuid(),
     'mustard powder',
     513,
     100,
@@ -17456,7 +17456,7 @@ VALUES (
     12.2,
     7
   ),
-  (
+  (gen_random_uuid(),
     'mustard sauce',
     192.5,
     100,
@@ -17470,7 +17470,7 @@ VALUES (
     0.6,
     2.6
   ),
-  (
+  (gen_random_uuid(),
     'mustard seeds',
     519,
     100,
@@ -17484,7 +17484,7 @@ VALUES (
     11.8,
     7
   ),
-  (
+  (gen_random_uuid(),
     'naan bread',
     292.6,
     100,
@@ -17498,7 +17498,7 @@ VALUES (
     2.2,
     3.5
   ),
-  (
+  (gen_random_uuid(),
     'nacho cheese',
     193.5,
     100,
@@ -17512,7 +17512,7 @@ VALUES (
     0.1,
     2.2
   ),
-  (
+  (gen_random_uuid(),
     'nacho cheese sauce',
     189.1,
     100,
@@ -17526,7 +17526,7 @@ VALUES (
     0.1,
     2.2
   ),
-  (
+  (gen_random_uuid(),
     'nacho dip',
     200.7,
     100,
@@ -17540,7 +17540,7 @@ VALUES (
     0.9,
     4.8
   ),
-  (
+  (gen_random_uuid(),
     'nacho',
     229.9,
     100,
@@ -17554,7 +17554,7 @@ VALUES (
     0.7,
     1.8
   ),
-  (
+  (gen_random_uuid(),
     'nachos',
     225.2,
     100,
@@ -17568,7 +17568,7 @@ VALUES (
     0.7,
     1.8
   ),
-  (
+  (gen_random_uuid(),
     'pear',
     56.7,
     100,
@@ -17582,7 +17582,7 @@ VALUES (
     3.1,
     9.8
   ),
-  (
+  (gen_random_uuid(),
     'natto',
     216.7,
     100,
@@ -17596,7 +17596,7 @@ VALUES (
     5.3,
     4.9
   ),
-  (
+  (gen_random_uuid(),
     'navy beans',
     142.9,
     100,
@@ -17610,7 +17610,7 @@ VALUES (
     10.4,
     0.4
   ),
-  (
+  (gen_random_uuid(),
     'nectarine',
     45.2,
     100,
@@ -17624,7 +17624,7 @@ VALUES (
     1.7,
     7.8
   ),
-  (
+  (gen_random_uuid(),
     'nigiri sushi',
     179.2,
     100,
@@ -17638,7 +17638,7 @@ VALUES (
     0.4,
     0.5
   ),
-  (
+  (gen_random_uuid(),
     'nilla wafers',
     459.1,
     100,
@@ -17652,7 +17652,7 @@ VALUES (
     1.4,
     31.8
   ),
-  (
+  (gen_random_uuid(),
     'cactus',
     15.2,
     100,
@@ -17666,7 +17666,7 @@ VALUES (
     2,
     1.1
   ),
-  (
+  (gen_random_uuid(),
     'nori',
     34,
     100,
@@ -17680,7 +17680,7 @@ VALUES (
     0.4,
     0.4
   ),
-  (
+  (gen_random_uuid(),
     'nori sheets',
     34.1,
     100,
@@ -17694,7 +17694,7 @@ VALUES (
     0.4,
     0.4
   ),
-  (
+  (gen_random_uuid(),
     'nori sheets',
     34.1,
     100,
@@ -17708,7 +17708,7 @@ VALUES (
     0.4,
     0.4
   ),
-  (
+  (gen_random_uuid(),
     'nori sheets',
     34.1,
     100,
@@ -17722,7 +17722,7 @@ VALUES (
     0.4,
     0.4
   ),
-  (
+  (gen_random_uuid(),
     'whey',
     360.9,
     100,
@@ -17736,7 +17736,7 @@ VALUES (
     3.1,
     0
   ),
-  (
+  (gen_random_uuid(),
     'nut',
     614.1,
     100,
@@ -17750,7 +17750,7 @@ VALUES (
     10.8,
     4.6
   ),
-  (
+  (gen_random_uuid(),
     'butter',
     721.5,
     100,
@@ -17764,7 +17764,7 @@ VALUES (
     0,
     0.1
   ),
-  (
+  (gen_random_uuid(),
     'nutella',
     537.8,
     100,
@@ -17778,7 +17778,7 @@ VALUES (
     5.5,
     54.1
   ),
-  (
+  (gen_random_uuid(),
     'nutmeg',
     527.5,
     100,
@@ -17792,7 +17792,7 @@ VALUES (
     20.7,
     3.2
   ),
-  (
+  (gen_random_uuid(),
     'nutmeg',
     527.5,
     100,
@@ -17806,7 +17806,7 @@ VALUES (
     20.7,
     3.2
   ),
-  (
+  (gen_random_uuid(),
     'nutritional yeast',
     319.9,
     100,
@@ -17820,7 +17820,7 @@ VALUES (
     24.2,
     0
   ),
-  (
+  (gen_random_uuid(),
     'nuts',
     613.2,
     100,
@@ -17834,7 +17834,7 @@ VALUES (
     6.9,
     4.1
   ),
-  (
+  (gen_random_uuid(),
     'oat bran',
     39.7,
     100,
@@ -17848,7 +17848,7 @@ VALUES (
     2.6,
     0
   ),
-  (
+  (gen_random_uuid(),
     'oat flour',
     410.9,
     100,
@@ -17862,7 +17862,7 @@ VALUES (
     6.4,
     0.8
   ),
-  (
+  (gen_random_uuid(),
     'oat',
     368.3,
     100,
@@ -17876,7 +17876,7 @@ VALUES (
     10.3,
     1
   ),
-  (
+  (gen_random_uuid(),
     'milk',
     51.3,
     100,
@@ -17890,7 +17890,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'oat',
     368.3,
     100,
@@ -17904,7 +17904,7 @@ VALUES (
     10.3,
     1
   ),
-  (
+  (gen_random_uuid(),
     'milk',
     51.3,
     100,
@@ -17918,7 +17918,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'oatmeal',
     69.6,
     100,
@@ -17932,7 +17932,7 @@ VALUES (
     1.7,
     0.3
   ),
-  (
+  (gen_random_uuid(),
     'oatmeal cookies',
     419.2,
     100,
@@ -17946,7 +17946,7 @@ VALUES (
     3.3,
     19.6
   ),
-  (
+  (gen_random_uuid(),
     'oats',
     386.8,
     100,
@@ -17960,7 +17960,7 @@ VALUES (
     10.2,
     1
   ),
-  (
+  (gen_random_uuid(),
     'octopus',
     160.6,
     100,
@@ -17974,7 +17974,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'octopus',
     160.6,
     100,
@@ -17988,7 +17988,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'octopus',
     160.6,
     100,
@@ -18002,9 +18002,9 @@ VALUES (
     0,
     0
   ),
-  ('oil', 883, 100, 100.8, 6.6, 0, 0, 0, 0, 0, 0, 0),
-  ('oil', 883, 100, 100.8, 6.6, 0, 0, 0, 0, 0, 0, 0),
-  (
+  (gen_random_uuid(),'oil', 883, 100, 100.8, 6.6, 0, 0, 0, 0, 0, 0, 0),
+  (gen_random_uuid(),'oil', 883, 100, 100.8, 6.6, 0, 0, 0, 0, 0, 0, 0),
+  (gen_random_uuid(),
     'okra',
     22.5,
     100,
@@ -18018,7 +18018,7 @@ VALUES (
     2.5,
     2.4
   ),
-  (
+  (gen_random_uuid(),
     'old bay seasoning',
     121.9,
     100,
@@ -18032,7 +18032,7 @@ VALUES (
     6.5,
     0
   ),
-  (
+  (gen_random_uuid(),
     'old fashioned oats',
     381.8,
     100,
@@ -18046,7 +18046,7 @@ VALUES (
     10,
     1
   ),
-  (
+  (gen_random_uuid(),
     'olive oil',
     869.2,
     100,
@@ -18060,7 +18060,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'olive oil',
     869.2,
     100,
@@ -18074,7 +18074,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'olive oil mayo',
     366.2,
     100,
@@ -18088,7 +18088,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'olive oil',
     869.2,
     100,
@@ -18102,7 +18102,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'olives',
     113.4,
     100,
@@ -18116,7 +18116,7 @@ VALUES (
     3.2,
     0
   ),
-  (
+  (gen_random_uuid(),
     'olives',
     113.4,
     100,
@@ -18130,7 +18130,7 @@ VALUES (
     3.2,
     0
   ),
-  (
+  (gen_random_uuid(),
     'onion',
     44.7,
     100,
@@ -18144,7 +18144,7 @@ VALUES (
     1.4,
     4.7
   ),
-  (
+  (gen_random_uuid(),
     'onion',
     44.7,
     100,
@@ -18158,7 +18158,7 @@ VALUES (
     1.4,
     4.7
   ),
-  (
+  (gen_random_uuid(),
     'bhaji',
     254.8,
     100,
@@ -18172,7 +18172,7 @@ VALUES (
     2.8,
     3.9
   ),
-  (
+  (gen_random_uuid(),
     'onion chutney',
     88.5,
     100,
@@ -18186,7 +18186,7 @@ VALUES (
     1,
     2.6
   ),
-  (
+  (gen_random_uuid(),
     'onion dip',
     192.6,
     100,
@@ -18200,7 +18200,7 @@ VALUES (
     0.3,
     3.9
   ),
-  (
+  (gen_random_uuid(),
     'onion powder',
     344.7,
     100,
@@ -18214,7 +18214,7 @@ VALUES (
     14.9,
     6.6
   ),
-  (
+  (gen_random_uuid(),
     'onion rings',
     353.2,
     100,
@@ -18228,7 +18228,7 @@ VALUES (
     2.6,
     4.7
   ),
-  (
+  (gen_random_uuid(),
     'onion soup',
     289.4,
     100,
@@ -18242,7 +18242,7 @@ VALUES (
     6.6,
     4.7
   ),
-  (
+  (gen_random_uuid(),
     'onion soup mix',
     297.2,
     100,
@@ -18256,7 +18256,7 @@ VALUES (
     6.7,
     4.7
   ),
-  (
+  (gen_random_uuid(),
     'onions',
     44.5,
     100,
@@ -18270,7 +18270,7 @@ VALUES (
     1.4,
     4.8
   ),
-  (
+  (gen_random_uuid(),
     'onions',
     44.5,
     100,
@@ -18284,7 +18284,7 @@ VALUES (
     1.4,
     4.8
   ),
-  (
+  (gen_random_uuid(),
     'orange',
     50.4,
     100,
@@ -18298,7 +18298,7 @@ VALUES (
     2.2,
     8.4
   ),
-  (
+  (gen_random_uuid(),
     'orange chicken',
     259.9,
     100,
@@ -18312,7 +18312,7 @@ VALUES (
     0.8,
     13.6
   ),
-  (
+  (gen_random_uuid(),
     'orange juice',
     46.4,
     100,
@@ -18326,7 +18326,7 @@ VALUES (
     0.3,
     8.3
   ),
-  (
+  (gen_random_uuid(),
     'orange marmalade',
     252.7,
     100,
@@ -18340,7 +18340,7 @@ VALUES (
     0.7,
     60.3
   ),
-  (
+  (gen_random_uuid(),
     'orange roughy',
     107.8,
     100,
@@ -18354,7 +18354,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'orange zest',
     97.3,
     100,
@@ -18368,7 +18368,7 @@ VALUES (
     10.7,
     0
   ),
-  (
+  (gen_random_uuid(),
     'oranges',
     49.8,
     100,
@@ -18382,7 +18382,7 @@ VALUES (
     2.2,
     8.6
   ),
-  (
+  (gen_random_uuid(),
     'oranges',
     49.8,
     100,
@@ -18396,7 +18396,7 @@ VALUES (
     2.2,
     8.6
   ),
-  (
+  (gen_random_uuid(),
     'oregano',
     269,
     100,
@@ -18410,7 +18410,7 @@ VALUES (
     42.2,
     4
   ),
-  (
+  (gen_random_uuid(),
     'oregano',
     269,
     100,
@@ -18424,7 +18424,7 @@ VALUES (
     42.2,
     4
   ),
-  (
+  (gen_random_uuid(),
     'oregano',
     269,
     100,
@@ -18438,7 +18438,7 @@ VALUES (
     42.2,
     4
   ),
-  (
+  (gen_random_uuid(),
     'orzo',
     220.3,
     100,
@@ -18452,7 +18452,7 @@ VALUES (
     2,
     1.6
   ),
-  (
+  (gen_random_uuid(),
     'orzo pasta',
     230.8,
     100,
@@ -18466,7 +18466,7 @@ VALUES (
     2,
     1.6
   ),
-  (
+  (gen_random_uuid(),
     'ostrich',
     157.8,
     100,
@@ -18480,7 +18480,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'oyster mushrooms',
     33.9,
     100,
@@ -18494,7 +18494,7 @@ VALUES (
     2.3,
     1.1
   ),
-  (
+  (gen_random_uuid(),
     'oyster sauce',
     51.3,
     100,
@@ -18508,7 +18508,7 @@ VALUES (
     0.3,
     0
   ),
-  (
+  (gen_random_uuid(),
     'oyster sauce',
     51.3,
     100,
@@ -18522,7 +18522,7 @@ VALUES (
     0.3,
     0
   ),
-  (
+  (gen_random_uuid(),
     'oysters',
     161.1,
     100,
@@ -18536,7 +18536,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'paella',
     185.4,
     100,
@@ -18550,7 +18550,7 @@ VALUES (
     0.4,
     1.1
   ),
-  (
+  (gen_random_uuid(),
     'paella',
     185.4,
     100,
@@ -18564,7 +18564,7 @@ VALUES (
     0.4,
     1.1
   ),
-  (
+  (gen_random_uuid(),
     'rice',
     127.4,
     100,
@@ -18578,7 +18578,7 @@ VALUES (
     0.4,
     0.1
   ),
-  (
+  (gen_random_uuid(),
     'palm sugar',
     406,
     100,
@@ -18592,7 +18592,7 @@ VALUES (
     0,
     99.8
   ),
-  (
+  (gen_random_uuid(),
     'panang curry',
     177.8,
     100,
@@ -18606,7 +18606,7 @@ VALUES (
     0.6,
     3.2
   ),
-  (
+  (gen_random_uuid(),
     'pancake mix',
     364.5,
     100,
@@ -18620,7 +18620,7 @@ VALUES (
     2.9,
     15.9
   ),
-  (
+  (gen_random_uuid(),
     'pancakes',
     230.7,
     100,
@@ -18634,7 +18634,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'pancakes',
     230.7,
     100,
@@ -18648,7 +18648,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'pancetta',
     511.6,
     100,
@@ -18662,7 +18662,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'paneer',
     299.7,
     100,
@@ -18676,7 +18676,7 @@ VALUES (
     0,
     2.3
   ),
-  (
+  (gen_random_uuid(),
     'panko',
     397.5,
     100,
@@ -18690,7 +18690,7 @@ VALUES (
     4.6,
     6.2
   ),
-  (
+  (gen_random_uuid(),
     'panko breadcrumbs',
     405.4,
     100,
@@ -18704,7 +18704,7 @@ VALUES (
     4.6,
     6.2
   ),
-  (
+  (gen_random_uuid(),
     'papaya',
     43,
     100,
@@ -18718,7 +18718,7 @@ VALUES (
     1.7,
     7.8
   ),
-  (
+  (gen_random_uuid(),
     'papaya',
     43,
     100,
@@ -18732,7 +18732,7 @@ VALUES (
     1.7,
     7.8
   ),
-  (
+  (gen_random_uuid(),
     'papaya',
     43,
     100,
@@ -18746,7 +18746,7 @@ VALUES (
     1.7,
     7.8
   ),
-  (
+  (gen_random_uuid(),
     'papaya',
     43,
     100,
@@ -18760,7 +18760,7 @@ VALUES (
     1.7,
     7.8
   ),
-  (
+  (gen_random_uuid(),
     'salad',
     23.6,
     100,
@@ -18774,7 +18774,7 @@ VALUES (
     1.9,
     2.2
   ),
-  (
+  (gen_random_uuid(),
     'pappardelle pasta',
     131,
     100,
@@ -18788,7 +18788,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'paprika',
     276.7,
     100,
@@ -18802,7 +18802,7 @@ VALUES (
     34.7,
     10.3
   ),
-  (
+  (gen_random_uuid(),
     'paprika',
     276.7,
     100,
@@ -18816,7 +18816,7 @@ VALUES (
     34.7,
     10.3
   ),
-  (
+  (gen_random_uuid(),
     'paratha',
     317.7,
     100,
@@ -18830,7 +18830,7 @@ VALUES (
     9.6,
     4.2
   ),
-  (
+  (gen_random_uuid(),
     'parfait',
     81.7,
     100,
@@ -18844,7 +18844,7 @@ VALUES (
     1.1,
     11.6
   ),
-  (
+  (gen_random_uuid(),
     'parmesan cheese',
     424.6,
     100,
@@ -18858,7 +18858,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'cheese',
     393.9,
     100,
@@ -18872,7 +18872,7 @@ VALUES (
     0,
     0.5
   ),
-  (
+  (gen_random_uuid(),
     'parsley',
     36.1,
     100,
@@ -18886,7 +18886,7 @@ VALUES (
     3.5,
     0.8
   ),
-  (
+  (gen_random_uuid(),
     'parsley',
     36.1,
     100,
@@ -18900,7 +18900,7 @@ VALUES (
     3.5,
     0.8
   ),
-  (
+  (gen_random_uuid(),
     'parsley',
     36.1,
     100,
@@ -18914,7 +18914,7 @@ VALUES (
     3.5,
     0.8
   ),
-  (
+  (gen_random_uuid(),
     'parsnip',
     72.5,
     100,
@@ -18928,7 +18928,7 @@ VALUES (
     3.6,
     4.8
   ),
-  (
+  (gen_random_uuid(),
     'mozzarella',
     295.5,
     100,
@@ -18942,7 +18942,7 @@ VALUES (
     0,
     1
   ),
-  (
+  (gen_random_uuid(),
     'passion fruit',
     98.1,
     100,
@@ -18956,7 +18956,7 @@ VALUES (
     10.4,
     11.1
   ),
-  (
+  (gen_random_uuid(),
     'passion fruit',
     98.1,
     100,
@@ -18970,7 +18970,7 @@ VALUES (
     10.4,
     11.1
   ),
-  (
+  (gen_random_uuid(),
     'passion fruit',
     98.1,
     100,
@@ -18984,7 +18984,7 @@ VALUES (
     10.4,
     11.1
   ),
-  (
+  (gen_random_uuid(),
     'passion fruit juice',
     59,
     100,
@@ -18998,7 +18998,7 @@ VALUES (
     0.2,
     14.3
   ),
-  (
+  (gen_random_uuid(),
     'pastrami',
     146.6,
     100,
@@ -19012,7 +19012,7 @@ VALUES (
     0,
     0.1
   ),
-  (
+  (gen_random_uuid(),
     'pastrami',
     146.6,
     100,
@@ -19026,7 +19026,7 @@ VALUES (
     0,
     0.1
   ),
-  (
+  (gen_random_uuid(),
     'peaches',
     39.5,
     100,
@@ -19040,7 +19040,7 @@ VALUES (
     1.5,
     8.4
   ),
-  (
+  (gen_random_uuid(),
     'peaches',
     39.5,
     100,
@@ -19054,7 +19054,7 @@ VALUES (
     1.5,
     8.4
   ),
-  (
+  (gen_random_uuid(),
     'peanut butter',
     579.7,
     100,
@@ -19068,7 +19068,7 @@ VALUES (
     5.6,
     6.5
   ),
-  (
+  (gen_random_uuid(),
     'peanuts',
     600.9,
     100,
@@ -19082,7 +19082,7 @@ VALUES (
     8.1,
     5
   ),
-  (
+  (gen_random_uuid(),
     'pears',
     58.7,
     100,
@@ -19096,7 +19096,7 @@ VALUES (
     3.1,
     9.8
   ),
-  (
+  (gen_random_uuid(),
     'pears',
     58.7,
     100,
@@ -19110,7 +19110,7 @@ VALUES (
     3.1,
     9.8
   ),
-  (
+  (gen_random_uuid(),
     'peas',
     82.4,
     100,
@@ -19124,7 +19124,7 @@ VALUES (
     5.4,
     5.9
   ),
-  (
+  (gen_random_uuid(),
     'peas',
     82.4,
     100,
@@ -19138,7 +19138,7 @@ VALUES (
     5.4,
     5.9
   ),
-  (
+  (gen_random_uuid(),
     'pecans',
     711.9,
     100,
@@ -19152,7 +19152,7 @@ VALUES (
     9.5,
     4
   ),
-  (
+  (gen_random_uuid(),
     'pepperoni',
     517.2,
     100,
@@ -19166,7 +19166,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'pepperoni',
     517.2,
     100,
@@ -19180,7 +19180,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'pesto',
     502.4,
     100,
@@ -19194,7 +19194,7 @@ VALUES (
     1.1,
     0.8
   ),
-  (
+  (gen_random_uuid(),
     'pickles',
     11.9,
     100,
@@ -19208,7 +19208,7 @@ VALUES (
     1,
     1.1
   ),
-  (
+  (gen_random_uuid(),
     'pineapple',
     50.8,
     100,
@@ -19222,7 +19222,7 @@ VALUES (
     1.4,
     9.9
   ),
-  (
+  (gen_random_uuid(),
     'pineapple',
     50.8,
     100,
@@ -19236,7 +19236,7 @@ VALUES (
     1.4,
     9.9
   ),
-  (
+  (gen_random_uuid(),
     'pistachios',
     584,
     100,
@@ -19250,7 +19250,7 @@ VALUES (
     10,
     7.1
   ),
-  (
+  (gen_random_uuid(),
     'pita bread',
     281.1,
     100,
@@ -19264,7 +19264,7 @@ VALUES (
     2.2,
     1.3
   ),
-  (
+  (gen_random_uuid(),
     'plums',
     46.6,
     100,
@@ -19278,7 +19278,7 @@ VALUES (
     1.4,
     9.9
   ),
-  (
+  (gen_random_uuid(),
     'plums',
     46.6,
     100,
@@ -19292,7 +19292,7 @@ VALUES (
     1.4,
     9.9
   ),
-  (
+  (gen_random_uuid(),
     'pomegranate',
     84.2,
     100,
@@ -19306,7 +19306,7 @@ VALUES (
     4.1,
     13.7
   ),
-  (
+  (gen_random_uuid(),
     'pomegranate',
     84.2,
     100,
@@ -19320,7 +19320,7 @@ VALUES (
     4.1,
     13.7
   ),
-  (
+  (gen_random_uuid(),
     'popcorn',
     549.3,
     100,
@@ -19334,7 +19334,7 @@ VALUES (
     9.8,
     0.3
   ),
-  (
+  (gen_random_uuid(),
     'poppy seeds',
     534.4,
     100,
@@ -19348,7 +19348,7 @@ VALUES (
     19.3,
     2.9
   ),
-  (
+  (gen_random_uuid(),
     'pork',
     236.2,
     100,
@@ -19362,7 +19362,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'pork',
     236.2,
     100,
@@ -19376,7 +19376,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'pork chops',
     208.9,
     100,
@@ -19390,7 +19390,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'potatoes',
     92.9,
     100,
@@ -19404,7 +19404,7 @@ VALUES (
     2.2,
     1.2
   ),
-  (
+  (gen_random_uuid(),
     'pretzels',
     389.1,
     100,
@@ -19418,7 +19418,7 @@ VALUES (
     3.4,
     2.2
   ),
-  (
+  (gen_random_uuid(),
     'prosciutto',
     200.2,
     100,
@@ -19432,7 +19432,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'prosciutto',
     200.2,
     100,
@@ -19446,7 +19446,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'protein bars',
     395.4,
     100,
@@ -19460,7 +19460,7 @@ VALUES (
     10.3,
     21.7
   ),
-  (
+  (gen_random_uuid(),
     'protein powder',
     348.4,
     100,
@@ -19474,7 +19474,7 @@ VALUES (
     3.1,
     0
   ),
-  (
+  (gen_random_uuid(),
     'pumpkin',
     20.5,
     100,
@@ -19488,7 +19488,7 @@ VALUES (
     1.1,
     2.1
   ),
-  (
+  (gen_random_uuid(),
     'pumpkin',
     20.5,
     100,
@@ -19502,7 +19502,7 @@ VALUES (
     1.1,
     2.1
   ),
-  (
+  (gen_random_uuid(),
     'pumpkin seeds',
     436,
     100,
@@ -19516,7 +19516,7 @@ VALUES (
     18.3,
     0
   ),
-  (
+  (gen_random_uuid(),
     'quail eggs',
     155.9,
     100,
@@ -19530,7 +19530,7 @@ VALUES (
     0,
     0.4
   ),
-  (
+  (gen_random_uuid(),
     'quinoa',
     121.8,
     100,
@@ -19544,7 +19544,7 @@ VALUES (
     2.8,
     0.9
   ),
-  (
+  (gen_random_uuid(),
     'radishes',
     15.9,
     100,
@@ -19558,7 +19558,7 @@ VALUES (
     1.6,
     1.8
   ),
-  (
+  (gen_random_uuid(),
     'radishes',
     15.9,
     100,
@@ -19572,7 +19572,7 @@ VALUES (
     1.6,
     1.8
   ),
-  (
+  (gen_random_uuid(),
     'ranch dressing',
     421.1,
     100,
@@ -19586,7 +19586,7 @@ VALUES (
     0,
     4.7
   ),
-  (
+  (gen_random_uuid(),
     'raspberries',
     51.8,
     100,
@@ -19600,7 +19600,7 @@ VALUES (
     6.4,
     4.5
   ),
-  (
+  (gen_random_uuid(),
     'raspberries',
     51.8,
     100,
@@ -19614,7 +19614,7 @@ VALUES (
     6.4,
     4.5
   ),
-  (
+  (gen_random_uuid(),
     'red wine',
     87.3,
     100,
@@ -19628,7 +19628,7 @@ VALUES (
     0,
     0.6
   ),
-  (
+  (gen_random_uuid(),
     'rice milk',
     47.3,
     100,
@@ -19642,7 +19642,7 @@ VALUES (
     0.3,
     5.3
   ),
-  (
+  (gen_random_uuid(),
     'rice paper',
     328.8,
     100,
@@ -19656,7 +19656,7 @@ VALUES (
     2.2,
     0.1
   ),
-  (
+  (gen_random_uuid(),
     'rice vinegar',
     18.1,
     100,
@@ -19670,7 +19670,7 @@ VALUES (
     0,
     0.1
   ),
-  (
+  (gen_random_uuid(),
     'roast beef',
     113.9,
     100,
@@ -19684,7 +19684,7 @@ VALUES (
     0,
     0.3
   ),
-  (
+  (gen_random_uuid(),
     'roast beef',
     113.9,
     100,
@@ -19698,7 +19698,7 @@ VALUES (
     0,
     0.3
   ),
-  (
+  (gen_random_uuid(),
     'rosemary',
     335.6,
     100,
@@ -19712,7 +19712,7 @@ VALUES (
     42,
     0
   ),
-  (
+  (gen_random_uuid(),
     'rye bread',
     260.7,
     100,
@@ -19726,7 +19726,7 @@ VALUES (
     5.8,
     3.9
   ),
-  (
+  (gen_random_uuid(),
     'rye',
     260,
     100,
@@ -19740,7 +19740,7 @@ VALUES (
     5.9,
     3.9
   ),
-  (
+  (gen_random_uuid(),
     'crackers',
     504.4,
     100,
@@ -19754,7 +19754,7 @@ VALUES (
     2.2,
     8.3
   ),
-  (
+  (gen_random_uuid(),
     'sage',
     313.2,
     100,
@@ -19768,7 +19768,7 @@ VALUES (
     39.9,
     1.4
   ),
-  (
+  (gen_random_uuid(),
     'salami',
     368,
     100,
@@ -19782,7 +19782,7 @@ VALUES (
     0,
     0.3
   ),
-  (
+  (gen_random_uuid(),
     'salami',
     368,
     100,
@@ -19796,7 +19796,7 @@ VALUES (
     0,
     0.3
   ),
-  (
+  (gen_random_uuid(),
     'salmon',
     208.7,
     100,
@@ -19810,7 +19810,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'salmon',
     208.7,
     100,
@@ -19824,7 +19824,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'salsa',
     29.6,
     100,
@@ -19838,7 +19838,7 @@ VALUES (
     1.9,
     4
   ),
-  (
+  (gen_random_uuid(),
     'salsa verde',
     37.6,
     100,
@@ -19852,8 +19852,8 @@ VALUES (
     1.9,
     3.5
   ),
-  ('salt', 0, 100, 0, 0, 0, 38395, 0, 0, 0, 0, 0),
-  (
+  (gen_random_uuid(),'salt', 0, 100, 0, 0, 0, 38395, 0, 0, 0, 0, 0),
+  (gen_random_uuid(),
     'sauerkraut',
     18.5,
     100,
@@ -19867,7 +19867,7 @@ VALUES (
     2.9,
     1.8
   ),
-  (
+  (gen_random_uuid(),
     'sausages',
     323.2,
     100,
@@ -19881,7 +19881,7 @@ VALUES (
     0,
     1.1
   ),
-  (
+  (gen_random_uuid(),
     'sausages',
     323.2,
     100,
@@ -19895,7 +19895,7 @@ VALUES (
     0,
     1.1
   ),
-  (
+  (gen_random_uuid(),
     'scones',
     336.8,
     100,
@@ -19909,7 +19909,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'seaweed',
     34.5,
     100,
@@ -19923,7 +19923,7 @@ VALUES (
     0.4,
     0.4
   ),
-  (
+  (gen_random_uuid(),
     'seitan',
     129.3,
     100,
@@ -19937,7 +19937,7 @@ VALUES (
     0.3,
     0
   ),
-  (
+  (gen_random_uuid(),
     'seitan',
     129.3,
     100,
@@ -19951,7 +19951,7 @@ VALUES (
     0.3,
     0
   ),
-  (
+  (gen_random_uuid(),
     'seitan',
     129.3,
     100,
@@ -19965,7 +19965,7 @@ VALUES (
     0.3,
     0
   ),
-  (
+  (gen_random_uuid(),
     'bacon',
     466.4,
     100,
@@ -19979,7 +19979,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'sesame seeds',
     575.8,
     100,
@@ -19993,7 +19993,7 @@ VALUES (
     14,
     0
   ),
-  (
+  (gen_random_uuid(),
     'shrimp',
     119,
     100,
@@ -20007,7 +20007,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'shrimp',
     119,
     100,
@@ -20021,7 +20021,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'smoked salmon',
     120.4,
     100,
@@ -20035,7 +20035,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'smoked salmon',
     120.4,
     100,
@@ -20049,7 +20049,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'smoked salmon',
     120.4,
     100,
@@ -20063,7 +20063,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'soba noodles',
     99.6,
     100,
@@ -20077,7 +20077,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'sour cream',
     192.5,
     100,
@@ -20091,7 +20091,7 @@ VALUES (
     0,
     3.4
   ),
-  (
+  (gen_random_uuid(),
     'sourdough bread',
     278.6,
     100,
@@ -20105,7 +20105,7 @@ VALUES (
     2.2,
     4.6
   ),
-  (
+  (gen_random_uuid(),
     'soy milk',
     40.9,
     100,
@@ -20119,7 +20119,7 @@ VALUES (
     0.4,
     2.5
   ),
-  (
+  (gen_random_uuid(),
     'soy sauce',
     53,
     100,
@@ -20133,7 +20133,7 @@ VALUES (
     0.8,
     0.4
   ),
-  (
+  (gen_random_uuid(),
     'soy yogurt',
     93.6,
     100,
@@ -20147,7 +20147,7 @@ VALUES (
     0.6,
     12.9
   ),
-  (
+  (gen_random_uuid(),
     'sprouts',
     23,
     100,
@@ -20161,7 +20161,7 @@ VALUES (
     1.9,
     0.2
   ),
-  (
+  (gen_random_uuid(),
     'spaghetti',
     154.1,
     100,
@@ -20175,7 +20175,7 @@ VALUES (
     1.3,
     1.1
   ),
-  (
+  (gen_random_uuid(),
     'sparkling water',
     0,
     100,
@@ -20189,7 +20189,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'spinach',
     23.3,
     100,
@@ -20203,7 +20203,7 @@ VALUES (
     2.4,
     0.4
   ),
-  (
+  (gen_random_uuid(),
     'spinach',
     23.3,
     100,
@@ -20217,7 +20217,7 @@ VALUES (
     2.4,
     0.4
   ),
-  (
+  (gen_random_uuid(),
     'spirulina',
     296.8,
     100,
@@ -20231,7 +20231,7 @@ VALUES (
     3.5,
     3.1
   ),
-  (
+  (gen_random_uuid(),
     'sriracha',
     93.3,
     100,
@@ -20245,7 +20245,7 @@ VALUES (
     2.2,
     15.1
   ),
-  (
+  (gen_random_uuid(),
     'star anise',
     340.1,
     100,
@@ -20259,8 +20259,8 @@ VALUES (
     15.2,
     0
   ),
-  ('stevia', 0, 100, 0, 0, 0, 0, 0, 0, 99.4, 0, 0),
-  (
+  (gen_random_uuid(),'stevia', 0, 100, 0, 0, 0, 0, 0, 0, 99.4, 0, 0),
+  (gen_random_uuid(),
     'strawberries',
     31.3,
     100,
@@ -20274,7 +20274,7 @@ VALUES (
     2,
     4.9
   ),
-  (
+  (gen_random_uuid(),
     'strawberries',
     31.3,
     100,
@@ -20288,7 +20288,7 @@ VALUES (
     2,
     4.9
   ),
-  (
+  (gen_random_uuid(),
     'strawberry ice cream',
     189.5,
     100,
@@ -20302,7 +20302,7 @@ VALUES (
     0.9,
     0
   ),
-  (
+  (gen_random_uuid(),
     'butter',
     721.5,
     100,
@@ -20316,7 +20316,7 @@ VALUES (
     0,
     0.1
   ),
-  (
+  (gen_random_uuid(),
     'sunflower oil',
     870.1,
     100,
@@ -20330,7 +20330,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'sunflower seeds',
     554.7,
     100,
@@ -20344,7 +20344,7 @@ VALUES (
     8.8,
     2.7
   ),
-  (
+  (gen_random_uuid(),
     'sushi rice',
     133.7,
     100,
@@ -20358,7 +20358,7 @@ VALUES (
     0,
     3.5
   ),
-  (
+  (gen_random_uuid(),
     'sushi rice',
     133.7,
     100,
@@ -20372,7 +20372,7 @@ VALUES (
     0,
     3.5
   ),
-  (
+  (gen_random_uuid(),
     'sweet and sour sauce',
     150.6,
     100,
@@ -20386,7 +20386,7 @@ VALUES (
     0.1,
     18.8
   ),
-  (
+  (gen_random_uuid(),
     'sweet chili sauce',
     238.7,
     100,
@@ -20400,7 +20400,7 @@ VALUES (
     0.1,
     57.7
   ),
-  (
+  (gen_random_uuid(),
     'sweet potato',
     77.5,
     100,
@@ -20414,7 +20414,7 @@ VALUES (
     2.5,
     5.8
   ),
-  (
+  (gen_random_uuid(),
     'swiss cheese',
     396,
     100,
@@ -20428,7 +20428,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'peppercorns',
     254.5,
     100,
@@ -20442,7 +20442,7 @@ VALUES (
     25.2,
     0.4
   ),
-  (
+  (gen_random_uuid(),
     'tabasco sauce',
     10.9,
     100,
@@ -20456,7 +20456,7 @@ VALUES (
     0.2,
     1.3
   ),
-  (
+  (gen_random_uuid(),
     'tahini',
     590.1,
     100,
@@ -20470,7 +20470,7 @@ VALUES (
     4.8,
     0
   ),
-  (
+  (gen_random_uuid(),
     'tahini',
     590.1,
     100,
@@ -20484,7 +20484,7 @@ VALUES (
     4.8,
     0
   ),
-  (
+  (gen_random_uuid(),
     'tamarind',
     232.2,
     100,
@@ -20498,7 +20498,7 @@ VALUES (
     5,
     39.1
   ),
-  (
+  (gen_random_uuid(),
     'tapioca flour',
     350.1,
     100,
@@ -20512,7 +20512,7 @@ VALUES (
     0.9,
     3.3
   ),
-  (
+  (gen_random_uuid(),
     'tempeh',
     196.8,
     100,
@@ -20526,7 +20526,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'tempeh',
     196.8,
     100,
@@ -20540,7 +20540,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'tempeh',
     196.8,
     100,
@@ -20554,7 +20554,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'bacon',
     466.4,
     100,
@@ -20568,7 +20568,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'thyme',
     102.7,
     100,
@@ -20582,7 +20582,7 @@ VALUES (
     13.6,
     0
   ),
-  (
+  (gen_random_uuid(),
     'sesame oil',
     858.8,
     100,
@@ -20596,7 +20596,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'tofu',
     81.7,
     100,
@@ -20610,7 +20610,7 @@ VALUES (
     1,
     0.7
   ),
-  (
+  (gen_random_uuid(),
     'tofu',
     81.7,
     100,
@@ -20624,7 +20624,7 @@ VALUES (
     1,
     0.7
   ),
-  (
+  (gen_random_uuid(),
     'tofu',
     81.7,
     100,
@@ -20638,7 +20638,7 @@ VALUES (
     1,
     0.7
   ),
-  (
+  (gen_random_uuid(),
     'noodles',
     161.8,
     100,
@@ -20652,7 +20652,7 @@ VALUES (
     1.8,
     0.6
   ),
-  (
+  (gen_random_uuid(),
     'tomato paste',
     81.3,
     100,
@@ -20666,7 +20666,7 @@ VALUES (
     4.1,
     12.2
   ),
-  (
+  (gen_random_uuid(),
     'tomato sauce',
     24.6,
     100,
@@ -20680,7 +20680,7 @@ VALUES (
     1.5,
     3.6
   ),
-  (
+  (gen_random_uuid(),
     'tomatoes',
     18.5,
     100,
@@ -20694,7 +20694,7 @@ VALUES (
     1.2,
     2.6
   ),
-  (
+  (gen_random_uuid(),
     'tomatoes',
     18.5,
     100,
@@ -20708,7 +20708,7 @@ VALUES (
     1.2,
     2.6
   ),
-  (
+  (gen_random_uuid(),
     'tortillas',
     327.3,
     100,
@@ -20722,7 +20722,7 @@ VALUES (
     3.4,
     0
   ),
-  (
+  (gen_random_uuid(),
     'tuna',
     133.3,
     100,
@@ -20736,7 +20736,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'tuna',
     133.3,
     100,
@@ -20750,7 +20750,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'turkey',
     193.1,
     100,
@@ -20764,7 +20764,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'turkey',
     193.1,
     100,
@@ -20778,7 +20778,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'turkey breast',
     147,
     100,
@@ -20792,7 +20792,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'turkey breast',
     147,
     100,
@@ -20806,7 +20806,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'turmeric',
     309.4,
     100,
@@ -20820,7 +20820,7 @@ VALUES (
     22.6,
     3.4
   ),
-  (
+  (gen_random_uuid(),
     'turmeric',
     309.4,
     100,
@@ -20834,7 +20834,7 @@ VALUES (
     22.6,
     3.4
   ),
-  (
+  (gen_random_uuid(),
     'vanilla extract',
     292.9,
     100,
@@ -20848,7 +20848,7 @@ VALUES (
     0,
     12.7
   ),
-  (
+  (gen_random_uuid(),
     'vanilla ice cream',
     208.2,
     100,
@@ -20862,7 +20862,7 @@ VALUES (
     0.7,
     21.4
   ),
-  (
+  (gen_random_uuid(),
     'veal',
     226.3,
     100,
@@ -20876,7 +20876,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'veal',
     226.3,
     100,
@@ -20890,7 +20890,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'butter',
     721.5,
     100,
@@ -20904,7 +20904,7 @@ VALUES (
     0,
     0.1
   ),
-  (
+  (gen_random_uuid(),
     'vegan cheese',
     250.4,
     100,
@@ -20918,7 +20918,7 @@ VALUES (
     0,
     23.8
   ),
-  (
+  (gen_random_uuid(),
     'mayonnaise',
     689.3,
     100,
@@ -20932,7 +20932,7 @@ VALUES (
     0,
     0.6
   ),
-  (
+  (gen_random_uuid(),
     'sausage',
     321.9,
     100,
@@ -20946,7 +20946,7 @@ VALUES (
     0,
     1.1
   ),
-  (
+  (gen_random_uuid(),
     'vinaigrette',
     234.3,
     100,
@@ -20960,7 +20960,7 @@ VALUES (
     0,
     10.8
   ),
-  (
+  (gen_random_uuid(),
     'waffles',
     299.3,
     100,
@@ -20974,7 +20974,7 @@ VALUES (
     0,
     0
   ),
-  (
+  (gen_random_uuid(),
     'walnuts',
     664.8,
     100,
@@ -20988,7 +20988,7 @@ VALUES (
     6.9,
     2.4
   ),
-  (
+  (gen_random_uuid(),
     'wasabi',
     295.7,
     100,
@@ -21002,7 +21002,7 @@ VALUES (
     6.2,
     13.1
   ),
-  (
+  (gen_random_uuid(),
     'wasabi paste',
     291.2,
     100,
@@ -21016,7 +21016,7 @@ VALUES (
     6,
     13.1
   ),
-  (
+  (gen_random_uuid(),
     'wasabi paste',
     291.2,
     100,
@@ -21030,7 +21030,7 @@ VALUES (
     6,
     13.1
   ),
-  (
+  (gen_random_uuid(),
     'watermelon',
     30.3,
     100,
@@ -21044,7 +21044,7 @@ VALUES (
     0.4,
     6.2
   ),
-  (
+  (gen_random_uuid(),
     'watermelon',
     30.3,
     100,
@@ -21058,7 +21058,7 @@ VALUES (
     0.4,
     6.2
   ),
-  (
+  (gen_random_uuid(),
     'wheat germ',
     363.7,
     100,
@@ -21072,7 +21072,7 @@ VALUES (
     13,
     0
   ),
-  (
+  (gen_random_uuid(),
     'whey',
     360.9,
     100,
@@ -21086,7 +21086,7 @@ VALUES (
     3.1,
     0
   ),
-  (
+  (gen_random_uuid(),
     'white wine',
     84.2,
     100,
@@ -21100,7 +21100,7 @@ VALUES (
     0,
     1
   ),
-  (
+  (gen_random_uuid(),
     'whole wheat bread',
     246.3,
     100,
@@ -21114,7 +21114,7 @@ VALUES (
     6,
     4.4
   ),
-  (
+  (gen_random_uuid(),
     'worcestershire sauce',
     76.8,
     100,
@@ -21128,7 +21128,7 @@ VALUES (
     0,
     10.1
   ),
-  (
+  (gen_random_uuid(),
     'yogurt',
     64.2,
     100,
@@ -21142,7 +21142,7 @@ VALUES (
     0,
     7.1
   ),
-  (
+  (gen_random_uuid(),
     'zucchini',
     15.4,
     100,
@@ -21156,7 +21156,7 @@ VALUES (
     1,
     1.7
   ),
-  (
+  (gen_random_uuid(),
     'zucchini',
     15.4,
     100,

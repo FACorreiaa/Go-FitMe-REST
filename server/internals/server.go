@@ -8,6 +8,7 @@ import (
 	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/calculator"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/measurement"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/user"
+	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/workouts"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/helpers/db"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/server"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/server/logs"
@@ -137,11 +138,16 @@ func NewServer() (*Server, error) {
 		_ = errors.New("error injecting calculator service")
 	}
 
+	workoutRepo, err := workouts.NewWorkoutsRepository(s.db)
+	if err != nil {
+		_ = errors.New("error injecting calculator service")
+	}
 	deps := &server.AppDependencies{
 		ActivityService:    activity.NewActivityService(activityRepo),
 		UserService:        user.NewUserService(userRepo),
 		CalculatorService:  calculator.NewCalculatorService(calculatorRepo),
 		MeasurementService: measurement.NewMeasurementService(measurementRepo),
+		WorkoutService:     workouts.NewWorkoutService(workoutRepo),
 	}
 
 	sessionDeps := &server.SessionDependencies{
