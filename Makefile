@@ -5,6 +5,7 @@ run-local:
 	go run app.go
 
 requirements:
+	make clean-packages
 	go mod tidy
 
 clean-packages:

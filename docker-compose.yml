@@ -1,5 +1,13 @@
 version: '3.9'
 services:
+  debug:
+    build:
+      dockerfile: Dockerfile
+      context: .
+      target: debug
+#    ports:
+#      - "2345:2345"
+#    command: "--listen=:2345 --headless=true --log=true --log-output=debugger,debuglineerr,gdbwire,lldbout,rpc --accept-multiclient --api-version=2 exec ./app"
   app:
     build:
       dockerfile: Dockerfile
@@ -8,9 +16,9 @@ services:
     volumes:
       - .:/opt/app/api
     environment:
-      AH_AHSERVER_PORT: ":3000"
+      AH_AHSERVER_PORT: ":8080"
     ports:
-    - "3000:3000"
+    - "8080:8080"
   postgres:
     image: postgres:latest
     environment:

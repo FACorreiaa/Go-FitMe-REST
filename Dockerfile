@@ -37,7 +37,10 @@
 ## Command to run the executable
 #CMD ["./main"]
 
+##CONFIGURE AIR
 FROM golang:1.20.6 as base
+
+LABEL maintainer="a11199"
 
 ## Create another stage called "dev" that is based off of our "base" stage (so we have golang available to us)
 FROM base as dev
@@ -48,3 +51,37 @@ RUN curl -sSfL https://raw.githubusercontent.com/cosmtrek/air/master/install.sh 
 # Run the air command in the directory where our code will live
 WORKDIR /opt/app/api
 CMD ["air"]
+
+### CONFIGURE DEBUG
+FROM golang:1.20.6 as base
+
+## Create another stage called "dev" that is based off of our "base" stage (so we have golang available to us)
+FROM dev as debug
+RUN CGO_ENABLED=0 go install github.com/go-delve/delve/cmd/dlv@latest
+
+# Run the air command in the directory where our code will live
+WORKDIR /opt/app/api
+COPY . .
+COPY go.mod go.sum ./
+RUN go mod download
+
+RUN go build -gcflags "all=-N -l" /opt/app/api
+RUN chmod +x ./main.exe
+CMD ["dlv", "--listen=:2345", "--headless=true", "--api-version=2", "exec", "--accept-multiclient",  "/opt/app/api", "ls -l"]
+
+### MAIN
+FROM debug as built
+
+WORKDIR /go/app/api
+
+COPY . .
+
+ENV CGO_ENABLED=0
+
+RUN go get -d -v ./...
+RUN go build -o /tmp/stay-healthy-backend ./*.go
+
+FROM busybox
+
+COPY --from=built /tmp/stay-healthy-backend /usr/bin/stay-healthy-backend
+CMD ["stay-healthy-backend", "start"]

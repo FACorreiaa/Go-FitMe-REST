@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for dark-dew-6412 on 2023-08-16T15:33:11+02:00
+# fly.toml app configuration file generated for stay-healthy-backend on 2023-08-16T19:38:53+02:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "dark-dew-6412"
+app = "stay-healthy-backend"
 primary_region = "ams"
 
 [build]
