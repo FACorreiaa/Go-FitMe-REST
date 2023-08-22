@@ -6,6 +6,7 @@ import (
 	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/calculator"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/measurement"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/user"
+	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/workouts"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/cors"
@@ -23,6 +24,7 @@ func Register(r chi.Router, deps *AppDependencies, session *SessionDependencies)
 	userRoutes := user.RoutesUser(deps, sessionManager)
 	activityRoutes := activity.RoutesActivity(deps)
 	measurementRoutes := measurement.RoutesMeasurements(deps)
+	workoutRoutes := workouts.RoutesWorkouts(deps)
 	r.Use(middleware.RequestID)
 	r.Use(middleware.RealIP)
 	r.Use(middleware.Logger)
@@ -62,5 +64,6 @@ func Register(r chi.Router, deps *AppDependencies, session *SessionDependencies)
 	r.With(cached).Mount("/api/v1/users", userRoutes)
 	r.With(cached).Mount("/api/v1/calculator", calculatorRoute)
 	r.With(cached).Mount("/api/v1/calculator/user", auth.SessionMiddleware(sessionManager)(userCalculatorRoute))
+	r.With(cached).Mount("/api/v1/workouts", auth.SessionMiddleware(sessionManager)(workoutRoutes))
 
 }

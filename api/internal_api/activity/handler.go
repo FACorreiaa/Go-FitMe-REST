@@ -38,8 +38,8 @@ func NewActivityHandler(deps DependenciesActivity) *Handler {
 // @Produce      json
 // @Success      200  {array}   Activity
 // @Router       /activities [get]
-func (a Handler) GetActivities(w http.ResponseWriter, r *http.Request) {
-	activities, err := a.dependencies.GetActivityService().GetAll(r.Context())
+func (h Handler) GetActivities(w http.ResponseWriter, r *http.Request) {
+	activities, err := h.dependencies.GetActivityService().GetAll(r.Context())
 
 	if err != nil {
 		log.Printf("Error fetching activities data: %v", err)
@@ -64,9 +64,9 @@ func (a Handler) GetActivities(w http.ResponseWriter, r *http.Request) {
 // @Param        name   path      string  true  "Activity Name"
 // @Success      200  {array}   Activity
 // @Router       /activities/name/{name} [get]
-func (a Handler) GetActivitiesByName(w http.ResponseWriter, r *http.Request) {
+func (h Handler) GetActivitiesByName(w http.ResponseWriter, r *http.Request) {
 	name := chi.URLParam(r, "name")
-	activities, err := a.dependencies.GetActivityService().GetByName(r.Context(), name)
+	activities, err := h.dependencies.GetActivityService().GetByName(r.Context(), name)
 	if err != nil {
 		log.Printf("Error fetching activities data: %v", err)
 
@@ -92,7 +92,7 @@ func (a Handler) GetActivitiesByName(w http.ResponseWriter, r *http.Request) {
 // @Param        id   path      int  true  "Activity ID"
 // @Success      200  {array}   Activity
 // @Router       /activities/id/{id} [get]
-func (a Handler) GetActivitiesById(w http.ResponseWriter, r *http.Request) {
+func (h Handler) GetActivitiesById(w http.ResponseWriter, r *http.Request) {
 	id, err := strconv.Atoi(chi.URLParam(r, "id"))
 	if err != nil {
 		log.Printf("Error parsing id: %v", err)
@@ -100,7 +100,7 @@ func (a Handler) GetActivitiesById(w http.ResponseWriter, r *http.Request) {
 
 		return
 	}
-	activities, err := a.dependencies.GetActivityService().GetByID(r.Context(), id)
+	activities, err := h.dependencies.GetActivityService().GetByID(r.Context(), id)
 	if err != nil {
 		log.Printf("Error fetching activities data: %v", err)
 
@@ -126,7 +126,7 @@ func (a Handler) GetActivitiesById(w http.ResponseWriter, r *http.Request) {
 // @Param        id   path      int  true  "Activity ID"
 // @Success      200  {array}   ExerciseSession
 // @Router       /activities/start/session/id/{id} [post]
-func (a Handler) StartActivityTracker(w http.ResponseWriter, r *http.Request) {
+func (h Handler) StartActivityTracker(w http.ResponseWriter, r *http.Request) {
 	activityID, err := strconv.Atoi(chi.URLParam(r, "id"))
 	currentTime := time.Now()
 	if err != nil {
@@ -141,7 +141,7 @@ func (a Handler) StartActivityTracker(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	_, found := a.exerciseSessions[sessionId]
+	_, found := h.exerciseSessions[sessionId]
 	if found {
 		http.Error(w, "Exercise session already in progress", http.StatusNotFound)
 		return
@@ -153,7 +153,7 @@ func (a Handler) StartActivityTracker(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	activity, err := a.dependencies.GetActivityService().GetByID(r.Context(), activityID)
+	activity, err := h.dependencies.GetActivityService().GetByID(r.Context(), activityID)
 	if err != nil {
 		log.Printf("Error getting id activity: %v", err)
 		http.Error(w, "Internal server error", http.StatusInternalServerError)
@@ -169,7 +169,7 @@ func (a Handler) StartActivityTracker(w http.ResponseWriter, r *http.Request) {
 		CreatedAt:   currentTime,
 	}
 
-	a.exerciseSessions[sessionId] = exerciseSession
+	h.exerciseSessions[sessionId] = exerciseSession
 
 	// Serialize the response as JSON and write to the response writer
 	w.Header().Set("Content-Type", "application/json")
@@ -186,7 +186,7 @@ func (a Handler) StartActivityTracker(w http.ResponseWriter, r *http.Request) {
 // @Param        id   path      int  true  "Activity ID"
 // @Success      200  {array}   ExerciseSession
 // @Router       /activities/start/session/id/{id} [post]
-func (a Handler) PauseActivityTracker(w http.ResponseWriter, r *http.Request) {
+func (h Handler) PauseActivityTracker(w http.ResponseWriter, r *http.Request) {
 	userSession, ok := r.Context().Value(auth.SessionManagerKey{}).(*auth.UserSession)
 	sessionId := strconv.Itoa(userSession.Id)
 	if !ok {
@@ -194,7 +194,7 @@ func (a Handler) PauseActivityTracker(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	a.pausedTimers[sessionId] = time.Now()
+	h.pausedTimers[sessionId] = time.Now()
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	_ = json.NewEncoder(w).Encode(userSession)
@@ -210,7 +210,7 @@ func (a Handler) PauseActivityTracker(w http.ResponseWriter, r *http.Request) {
 // @Param        id   path      int  true  "Activity ID"
 // @Success      200  {array}   ExerciseSession
 // @Router       /activities/start/session/id/{id} [post]
-func (a Handler) ResumeActivityTracker(w http.ResponseWriter, r *http.Request) {
+func (h Handler) ResumeActivityTracker(w http.ResponseWriter, r *http.Request) {
 	userSession, ok := r.Context().Value(auth.SessionManagerKey{}).(*auth.UserSession)
 	sessionId := strconv.Itoa(userSession.Id)
 	if !ok {
@@ -218,18 +218,18 @@ func (a Handler) ResumeActivityTracker(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	session, found := a.exerciseSessions[sessionId]
+	session, found := h.exerciseSessions[sessionId]
 	if !found {
 		http.Error(w, "Exercise session not found", http.StatusNotFound)
 		return
 	}
 
 	// Calculate the duration of the paused state and update the start time
-	pausedDuration := time.Since(a.pausedTimers[sessionId])
+	pausedDuration := time.Since(h.pausedTimers[sessionId])
 	session.StartTime = session.StartTime.Add(pausedDuration)
 
 	// Clear the paused timer for the user
-	delete(a.pausedTimers, sessionId)
+	delete(h.pausedTimers, sessionId)
 
 	// Serialize the response as JSON and write to the response writer
 	w.Header().Set("Content-Type", "application/json")
@@ -247,7 +247,7 @@ func (a Handler) ResumeActivityTracker(w http.ResponseWriter, r *http.Request) {
 // @Param        id   path      int  true  "Activity ID"
 // @Success      200  {array}   ExerciseSession
 // @Router       /activities/start/session/id/{id} [post]
-func (a Handler) StopActivityTracker(w http.ResponseWriter, r *http.Request) {
+func (h Handler) StopActivityTracker(w http.ResponseWriter, r *http.Request) {
 	userSession, ok := r.Context().Value(auth.SessionManagerKey{}).(*auth.UserSession)
 	sessionId := strconv.Itoa(userSession.Id)
 	if !ok {
@@ -255,21 +255,21 @@ func (a Handler) StopActivityTracker(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	// Get the exercise session for the user
-	session, found := a.exerciseSessions[sessionId]
+	session, found := h.exerciseSessions[sessionId]
 	if !found {
 		http.Error(w, "Exercise session not found", http.StatusNotFound)
 		return
 	}
 
 	// Calculate calories burned (assuming activity is fetched from the database)
-	activity, err := a.dependencies.GetActivityService().GetByID(r.Context(), session.ActivityID)
+	activity, err := h.dependencies.GetActivityService().GetByID(r.Context(), session.ActivityID)
 	if err != nil {
 		http.Error(w, "Error getting activity", http.StatusInternalServerError)
 		return
 	}
 
 	//totalDurationSeconds := session.DurationHours*3600 + session.DurationMinutes*60 + session.DurationSeconds
-	startUpTime := a.exerciseSessions[sessionId].StartTime
+	startUpTime := h.exerciseSessions[sessionId].StartTime
 	totalDurationSeconds := int(time.Since(startUpTime).Seconds())
 
 	session.DurationHours = totalDurationSeconds / 3600
@@ -284,13 +284,13 @@ func (a Handler) StopActivityTracker(w http.ResponseWriter, r *http.Request) {
 
 	session.EndTime = time.Now()
 
-	err = a.dependencies.GetActivityService().SaveExerciseSession(r.Context(), session)
+	err = h.dependencies.GetActivityService().SaveExerciseSession(r.Context(), session)
 	if err != nil {
 		http.Error(w, "Error saving exercise session to DB", http.StatusInternalServerError)
 		return
 	}
 
-	delete(a.exerciseSessions, sessionId)
+	delete(h.exerciseSessions, sessionId)
 
 	// Serialize the response as JSON and write to the response writer
 	w.Header().Set("Content-Type", "application/json")
@@ -307,7 +307,7 @@ func (a Handler) StopActivityTracker(w http.ResponseWriter, r *http.Request) {
 // @Param        id   path      int  true  "Activity ID"
 // @Success      200  {array}   ExerciseSession
 // @Router       /activities/user/exercises/user/{user_id} [post]
-func (a Handler) GetUserExerciseSession(w http.ResponseWriter, r *http.Request) {
+func (h Handler) GetUserExerciseSession(w http.ResponseWriter, r *http.Request) {
 
 	userSession, ok := r.Context().Value(auth.SessionManagerKey{}).(*auth.UserSession)
 	if !ok {
@@ -315,7 +315,7 @@ func (a Handler) GetUserExerciseSession(w http.ResponseWriter, r *http.Request) 
 		return
 	}
 
-	exerciseSession, err := a.dependencies.GetActivityService().GetExerciseSession(r.Context(), userSession.Id)
+	exerciseSession, err := h.dependencies.GetActivityService().GetExerciseSession(r.Context(), userSession.Id)
 	if err != nil {
 		http.Error(w, "Error finding exercise session", http.StatusInternalServerError)
 	}
@@ -335,7 +335,7 @@ func (a Handler) GetUserExerciseSession(w http.ResponseWriter, r *http.Request) 
 // @Param        id   path      int  true  "Activity ID"
 // @Success      200  {array}   ExerciseSession
 // @Router       /activities/user/session/total/user/{user_id} [post]
-func (a Handler) GetUserExerciseTotalData(w http.ResponseWriter, r *http.Request) {
+func (h Handler) GetUserExerciseTotalData(w http.ResponseWriter, r *http.Request) {
 	userSession, ok := r.Context().Value(auth.SessionManagerKey{}).(*auth.UserSession)
 	if !ok {
 		http.Error(w, "User session not found", http.StatusUnauthorized)
@@ -343,7 +343,7 @@ func (a Handler) GetUserExerciseTotalData(w http.ResponseWriter, r *http.Request
 	}
 
 	// Calculate and save the total exercise session data
-	totalExerciseSession, err := a.dependencies.GetActivityService().GetExerciseTotalSession(r.Context(), userSession.Id)
+	totalExerciseSession, err := h.dependencies.GetActivityService().GetExerciseTotalSession(r.Context(), userSession.Id)
 	if err != nil {
 		http.Error(w, "Error calculating total exercise session", http.StatusInternalServerError)
 		return
@@ -355,7 +355,7 @@ func (a Handler) GetUserExerciseTotalData(w http.ResponseWriter, r *http.Request
 	_ = json.NewEncoder(w).Encode(totalExerciseSession)
 }
 
-func (a Handler) GetExerciseSessionStats(w http.ResponseWriter, r *http.Request) {
+func (h Handler) GetExerciseSessionStats(w http.ResponseWriter, r *http.Request) {
 	userSession, ok := r.Context().Value(auth.SessionManagerKey{}).(*auth.UserSession)
 	if !ok {
 		http.Error(w, "User session not found", http.StatusUnauthorized)
@@ -363,7 +363,7 @@ func (a Handler) GetExerciseSessionStats(w http.ResponseWriter, r *http.Request)
 	}
 
 	// Calculate and save the total exercise session data
-	sessionStats, err := a.dependencies.GetActivityService().GetExerciseSessionStats(r.Context(), userSession.Id)
+	sessionStats, err := h.dependencies.GetActivityService().GetExerciseSessionStats(r.Context(), userSession.Id)
 	if err != nil {
 		http.Error(w, "Error calculating session status", http.StatusInternalServerError)
 		return
@@ -384,7 +384,7 @@ func (a Handler) GetExerciseSessionStats(w http.ResponseWriter, r *http.Request)
 // @Param        id   path      int  true  "Activity ID"
 // @Success      200  {array}   ExerciseSession
 // @Router       /activities/user/session/total/stats/{user_id} [post]
-func (a Handler) GetUserExerciseSessionStats(w http.ResponseWriter, r *http.Request) {
+func (h Handler) GetUserExerciseSessionStats(w http.ResponseWriter, r *http.Request) {
 	userSession, ok := r.Context().Value(auth.SessionManagerKey{}).(*auth.UserSession)
 	if !ok {
 		http.Error(w, "User session not found", http.StatusUnauthorized)
@@ -392,7 +392,7 @@ func (a Handler) GetUserExerciseSessionStats(w http.ResponseWriter, r *http.Requ
 	}
 
 	// Calculate and save the total exercise session data
-	sessionStats, err := a.dependencies.GetActivityService().GetUserExerciseSessionStats(r.Context(), userSession.Id)
+	sessionStats, err := h.dependencies.GetActivityService().GetUserExerciseSessionStats(r.Context(), userSession.Id)
 	if err != nil {
 		http.Error(w, "Error calculating session status", http.StatusInternalServerError)
 		return

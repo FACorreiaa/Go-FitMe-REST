@@ -1,4 +1,5 @@
 INSERT INTO food(
+    id,
     name,
     calories,
     serving_size,

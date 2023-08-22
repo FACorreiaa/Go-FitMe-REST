@@ -22,7 +22,7 @@ push:
 	docker build -t $(image_name) .
 
 build-no-cache:
-	docker build --no-cache -t $(image_name) .
+	docker build --no-cache -t $(image_name) . --security-opt=seccomp:unconfined
 
 up-silent:
 	make delete-container-if-exist
@@ -39,7 +39,8 @@ shell:
 	docker exec -it $(project_name) /bin/sh
 
 compose-up:
-	docker-compose up -d
+	make delete-container-if-exist
+	docker compose up -d
 
 stop:
 	docker stop $(project_name)
