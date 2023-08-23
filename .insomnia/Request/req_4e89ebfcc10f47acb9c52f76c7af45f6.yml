@@ -1,0 +1,40 @@
+_id: req_4e89ebfcc10f47acb9c52f76c7af45f6
+type: Request
+parentId: fld_86c0add87fb34e9b8afd1da3809cb71e
+modified: 1691142492210
+created: 1691136683211
+url: http://localhost:8080/api/v1/calculator/user/plan/04998c32-8645-4d14-9e76-cae196d4ae51
+name: GetMacros
+description: ""
+method: GET
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"age": 34,
+    	"height": 185,
+    	"weight": 90,
+    	"gender": "Male",
+    	"system": "Metric",
+    	"activity":"Moderate",
+    	"objective": "Cutting",
+    	"calories-distribution": "Moderate"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_fb01f514b038490da84810d9cb4bd21b
+  - id: pair_50f311dced394444bd1a2bd751f2110b
+    name: Authorization
+    value: Bearer 1b7c49d4-6be5-4226-a801-e190f5dda4c5
+    description: ""
+authentication: {}
+metaSortKey: -1690755073318.75
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

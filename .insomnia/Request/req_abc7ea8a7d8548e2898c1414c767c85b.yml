@@ -1,0 +1,40 @@
+_id: req_abc7ea8a7d8548e2898c1414c767c85b
+type: Request
+parentId: fld_86c0add87fb34e9b8afd1da3809cb71e
+modified: 1692203330990
+created: 1691073870853
+url: http://localhost:3000/api/v1/calculator/user/40
+name: Calculator
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"age": 34,
+    	"height": 185,
+    	"weight": 90,
+    	"gender": "Male",
+    	"system": "Metric",
+    	"activity":"Moderate",
+    	"objective": "Cutting",
+    	"calories-distribution": "Moderate"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_fb01f514b038490da84810d9cb4bd21b
+  - id: pair_50f311dced394444bd1a2bd751f2110b
+    name: Authorization
+    value: Bearer 5f2a91dc-3f71-443d-981a-0a69a40cf0d8
+    description: ""
+authentication: {}
+metaSortKey: -1691073870853
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

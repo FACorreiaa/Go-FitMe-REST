@@ -1,0 +1,32 @@
+_id: req_2f5c572352cd4e7889fd8c98e573431c
+type: Request
+parentId: fld_ff9117188ecd4e17b90572961a205a83
+modified: 1690205246762
+created: 1689936108405
+url: http://localhost:8080/api/v1/activities/pause/session/id=1
+name: Pause Session
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: ""
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_b895e5ab5e074adcb5a2291b9b38a372
+  - id: pair_473bf014f4054cf5b6cd9366c19c12a2
+    name: Authorization
+    value: Bearer a2c6d128-7f23-4761-b912-8c2996e89c8f
+    description: ""
+authentication:
+  type: bearer
+  token: ""
+metaSortKey: -1690205147366.375
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

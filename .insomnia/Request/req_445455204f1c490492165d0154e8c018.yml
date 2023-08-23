@@ -1,0 +1,39 @@
+_id: req_445455204f1c490492165d0154e8c018
+type: Request
+parentId: fld_cf4b8231bd9546dab529b557abf50c08
+modified: 1692219964568
+created: 1689803780824
+url: http://localhost:8080/api/v1/users/sign-up
+name: Sign-up
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"Username": "trodddssssdladmin",
+    	"Email": "admsssssidddn@admin.com",
+    	"Password": "assssssssdminadmdddinadminadminadmin"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_b895e5ab5e074adcb5a2291b9b38a372
+  - id: pair_473bf014f4054cf5b6cd9366c19c12a2
+    name: Authorization
+    value: Bearer 40a34419-7d3f-402d-994f-a4ed830f4acf
+    description: ""
+  - id: pair_fbcc53f49f4046738a38e47d58b90245
+    name: ""
+    value: ""
+    description: ""
+authentication: {}
+metaSortKey: -1690180039399.625
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

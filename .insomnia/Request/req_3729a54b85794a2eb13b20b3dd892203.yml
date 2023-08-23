@@ -1,0 +1,32 @@
+_id: req_3729a54b85794a2eb13b20b3dd892203
+type: Request
+parentId: fld_ff9117188ecd4e17b90572961a205a83
+modified: 1690488917812
+created: 1689936090898
+url: http://localhost:8080/api/v1/activities/stop/session/id=1
+name: Stop Session
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: ""
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_b895e5ab5e074adcb5a2291b9b38a372
+  - id: pair_473bf014f4054cf5b6cd9366c19c12a2
+    name: Authorization
+    value: Bearer 92b7681a-4d9a-494f-a7d6-b53e7df54681
+    description: ""
+authentication:
+  type: bearer
+  token: ""
+metaSortKey: -1690205147278.875
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

@@ -1,0 +1,38 @@
+_id: req_de04d348db8d43c0abce589916ac9e53
+type: Request
+parentId: fld_65423faa82b142c2a17005aa398dcdd7
+modified: 1692621501878
+created: 1692620196929
+url: http://localhost:8080/api/v1/workouts/exercises/exercise
+name: InsertExercise
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: >2
+      {
+        "name": "Deez",
+        "type": "Deez",
+        "muscle": "Deez",
+        "equipment": "Nuts",
+        "difficulty": "Nuts",
+        "instructions": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+        "video": "https://youtu.be/mBZ4vnJRHgU"
+      }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+  - id: pair_ae6f3e867f3f4f52a13573a059ad0ef7
+    name: Authorization
+    value: Bearer cdc00cc6-703e-49de-b690-5d5676251e93
+    description: ""
+authentication: {}
+metaSortKey: -1691655068834.5
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

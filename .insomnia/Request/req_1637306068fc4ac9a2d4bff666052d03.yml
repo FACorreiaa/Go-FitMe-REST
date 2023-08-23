@@ -1,0 +1,25 @@
+_id: req_1637306068fc4ac9a2d4bff666052d03
+type: Request
+parentId: fld_ff9117188ecd4e17b90572961a205a83
+modified: 1690363001999
+created: 1689935638496
+url: http://localhost:8080/api/v1/activities/id=12
+name: GetActivitiesById
+description: ""
+method: GET
+body: {}
+parameters: []
+headers:
+  - id: pair_d0f27c059857446b8fe2220bcf3122a2
+    name: Authorization
+    value: Bearer 00823607-2df4-42f9-9dfe-52871b4738dc
+    description: ""
+authentication: {}
+metaSortKey: -1690205147466.375
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

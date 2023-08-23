@@ -1,0 +1,38 @@
+_id: req_cb5f3bc4065d415584d35fa56b0712fb
+type: Request
+parentId: fld_65423faa82b142c2a17005aa398dcdd7
+modified: 1692623026497
+created: 1692622954041
+url: http://localhost:8080/api/v1/workouts/exercises/exercise/0268b875-9602-4a06-8738-7b38006882e8
+name: DeleteExercise
+description: ""
+method: DELETE
+body:
+  mimeType: application/json
+  text: >2
+      {
+        "name": "Deez",
+        "type": "Deez",
+        "muscle": "Deez",
+        "equipment": "Nuts",
+        "difficulty": "Nuts",
+        "instructions": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+        "video": "https://youtu.be/mBZ4vnJRHgU"
+      }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+  - id: pair_ae6f3e867f3f4f52a13573a059ad0ef7
+    name: Authorization
+    value: Bearer cdc00cc6-703e-49de-b690-5d5676251e93
+    description: ""
+authentication: {}
+metaSortKey: -1691547602484.25
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

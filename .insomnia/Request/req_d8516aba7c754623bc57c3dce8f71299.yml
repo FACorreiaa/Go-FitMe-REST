@@ -1,0 +1,63 @@
+_id: req_d8516aba7c754623bc57c3dce8f71299
+type: Request
+parentId: fld_65423faa82b142c2a17005aa398dcdd7
+modified: 1692741619166
+created: 1692651659016
+url: http://localhost:8080/api/v1/workouts/exercises/workout/plan
+name: InsertWorkoutPlan
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |
+    {
+      "workoutPlan": {
+        "description": "ssss",
+        "notes": "ssssss",
+        "rating": 10
+      },
+      "plan": [
+        {
+          "day": "dayOne",
+          "exercises": [
+            "0268b875-9602-4a06-8738-7b38006882e8",
+            "02d97d7a-3692-4613-a20c-30255e9f2205",
+            "0325faad-d051-436c-9cc7-5b88311e0732"
+          ]
+        },
+        {
+          "day": "dayTwo",
+          "exercises": [
+            "0268b875-9602-4a06-8738-7b38006882e8",
+            "02d97d7a-3692-4613-a20c-30255e9f2205",
+            "0325faad-d051-436c-9cc7-5b88311e0732"
+          ]
+        },
+        {
+          "day": "dayThree",
+          "exercises": [
+            "exerciseID1",
+            "exerciseID2",
+            "exerciseID3"
+          ]
+        }
+      ]
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_00c8c18bd00444c695d75f1293851c86
+  - id: pair_ae6f3e867f3f4f52a13573a059ad0ef7
+    name: Authorization
+    value: Bearer 19fb0747-fa66-4134-8a6c-135e23703394
+    description: ""
+authentication: {}
+metaSortKey: -1691601335659.375
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

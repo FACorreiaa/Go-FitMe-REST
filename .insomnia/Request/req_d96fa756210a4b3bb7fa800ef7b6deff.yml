@@ -1,0 +1,25 @@
+_id: req_d96fa756210a4b3bb7fa800ef7b6deff
+type: Request
+parentId: fld_ff9117188ecd4e17b90572961a205a83
+modified: 1690488938128
+created: 1690375006054
+url: http://localhost:8080/api/v1/activities/user/session/total/user=39
+name: GetUserExerciseSessionTotalValues
+description: ""
+method: GET
+body: {}
+parameters: []
+headers:
+  - id: pair_d705e818ef0544fa9981ab86c413afe9
+    name: Authorization
+    value: Bearer 92b7681a-4d9a-494f-a7d6-b53e7df54681
+    description: ""
+authentication: {}
+metaSortKey: -1690205147428.875
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

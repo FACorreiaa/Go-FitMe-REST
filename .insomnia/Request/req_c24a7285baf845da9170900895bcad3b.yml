@@ -1,0 +1,29 @@
+_id: req_c24a7285baf845da9170900895bcad3b
+type: Request
+parentId: fld_cf4b8231bd9546dab529b557abf50c08
+modified: 1692452999390
+created: 1689803552834
+url: http://localhost:8080/api/v1/users/user/info
+name: User Info
+description: ""
+method: GET
+body: {}
+parameters: []
+headers:
+  - id: pair_3dfa421a93674cd4951b511fb658a910
+    name: Content-Type
+    value: application/json
+    description: ""
+  - id: pair_bdc4231b0a714852b842ffa05f9e4faa
+    name: Authorization
+    value: Bearer b11e9f17-747c-4d91-a200-5eb00b94c03f
+    description: ""
+authentication: {}
+metaSortKey: -1690180039549.625
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

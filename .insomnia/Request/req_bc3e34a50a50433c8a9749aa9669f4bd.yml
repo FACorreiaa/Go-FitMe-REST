@@ -1,0 +1,25 @@
+_id: req_bc3e34a50a50433c8a9749aa9669f4bd
+type: Request
+parentId: fld_183bd9e18e9b43f6a5835eecf0620e43
+modified: 1692203228942
+created: 1691440136132
+url: http://localhost:3000/api/v1/measurements/weights
+name: GetWeights
+description: ""
+method: GET
+body: {}
+parameters: []
+headers:
+  - id: pair_e564f5a30ad14da8820eb9abe145b27e
+    name: Authorization
+    value: Bearer 5f2a91dc-3f71-443d-981a-0a69a40cf0d8
+    description: ""
+authentication: {}
+metaSortKey: -1691440136134
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

@@ -1,0 +1,32 @@
+_id: req_3b69eb7b41ea4d7db36801eaa2cfaf01
+type: Request
+parentId: fld_183bd9e18e9b43f6a5835eecf0620e43
+modified: 1691614831816
+created: 1691613393034
+url: http://localhost:8080/api/v1/measurements/weight/be6eea92-b2fc-49d0-90ff-3332c660aa2a
+name: UpdateWeight
+description: ""
+method: PATCH
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"weight_value": 92
+    }
+parameters: []
+headers:
+  - id: pair_e564f5a30ad14da8820eb9abe145b27e
+    name: Authorization
+    value: Bearer 86433cdc-323c-47c2-9a71-a1200eb89c8c
+    description: ""
+  - name: Content-Type
+    value: application/json
+authentication: {}
+metaSortKey: -1691302786653.625
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

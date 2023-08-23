@@ -1,0 +1,38 @@
+_id: req_c311d12220f141f9a1ba4a3fa263f0a2
+type: Request
+parentId: fld_cf4b8231bd9546dab529b557abf50c08
+modified: 1692219961211
+created: 1688110746916
+url: http://localhost:8080/api/v1/users/sign-in
+name: Sign-In
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"Email": "admin@admin.com",
+    	"Password": "adminadminadminadminadmin"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_b895e5ab5e074adcb5a2291b9b38a372
+  - id: pair_473bf014f4054cf5b6cd9366c19c12a2
+    name: Authorization
+    value: Bearer 39dc377b-303b-428d-8e15-0495ddd1a823
+    description: ""
+  - id: pair_f0444e253f0c4e09a43a09f6c92e61b5
+    name: ""
+    value: ""
+    description: ""
+authentication: {}
+metaSortKey: -1690180039499.625
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

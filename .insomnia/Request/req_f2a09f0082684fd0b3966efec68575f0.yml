@@ -1,0 +1,35 @@
+_id: req_f2a09f0082684fd0b3966efec68575f0
+type: Request
+parentId: fld_86c0add87fb34e9b8afd1da3809cb71e
+modified: 1691134608443
+created: 1690648807474
+url: http://localhost:8080/api/v1/calculator/offline
+name: OfflineCalculator
+description: ""
+method: POST
+body:
+  mimeType: application/json
+  text: |-
+    {
+    	"age": 34,
+    	"height": 185,
+    	"weight": 90,
+    	"gender": "Male",
+    	"system": "Metric",
+    	"activity":"Moderate",
+    	"objective": "Cutting",
+    	"calories-distribution": "Moderate"
+    }
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+authentication: {}
+metaSortKey: -1690648807474
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global

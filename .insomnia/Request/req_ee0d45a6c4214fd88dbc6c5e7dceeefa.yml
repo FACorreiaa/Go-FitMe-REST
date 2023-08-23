@@ -1,0 +1,28 @@
+_id: req_ee0d45a6c4214fd88dbc6c5e7dceeefa
+type: Request
+parentId: fld_65423faa82b142c2a17005aa398dcdd7
+modified: 1692453016290
+created: 1692299866936
+url: http://localhost:8080/api/v1/workouts/exercises
+name: GetExercises
+description: ""
+method: GET
+body: {}
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/json
+    id: pair_af7e72e7a8e84103a740d10d314d0f07
+  - id: pair_ae6f3e867f3f4f52a13573a059ad0ef7
+    name: Authorization
+    value: Bearer b11e9f17-747c-4d91-a200-5eb00b94c03f
+    description: ""
+authentication: {}
+metaSortKey: -1692299866936
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
