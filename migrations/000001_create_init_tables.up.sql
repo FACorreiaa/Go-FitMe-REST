@@ -130,6 +130,8 @@ CREATE TABLE IF NOT EXISTS user_exercises (
 
 select * from exercise_list where id = '0268b875-9602-4a06-8738-7b38006882e8';
 select * from exercise_list;
+select * from workout_plan_detail;
+
 CREATE TABLE IF NOT EXISTS "exercise_list" (
   "id" UUID DEFAULT gen_random_uuid() PRIMARY KEY,
   "name" varchar(255),
@@ -147,8 +149,7 @@ CREATE TABLE IF NOT EXISTS "exercise_list" (
 select * from workout_plan;
 select * from workout_day;
 select * from workout_plan_detail;
-select * from workout_day_exercise;
-
+select * from exercise_list;
 
 CREATE TABLE IF NOT EXISTS "workout_plan" (
                                               "id" UUID DEFAULT gen_random_uuid() PRIMARY KEY,
@@ -166,15 +167,13 @@ CREATE TABLE IF NOT EXISTS "workout_plan_detail" (
                                                      "workout_plan_id" UUID,
                                                      "day" varchar(100),
                                                      "exercises" uuid[],
-                                                     "created_at" timestamp DEFAULT (now())
+                                                     "created_at" timestamp DEFAULT (now()),
+                                                     FOREIGN KEY (workout_plan_id) REFERENCES workout_plan(id)
+
 );
 
 
--- CREATE TABLE IF NOT EXISTS "workout_plan_detail_exercise" (
---                                                               "workout_plan_detail_id" UUID REFERENCES workout_plan_detail(id) ON DELETE CASCADE,
---                                                               "exercise_id" UUID REFERENCES exercise_list(id),
---                                                               PRIMARY KEY ("workout_plan_detail_id", "exercise_id")
--- );
+
 
 CREATE TABLE IF NOT EXISTS "workout_day" (
                                              "id" UUID DEFAULT gen_random_uuid() PRIMARY KEY,
@@ -185,13 +184,21 @@ CREATE TABLE IF NOT EXISTS "workout_day" (
                                              FOREIGN KEY (workout_plan_id) REFERENCES workout_plan(id)
 );
 
-CREATE TABLE IF NOT EXISTS "workout_day_exercise" (
-                                                      "id" UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-                                                      "workout_day_id" UUID REFERENCES workout_day(id) ON DELETE CASCADE,
-                                                      "exercise_id" UUID REFERENCES exercise_list(id) ON DELETE CASCADE,
-                                                      FOREIGN KEY (workout_day_id) REFERENCES workout_day(id),
-                                                      FOREIGN KEY (exercise_id) REFERENCES exercise_list(id)
-);
+-- CREATE TABLE IF NOT EXISTS "workout_plan_detail_exercise" (
+--                                                               "workout_plan_detail_id" UUID REFERENCES workout_plan_detail(id) ON DELETE CASCADE,
+--                                                               "exercise_id" UUID REFERENCES exercise_list(id),
+--                                                               PRIMARY KEY ("workout_plan_detail_id", "exercise_id")
+-- );
+
+-- CREATE TABLE IF NOT EXISTS "workout_day_exercise" (
+--                                                       "id" UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+--                                                       "workout_day_id" UUID REFERENCES workout_day(id) ON DELETE CASCADE,
+--                                                       "exercise_id" UUID REFERENCES exercise_list(id) ON DELETE CASCADE,
+--                                                       FOREIGN KEY (workout_day_id) REFERENCES workout_day(id),
+--                                                       FOREIGN KEY (exercise_id) REFERENCES exercise_list(id)
+-- );
+
+
 
 CREATE TABLE "food" (
                         "id" UUID DEFAULT gen_random_uuid() PRIMARY KEY,
@@ -275,27 +282,7 @@ CREATE TABLE "meal_plan_user" (
   "created_at" timestamp DEFAULT (now()),
   "updated_at" timestamp DEFAULT null
 );
-CREATE TABLE "workout_day_exercise" (
-                                        "id" UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-  "workout_day_id" integer UNIQUE,
-  "exercise_id" integer UNIQUE,
-  "created_at" timestamp DEFAULT (now()),
-  "updated_at" timestamp DEFAULT null
-);
-CREATE TABLE "workout_day_plan" (
-                                    "id" UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-  "workout_day_id" integer UNIQUE,
-  "workout_plan_id" integer UNIQUE,
-  "created_at" timestamp DEFAULT (now()),
-  "updated_at" timestamp DEFAULT null
-);
-CREATE TABLE "workout_plan_user" (
-                                     "id" UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-  "workout_plan_id" integer UNIQUE,
-  "user_id" integer UNIQUE,
-  "created_at" timestamp DEFAULT (now()),
-  "updated_at" timestamp DEFAULT null
-);
+
 CREATE TABLE "water_intake_user" (
                                      "id" UUID DEFAULT gen_random_uuid() PRIMARY KEY,
   "water_intake_id" integer UNIQUE,

@@ -9,8 +9,8 @@ services:
       - seccomp:unconfined
     cap_add:
       - SYS_PTRACE
-#    ports:
-#      - "40000:40000"
+    ports:
+      - "40000:40000"
     command: "dlv exec --listen=127.0.0.1:40000 --headless=true --api-version=2 --accept-multiclient /stay-healthy-backend"
   app:
     build:
@@ -22,7 +22,7 @@ services:
     environment:
       AH_AHSERVER_PORT: ":8080"
     ports:
-    - "8080:8080"
+    - "7070:8080"
     security_opt:
       - seccomp:unconfined
     cap_add:

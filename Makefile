@@ -2,7 +2,7 @@ project_name = stay-healthy-backend
 image_name = stay-healthy-backend
 
 run-local:
-	go run app.go
+	go run main.go
 
 requirements:
 	make clean-packages
