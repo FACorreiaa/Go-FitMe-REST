@@ -285,6 +285,500 @@ const docTemplate = `{
                 }
             }
         },
+        "/exercises": {
+            "get": {
+                "description": "Get all exercises",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "workouts exercises"
+                ],
+                "summary": "GetExercises",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/workouts.Exercises"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/exercises/workout/plan": {
+            "get": {
+                "description": "Retrieve all workout plans",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "workouts"
+                ],
+                "summary": "Get workout plan",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/workouts.WorkoutPlan"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Create a new workout plan",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "workouts"
+                ],
+                "summary": "Create workout plan",
+                "responses": {}
+            }
+        },
+        "/exercises/workout/plan/exercise": {
+            "get": {
+                "description": "Get exercises from workout plan",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "workouts"
+                ],
+                "summary": "Get exercises from workout plan",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/workouts.WorkoutPlan"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/exercises/workout/plan/exercise/{id}": {
+            "get": {
+                "description": "Get exercises by id from workout plan",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "workouts"
+                ],
+                "summary": "Get exercises by id from workout plan",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Workout plan ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/workouts.WorkoutPlan"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/exercises/workout/plan/{id}": {
+            "get": {
+                "description": "Retrieve workout plan by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "workouts"
+                ],
+                "summary": "Get workout plan",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Workout plan ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/workouts.WorkoutPlan"
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete workout plan by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "workouts"
+                ],
+                "summary": "Delete workout plan",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Workout plan ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/workouts.WorkoutPlan"
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "description": "Update workout plan by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "workouts"
+                ],
+                "summary": "Update workout plan",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Workout plan ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/workouts.WorkoutPlan"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/exercises/workout/plan/{workoutPlanID}/day/{workoutDay}/exercise/{exerciseID}": {
+            "post": {
+                "description": "Insert new exercise into workout plan",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "workouts"
+                ],
+                "summary": "Insert new exercise into workout plan",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "workout_plan_id",
+                        "name": "workoutPlanID",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Day",
+                        "name": "workoutDay",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "exercise_id",
+                        "name": "exerciseID",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/workouts.WorkoutPlan"
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete exercises by id from workout plan",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "workouts"
+                ],
+                "summary": "Delete exercises by id from workout plan",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "workout_plan_id",
+                        "name": "workoutPlanID",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Day",
+                        "name": "workoutDay",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "exercise_id",
+                        "name": "exerciseID",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/exercises/workout/plan/{workoutPlanID}/day/{workoutDay}/exercise/{prevExerciseID}/{exerciseID}": {
+            "patch": {
+                "description": "Update exercise into workout plan",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "workouts"
+                ],
+                "summary": "Update exercise into workout plan",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Workout plan ID",
+                        "name": "workoutPlanID",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Day",
+                        "name": "workoutDay",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Exercise ID",
+                        "name": "exerciseID",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Exercise ID",
+                        "name": "prevExerciseID",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/exercises/{id}": {
+            "get": {
+                "description": "Get exercise by its id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "workouts exercises"
+                ],
+                "summary": "GetExerciseByID",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Exercise ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/workouts.Exercises"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Insert a new exercise on the list",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "workouts exercises"
+                ],
+                "summary": "Insert exercise",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Exercise ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/workouts.Exercises"
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete an exercise on the list",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "workouts exercises"
+                ],
+                "summary": "Delete exercise",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Exercise ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/workouts.Exercises"
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "description": "Update an exercise on the list",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "workouts exercises"
+                ],
+                "summary": "Update exercise",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Exercise ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/workouts.Exercises"
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/plan/{id}": {
             "get": {
                 "description": "Get diet macros",
@@ -1051,7 +1545,8 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "user_id": {
-                    "$ref": "#/definitions/sql.NullString"
+                    "type": "string",
+                    "example": ""
                 }
             }
         },
@@ -1240,18 +1735,6 @@ const docTemplate = `{
                 }
             }
         },
-        "sql.NullString": {
-            "type": "object",
-            "properties": {
-                "string": {
-                    "type": "string"
-                },
-                "valid": {
-                    "description": "Valid is true if String is not NULL",
-                    "type": "boolean"
-                }
-            }
-        },
         "user.SuccessResponse": {
             "type": "object",
             "properties": {
@@ -1302,6 +1785,92 @@ const docTemplate = `{
                 },
                 "username": {
                     "type": "string"
+                }
+            }
+        },
+        "workouts.Exercises": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "type": "string"
+                },
+                "custom_created": {
+                    "type": "boolean"
+                },
+                "difficulty": {
+                    "type": "string"
+                },
+                "equipment": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string",
+                    "example": ""
+                },
+                "instructions": {
+                    "type": "string"
+                },
+                "muscle": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "video": {
+                    "type": "string"
+                }
+            }
+        },
+        "workouts.WorkoutPlan": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string",
+                    "example": ""
+                },
+                "notes": {
+                    "type": "string"
+                },
+                "rating": {
+                    "type": "integer"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "integer"
+                },
+                "workoutDays": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/workouts.WorkoutPlanDay"
+                    }
+                }
+            }
+        },
+        "workouts.WorkoutPlanDay": {
+            "type": "object",
+            "properties": {
+                "day": {
+                    "type": "string"
+                },
+                "exercises": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/workouts.Exercises"
+                    }
                 }
             }
         }

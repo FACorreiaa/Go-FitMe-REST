@@ -8,7 +8,7 @@ import (
 
 type Activity struct {
 	ID              int            `json:"id,string" db:"id" pg:"default:gen_random_uuid()"`
-	UserID          sql.NullString `json:"user_id,string" db:"user_id"`
+	UserID          sql.NullString `json:"user_id,string" db:"user_id" swaggertype:"string"`
 	Name            string         `json:"name" db:"name"`
 	CaloriesPerHour float32        `json:"calories_per_hour" db:"calories_per_hour"`
 	DurationMinutes float32        `json:"duration_minutes" db:"duration_minutes"`

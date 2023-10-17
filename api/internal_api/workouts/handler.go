@@ -25,6 +25,14 @@ func NewExerciseHandler(deps DependenciesWorkouts) *Handler {
 	}
 }
 
+// GetExercises godoc
+// @Summary      GetExercises
+// @Description  Get all exercises
+// @Tags         workouts exercises
+// @Accept       json
+// @Produce      json
+// @Success      200  {array}   Exercises
+// @Router       /exercises [get]
 func (h Handler) GetExercises(w http.ResponseWriter, r *http.Request) {
 	exercises, err := h.dependencies.GetWorkoutsService().GetAllExercises(r.Context())
 
@@ -42,6 +50,15 @@ func (h Handler) GetExercises(w http.ResponseWriter, r *http.Request) {
 	_ = json.NewEncoder(w).Encode(exercises)
 }
 
+// GetExerciseByID godoc
+// @Summary      GetExerciseByID
+// @Description  Get exercise by its id
+// @Tags         workouts exercises
+// @Accept       json
+// @Produce      json
+// @Param        id   path      int  true  "Exercise ID"
+// @Success      200  {array}   Exercises
+// @Router       /exercises/{id} [get]
 func (h Handler) GetExerciseByID(w http.ResponseWriter, r *http.Request) {
 	id, err := uuid.Parse(chi.URLParam(r, "id"))
 
@@ -61,6 +78,15 @@ func (h Handler) GetExerciseByID(w http.ResponseWriter, r *http.Request) {
 	_ = json.NewEncoder(w).Encode(exercises)
 }
 
+// InsertExercise godoc
+// @Summary      Insert exercise
+// @Description  Insert a new exercise on the list
+// @Tags         workouts exercises
+// @Accept       json
+// @Produce      json
+// @Param        id   path      int  true  "Exercise ID"
+// @Success      200  {array}   Exercises
+// @Router       /exercises/{id} [post]
 func (h Handler) InsertExercise(w http.ResponseWriter, r *http.Request) {
 	var newExercise Exercises
 
@@ -105,6 +131,15 @@ func (h Handler) InsertExercise(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// DeleteExercise godoc
+// @Summary      Delete exercise
+// @Description  Delete an exercise on the list
+// @Tags         workouts exercises
+// @Accept       json
+// @Produce      json
+// @Param        id   path      int  true  "Exercise ID"
+// @Success      200  {array}   Exercises
+// @Router       /exercises/{id} [delete]
 func (h Handler) DeleteExercise(w http.ResponseWriter, r *http.Request) {
 	id, err := uuid.Parse(chi.URLParam(r, "id"))
 	if err != nil {
@@ -129,6 +164,15 @@ func (h Handler) DeleteExercise(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 }
 
+// UpdateExercise godoc
+// @Summary      Update exercise
+// @Description  Update an exercise on the list
+// @Tags         workouts exercises
+// @Accept       json
+// @Produce      json
+// @Param        id   path      int  true  "Exercise ID"
+// @Success      200  {array}   Exercises
+// @Router       /exercises/{id} [patch]
 func (h Handler) UpdateExercise(w http.ResponseWriter, r *http.Request) {
 	id, err := uuid.Parse(chi.URLParam(r, "id"))
 	if err != nil {
@@ -165,6 +209,13 @@ func (h Handler) UpdateExercise(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 }
 
+// CreateWorkoutPlan godoc
+// @Summary      Create workout plan
+// @Description  Create a new workout plan
+// @Tags         workouts
+// @Accept       json
+// @Produce      json
+// @Router       /exercises/workout/plan [post]
 func (h Handler) CreateWorkoutPlan(w http.ResponseWriter, r *http.Request) {
 	var requestBody CreateWorkoutPlanRequest
 
@@ -233,6 +284,14 @@ func (h Handler) CreateWorkoutPlan(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// GetWorkoutPlans godoc
+// @Summary      Get workout plan
+// @Description  Retrieve all workout plans
+// @Tags         workouts
+// @Accept       json
+// @Produce      json
+// @Success      200  {array}   WorkoutPlan
+// @Router       /exercises/workout/plan [get]
 func (h Handler) GetWorkoutPlans(w http.ResponseWriter, r *http.Request) {
 	workoutPlan, err := h.dependencies.GetWorkoutsService().GetWorkoutPlans(r.Context())
 
@@ -251,6 +310,15 @@ func (h Handler) GetWorkoutPlans(w http.ResponseWriter, r *http.Request) {
 	_ = json.NewEncoder(w).Encode(workoutPlan)
 }
 
+// GetWorkoutPlan godoc
+// @Summary      Get workout plan
+// @Description  Retrieve workout plan by id
+// @Tags         workouts
+// @Accept       json
+// @Produce      json
+// @Param        id   path      int  true  "Workout plan ID"
+// @Success      200  {array}   WorkoutPlan
+// @Router       /exercises/workout/plan/{id} [get]
 func (h Handler) GetWorkoutPlan(w http.ResponseWriter, r *http.Request) {
 	id, err := uuid.Parse(chi.URLParam(r, "id"))
 
@@ -271,6 +339,15 @@ func (h Handler) GetWorkoutPlan(w http.ResponseWriter, r *http.Request) {
 	_ = json.NewEncoder(w).Encode(workoutPlan)
 }
 
+// DeleteWorkoutPlan godoc
+// @Summary      Delete workout plan
+// @Description  Delete workout plan by id
+// @Tags         workouts
+// @Accept       json
+// @Produce      json
+// @Param        id   path      int  true  "Workout plan ID"
+// @Success      200  {array}   WorkoutPlan
+// @Router       /exercises/workout/plan/{id} [delete]
 func (h Handler) DeleteWorkoutPlan(w http.ResponseWriter, r *http.Request) {
 	id, err := uuid.Parse(chi.URLParam(r, "id"))
 	if err != nil {
@@ -295,6 +372,15 @@ func (h Handler) DeleteWorkoutPlan(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 }
 
+// UpdateWorkoutPlan godoc
+// @Summary      Update workout plan
+// @Description  Update workout plan by id
+// @Tags         workouts
+// @Accept       json
+// @Produce      json
+// @Param        id   path      int  true  "Workout plan ID"
+// @Success      200  {array}   WorkoutPlan
+// @Router       /exercises/workout/plan/{id} [patch]
 func (h Handler) UpdateWorkoutPlan(w http.ResponseWriter, r *http.Request) {
 	id, err := uuid.Parse(chi.URLParam(r, "id"))
 	if err != nil {
@@ -331,6 +417,14 @@ func (h Handler) UpdateWorkoutPlan(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 }
 
+// GetWorkoutPlanExercises godoc
+// @Summary      Get exercises from workout plan
+// @Description  Get exercises from workout plan
+// @Tags         workouts
+// @Accept       json
+// @Produce      json
+// @Success      200  {array}   WorkoutPlan
+// @Router       /exercises/workout/plan/exercise [get]
 func (h Handler) GetWorkoutPlanExercises(w http.ResponseWriter, r *http.Request) {
 	workoutPlanExercises, err := h.dependencies.GetWorkoutsService().GetWorkoutPlanExercises(r.Context())
 
@@ -348,6 +442,15 @@ func (h Handler) GetWorkoutPlanExercises(w http.ResponseWriter, r *http.Request)
 	_ = json.NewEncoder(w).Encode(workoutPlanExercises)
 }
 
+// GetWorkoutPlanIdExercises godoc
+// @Summary      Get exercises by id from workout plan
+// @Description  Get exercises by id from workout plan
+// @Tags         workouts
+// @Accept       json
+// @Produce      json
+// @Param        id   path      int  true  "Workout plan ID"
+// @Success      200  {array}   WorkoutPlan
+// @Router       /exercises/workout/plan/exercise/{id} [get]
 func (h Handler) GetWorkoutPlanIdExercises(w http.ResponseWriter, r *http.Request) {
 	id, err := uuid.Parse(chi.URLParam(r, "id"))
 
@@ -367,6 +470,16 @@ func (h Handler) GetWorkoutPlanIdExercises(w http.ResponseWriter, r *http.Reques
 	_ = json.NewEncoder(w).Encode(workoutPlanExercises)
 }
 
+// DeleteWorkoutPlanExercise godoc
+// @Summary      Delete exercises by id from workout plan
+// @Description  Delete exercises by id from workout plan
+// @Tags         workouts
+// @Accept       json
+// @Produce      json
+// @Param        workoutPlanID   path      int  true  "workout_plan_id"
+// @Param        workoutDay   path      string  true  "Day"
+// @Param        exerciseID   path      int  true  "exercise_id"
+// @Router       /exercises/workout/plan/{workoutPlanID}/day/{workoutDay}/exercise/{exerciseID} [delete]
 func (h Handler) DeleteWorkoutPlanExercise(w http.ResponseWriter, r *http.Request) {
 	workoutPlanID, err := uuid.Parse(chi.URLParam(r, "workoutPlanID"))
 	workoutDay := chi.URLParam(r, "workoutDay")
@@ -387,6 +500,17 @@ func (h Handler) DeleteWorkoutPlanExercise(w http.ResponseWriter, r *http.Reques
 	w.WriteHeader(http.StatusOK)
 }
 
+// CreateWorkoutPlanExercise godoc
+// @Summary      Insert new exercise into workout plan
+// @Description  Insert new exercise into workout plan
+// @Tags         workouts
+// @Accept       json
+// @Produce      json
+// @Param        workoutPlanID   path      int  true  "workout_plan_id"
+// @Param        workoutDay   path      string  true  "Day"
+// @Param        exerciseID   path      int  true  "exercise_id"
+// @Success      200  {array}   WorkoutPlan
+// @Router       /exercises/workout/plan/{workoutPlanID}/day/{workoutDay}/exercise/{exerciseID} [post]
 func (h Handler) CreateWorkoutPlanExercise(w http.ResponseWriter, r *http.Request) {
 	workoutPlanID, err := uuid.Parse(chi.URLParam(r, "workoutPlanID"))
 	workoutDay := chi.URLParam(r, "workoutDay")
@@ -407,6 +531,17 @@ func (h Handler) CreateWorkoutPlanExercise(w http.ResponseWriter, r *http.Reques
 	w.WriteHeader(http.StatusOK)
 }
 
+// UpdateWorkoutPlanExercise godoc
+// @Summary      Update exercise into workout plan
+// @Description  Update exercise into workout plan
+// @Tags         workouts
+// @Accept       json
+// @Produce      json
+// @Param        workoutPlanID   path      int  true  "Workout plan ID"
+// @Param        workoutDay   path      string  true  "Day"
+// @Param        exerciseID   path      int  true  "Exercise ID"
+// @Param        prevExerciseID   path      int  true  "Exercise ID"
+// @Router       /exercises/workout/plan/{workoutPlanID}/day/{workoutDay}/exercise/{prevExerciseID}/{exerciseID} [patch]
 func (h Handler) UpdateWorkoutPlanExercise(w http.ResponseWriter, r *http.Request) {
 	workoutPlanID, err := uuid.Parse(chi.URLParam(r, "workoutPlanID"))
 	workoutDay := chi.URLParam(r, "workoutDay")

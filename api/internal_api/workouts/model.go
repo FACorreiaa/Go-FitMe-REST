@@ -74,7 +74,7 @@ type WorkoutDetails struct {
 	UserID        int              `json:"user_id" db:"user_id"`
 	Day           string           `db:"day"`
 	Description   string           `json:"description" db:"description"`
-	Exercises     pq.StringArray   `json:"exercises" db:"exercises"`
+	Exercises     pq.StringArray   `json:"exercises" db:"exercises" swaggertype:"string"`
 	Notes         string           `json:"notes" db:"notes"`
 	CreatedAt     time.Time        `json:"created_at" db:"created_at"`
 	UpdatedAt     *time.Time       `json:"updated_at" db:"updated_at"`
@@ -92,12 +92,12 @@ type WorkoutPlanResponse struct {
 	UpdatedAt     *time.Time           `json:"updated_at" db:"updated_at"`
 	Rating        int                  `json:"rating" db:"rating"`
 	Day           string               `json:"day" db:"day"`
-	Exercises     pq.StringArray       `json:"exercises"`
+	Exercises     pq.StringArray       `json:"exercises" db:"exercises" swaggertype:"string"`
 }
 
 type WorkoutDayResponse struct {
-	Day       string         `json:"day"`
-	Exercises pq.StringArray `json:"exercises"`
+	Day       string         `json:"day" db:"day"`
+	Exercises pq.StringArray `json:"exercises" db:"exercises" swaggertype:"string"`
 }
 
 type WorkoutExerciseDay struct {

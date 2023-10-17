@@ -18,7 +18,8 @@ definitions:
       updated_at:
         type: string
       user_id:
-        $ref: '#/definitions/sql.NullString'
+        example: ""
+        type: string
     type: object
   activity.ExerciseSession:
     properties:
@@ -143,14 +144,6 @@ definitions:
       weight_value:
         type: number
     type: object
-  sql.NullString:
-    properties:
-      string:
-        type: string
-      valid:
-        description: Valid is true if String is not NULL
-        type: boolean
-    type: object
   user.SuccessResponse:
     properties:
       success:
@@ -186,6 +179,63 @@ definitions:
     - email
     - password
     - username
+    type: object
+  workouts.Exercises:
+    properties:
+      created_at:
+        type: string
+      custom_created:
+        type: boolean
+      difficulty:
+        type: string
+      equipment:
+        type: string
+      id:
+        example: ""
+        type: string
+      instructions:
+        type: string
+      muscle:
+        type: string
+      name:
+        type: string
+      type:
+        type: string
+      updated_at:
+        type: string
+      video:
+        type: string
+    type: object
+  workouts.WorkoutPlan:
+    properties:
+      created_at:
+        type: string
+      description:
+        type: string
+      id:
+        example: ""
+        type: string
+      notes:
+        type: string
+      rating:
+        type: integer
+      updated_at:
+        type: string
+      user_id:
+        type: integer
+      workoutDays:
+        items:
+          $ref: '#/definitions/workouts.WorkoutPlanDay'
+        type: array
+    type: object
+  workouts.WorkoutPlanDay:
+    properties:
+      day:
+        type: string
+      exercises:
+        items:
+          $ref: '#/definitions/workouts.Exercises'
+        type: array
     type: object
 host: localhost:8080
 info:
@@ -417,6 +467,337 @@ paths:
       summary: Get user exercise data
       tags:
       - activities
+  /exercises:
+    get:
+      consumes:
+      - application/json
+      description: Get all exercises
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/workouts.Exercises'
+            type: array
+      summary: GetExercises
+      tags:
+      - workouts exercises
+  /exercises/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete an exercise on the list
+      parameters:
+      - description: Exercise ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/workouts.Exercises'
+            type: array
+      summary: Delete exercise
+      tags:
+      - workouts exercises
+    get:
+      consumes:
+      - application/json
+      description: Get exercise by its id
+      parameters:
+      - description: Exercise ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/workouts.Exercises'
+            type: array
+      summary: GetExerciseByID
+      tags:
+      - workouts exercises
+    patch:
+      consumes:
+      - application/json
+      description: Update an exercise on the list
+      parameters:
+      - description: Exercise ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/workouts.Exercises'
+            type: array
+      summary: Update exercise
+      tags:
+      - workouts exercises
+    post:
+      consumes:
+      - application/json
+      description: Insert a new exercise on the list
+      parameters:
+      - description: Exercise ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/workouts.Exercises'
+            type: array
+      summary: Insert exercise
+      tags:
+      - workouts exercises
+  /exercises/workout/plan:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve all workout plans
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/workouts.WorkoutPlan'
+            type: array
+      summary: Get workout plan
+      tags:
+      - workouts
+    post:
+      consumes:
+      - application/json
+      description: Create a new workout plan
+      produces:
+      - application/json
+      responses: {}
+      summary: Create workout plan
+      tags:
+      - workouts
+  /exercises/workout/plan/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete workout plan by id
+      parameters:
+      - description: Workout plan ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/workouts.WorkoutPlan'
+            type: array
+      summary: Delete workout plan
+      tags:
+      - workouts
+    get:
+      consumes:
+      - application/json
+      description: Retrieve workout plan by id
+      parameters:
+      - description: Workout plan ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/workouts.WorkoutPlan'
+            type: array
+      summary: Get workout plan
+      tags:
+      - workouts
+    patch:
+      consumes:
+      - application/json
+      description: Update workout plan by id
+      parameters:
+      - description: Workout plan ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/workouts.WorkoutPlan'
+            type: array
+      summary: Update workout plan
+      tags:
+      - workouts
+  /exercises/workout/plan/{workoutPlanID}/day/{workoutDay}/exercise/{exerciseID}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete exercises by id from workout plan
+      parameters:
+      - description: workout_plan_id
+        in: path
+        name: workoutPlanID
+        required: true
+        type: integer
+      - description: Day
+        in: path
+        name: workoutDay
+        required: true
+        type: string
+      - description: exercise_id
+        in: path
+        name: exerciseID
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      summary: Delete exercises by id from workout plan
+      tags:
+      - workouts
+    post:
+      consumes:
+      - application/json
+      description: Insert new exercise into workout plan
+      parameters:
+      - description: workout_plan_id
+        in: path
+        name: workoutPlanID
+        required: true
+        type: integer
+      - description: Day
+        in: path
+        name: workoutDay
+        required: true
+        type: string
+      - description: exercise_id
+        in: path
+        name: exerciseID
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/workouts.WorkoutPlan'
+            type: array
+      summary: Insert new exercise into workout plan
+      tags:
+      - workouts
+  /exercises/workout/plan/{workoutPlanID}/day/{workoutDay}/exercise/{prevExerciseID}/{exerciseID}:
+    patch:
+      consumes:
+      - application/json
+      description: Update exercise into workout plan
+      parameters:
+      - description: Workout plan ID
+        in: path
+        name: workoutPlanID
+        required: true
+        type: integer
+      - description: Day
+        in: path
+        name: workoutDay
+        required: true
+        type: string
+      - description: Exercise ID
+        in: path
+        name: exerciseID
+        required: true
+        type: integer
+      - description: Exercise ID
+        in: path
+        name: prevExerciseID
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses: {}
+      summary: Update exercise into workout plan
+      tags:
+      - workouts
+  /exercises/workout/plan/exercise:
+    get:
+      consumes:
+      - application/json
+      description: Get exercises from workout plan
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/workouts.WorkoutPlan'
+            type: array
+      summary: Get exercises from workout plan
+      tags:
+      - workouts
+  /exercises/workout/plan/exercise/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Get exercises by id from workout plan
+      parameters:
+      - description: Workout plan ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/workouts.WorkoutPlan'
+            type: array
+      summary: Get exercises by id from workout plan
+      tags:
+      - workouts
   /plan/{id}:
     get:
       consumes:
