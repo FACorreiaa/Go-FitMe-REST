@@ -166,74 +166,6 @@ func (r RepositoryWorkouts) UpdateExercise(id uuid.UUID, updates map[string]inte
 	return err
 }
 
-//// Repository layer
-//func (r RepositoryWorkouts) CreateWorkoutPlan(newPlan WorkoutPlan, workoutDays []WorkoutDay) (WorkoutPlan, error) {
-//	tx, err := r.db.Beginx()
-//	if err != nil {
-//		return WorkoutPlan{}, fmt.Errorf("failed to start transaction: %w", err)
-//	}
-//	defer tx.Rollback()
-//
-//	// Insert workout plan
-//	workoutPlan, err := r.repo.CreateWorkoutPlan(tx, newPlan)
-//	if err != nil {
-//		return WorkoutPlan{}, fmt.Errorf("failed to insert workout plan: %w", err)
-//	}
-//
-//	// Insert workout days
-//	err = r.repo.InsertWorkoutDays(tx, workoutPlan.ID, workoutDays)
-//	if err != nil {
-//		return WorkoutPlan{}, fmt.Errorf("failed to insert workout days: %w", err)
-//	}
-//
-//	err = tx.Commit()
-//	if err != nil {
-//		return WorkoutPlan{}, fmt.Errorf("failed to commit transaction: %w", err)
-//	}
-//
-//	return workoutPlan, nil
-//}
-
-//func (r RepositoryWorkouts) CreateWorkoutPlan(tx *sqlx.Tx, newPlan WorkoutPlan) (WorkoutPlan, error) {
-//	query := `INSERT INTO workout_plan (id, user_id, description, notes, created_at, updated_at, rating)
-//				VALUES (:id, :user_id, :description, :notes, :created_at, :updated_at, :rating)
-//				RETURNING *`
-//
-//	workoutPlan := WorkoutPlan{
-//		ID:          newPlan.ID,
-//		UserID:      newPlan.UserID,
-//		Description: newPlan.Description,
-//		Notes:       newPlan.Notes,
-//		CreatedAt:   newPlan.CreatedAt,
-//		UpdatedAt:   newPlan.UpdatedAt,
-//		Rating:      newPlan.Rating,
-//	}
-//
-//	err := tx.Get(&workoutPlan, query, workoutPlan)
-//	if err != nil {
-//		return WorkoutPlan{}, fmt.Errorf("failed to insert workout plan: %w", err)
-//	}
-//
-//	return workoutPlan, nil
-//}
-
-//func (r RepositoryWorkouts) InsertWorkoutDays(tx *sqlx.Tx, workoutPlanID uuid.UUID, workoutDays []WorkoutDay) error {
-//	query := `INSERT INTO workout_day (workout_plan_id, exercise_id, created_at, updated_at)
-//				VALUES (:workout_plan_id, :exercise_id, :created_at, :updated_at)`
-//
-//	for _, wd := range workoutDays {
-//		wd.WorkoutPlanID = workoutPlanID
-//		_, err := tx.NamedExec(query, wd)
-//		if err != nil {
-//			return fmt.Errorf("failed to insert workout day: %w", err)
-//		}
-//	}
-//
-//	return nil
-//}
-
-// Repository layer
-
 func (r RepositoryWorkouts) CreateWorkoutPlan(newPlan WorkoutPlan, plan []PlanDay) (WorkoutPlan, error) {
 	tx, err := r.db.Beginx()
 	if err != nil {
@@ -385,8 +317,8 @@ func (r RepositoryWorkouts) GetWorkoutPlan(ctx context.Context, id uuid.UUID) (W
       SELECT 	wp.id AS workout_plan_id, wp.user_id, wp.description,
 			  	wp.notes, wp.rating, wp.created_at, wd.day, wpd.exercises
       			FROM workout_plan AS wp
-				LEFT JOIN workout_plan_detail AS wpd ON wp.id = wpd.workout_plan_id
-				LEFT JOIN workout_day AS wd ON wp.id = wd.workout_plan_id
+				JOIN workout_plan_detail AS wpd ON wp.id = wpd.workout_plan_id
+				JOIN workout_day AS wd ON wp.id = wd.workout_plan_id
       			WHERE wp.id = $1
 				GROUP BY wp.id, wd.day, wpd.exercises
 			ORDER BY wd.day;
@@ -399,117 +331,6 @@ func (r RepositoryWorkouts) GetWorkoutPlan(ctx context.Context, id uuid.UUID) (W
 
 	return workoutPlan, nil
 }
-
-//func (r RepositoryWorkouts) GetWorkoutPlan(ctx context.Context) ([]WorkoutPlanResponse, error) {
-//	query := `
-//       SELECT 	wp.id AS workout_plan_id, wp.user_id, wp.description,
-//			  	wp.notes, wp.rating, wp.created_at, wd.day, wpd.exercises
-//       			FROM workout_plan AS wp
-//				LEFT JOIN workout_plan_detail AS wpd ON wp.id = wpd.workout_plan_id
-//				LEFT JOIN workout_day AS wd ON wp.id = wd.workout_plan_id
-//				GROUP BY wp.id, wd.day, wpd.exercises
-//			ORDER BY wd.day;
-//   `
-//
-//	rows, err := r.db.QueryxContext(ctx, query)
-//	if err != nil {
-//		return nil, err
-//	}
-//	defer rows.Close()
-//
-//	workouts := make(map[uuid.UUID]WorkoutPlanResponse)
-//
-//	for rows.Next() {
-//		var row struct {
-//			WorkoutPlanID uuid.UUID        `json:"workout_plan_id,string" db:"workout_plan_id"`
-//			UserID        int              `json:"user_id" db:"user_id"`
-//			Day           string           `db:"day"`
-//			Description   string           `json:"description" db:"description"`
-//			Exercises     []uuid.UUID      `json:"exercises" db:"exercises"`
-//			Notes         string           `json:"notes" db:"notes"`
-//			CreatedAt     time.Time        `json:"created_at" db:"created_at"`
-//			UpdatedAt     *time.Time       `json:"updated_at" db:"updated_at"`
-//			Rating        int              `json:"rating" db:"rating"`
-//			WorkoutDays   []WorkoutPlanDay `json:"workoutDays" db:"-"`
-//		}
-//		err := rows.StructScan(&row)
-//		if err != nil {
-//			return nil, err
-//		}
-//
-//		if _, ok := workouts[row.WorkoutPlanID]; !ok {
-//			workouts[row.WorkoutPlanID] = WorkoutPlanResponse{
-//				WorkoutPlanID: row.WorkoutPlanID,
-//				UserID:        row.UserID,
-//				Description:   row.Description,
-//				WorkoutDays:   []WorkoutDayResponse{},
-//				Notes:         row.Notes,
-//				CreatedAt:     row.CreatedAt,
-//				UpdatedAt:     row.UpdatedAt,
-//				Rating:        row.Rating,
-//			}
-//		}
-//
-//		if plan, ok := workouts[row.WorkoutPlanID]; ok {
-//			day := WorkoutDayResponse{
-//				Day: row.Day,
-//			}
-//
-//			// Fetch exercise details for the exercise IDs in this workout day
-//			exerciseIDs := row.Exercises
-//			exerciseDetails := make([]Exercises, 0)
-//
-//			for _, exerciseID := range exerciseIDs {
-//				// Fetch exercise details by exerciseID
-//				exerciseDetail, err := r.GetExerciseByID(ctx, exerciseID)
-//				if err != nil {
-//					return nil, err
-//				}
-//				exerciseDetails = append(exerciseDetails, exerciseDetail)
-//			}
-//
-//			//day := WorkoutDayResponse{
-//			//	Day:       row.Day,
-//			//	Exercises: exerciseDetails,
-//			//}
-//
-//			plan.WorkoutDays = append(plan.WorkoutDays, day)
-//			workouts[row.WorkoutPlanID] = plan
-//		}
-//	}
-//
-//	result := make([]WorkoutPlanResponse, 0, len(workouts))
-//	for _, workout := range workouts {
-//		result = append(result, workout)
-//	}
-//
-//	return result, nil
-//}
-
-// nest the structure later
-
-//func (r RepositoryWorkouts) GetWorkoutPlan(ctx context.Context) ([]WorkoutDetails, error) {
-//	workoutPlan := make([]WorkoutDetails, 0)
-//	query := `SELECT
-//  				  wp.id AS workout_plan_id, wp.user_id, wp.description,
-//				  wp.notes, wp.rating, wp.created_at, wd.day, wpd.exercises
-//				FROM workout_plan AS wp
-//				LEFT JOIN workout_plan_detail AS wpd ON wp.id = wpd.workout_plan_id
-//				LEFT JOIN workout_day AS wd ON wp.id = wd.workout_plan_id
-//				GROUP BY wp.id, wd.day, wpd.exercises
-//				ORDER BY wd.day;`
-//
-//	err := r.db.SelectContext(ctx, &workoutPlan, query)
-//
-//	if err != nil {
-//		if errors.Is(err, sql.ErrNoRows) {
-//			return workoutPlan, fmt.Errorf("workout plan not found %w", err)
-//		}
-//		return workoutPlan, fmt.Errorf("failed to scan workout plans: %w", err)
-//	}
-//
-//	return workoutPlan, nil
-//}
 
 func (r RepositoryWorkouts) DeleteWorkoutPlan(userID int, workoutPlanID uuid.UUID) error {
 	tx := r.db.MustBegin()
@@ -581,27 +402,6 @@ func (r RepositoryWorkouts) UpdateWorkoutPlan(id uuid.UUID, updates map[string]i
 		}
 		return fmt.Errorf("failed to scan workout plan: %w", err)
 	}
-
-	//for _, day := range workoutDays {
-	//	// Perform an update operation for each workout day
-	//	dayUpdateQuery := `
-	//       UPDATE workout_plan_detail
-	//       SET exercises = :exercises, day = :day
-	//       WHERE workout_plan_id = :workout_plan_id
-	//   `
-	//
-	//	// namedParams for workout day update
-	//	dayNamedParams := map[string]interface{}{
-	//		"workout_plan_id": id,
-	//		"day":             day.Day,
-	//		"exercises":       day.Exercises,
-	//	}
-	//
-	//	_, err := r.db.NamedExec(dayUpdateQuery, dayNamedParams)
-	//	if err != nil {
-	//		return fmt.Errorf("failed to update workout day: %w", err)
-	//	}
-	//}
 
 	rowsAffected, _ := result.RowsAffected()
 	if rowsAffected == 0 {
@@ -702,9 +502,6 @@ func (r RepositoryWorkouts) CreateWorkoutPlanExercise(workoutDay string, workout
 		return fmt.Errorf("failed to commit exercise: %w", err)
 	}
 
-	// You might want to retrieve and return the updated workout plan details here
-	// with the newly inserted exercise.
-
 	return nil
 }
 
@@ -715,7 +512,7 @@ func (r RepositoryWorkouts) UpdateWorkoutPlanExercise(workoutDay string, workout
 	// Prepare an SQL statement to insert the exercise into the workout_plan_detail
 	query := `
 		UPDATE workout_plan_detail
-		SET exercises = array_replace(exercises, $1, $2)
+		SET exercises = array_replace($1, $2)
 		WHERE workout_plan_id = $3 AND day = $4
 	`
 
@@ -728,9 +525,6 @@ func (r RepositoryWorkouts) UpdateWorkoutPlanExercise(workoutDay string, workout
 	if err != nil {
 		return fmt.Errorf("failed to commit exercise: %w", err)
 	}
-
-	// You might want to retrieve and return the updated workout plan details here
-	// with the newly inserted exercise.
 
 	return nil
 }
