@@ -13,20 +13,16 @@ import (
 	"net/http"
 )
 
-type DependenciesUser interface {
-	GetUserService() *ServiceUser
-}
-
 type Handler struct {
 	router         *chi.Router
-	dependencies   DependenciesUser
+	s              *StructUser
 	ctx            context.Context
 	sessionManager *auth.SessionManager
 }
 
-func NewUserHandler(deps DependenciesUser, sessionManager *auth.SessionManager) Handler {
+func NewUserHandler(s *StructUser, sessionManager *auth.SessionManager) Handler {
 	return Handler{
-		dependencies:   deps,
+		s:              s,
 		sessionManager: sessionManager,
 	}
 }
@@ -205,7 +201,7 @@ func (u Handler) SignUpUser(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// create the user
-	userID, err := u.dependencies.GetUserService().Create(NewUser{
+	userID, err := u.s.User.Create(NewUser{
 		Username: user.Username,
 		Email:    user.Email,
 		Password: string(hashedPassword),

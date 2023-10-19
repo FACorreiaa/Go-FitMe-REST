@@ -17,6 +17,16 @@ func NewCalculatorService(repo *Repository) *ServiceCalculator {
 	}
 }
 
+type ICalculator interface {
+	Create(user UserMacroDistribution) (UserMacroDistribution, error)
+	GetAll(ctx context.Context, userID int) ([]UserMacroDistribution, error)
+	Get(ctx context.Context, planID uuid.UUID) (UserMacroDistribution, error)
+}
+
+type StructCalculator struct {
+	Calculator ICalculator
+}
+
 func (s ServiceCalculator) Create(user UserMacroDistribution) (UserMacroDistribution, error) {
 	diet, err := s.repo.InsertDietGoals(user)
 	switch {

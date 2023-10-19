@@ -8,13 +8,35 @@ import (
 )
 
 type ServiceWorkout struct {
-	repo *RepositoryWorkouts
+	repo *Repository
 }
 
-func NewWorkoutService(repo *RepositoryWorkouts) *ServiceWorkout {
+func NewWorkoutService(repo *Repository) *ServiceWorkout {
 	return &ServiceWorkout{
 		repo: repo,
 	}
+}
+
+type IWorkout interface {
+	GetAllExercises(ctx context.Context) ([]Exercises, error)
+	GetExerciseByID(ctx context.Context, id uuid.UUID) (Exercises, error)
+	InsertExercise(id int, exercise Exercises) (Exercises, error)
+	DeleteExercise(userID int, exerciseID uuid.UUID) error
+	UpdateExercise(id uuid.UUID, updates map[string]interface{}) error
+	CreateWorkoutPlan(newPlan WorkoutPlan, plan []PlanDay) (WorkoutPlan, error)
+	GetWorkoutPlans(ctx context.Context) ([]WorkoutPlanResponse, error)
+	DeleteWorkoutPlan(userID int, workoutPlanID uuid.UUID) error
+	GetWorkoutPlan(ctx context.Context, id uuid.UUID) (WorkoutPlanResponse, error)
+	UpdateWorkoutPlan(id uuid.UUID, updates map[string]interface{}) error
+	GetWorkoutPlanIdExercises(ctx context.Context, id uuid.UUID) (WorkoutExerciseDay, error)
+	GetWorkoutPlanExercises(ctx context.Context) ([]WorkoutExerciseDay, error)
+	DeleteWorkoutPlanIdExercises(workoutDay string, workoutPlanID uuid.UUID, exerciseID uuid.UUID) error
+	CreateWorkoutPlanExercise(workoutDay string, workoutPlanID uuid.UUID, exerciseID uuid.UUID) error
+	UpdateWorkoutPlanExercise(workoutDay string, workoutPlanID uuid.UUID, exerciseID uuid.UUID, prevExerciseID uuid.UUID) error
+}
+
+type StructWorkout struct {
+	Workout IWorkout
 }
 
 func (s ServiceWorkout) GetAllExercises(ctx context.Context) ([]Exercises, error) {

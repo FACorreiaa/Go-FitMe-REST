@@ -831,7 +831,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/auth.UserSession"
+                            "$ref": "#/definitions/user.UserSession"
                         }
                     }
                 }
@@ -904,7 +904,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/auth.UserSession"
+                                "$ref": "#/definitions/user.UserSession"
                             }
                         }
                     }
@@ -998,7 +998,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/auth.UserSession"
+                                "$ref": "#/definitions/user.UserSession"
                             }
                         }
                     }
@@ -1588,7 +1588,7 @@
                 }
             }
         },
-        "auth.UserSession": {
+        "user.UserSession": {
             "type": "object",
             "properties": {
                 "email": {

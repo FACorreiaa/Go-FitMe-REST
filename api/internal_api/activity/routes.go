@@ -4,8 +4,8 @@ import (
 	"github.com/go-chi/chi/v5"
 )
 
-func RoutesActivity(deps DependenciesActivity) *chi.Mux {
-	h := NewActivityHandler(deps)
+func RoutesActivity(s *StructActivity) *chi.Mux {
+	h := NewActivityHandler(s)
 
 	router := chi.NewRouter()
 

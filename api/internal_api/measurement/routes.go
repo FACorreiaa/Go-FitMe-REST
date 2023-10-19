@@ -2,8 +2,8 @@ package measurement
 
 import "github.com/go-chi/chi/v5"
 
-func RoutesMeasurements(deps DependenciesMeasurements) *chi.Mux {
-	h := NewMeasurementHandler(deps)
+func RoutesMeasurements(s *StructMeasurement) *chi.Mux {
+	h := NewMeasurementHandler(s)
 	router := chi.NewRouter()
 	//weights
 	router.Get("/weights", h.GetWeights)

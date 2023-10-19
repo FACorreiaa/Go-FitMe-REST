@@ -1,6 +1,8 @@
 package server
 
 import (
+	"time"
+
 	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/activity"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/auth"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/calculator"
@@ -13,18 +15,17 @@ import (
 	"github.com/go-chi/httplog"
 	"github.com/go-chi/httprate"
 	"github.com/go-chi/stampede"
-	"time"
 )
 
-func Register(r chi.Router, deps *AppDependencies, session *SessionDependencies) {
+func Register(r chi.Router, deps *AppServices, session *SessionDependencies) {
 	swaggerRoute := SwaggerRoutes()
 	calculatorRoute := calculator.RoutesCalculatorOffline()
-	userCalculatorRoute := calculator.RoutesCalculatorSession(deps)
+	userCalculatorRoute := calculator.RoutesCalculatorSession(deps.CalculatorService)
 	sessionManager := auth.NewSessionManager(session)
-	userRoutes := user.RoutesUser(deps, sessionManager)
-	activityRoutes := activity.RoutesActivity(deps)
-	measurementRoutes := measurement.RoutesMeasurements(deps)
-	workoutRoutes := workouts.RoutesWorkouts(deps)
+	userRoutes := user.RoutesUser(deps.UserService, sessionManager)
+	activityRoutes := activity.RoutesActivity(deps.ActivityService)
+	measurementRoutes := measurement.RoutesMeasurements(deps.MeasurementService)
+	workoutRoutes := workouts.RoutesWorkouts(deps.WorkoutService)
 	r.Use(middleware.RequestID)
 	r.Use(middleware.RealIP)
 	r.Use(middleware.Logger)

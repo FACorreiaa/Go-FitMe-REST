@@ -11,15 +11,15 @@ import (
 	"time"
 )
 
-type RepositoryActivity struct {
+type Repository struct {
 	db *sqlx.DB
 }
 
-func NewRepositoryActivity(db *sqlx.DB) (*RepositoryActivity, error) {
-	return &RepositoryActivity{db: db}, nil
+func NewRepository(db *sqlx.DB) (*Repository, error) {
+	return &Repository{db: db}, nil
 }
 
-func (r RepositoryActivity) GetAll(ctx context.Context) ([]Activity, error) {
+func (r Repository) GetAll(ctx context.Context) ([]Activity, error) {
 	activities := make([]Activity, 0)
 	query := `SELECT id, user_id, name,
 					duration_minutes, total_calories, calories_per_hour,
@@ -38,7 +38,7 @@ func (r RepositoryActivity) GetAll(ctx context.Context) ([]Activity, error) {
 	return activities, nil
 }
 
-func (r RepositoryActivity) GetExerciseByName(ctx context.Context, name string) ([]Activity, error) {
+func (r Repository) GetExerciseByName(ctx context.Context, name string) ([]Activity, error) {
 	activities := make([]Activity, 0)
 	query := `SELECT id, user_id, name, duration_minutes,
 					total_calories, calories_per_hour, created_at, updated_at
@@ -56,7 +56,7 @@ func (r RepositoryActivity) GetExerciseByName(ctx context.Context, name string) 
 	return activities, nil
 }
 
-func (r RepositoryActivity) GetExerciseById(ctx context.Context, id int) (Activity, error) {
+func (r Repository) GetExerciseById(ctx context.Context, id int) (Activity, error) {
 	var activity Activity
 	query := `SELECT 	id, user_id, name, duration_minutes,
        					total_calories, calories_per_hour, created_at,
@@ -75,7 +75,7 @@ func (r RepositoryActivity) GetExerciseById(ctx context.Context, id int) (Activi
 	return activity, nil
 }
 
-func (r RepositoryActivity) Save(ctx context.Context, exerciseSession *ExerciseSession) error {
+func (r Repository) Save(ctx context.Context, exerciseSession *ExerciseSession) error {
 	query := `
 		INSERT INTO exercise_session
 		    (user_id, activity_id, session_name, start_time,
@@ -95,7 +95,7 @@ func (r RepositoryActivity) Save(ctx context.Context, exerciseSession *ExerciseS
 	return nil
 }
 
-func (r RepositoryActivity) GetExerciseSessions(ctx context.Context, id int) ([]ExerciseSession, error) {
+func (r Repository) GetExerciseSessions(ctx context.Context, id int) ([]ExerciseSession, error) {
 	exerciseSessions := make([]ExerciseSession, 0)
 	query := `SELECT user_id, activity_id, session_name, start_time,
 		     		end_time, duration_hours, duration_minutes,
@@ -115,7 +115,7 @@ func (r RepositoryActivity) GetExerciseSessions(ctx context.Context, id int) ([]
 	return exerciseSessions, nil
 }
 
-func (r RepositoryActivity) CalculateAndSaveTotalExerciseSession(ctx context.Context, userID int) (*TotalExerciseSession, error) {
+func (r Repository) CalculateAndSaveTotalExerciseSession(ctx context.Context, userID int) (*TotalExerciseSession, error) {
 	query := `SELECT
     			duration_hours, duration_minutes, duration_seconds, calories_burned
 			FROM exercise_session WHERE user_id = $1`
@@ -175,7 +175,7 @@ func (r RepositoryActivity) CalculateAndSaveTotalExerciseSession(ctx context.Con
 // GetTotalExerciseOccurrence need to save on db as a history <<<
 // using CTEs, provides more general statistics for the most frequent activity across all users and
 // the number of times this activity occurs for each user, along with additional information from the total_exercise_session table.
-func (r RepositoryActivity) GetTotalExerciseOccurrence(ctx context.Context, userID int) ([]ExerciseCountStats, error) {
+func (r Repository) GetTotalExerciseOccurrence(ctx context.Context, userID int) ([]ExerciseCountStats, error) {
 	sessionStats := make([]ExerciseCountStats, 0)
 
 	query := `WITH total_exercise_stats AS (
@@ -264,7 +264,7 @@ func (r RepositoryActivity) GetTotalExerciseOccurrence(ctx context.Context, user
 
 // GetExerciseOccurrenceByUser detailed statistics about the most frequently occurring combination of
 // session_name and activity_id for a specific user_id from the exercise_session table
-func (r RepositoryActivity) GetExerciseOccurrenceByUser(ctx context.Context, id int) ([]ExerciseCountStats, error) {
+func (r Repository) GetExerciseOccurrenceByUser(ctx context.Context, id int) ([]ExerciseCountStats, error) {
 	sessionStats := make([]ExerciseCountStats, 0)
 	query := `SELECT es.session_name, es.activity_id,
        				COUNT(*) as number_of_times,

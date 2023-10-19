@@ -10,17 +10,13 @@ import (
 	"time"
 )
 
-type DependenciesMeasurements interface {
-	GetMeasurementService() *ServiceMeasurements
-}
-
 type Handler struct {
-	dependencies DependenciesMeasurements
+	service *StructMeasurement
 }
 
-func NewMeasurementHandler(deps DependenciesMeasurements) *Handler {
+func NewMeasurementHandler(s *StructMeasurement) *Handler {
 	return &Handler{
-		dependencies: deps,
+		service: s,
 	}
 }
 
@@ -52,7 +48,7 @@ func (h Handler) InsertWeight(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	response, err := h.dependencies.GetMeasurementService().InsertWeight(Weight{
+	response, err := h.service.Measurement.InsertWeight(Weight{
 		ID:          uuid.New(),
 		UserID:      userSession.Id,
 		WeightValue: input.WeightValue,
@@ -103,7 +99,7 @@ func (h Handler) UpdateWeight(w http.ResponseWriter, r *http.Request) {
 	}
 	updates["UpdatedAt"] = time.Now()
 
-	if err := h.dependencies.GetMeasurementService().UpdateWeight(id, userSession.Id, updates); err != nil {
+	if err := h.service.Measurement.UpdateWeight(id, userSession.Id, updates); err != nil {
 		http.Error(w, "Internal server error", http.StatusInternalServerError)
 		return
 	}
@@ -135,7 +131,7 @@ func (h Handler) DeleteWeight(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err = h.dependencies.GetMeasurementService().DeleteWeight(id, userSession.Id)
+	err = h.service.Measurement.DeleteWeight(id, userSession.Id)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
@@ -168,7 +164,7 @@ func (h Handler) GetWeight(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	weight, err := h.dependencies.GetMeasurementService().GetWeight(id, userSession.Id)
+	weight, err := h.service.Measurement.GetWeight(id, userSession.Id)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
@@ -195,7 +191,7 @@ func (h Handler) GetWeights(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	weight, err := h.dependencies.GetMeasurementService().GetWeights(userSession.Id)
+	weight, err := h.service.Measurement.GetWeights(userSession.Id)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
@@ -235,7 +231,7 @@ func (h Handler) InsertWaterIntake(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	response, err := h.dependencies.GetMeasurementService().InsertWaterIntake(WaterIntake{
+	response, err := h.service.Measurement.InsertWaterIntake(WaterIntake{
 		ID:        uuid.New(),
 		UserID:    userSession.Id,
 		Quantity:  input.Quantity,
@@ -286,7 +282,7 @@ func (h Handler) UpdateWaterIntake(w http.ResponseWriter, r *http.Request) {
 	}
 	updates["UpdatedAt"] = time.Now()
 
-	if err := h.dependencies.GetMeasurementService().UpdateWaterIntake(id, userSession.Id, updates); err != nil {
+	if err := h.service.Measurement.UpdateWaterIntake(id, userSession.Id, updates); err != nil {
 		http.Error(w, "Internal server error", http.StatusInternalServerError)
 		return
 	}
@@ -318,7 +314,7 @@ func (h Handler) DeleteWaterIntake(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err = h.dependencies.GetMeasurementService().DeleteWaterIntake(id, userSession.Id)
+	err = h.service.Measurement.DeleteWaterIntake(id, userSession.Id)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
@@ -351,7 +347,7 @@ func (h Handler) GetWaterIntake(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	weight, err := h.dependencies.GetMeasurementService().GetWaterIntake(id, userSession.Id)
+	weight, err := h.service.Measurement.GetWaterIntake(id, userSession.Id)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
@@ -378,7 +374,7 @@ func (h Handler) GetWaterIntakes(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	weight, err := h.dependencies.GetMeasurementService().GetWaterIntakes(userSession.Id)
+	weight, err := h.service.Measurement.GetWaterIntakes(userSession.Id)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
@@ -417,7 +413,7 @@ func (h Handler) InsertWaistLine(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	response, err := h.dependencies.GetMeasurementService().InsertWaistLine(WaistLine{
+	response, err := h.service.Measurement.InsertWaistLine(WaistLine{
 		ID:        uuid.New(),
 		UserID:    userSession.Id,
 		Quantity:  input.Quantity,
@@ -468,7 +464,7 @@ func (h Handler) UpdateWaistLine(w http.ResponseWriter, r *http.Request) {
 	}
 	updates["UpdatedAt"] = time.Now()
 
-	if err := h.dependencies.GetMeasurementService().UpdateWaistLine(id, userSession.Id, updates); err != nil {
+	if err := h.service.Measurement.UpdateWaistLine(id, userSession.Id, updates); err != nil {
 		http.Error(w, "Internal server error", http.StatusInternalServerError)
 		return
 	}
@@ -500,7 +496,7 @@ func (h Handler) DeleteWaistLine(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err = h.dependencies.GetMeasurementService().DeleteWaistLine(id, userSession.Id)
+	err = h.service.Measurement.DeleteWaistLine(id, userSession.Id)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
@@ -533,7 +529,7 @@ func (h Handler) GetWaistLine(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	res, err := h.dependencies.GetMeasurementService().GetWaistLine(id, userSession.Id)
+	res, err := h.service.Measurement.GetWaistLine(id, userSession.Id)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
@@ -560,7 +556,7 @@ func (h Handler) GetWaistLines(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	res, err := h.dependencies.GetMeasurementService().GetWaterIntakes(userSession.Id)
+	res, err := h.service.Measurement.GetWaterIntakes(userSession.Id)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return

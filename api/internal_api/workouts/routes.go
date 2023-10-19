@@ -2,8 +2,8 @@ package workouts
 
 import "github.com/go-chi/chi/v5"
 
-func RoutesWorkouts(deps DependenciesWorkouts) *chi.Mux {
-	h := NewExerciseHandler(deps)
+func RoutesWorkouts(s *StructWorkout) *chi.Mux {
+	h := NewExerciseHandler(s)
 
 	router := chi.NewRouter()
 

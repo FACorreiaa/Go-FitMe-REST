@@ -12,17 +12,13 @@ import (
 	"time"
 )
 
-type DependenciesCalculator interface {
-	GetCalculatorService() *ServiceCalculator
-}
-
 type Handler struct {
-	dependencies DependenciesCalculator
+	service *StructCalculator
 }
 
-func NewCalculatorHandler(deps DependenciesCalculator) *Handler {
+func NewCalculatorHandler(s *StructCalculator) *Handler {
 	return &Handler{
-		dependencies: deps,
+		service: s,
 	}
 }
 
@@ -212,7 +208,7 @@ func calculateUserPersonalMacros(params UserParams) (UserInfo, error) {
 			},
 			Macros: macros,
 		},
-		Goal: uint16(goal),
+		Goal: goal,
 	}, nil
 
 }
@@ -264,7 +260,7 @@ func (h Handler) CalculateMacros(w http.ResponseWriter, r *http.Request) {
 	}
 
 	macros, err := calculateUserPersonalMacros(params)
-	response, err := h.dependencies.GetCalculatorService().Create(UserMacroDistribution{
+	response, err := h.service.Calculator.Create(UserMacroDistribution{
 		ID:                              uuid.New(),
 		UserID:                          userSession.Id,
 		Age:                             params.Age,
@@ -316,7 +312,7 @@ func (h Handler) GetAllDietMacros(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	userMacros, err := h.dependencies.GetCalculatorService().GetAll(r.Context(), userSession.Id)
+	userMacros, err := h.service.Calculator.GetAll(r.Context(), userSession.Id)
 	if err != nil {
 		http.Error(w, "Error finding user plan", http.StatusInternalServerError)
 	}
@@ -342,7 +338,7 @@ func (h Handler) GetDietMacros(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Error parsing id", http.StatusInternalServerError)
 	}
 
-	userMacros, err := h.dependencies.GetCalculatorService().Get(r.Context(), id)
+	userMacros, err := h.service.Calculator.Get(r.Context(), id)
 	println("err: ", err)
 	if err != nil {
 		http.Error(w, "Error finding user plan", http.StatusInternalServerError)

@@ -12,21 +12,15 @@ import (
 	"time"
 )
 
-type DependenciesActivity interface {
-	GetActivityService() *ServiceActivity
-}
-
 type Handler struct {
-	dependencies     DependenciesActivity
+	service          *StructActivity
 	exerciseSessions map[string]*ExerciseSession // Map to store exercise sessions for each user
 	pausedTimers     map[string]time.Time
 }
 
-func NewActivityHandler(deps DependenciesActivity) *Handler {
+func NewActivityHandler(s *StructActivity) *Handler {
 	return &Handler{
-		dependencies:     deps,
-		exerciseSessions: make(map[string]*ExerciseSession),
-		pausedTimers:     make(map[string]time.Time),
+		service: s,
 	}
 }
 
@@ -39,7 +33,7 @@ func NewActivityHandler(deps DependenciesActivity) *Handler {
 // @Success      200  {array}   Activity
 // @Router       /activities [get]
 func (h Handler) GetActivities(w http.ResponseWriter, r *http.Request) {
-	activities, err := h.dependencies.GetActivityService().GetAll(r.Context())
+	activities, err := h.service.Activity.GetAll(r.Context())
 
 	if err != nil {
 		log.Printf("Error fetching activities data: %v", err)
@@ -66,7 +60,7 @@ func (h Handler) GetActivities(w http.ResponseWriter, r *http.Request) {
 // @Router       /activities/name/{name} [get]
 func (h Handler) GetActivitiesByName(w http.ResponseWriter, r *http.Request) {
 	name := chi.URLParam(r, "name")
-	activities, err := h.dependencies.GetActivityService().GetByName(r.Context(), name)
+	activities, err := h.service.Activity.GetByName(r.Context(), name)
 	if err != nil {
 		log.Printf("Error fetching activities data: %v", err)
 
@@ -100,7 +94,7 @@ func (h Handler) GetActivitiesById(w http.ResponseWriter, r *http.Request) {
 
 		return
 	}
-	activities, err := h.dependencies.GetActivityService().GetByID(r.Context(), id)
+	activities, err := h.service.Activity.GetByID(r.Context(), id)
 	if err != nil {
 		log.Printf("Error fetching activities data: %v", err)
 
@@ -153,7 +147,7 @@ func (h Handler) StartActivityTracker(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	activity, err := h.dependencies.GetActivityService().GetByID(r.Context(), activityID)
+	activity, err := h.service.Activity.GetByID(r.Context(), activityID)
 	if err != nil {
 		log.Printf("Error getting id activity: %v", err)
 		http.Error(w, "Internal server error", http.StatusInternalServerError)
@@ -262,7 +256,7 @@ func (h Handler) StopActivityTracker(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Calculate calories burned (assuming activity is fetched from the database)
-	activity, err := h.dependencies.GetActivityService().GetByID(r.Context(), session.ActivityID)
+	activity, err := h.service.Activity.GetByID(r.Context(), session.ActivityID)
 	if err != nil {
 		http.Error(w, "Error getting activity", http.StatusInternalServerError)
 		return
@@ -284,7 +278,7 @@ func (h Handler) StopActivityTracker(w http.ResponseWriter, r *http.Request) {
 
 	session.EndTime = time.Now()
 
-	err = h.dependencies.GetActivityService().SaveExerciseSession(r.Context(), session)
+	err = h.service.Activity.SaveExerciseSession(r.Context(), session)
 	if err != nil {
 		http.Error(w, "Error saving exercise session to DB", http.StatusInternalServerError)
 		return
@@ -315,7 +309,7 @@ func (h Handler) GetUserExerciseSession(w http.ResponseWriter, r *http.Request) 
 		return
 	}
 
-	exerciseSession, err := h.dependencies.GetActivityService().GetExerciseSession(r.Context(), userSession.Id)
+	exerciseSession, err := h.service.Activity.GetExerciseSession(r.Context(), userSession.Id)
 	if err != nil {
 		http.Error(w, "Error finding exercise session", http.StatusInternalServerError)
 	}
@@ -343,7 +337,7 @@ func (h Handler) GetUserExerciseTotalData(w http.ResponseWriter, r *http.Request
 	}
 
 	// Calculate and save the total exercise session data
-	totalExerciseSession, err := h.dependencies.GetActivityService().GetExerciseTotalSession(r.Context(), userSession.Id)
+	totalExerciseSession, err := h.service.Activity.GetExerciseTotalSession(r.Context(), userSession.Id)
 	if err != nil {
 		http.Error(w, "Error calculating total exercise session", http.StatusInternalServerError)
 		return
@@ -363,7 +357,7 @@ func (h Handler) GetExerciseSessionStats(w http.ResponseWriter, r *http.Request)
 	}
 
 	// Calculate and save the total exercise session data
-	sessionStats, err := h.dependencies.GetActivityService().GetExerciseSessionStats(r.Context(), userSession.Id)
+	sessionStats, err := h.service.Activity.GetExerciseSessionStats(r.Context(), userSession.Id)
 	if err != nil {
 		http.Error(w, "Error calculating session status", http.StatusInternalServerError)
 		return
@@ -392,7 +386,7 @@ func (h Handler) GetUserExerciseSessionStats(w http.ResponseWriter, r *http.Requ
 	}
 
 	// Calculate and save the total exercise session data
-	sessionStats, err := h.dependencies.GetActivityService().GetUserExerciseSessionStats(r.Context(), userSession.Id)
+	sessionStats, err := h.service.Activity.GetUserExerciseSessionStats(r.Context(), userSession.Id)
 	if err != nil {
 		http.Error(w, "Error calculating session status", http.StatusInternalServerError)
 		return

@@ -11,15 +11,15 @@ import (
 	"time"
 )
 
-type RepositoryWorkouts struct {
+type Repository struct {
 	db *sqlx.DB
 }
 
-func NewWorkoutsRepository(db *sqlx.DB) (*RepositoryWorkouts, error) {
-	return &RepositoryWorkouts{db: db}, nil
+func NewWorkoutsRepository(db *sqlx.DB) (*Repository, error) {
+	return &Repository{db: db}, nil
 }
 
-func (r RepositoryWorkouts) GetAllExercises(ctx context.Context) ([]Exercises, error) {
+func (r Repository) GetAllExercises(ctx context.Context) ([]Exercises, error) {
 	exercises := make([]Exercises, 0)
 	query := `SELECT DISTINCT
     			id, name, type, muscle, equipment, difficulty,
@@ -38,7 +38,7 @@ func (r RepositoryWorkouts) GetAllExercises(ctx context.Context) ([]Exercises, e
 	return exercises, nil
 }
 
-func (r RepositoryWorkouts) GetExerciseByID(ctx context.Context, id uuid.UUID) (Exercises, error) {
+func (r Repository) GetExerciseByID(ctx context.Context, id uuid.UUID) (Exercises, error) {
 	var exerciseList Exercises
 	query := `SELECT 	id, name, type, muscle, equipment, difficulty,
 						instructions, video, created_at, updated_at
@@ -56,7 +56,7 @@ func (r RepositoryWorkouts) GetExerciseByID(ctx context.Context, id uuid.UUID) (
 	return exerciseList, nil
 }
 
-func (r RepositoryWorkouts) InsertNewExercise(userID int, exercise Exercises) (Exercises, error) {
+func (r Repository) InsertNewExercise(userID int, exercise Exercises) (Exercises, error) {
 	tx := r.db.MustBegin()
 	defer tx.Rollback()
 
@@ -89,7 +89,7 @@ func (r RepositoryWorkouts) InsertNewExercise(userID int, exercise Exercises) (E
 	return exercise, nil
 }
 
-func (r RepositoryWorkouts) DeleteUserExercise(userID int, exerciseID uuid.UUID) error {
+func (r Repository) DeleteUserExercise(userID int, exerciseID uuid.UUID) error {
 	tx := r.db.MustBegin()
 	defer tx.Rollback()
 
@@ -128,7 +128,7 @@ func (r RepositoryWorkouts) DeleteUserExercise(userID int, exerciseID uuid.UUID)
 	return nil
 }
 
-func (r RepositoryWorkouts) UpdateExercise(id uuid.UUID, updates map[string]interface{}) error {
+func (r Repository) UpdateExercise(id uuid.UUID, updates map[string]interface{}) error {
 	query := `
 		UPDATE exercise_list
 		SET name = :name, type = :type, muscle = :muscle,
@@ -166,7 +166,7 @@ func (r RepositoryWorkouts) UpdateExercise(id uuid.UUID, updates map[string]inte
 	return err
 }
 
-func (r RepositoryWorkouts) CreateWorkoutPlan(newPlan WorkoutPlan, plan []PlanDay) (WorkoutPlan, error) {
+func (r Repository) CreateWorkoutPlan(newPlan WorkoutPlan, plan []PlanDay) (WorkoutPlan, error) {
 	tx, err := r.db.Beginx()
 	if err != nil {
 		return WorkoutPlan{}, fmt.Errorf("failed to start transaction: %w", err)
@@ -240,7 +240,7 @@ func (r RepositoryWorkouts) CreateWorkoutPlan(newPlan WorkoutPlan, plan []PlanDa
 	return newPlan, nil
 }
 
-func (r RepositoryWorkouts) GetWorkoutPlans(ctx context.Context) ([]WorkoutPlanResponse, error) {
+func (r Repository) GetWorkoutPlans(ctx context.Context) ([]WorkoutPlanResponse, error) {
 	query := `
       SELECT 	wp.id AS workout_plan_id, wp.user_id, wp.description,
 			  	wp.notes, wp.rating, wp.created_at, wd.day, wpd.exercises
@@ -311,7 +311,7 @@ func (r RepositoryWorkouts) GetWorkoutPlans(ctx context.Context) ([]WorkoutPlanR
 	return result, nil
 }
 
-func (r RepositoryWorkouts) GetWorkoutPlan(ctx context.Context, id uuid.UUID) (WorkoutPlanResponse, error) {
+func (r Repository) GetWorkoutPlan(ctx context.Context, id uuid.UUID) (WorkoutPlanResponse, error) {
 	var workoutPlan WorkoutPlanResponse
 	query := `
       SELECT 	wp.id AS workout_plan_id, wp.user_id, wp.description,
@@ -332,7 +332,7 @@ func (r RepositoryWorkouts) GetWorkoutPlan(ctx context.Context, id uuid.UUID) (W
 	return workoutPlan, nil
 }
 
-func (r RepositoryWorkouts) DeleteWorkoutPlan(userID int, workoutPlanID uuid.UUID) error {
+func (r Repository) DeleteWorkoutPlan(userID int, workoutPlanID uuid.UUID) error {
 	tx := r.db.MustBegin()
 	defer tx.Rollback()
 
@@ -379,7 +379,7 @@ func (r RepositoryWorkouts) DeleteWorkoutPlan(userID int, workoutPlanID uuid.UUI
 	return nil
 }
 
-func (r RepositoryWorkouts) UpdateWorkoutPlan(id uuid.UUID, updates map[string]interface{}) error {
+func (r Repository) UpdateWorkoutPlan(id uuid.UUID, updates map[string]interface{}) error {
 	query := `
 		UPDATE workout_plan
 		SET description = :description, notes = :notes, rating = :rating,
@@ -411,7 +411,7 @@ func (r RepositoryWorkouts) UpdateWorkoutPlan(id uuid.UUID, updates map[string]i
 	return err
 }
 
-func (r RepositoryWorkouts) GetWorkoutPlanIdExercises(ctx context.Context, id uuid.UUID) (WorkoutExerciseDay, error) {
+func (r Repository) GetWorkoutPlanIdExercises(ctx context.Context, id uuid.UUID) (WorkoutExerciseDay, error) {
 	var workoutExerciseDayList WorkoutExerciseDay
 	query := `
 				SELECT el.*, wpd.day
@@ -431,7 +431,7 @@ func (r RepositoryWorkouts) GetWorkoutPlanIdExercises(ctx context.Context, id uu
 	return workoutExerciseDayList, nil
 }
 
-func (r RepositoryWorkouts) GetWorkoutPlanExercises(ctx context.Context) ([]WorkoutExerciseDay, error) {
+func (r Repository) GetWorkoutPlanExercises(ctx context.Context) ([]WorkoutExerciseDay, error) {
 	workoutExerciseDayList := make([]WorkoutExerciseDay, 0)
 	query := `
 				SELECT el.*, wpd.day
@@ -450,7 +450,7 @@ func (r RepositoryWorkouts) GetWorkoutPlanExercises(ctx context.Context) ([]Work
 	return workoutExerciseDayList, nil
 }
 
-func (r RepositoryWorkouts) DeleteWorkoutPlanIdExercises(workoutDay string, workoutPlanID uuid.UUID, exerciseID uuid.UUID) error {
+func (r Repository) DeleteWorkoutPlanIdExercises(workoutDay string, workoutPlanID uuid.UUID, exerciseID uuid.UUID) error {
 	tx := r.db.MustBegin()
 	defer tx.Rollback()
 
@@ -481,7 +481,7 @@ func (r RepositoryWorkouts) DeleteWorkoutPlanIdExercises(workoutDay string, work
 	return nil
 }
 
-func (r RepositoryWorkouts) CreateWorkoutPlanExercise(workoutDay string, workoutPlanID uuid.UUID, exerciseID uuid.UUID) error {
+func (r Repository) CreateWorkoutPlanExercise(workoutDay string, workoutPlanID uuid.UUID, exerciseID uuid.UUID) error {
 	tx := r.db.MustBegin()
 	defer tx.Rollback()
 
@@ -505,7 +505,7 @@ func (r RepositoryWorkouts) CreateWorkoutPlanExercise(workoutDay string, workout
 	return nil
 }
 
-func (r RepositoryWorkouts) UpdateWorkoutPlanExercise(workoutDay string, workoutPlanID uuid.UUID, exerciseID uuid.UUID, prevExerciseID uuid.UUID) error {
+func (r Repository) UpdateWorkoutPlanExercise(workoutDay string, workoutPlanID uuid.UUID, exerciseID uuid.UUID, prevExerciseID uuid.UUID) error {
 	tx := r.db.MustBegin()
 	defer tx.Rollback()
 

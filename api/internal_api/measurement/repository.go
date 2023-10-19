@@ -6,17 +6,17 @@ import (
 	"github.com/jmoiron/sqlx"
 )
 
-type RepositoryMeasurement struct {
+type Repository struct {
 	db *sqlx.DB
 }
 
-func NewMeasurementRepository(db *sqlx.DB) (*RepositoryMeasurement, error) {
-	return &RepositoryMeasurement{db: db}, nil
+func NewMeasurementRepository(db *sqlx.DB) (*Repository, error) {
+	return &Repository{db: db}, nil
 }
 
 //weight
 
-func (r *RepositoryMeasurement) InsertWeight(w Weight) (Weight, error) {
+func (r *Repository) InsertWeight(w Weight) (Weight, error) {
 	query := `
 		INSERT INTO weight_measure
 		    (id, user_id, weight_value, created_at, updated_at)
@@ -38,7 +38,7 @@ func (r *RepositoryMeasurement) InsertWeight(w Weight) (Weight, error) {
 	return insertedData, nil
 }
 
-func (r *RepositoryMeasurement) UpdateWeight(id uuid.UUID, userID int, updates map[string]interface{}) error {
+func (r *Repository) UpdateWeight(id uuid.UUID, userID int, updates map[string]interface{}) error {
 	query := `
 		UPDATE weight_measure
 		SET weight_value = :weight_value, updated_at = :updated_at
@@ -56,7 +56,7 @@ func (r *RepositoryMeasurement) UpdateWeight(id uuid.UUID, userID int, updates m
 	return err
 }
 
-func (r *RepositoryMeasurement) DeleteWeight(id uuid.UUID, userID int) error {
+func (r *Repository) DeleteWeight(id uuid.UUID, userID int) error {
 	query := `
 		DELETE FROM weight_measure
 		WHERE id = $1 AND user_id = $2
@@ -66,7 +66,7 @@ func (r *RepositoryMeasurement) DeleteWeight(id uuid.UUID, userID int) error {
 	return err
 }
 
-func (r *RepositoryMeasurement) GetWeight(id uuid.UUID, userID int) (Weight, error) {
+func (r *Repository) GetWeight(id uuid.UUID, userID int) (Weight, error) {
 	query := `
 		SELECT id, user_id, weight_value, created_at, updated_at FROM weight_measure
 		WHERE id = $1 AND user_id = $2
@@ -77,7 +77,7 @@ func (r *RepositoryMeasurement) GetWeight(id uuid.UUID, userID int) (Weight, err
 	return weight, err
 }
 
-func (r *RepositoryMeasurement) GetWeights(userID int) ([]Weight, error) {
+func (r *Repository) GetWeights(userID int) ([]Weight, error) {
 	weights := make([]Weight, 0)
 
 	query := `
@@ -92,7 +92,7 @@ func (r *RepositoryMeasurement) GetWeights(userID int) ([]Weight, error) {
 
 //water
 
-func (r *RepositoryMeasurement) InsertWater(w WaterIntake) (WaterIntake, error) {
+func (r *Repository) InsertWater(w WaterIntake) (WaterIntake, error) {
 	query := `
 		INSERT INTO water_intake
 		    (id, user_id, quantity, created_at, updated_at)
@@ -114,7 +114,7 @@ func (r *RepositoryMeasurement) InsertWater(w WaterIntake) (WaterIntake, error) 
 	return insertedData, nil
 }
 
-func (r *RepositoryMeasurement) UpdateWater(id uuid.UUID, userID int, updates map[string]interface{}) error {
+func (r *Repository) UpdateWater(id uuid.UUID, userID int, updates map[string]interface{}) error {
 	query := `
 		UPDATE water_intake
 		SET quantity = :quantity, updated_at = :updated_at
@@ -132,7 +132,7 @@ func (r *RepositoryMeasurement) UpdateWater(id uuid.UUID, userID int, updates ma
 	return err
 }
 
-func (r *RepositoryMeasurement) DeleteWater(id uuid.UUID, userID int) error {
+func (r *Repository) DeleteWater(id uuid.UUID, userID int) error {
 	query := `
 		DELETE FROM water_intake
 		WHERE id = $1 AND user_id = $2
@@ -142,7 +142,7 @@ func (r *RepositoryMeasurement) DeleteWater(id uuid.UUID, userID int) error {
 	return err
 }
 
-func (r *RepositoryMeasurement) GetWater(id uuid.UUID, userID int) (WaterIntake, error) {
+func (r *Repository) GetWater(id uuid.UUID, userID int) (WaterIntake, error) {
 	query := `
 		SELECT id, user_id, quantity, created_at, updated_at FROM water_intake
 		WHERE id = $1 AND user_id = $2
@@ -153,7 +153,7 @@ func (r *RepositoryMeasurement) GetWater(id uuid.UUID, userID int) (WaterIntake,
 	return water, err
 }
 
-func (r *RepositoryMeasurement) GetAllWater(userID int) ([]WaterIntake, error) {
+func (r *Repository) GetAllWater(userID int) ([]WaterIntake, error) {
 	water := make([]WaterIntake, 0)
 
 	query := `
@@ -168,7 +168,7 @@ func (r *RepositoryMeasurement) GetAllWater(userID int) ([]WaterIntake, error) {
 
 //waist line
 
-func (r *RepositoryMeasurement) InsertWaistLine(w WaistLine) (WaistLine, error) {
+func (r *Repository) InsertWaistLine(w WaistLine) (WaistLine, error) {
 	query := `
 		INSERT INTO waist_line
 		    (id, user_id, quantity, created_at, updated_at)
@@ -190,7 +190,7 @@ func (r *RepositoryMeasurement) InsertWaistLine(w WaistLine) (WaistLine, error) 
 	return insertedData, nil
 }
 
-func (r *RepositoryMeasurement) UpdateWaistLine(id uuid.UUID, userID int, updates map[string]interface{}) error {
+func (r *Repository) UpdateWaistLine(id uuid.UUID, userID int, updates map[string]interface{}) error {
 	query := `
 		UPDATE waist_line
 		SET quantity = :quantity, updated_at = :updated_at
@@ -208,7 +208,7 @@ func (r *RepositoryMeasurement) UpdateWaistLine(id uuid.UUID, userID int, update
 	return err
 }
 
-func (r *RepositoryMeasurement) DeleteWaistLine(id uuid.UUID, userID int) error {
+func (r *Repository) DeleteWaistLine(id uuid.UUID, userID int) error {
 	query := `
 		DELETE FROM waist_line
 		WHERE id = $1 AND user_id = $2
@@ -218,7 +218,7 @@ func (r *RepositoryMeasurement) DeleteWaistLine(id uuid.UUID, userID int) error 
 	return err
 }
 
-func (r *RepositoryMeasurement) GetWaistLine(id uuid.UUID, userID int) (WaistLine, error) {
+func (r *Repository) GetWaistLine(id uuid.UUID, userID int) (WaistLine, error) {
 	query := `
 		SELECT id, user_id, quantity, created_at, updated_at FROM waist_line
 		WHERE id = $1 AND user_id = $2
@@ -229,7 +229,7 @@ func (r *RepositoryMeasurement) GetWaistLine(id uuid.UUID, userID int) (WaistLin
 	return w, err
 }
 
-func (r *RepositoryMeasurement) GetWaistLines(userID int) ([]WaistLine, error) {
+func (r *Repository) GetWaistLines(userID int) ([]WaistLine, error) {
 	w := make([]WaistLine, 0)
 
 	query := `

@@ -63,6 +63,14 @@ type ServiceUser struct {
 	repo *Repository
 }
 
+type IUser interface {
+	Create(user NewUser) (int, error)
+}
+
+type StructUser struct {
+	User IUser
+}
+
 func NewUserService(repo *Repository) *ServiceUser {
 	return &ServiceUser{
 		repo: repo,

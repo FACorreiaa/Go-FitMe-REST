@@ -4,6 +4,13 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"net/http"
+	"os"
+	"os/signal"
+	"sync"
+	"syscall"
+	"time"
+
 	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/activity"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/calculator"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/measurement"
@@ -17,12 +24,6 @@ import (
 	"github.com/redis/go-redis/v9"
 	"github.com/rs/cors"
 	"go.uber.org/zap"
-	"net/http"
-	"os"
-	"os/signal"
-	"sync"
-	"syscall"
-	"time"
 )
 
 type QueryExecMode uint
@@ -65,6 +66,42 @@ func (s *Server) Close() {
 		}
 	}
 }
+
+func NewWorkoutService(repo *workouts.Repository) *workouts.StructWorkout {
+	return &workouts.StructWorkout{
+		Workout: workouts.NewWorkoutService(repo),
+	}
+}
+
+func NewUserService(repo *user.Repository) *user.StructUser {
+	return &user.StructUser{
+		User: user.NewUserService(repo),
+	}
+}
+
+func NewMeasurementService(repo *measurement.Repository) *measurement.StructMeasurement {
+	return &measurement.StructMeasurement{
+		Measurement: measurement.NewMeasurementService(repo),
+	}
+}
+
+func NewCalculatorService(repo *calculator.Repository) *calculator.StructCalculator {
+	return &calculator.StructCalculator{
+		Calculator: calculator.NewCalculatorService(repo),
+	}
+}
+
+func NewActivityService(repo *activity.Repository) *activity.StructActivity {
+	return &activity.StructActivity{
+		Activity: activity.NewActivityService(repo),
+	}
+}
+
+// func NewAuthService(repo *user.Repository) *user.StructUser {
+// 	return &user.StructUser{
+// 		Auth: user.NewUserService(repo),
+// 	}
+// }
 
 func NewServer() (*Server, error) {
 	cnf, err := LoadEnvVariables()
@@ -118,7 +155,7 @@ func NewServer() (*Server, error) {
 		db:     database,
 	}
 
-	activityRepo, err := activity.NewRepositoryActivity(s.db)
+	activityRepo, err := activity.NewRepository(s.db)
 	if err != nil {
 		_ = errors.New("error injecting activity service")
 	}
@@ -142,20 +179,21 @@ func NewServer() (*Server, error) {
 	if err != nil {
 		_ = errors.New("error injecting calculator service")
 	}
-	deps := &server.AppDependencies{
-		ActivityService:    activity.NewActivityService(activityRepo),
-		UserService:        user.NewUserService(userRepo),
-		CalculatorService:  calculator.NewCalculatorService(calculatorRepo),
-		MeasurementService: measurement.NewMeasurementService(measurementRepo),
-		WorkoutService:     workouts.NewWorkoutService(workoutRepo),
+
+	deps := &server.AppServices{
+		ActivityService:    NewActivityService(activityRepo),
+		UserService:        NewUserService(userRepo),
+		CalculatorService:  NewCalculatorService(calculatorRepo),
+		MeasurementService: NewMeasurementService(measurementRepo),
+		WorkoutService:     NewWorkoutService(workoutRepo),
 	}
 
-	sessionDeps := &server.SessionDependencies{
+	session := &server.SessionDependencies{
 		DB:  s.db,
 		RDB: s.rdb,
 	}
 
-	server.Register(router, deps, sessionDeps)
+	server.Register(router, deps, session)
 
 	return &s, nil
 }

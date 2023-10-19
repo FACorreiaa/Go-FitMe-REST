@@ -49,7 +49,7 @@ definitions:
       user_id:
         type: integer
     type: object
-  auth.UserSession:
+  user.UserSession:
     properties:
       email:
         type: string
@@ -831,7 +831,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/auth.UserSession'
+            $ref: '#/definitions/user.UserSession'
       security:
       - ApiKeyAuth: []
       summary: Get the user's info
@@ -880,7 +880,7 @@ paths:
           description: OK
           schema:
             items:
-              $ref: '#/definitions/auth.UserSession'
+              $ref: '#/definitions/user.UserSession'
             type: array
       summary: Delete user session
       tags:
@@ -941,7 +941,7 @@ paths:
           description: OK
           schema:
             items:
-              $ref: '#/definitions/auth.UserSession'
+              $ref: '#/definitions/user.UserSession'
             type: array
       summary: Get user session
       tags:

@@ -9,8 +9,8 @@ func RoutesCalculatorOffline() *chi.Mux {
 	return router
 }
 
-func RoutesCalculatorSession(deps DependenciesCalculator) *chi.Mux {
-	h := NewCalculatorHandler(deps)
+func RoutesCalculatorSession(s *StructCalculator) *chi.Mux {
+	h := NewCalculatorHandler(s)
 	router := chi.NewRouter()
 	router.Post("/{user_id}", h.CalculateMacros)
 	router.Get("/{user_id}", h.GetAllDietMacros)

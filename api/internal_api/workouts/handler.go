@@ -11,17 +11,13 @@ import (
 	"time"
 )
 
-type DependenciesWorkouts interface {
-	GetWorkoutsService() *ServiceWorkout
-}
-
 type Handler struct {
-	dependencies DependenciesWorkouts
+	service *StructWorkout
 }
 
-func NewExerciseHandler(deps DependenciesWorkouts) *Handler {
+func NewExerciseHandler(s *StructWorkout) *Handler {
 	return &Handler{
-		dependencies: deps,
+		service: s,
 	}
 }
 
@@ -34,7 +30,7 @@ func NewExerciseHandler(deps DependenciesWorkouts) *Handler {
 // @Success      200  {array}   Exercises
 // @Router       /exercises [get]
 func (h Handler) GetExercises(w http.ResponseWriter, r *http.Request) {
-	exercises, err := h.dependencies.GetWorkoutsService().GetAllExercises(r.Context())
+	exercises, err := h.service.Workout.GetAllExercises(r.Context())
 
 	if err != nil {
 		log.Printf("Error fetching exercises data: %v", err)
@@ -62,7 +58,7 @@ func (h Handler) GetExercises(w http.ResponseWriter, r *http.Request) {
 func (h Handler) GetExerciseByID(w http.ResponseWriter, r *http.Request) {
 	id, err := uuid.Parse(chi.URLParam(r, "id"))
 
-	exercises, err := h.dependencies.GetWorkoutsService().GetExerciseByID(r.Context(), id)
+	exercises, err := h.service.Workout.GetExerciseByID(r.Context(), id)
 
 	if err != nil {
 		log.Printf("Error fetching exercises data: %v", err)
@@ -103,7 +99,7 @@ func (h Handler) InsertExercise(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Assuming you have a service method called InsertNewUserExercise that handles database insert
-	response, err := h.dependencies.GetWorkoutsService().InsertExercise(userSession.Id, Exercises{
+	response, err := h.service.Workout.InsertExercise(userSession.Id, Exercises{
 		ID:            uuid.New(),
 		Name:          newExercise.Name,
 		ExerciseType:  newExercise.ExerciseType,
@@ -153,7 +149,7 @@ func (h Handler) DeleteExercise(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err = h.dependencies.GetWorkoutsService().DeleteExercise(userSession.Id, id)
+	err = h.service.Workout.DeleteExercise(userSession.Id, id)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
@@ -180,7 +176,7 @@ func (h Handler) UpdateExercise(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	//userSession, ok := r.Context().Value(auth.SessionManagerKey{}).(*auth.UserSession)
+	//userSession, ok := r.Context().Value(auth.SessionManagerKey{}).(*user.UserSession)
 	//if !ok {
 	//	http.Error(w, "User session not found", http.StatusUnauthorized)
 	//	return
@@ -193,7 +189,7 @@ func (h Handler) UpdateExercise(w http.ResponseWriter, r *http.Request) {
 	}
 	updates["UpdatedAt"] = time.Now()
 
-	err = h.dependencies.GetWorkoutsService().UpdateExercise(id, updates)
+	err = h.service.Workout.UpdateExercise(id, updates)
 	if err != nil {
 		if strings.Contains(err.Error(), "no rows were updated") {
 			http.Error(w, "Exercise not found", http.StatusBadRequest)
@@ -240,7 +236,7 @@ func (h Handler) CreateWorkoutPlan(w http.ResponseWriter, r *http.Request) {
 		exercises := make([]Exercises, len(planDay.ExerciseIDs))
 		for j, exerciseID := range planDay.ExerciseIDs {
 			// Fetch exercises details
-			exerciseDetails, err := h.dependencies.GetWorkoutsService().GetExerciseByID(r.Context(), exerciseID)
+			exerciseDetails, err := h.service.Workout.GetExerciseByID(r.Context(), exerciseID)
 			if err != nil {
 				// Handle error (exercise not found, etc.)
 				http.Error(w, err.Error(), http.StatusBadRequest)
@@ -254,7 +250,7 @@ func (h Handler) CreateWorkoutPlan(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	response, err := h.dependencies.GetWorkoutsService().CreateWorkoutPlan(WorkoutPlan{
+	response, err := h.service.Workout.CreateWorkoutPlan(WorkoutPlan{
 		ID:          uuid.New(),
 		UserID:      userSession.Id,
 		Description: requestBody.WorkoutPlan.Description,
@@ -293,7 +289,7 @@ func (h Handler) CreateWorkoutPlan(w http.ResponseWriter, r *http.Request) {
 // @Success      200  {array}   WorkoutPlan
 // @Router       /exercises/workout/plan [get]
 func (h Handler) GetWorkoutPlans(w http.ResponseWriter, r *http.Request) {
-	workoutPlan, err := h.dependencies.GetWorkoutsService().GetWorkoutPlans(r.Context())
+	workoutPlan, err := h.service.Workout.GetWorkoutPlans(r.Context())
 
 	if err != nil {
 		println(err)
@@ -322,7 +318,7 @@ func (h Handler) GetWorkoutPlans(w http.ResponseWriter, r *http.Request) {
 func (h Handler) GetWorkoutPlan(w http.ResponseWriter, r *http.Request) {
 	id, err := uuid.Parse(chi.URLParam(r, "id"))
 
-	workoutPlan, err := h.dependencies.GetWorkoutsService().GetWorkoutPlan(r.Context(), id)
+	workoutPlan, err := h.service.Workout.GetWorkoutPlan(r.Context(), id)
 
 	if err != nil {
 		println(err)
@@ -361,7 +357,7 @@ func (h Handler) DeleteWorkoutPlan(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err = h.dependencies.GetWorkoutsService().DeleteWorkoutPlan(userSession.Id, id)
+	err = h.service.Workout.DeleteWorkoutPlan(userSession.Id, id)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
@@ -388,7 +384,7 @@ func (h Handler) UpdateWorkoutPlan(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	//userSession, ok := r.Context().Value(auth.SessionManagerKey{}).(*auth.UserSession)
+	//userSession, ok := r.Context().Value(auth.SessionManagerKey{}).(*user.UserSession)
 	//if !ok {
 	//	http.Error(w, "User session not found", http.StatusUnauthorized)
 	//	return
@@ -401,7 +397,7 @@ func (h Handler) UpdateWorkoutPlan(w http.ResponseWriter, r *http.Request) {
 	}
 	updates["UpdatedAt"] = time.Now()
 
-	err = h.dependencies.GetWorkoutsService().UpdateWorkoutPlan(id, updates)
+	err = h.service.Workout.UpdateWorkoutPlan(id, updates)
 	if err != nil {
 		if strings.Contains(err.Error(), "no rows were updated") {
 			http.Error(w, "workout plan not found", http.StatusBadRequest)
@@ -426,7 +422,7 @@ func (h Handler) UpdateWorkoutPlan(w http.ResponseWriter, r *http.Request) {
 // @Success      200  {array}   WorkoutPlan
 // @Router       /exercises/workout/plan/exercise [get]
 func (h Handler) GetWorkoutPlanExercises(w http.ResponseWriter, r *http.Request) {
-	workoutPlanExercises, err := h.dependencies.GetWorkoutsService().GetWorkoutPlanExercises(r.Context())
+	workoutPlanExercises, err := h.service.Workout.GetWorkoutPlanExercises(r.Context())
 
 	if err != nil {
 		log.Printf("Error fetching workout plan data: %v", err)
@@ -454,7 +450,7 @@ func (h Handler) GetWorkoutPlanExercises(w http.ResponseWriter, r *http.Request)
 func (h Handler) GetWorkoutPlanIdExercises(w http.ResponseWriter, r *http.Request) {
 	id, err := uuid.Parse(chi.URLParam(r, "id"))
 
-	workoutPlanExercises, err := h.dependencies.GetWorkoutsService().GetWorkoutPlanIdExercises(r.Context(), id)
+	workoutPlanExercises, err := h.service.Workout.GetWorkoutPlanIdExercises(r.Context(), id)
 
 	if err != nil {
 		log.Printf("Error fetching workout plan data: %v", err)
@@ -485,7 +481,7 @@ func (h Handler) DeleteWorkoutPlanExercise(w http.ResponseWriter, r *http.Reques
 	workoutDay := chi.URLParam(r, "workoutDay")
 	exerciseID, err := uuid.Parse(chi.URLParam(r, "exerciseID"))
 
-	err = h.dependencies.GetWorkoutsService().DeleteWorkoutPlanIdExercises(workoutDay, workoutPlanID, exerciseID)
+	err = h.service.Workout.DeleteWorkoutPlanIdExercises(workoutDay, workoutPlanID, exerciseID)
 
 	if err != nil {
 		log.Printf("Error fetching workout plan data: %v", err)
@@ -516,7 +512,7 @@ func (h Handler) CreateWorkoutPlanExercise(w http.ResponseWriter, r *http.Reques
 	workoutDay := chi.URLParam(r, "workoutDay")
 	exerciseID, err := uuid.Parse(chi.URLParam(r, "exerciseID"))
 
-	err = h.dependencies.GetWorkoutsService().CreateWorkoutPlanExercise(workoutDay, workoutPlanID, exerciseID)
+	err = h.service.Workout.CreateWorkoutPlanExercise(workoutDay, workoutPlanID, exerciseID)
 
 	if err != nil {
 		log.Printf("Error fetching workout plan data: %v", err)
@@ -548,7 +544,7 @@ func (h Handler) UpdateWorkoutPlanExercise(w http.ResponseWriter, r *http.Reques
 	exerciseID, err := uuid.Parse(chi.URLParam(r, "exerciseID"))
 	prevExerciseID, err := uuid.Parse(chi.URLParam(r, "prevExerciseID"))
 
-	err = h.dependencies.GetWorkoutsService().UpdateWorkoutPlanExercise(workoutDay, workoutPlanID, exerciseID, prevExerciseID)
+	err = h.service.Workout.UpdateWorkoutPlanExercise(workoutDay, workoutPlanID, exerciseID, prevExerciseID)
 
 	if err != nil {
 		log.Printf("Error fetching workout plan data: %v", err)

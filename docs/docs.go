@@ -835,7 +835,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/auth.UserSession"
+                            "$ref": "#/definitions/user.UserSession"
                         }
                     }
                 }
@@ -908,7 +908,7 @@ const docTemplate = `{
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/auth.UserSession"
+                                "$ref": "#/definitions/user.UserSession"
                             }
                         }
                     }
@@ -1002,7 +1002,7 @@ const docTemplate = `{
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/auth.UserSession"
+                                "$ref": "#/definitions/user.UserSession"
                             }
                         }
                     }
@@ -1592,7 +1592,7 @@ const docTemplate = `{
                 }
             }
         },
-        "auth.UserSession": {
+        "user.UserSession": {
             "type": "object",
             "properties": {
                 "email": {

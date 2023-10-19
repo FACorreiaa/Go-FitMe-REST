@@ -5,8 +5,8 @@ import (
 	"github.com/go-chi/chi/v5"
 )
 
-func RoutesUser(deps DependenciesUser, sessionManager *auth.SessionManager) *chi.Mux {
-	u := NewUserHandler(deps, sessionManager)
+func RoutesUser(s *StructUser, sessionManager *auth.SessionManager) *chi.Mux {
+	u := NewUserHandler(s, sessionManager)
 
 	router := chi.NewRouter()
 

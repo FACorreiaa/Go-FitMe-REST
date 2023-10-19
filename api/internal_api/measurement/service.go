@@ -6,19 +6,41 @@ import (
 	"github.com/google/uuid"
 )
 
-type ServiceMeasurements struct {
-	repo *RepositoryMeasurement
+type ServiceMeasurement struct {
+	repo *Repository
 }
 
-func NewMeasurementService(repo *RepositoryMeasurement) *ServiceMeasurements {
-	return &ServiceMeasurements{
+func NewMeasurementService(repo *Repository) *ServiceMeasurement {
+	return &ServiceMeasurement{
 		repo: repo,
 	}
 }
 
-//weight
+type IMeasurement interface {
+	InsertWeight(w Weight) (Weight, error)
+	UpdateWeight(id uuid.UUID, userID int, updates map[string]interface{}) error
+	DeleteWeight(id uuid.UUID, userID int) error
+	GetWeight(id uuid.UUID, userID int) (Weight, error)
+	GetWeights(userID int) ([]Weight, error)
 
-func (s ServiceMeasurements) InsertWeight(w Weight) (Weight, error) {
+	InsertWaistLine(w WaistLine) (WaistLine, error)
+	UpdateWaistLine(id uuid.UUID, userID int, updates map[string]interface{}) error
+	DeleteWaistLine(id uuid.UUID, userID int) error
+	GetWaistLine(id uuid.UUID, userID int) (WaistLine, error)
+	GetWaistLines(userID int) ([]WaistLine, error)
+
+	InsertWaterIntake(w WaterIntake) (WaterIntake, error)
+	UpdateWaterIntake(id uuid.UUID, userID int, updates map[string]interface{}) error
+	DeleteWaterIntake(id uuid.UUID, userID int) error
+	GetWaterIntake(id uuid.UUID, userID int) (WaterIntake, error)
+	GetWaterIntakes(userID int) ([]WaterIntake, error)
+}
+
+type StructMeasurement struct {
+	Measurement IMeasurement
+}
+
+func (s ServiceMeasurement) InsertWeight(w Weight) (Weight, error) {
 	weight, err := s.repo.InsertWeight(w)
 	switch {
 	case err == nil:
@@ -31,7 +53,7 @@ func (s ServiceMeasurements) InsertWeight(w Weight) (Weight, error) {
 	return weight, nil
 }
 
-func (s ServiceMeasurements) UpdateWeight(id uuid.UUID, userID int, updates map[string]interface{}) error {
+func (s ServiceMeasurement) UpdateWeight(id uuid.UUID, userID int, updates map[string]interface{}) error {
 	err := s.repo.UpdateWeight(id, userID, updates)
 	switch {
 	case err == nil:
@@ -44,7 +66,7 @@ func (s ServiceMeasurements) UpdateWeight(id uuid.UUID, userID int, updates map[
 	return nil
 }
 
-func (s ServiceMeasurements) DeleteWeight(id uuid.UUID, userID int) error {
+func (s ServiceMeasurement) DeleteWeight(id uuid.UUID, userID int) error {
 	err := s.repo.DeleteWeight(id, userID)
 	switch {
 	case err == nil:
@@ -57,7 +79,7 @@ func (s ServiceMeasurements) DeleteWeight(id uuid.UUID, userID int) error {
 	return nil
 }
 
-func (s ServiceMeasurements) GetWeight(id uuid.UUID, userID int) (Weight, error) {
+func (s ServiceMeasurement) GetWeight(id uuid.UUID, userID int) (Weight, error) {
 	weight, err := s.repo.GetWeight(id, userID)
 	switch {
 	case err == nil:
@@ -70,7 +92,7 @@ func (s ServiceMeasurements) GetWeight(id uuid.UUID, userID int) (Weight, error)
 	return weight, nil
 }
 
-func (s ServiceMeasurements) GetWeights(userID int) ([]Weight, error) {
+func (s ServiceMeasurement) GetWeights(userID int) ([]Weight, error) {
 	weights, err := s.repo.GetWeights(userID)
 	switch {
 	case err == nil:
@@ -85,7 +107,7 @@ func (s ServiceMeasurements) GetWeights(userID int) ([]Weight, error) {
 
 // Waist line
 
-func (s ServiceMeasurements) InsertWaistLine(w WaistLine) (WaistLine, error) {
+func (s ServiceMeasurement) InsertWaistLine(w WaistLine) (WaistLine, error) {
 	waistLine, err := s.repo.InsertWaistLine(w)
 	switch {
 	case err == nil:
@@ -98,7 +120,7 @@ func (s ServiceMeasurements) InsertWaistLine(w WaistLine) (WaistLine, error) {
 	return waistLine, nil
 }
 
-func (s ServiceMeasurements) UpdateWaistLine(id uuid.UUID, userID int, updates map[string]interface{}) error {
+func (s ServiceMeasurement) UpdateWaistLine(id uuid.UUID, userID int, updates map[string]interface{}) error {
 	err := s.repo.UpdateWaistLine(id, userID, updates)
 	switch {
 	case err == nil:
@@ -111,7 +133,7 @@ func (s ServiceMeasurements) UpdateWaistLine(id uuid.UUID, userID int, updates m
 	return nil
 }
 
-func (s ServiceMeasurements) DeleteWaistLine(id uuid.UUID, userID int) error {
+func (s ServiceMeasurement) DeleteWaistLine(id uuid.UUID, userID int) error {
 	err := s.repo.DeleteWaistLine(id, userID)
 	switch {
 	case err == nil:
@@ -124,7 +146,7 @@ func (s ServiceMeasurements) DeleteWaistLine(id uuid.UUID, userID int) error {
 	return nil
 }
 
-func (s ServiceMeasurements) GetWaistLine(id uuid.UUID, userID int) (WaistLine, error) {
+func (s ServiceMeasurement) GetWaistLine(id uuid.UUID, userID int) (WaistLine, error) {
 	waistLine, err := s.repo.GetWaistLine(id, userID)
 	switch {
 	case err == nil:
@@ -137,7 +159,7 @@ func (s ServiceMeasurements) GetWaistLine(id uuid.UUID, userID int) (WaistLine, 
 	return waistLine, nil
 }
 
-func (s ServiceMeasurements) GetWaistLines(userID int) ([]WaistLine, error) {
+func (s ServiceMeasurement) GetWaistLines(userID int) ([]WaistLine, error) {
 	waistLines, err := s.repo.GetWaistLines(userID)
 	switch {
 	case err == nil:
@@ -152,7 +174,7 @@ func (s ServiceMeasurements) GetWaistLines(userID int) ([]WaistLine, error) {
 
 //Water Intake
 
-func (s ServiceMeasurements) InsertWaterIntake(w WaterIntake) (WaterIntake, error) {
+func (s ServiceMeasurement) InsertWaterIntake(w WaterIntake) (WaterIntake, error) {
 	waterIntake, err := s.repo.InsertWater(w)
 	switch {
 	case err == nil:
@@ -165,7 +187,7 @@ func (s ServiceMeasurements) InsertWaterIntake(w WaterIntake) (WaterIntake, erro
 	return waterIntake, nil
 }
 
-func (s ServiceMeasurements) UpdateWaterIntake(id uuid.UUID, userID int, updates map[string]interface{}) error {
+func (s ServiceMeasurement) UpdateWaterIntake(id uuid.UUID, userID int, updates map[string]interface{}) error {
 	err := s.repo.UpdateWater(id, userID, updates)
 	switch {
 	case err == nil:
@@ -178,7 +200,7 @@ func (s ServiceMeasurements) UpdateWaterIntake(id uuid.UUID, userID int, updates
 	return nil
 }
 
-func (s ServiceMeasurements) DeleteWaterIntake(id uuid.UUID, userID int) error {
+func (s ServiceMeasurement) DeleteWaterIntake(id uuid.UUID, userID int) error {
 	err := s.repo.DeleteWater(id, userID)
 	switch {
 	case err == nil:
@@ -191,7 +213,7 @@ func (s ServiceMeasurements) DeleteWaterIntake(id uuid.UUID, userID int) error {
 	return nil
 }
 
-func (s ServiceMeasurements) GetWaterIntake(id uuid.UUID, userID int) (WaterIntake, error) {
+func (s ServiceMeasurement) GetWaterIntake(id uuid.UUID, userID int) (WaterIntake, error) {
 	waterIntake, err := s.repo.GetWater(id, userID)
 	switch {
 	case err == nil:
@@ -204,7 +226,7 @@ func (s ServiceMeasurements) GetWaterIntake(id uuid.UUID, userID int) (WaterInta
 	return waterIntake, nil
 }
 
-func (s ServiceMeasurements) GetWaterIntakes(userID int) ([]WaterIntake, error) {
+func (s ServiceMeasurement) GetWaterIntakes(userID int) ([]WaterIntake, error) {
 	waterIntakes, err := s.repo.GetAllWater(userID)
 	switch {
 	case err == nil:

@@ -18,6 +18,6 @@ type Dependencies interface {
 	GetActivityService() *activity.ServiceActivity
 	GetUserService() *user.ServiceUser
 	GetCalculatorService() *calculator.ServiceCalculator
-	GetMeasurementsService() *measurement.ServiceMeasurements
+	GetMeasurementsService() *measurement.ServiceMeasurement
 	GetWorkoutsService() *workouts.ServiceWorkout
 }

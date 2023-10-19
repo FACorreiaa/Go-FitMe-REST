@@ -7,13 +7,29 @@ import (
 )
 
 type ServiceActivity struct {
-	repo *RepositoryActivity
+	repo *Repository
 }
 
-func NewActivityService(repo *RepositoryActivity) *ServiceActivity {
+func NewActivityService(repo *Repository) *ServiceActivity {
 	return &ServiceActivity{
 		repo: repo,
 	}
+}
+
+type IActivity interface {
+	GetAll(ctx context.Context) ([]Activity, error)
+	Get(ctx context.Context) ([]Activity, error)
+	GetByName(ctx context.Context, name string) ([]Activity, error)
+	GetByID(ctx context.Context, id int) (Activity, error)
+	SaveExerciseSession(ctx context.Context, session *ExerciseSession) error
+	GetExerciseSession(ctx context.Context, id int) ([]ExerciseSession, error)
+	GetExerciseTotalSession(ctx context.Context, userId int) (*TotalExerciseSession, error)
+	GetUserExerciseSessionStats(ctx context.Context, userId int) ([]ExerciseCountStats, error)
+	GetExerciseSessionStats(ctx context.Context, userId int) ([]ExerciseCountStats, error)
+}
+
+type StructActivity struct {
+	Activity IActivity
 }
 
 func (s ServiceActivity) GetAll(ctx context.Context) ([]Activity, error) {
