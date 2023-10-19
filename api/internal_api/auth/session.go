@@ -11,32 +11,17 @@ import (
 	"time"
 )
 
-type DependenciesAuth interface {
-	GetDB() *sqlx.DB
-	GetRedisClient() *redis.Client
+type SessionDependencies struct {
+	DB    *sqlx.DB
+	Redis *redis.Client
 }
 
 type SessionManager struct {
-	deps DependenciesAuth
+	deps *SessionDependencies
 }
 
-func NewSessionManager(deps DependenciesAuth) *SessionManager {
+func NewSessionManager(deps *SessionDependencies) *SessionManager {
 	return &SessionManager{deps: deps}
-}
-
-type SessionManagerKey struct{}
-
-type UserSession struct {
-	Id       int
-	Username string
-	Email    string
-}
-
-type User struct {
-	Id       int
-	Username string
-	Email    string
-	Password string
 }
 
 // GenerateSession godoc
@@ -50,7 +35,7 @@ type User struct {
 func (s *SessionManager) GenerateSession(data UserSession) (string, error) {
 	sessionId := uuid.NewString()
 	jsonData, _ := json.Marshal(data)
-	err := s.deps.GetRedisClient().Set(context.Background(), sessionId, string(jsonData), 24*time.Hour).Err()
+	err := s.deps.Redis.Set(context.Background(), sessionId, string(jsonData), 24*time.Hour).Err()
 	if err != nil {
 		return "", err
 	}
@@ -60,7 +45,7 @@ func (s *SessionManager) GenerateSession(data UserSession) (string, error) {
 func (s *SessionManager) SignIn(email, password string) (string, error) {
 	// check if the user exists
 	var user User
-	err := s.deps.GetDB().QueryRow("select id, username, email, password from users where email = $1", email).Scan(&user.Id, &user.Username, &user.Email, &user.Password)
+	err := s.deps.DB.QueryRow("select id, username, email, password from users where email = $1", email).Scan(&user.Id, &user.Username, &user.Email, &user.Password)
 	if err != nil {
 		return "", err
 	}
@@ -78,7 +63,7 @@ func (s *SessionManager) SignIn(email, password string) (string, error) {
 		Username: user.Username,
 		Email:    user.Email,
 	})
-	err = s.deps.GetRedisClient().Set(context.Background(), sessionId, string(jsonData), 24*time.Hour).Err()
+	err = s.deps.Redis.Set(context.Background(), sessionId, string(jsonData), 24*time.Hour).Err()
 	if err != nil {
 		return "", err
 	}
@@ -96,7 +81,7 @@ func (s *SessionManager) SignIn(email, password string) (string, error) {
 // @Success      200  {array}   UserSession
 // @Router       /users/sign-out [get]
 func (s *SessionManager) SignOut(sessionId string) error {
-	return s.deps.GetRedisClient().Del(context.Background(), sessionId).Err()
+	return s.deps.Redis.Del(context.Background(), sessionId).Err()
 }
 
 // GetSession godoc
@@ -109,7 +94,7 @@ func (s *SessionManager) SignOut(sessionId string) error {
 // @Success      200  {array}   UserSession
 // @Router       /users/user/info [get]
 func (s *SessionManager) GetSession(session string) (*UserSession, error) {
-	data, err := s.deps.GetRedisClient().Get(context.Background(), session).Result()
+	data, err := s.deps.Redis.Get(context.Background(), session).Result()
 	if err != nil {
 		return nil, err
 	}

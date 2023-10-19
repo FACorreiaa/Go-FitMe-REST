@@ -1,8 +1,35 @@
-package internals
+package server
 
 import (
+	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/activity"
+	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/calculator"
+	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/measurement"
+	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/user"
+	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/workouts"
+	"github.com/go-chi/chi/v5"
+	"github.com/jmoiron/sqlx"
 	"github.com/kelseyhightower/envconfig"
+	"github.com/redis/go-redis/v9"
+	"go.uber.org/zap"
 )
+
+type QueryExecMode uint
+
+type AppServices struct {
+	ActivityService    *activity.StructActivity
+	UserService        *user.StructUser
+	CalculatorService  *calculator.StructCalculator
+	MeasurementService *measurement.StructMeasurement
+	WorkoutService     *workouts.StructWorkout
+}
+
+type Server struct {
+	logger *zap.Logger
+	router *chi.Mux
+	config ServerConfig
+	rdb    *redis.Client
+	db     *sqlx.DB
+}
 
 type ServerConfig struct {
 	Database   Database

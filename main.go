@@ -4,7 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"github.com/FACorreiaa/Stay-Healthy-Backend/server/internals"
+	"github.com/FACorreiaa/Stay-Healthy-Backend/server"
 	"github.com/joho/godotenv"
 	_ "github.com/joho/godotenv"
 	"log"
@@ -44,7 +44,7 @@ func run(ctx context.Context) error {
 		}
 	}
 
-	server, err := internals.NewServer()
+	server, err := server.NewServer()
 	//println("err %+v", err)
 	if err != nil {
 		server.Close()

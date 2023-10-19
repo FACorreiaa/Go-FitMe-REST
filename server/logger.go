@@ -1,4 +1,4 @@
-package internals
+package server
 
 import (
 	"github.com/sirupsen/logrus"

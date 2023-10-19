@@ -10,7 +10,6 @@ import (
 )
 
 func InitPprof() {
-
 	router := chi.NewRouter()
 	router.Route("/debug/pprof", func(r chi.Router) {
 		r.Use(middleware.NoCache)
