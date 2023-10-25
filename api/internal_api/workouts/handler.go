@@ -438,7 +438,7 @@ func (h Handler) GetWorkoutPlanExercises(w http.ResponseWriter, r *http.Request)
 	_ = json.NewEncoder(w).Encode(workoutPlanExercises)
 }
 
-// GetWorkoutPlanIdExercises godoc
+// GetExerciseByIdWorkoutPlan godoc
 // @Summary      Get exercises by id from workout plan
 // @Description  Get exercises by id from workout plan
 // @Tags         workouts
@@ -447,10 +447,10 @@ func (h Handler) GetWorkoutPlanExercises(w http.ResponseWriter, r *http.Request)
 // @Param        id   path      int  true  "Workout plan ID"
 // @Success      200  {array}   WorkoutPlan
 // @Router       /exercises/workout/plan/exercise/{id} [get]
-func (h Handler) GetWorkoutPlanIdExercises(w http.ResponseWriter, r *http.Request) {
+func (h Handler) GetExerciseByIdWorkoutPlan(w http.ResponseWriter, r *http.Request) {
 	id, err := uuid.Parse(chi.URLParam(r, "id"))
 
-	workoutPlanExercises, err := h.service.Workout.GetWorkoutPlanIdExercises(r.Context(), id)
+	workoutPlanExercises, err := h.service.Workout.GetExerciseByIdWorkoutPlan(r.Context(), id)
 
 	if err != nil {
 		log.Printf("Error fetching workout plan data: %v", err)
@@ -466,7 +466,7 @@ func (h Handler) GetWorkoutPlanIdExercises(w http.ResponseWriter, r *http.Reques
 	_ = json.NewEncoder(w).Encode(workoutPlanExercises)
 }
 
-// DeleteWorkoutPlanExercise godoc
+// DeleteExerciseByIdWorkoutPlan godoc
 // @Summary      Delete exercises by id from workout plan
 // @Description  Delete exercises by id from workout plan
 // @Tags         workouts
@@ -476,7 +476,7 @@ func (h Handler) GetWorkoutPlanIdExercises(w http.ResponseWriter, r *http.Reques
 // @Param        workoutDay   path      string  true  "Day"
 // @Param        exerciseID   path      int  true  "exercise_id"
 // @Router       /exercises/workout/plan/{workoutPlanID}/day/{workoutDay}/exercise/{exerciseID} [delete]
-func (h Handler) DeleteWorkoutPlanExercise(w http.ResponseWriter, r *http.Request) {
+func (h Handler) DeleteExerciseByIdWorkoutPlan(w http.ResponseWriter, r *http.Request) {
 	workoutPlanID, err := uuid.Parse(chi.URLParam(r, "workoutPlanID"))
 	workoutDay := chi.URLParam(r, "workoutDay")
 	exerciseID, err := uuid.Parse(chi.URLParam(r, "exerciseID"))
@@ -496,7 +496,7 @@ func (h Handler) DeleteWorkoutPlanExercise(w http.ResponseWriter, r *http.Reques
 	w.WriteHeader(http.StatusOK)
 }
 
-// CreateWorkoutPlanExercise godoc
+// CreateExerciseWorkoutPlan godoc
 // @Summary      Insert new exercise into workout plan
 // @Description  Insert new exercise into workout plan
 // @Tags         workouts
@@ -507,12 +507,12 @@ func (h Handler) DeleteWorkoutPlanExercise(w http.ResponseWriter, r *http.Reques
 // @Param        exerciseID   path      int  true  "exercise_id"
 // @Success      200  {array}   WorkoutPlan
 // @Router       /exercises/workout/plan/{workoutPlanID}/day/{workoutDay}/exercise/{exerciseID} [post]
-func (h Handler) CreateWorkoutPlanExercise(w http.ResponseWriter, r *http.Request) {
+func (h Handler) CreateExerciseWorkoutPlan(w http.ResponseWriter, r *http.Request) {
 	workoutPlanID, err := uuid.Parse(chi.URLParam(r, "workoutPlanID"))
 	workoutDay := chi.URLParam(r, "workoutDay")
 	exerciseID, err := uuid.Parse(chi.URLParam(r, "exerciseID"))
 
-	err = h.service.Workout.CreateWorkoutPlanExercise(workoutDay, workoutPlanID, exerciseID)
+	err = h.service.Workout.CreateExerciseWorkoutPlan(workoutDay, workoutPlanID, exerciseID)
 
 	if err != nil {
 		log.Printf("Error fetching workout plan data: %v", err)
@@ -527,7 +527,7 @@ func (h Handler) CreateWorkoutPlanExercise(w http.ResponseWriter, r *http.Reques
 	w.WriteHeader(http.StatusOK)
 }
 
-// UpdateWorkoutPlanExercise godoc
+// UpdateExerciseByIdWorkoutPlan godoc
 // @Summary      Update exercise into workout plan
 // @Description  Update exercise into workout plan
 // @Tags         workouts
@@ -538,13 +538,13 @@ func (h Handler) CreateWorkoutPlanExercise(w http.ResponseWriter, r *http.Reques
 // @Param        exerciseID   path      int  true  "Exercise ID"
 // @Param        prevExerciseID   path      int  true  "Exercise ID"
 // @Router       /exercises/workout/plan/{workoutPlanID}/day/{workoutDay}/exercise/{prevExerciseID}/{exerciseID} [patch]
-func (h Handler) UpdateWorkoutPlanExercise(w http.ResponseWriter, r *http.Request) {
+func (h Handler) UpdateExerciseByIdWorkoutPlan(w http.ResponseWriter, r *http.Request) {
 	workoutPlanID, err := uuid.Parse(chi.URLParam(r, "workoutPlanID"))
 	workoutDay := chi.URLParam(r, "workoutDay")
 	exerciseID, err := uuid.Parse(chi.URLParam(r, "exerciseID"))
 	prevExerciseID, err := uuid.Parse(chi.URLParam(r, "prevExerciseID"))
 
-	err = h.service.Workout.UpdateWorkoutPlanExercise(workoutDay, workoutPlanID, exerciseID, prevExerciseID)
+	err = h.service.Workout.UpdateExerciseByIdWorkoutPlan(workoutDay, workoutPlanID, exerciseID, prevExerciseID)
 
 	if err != nil {
 		log.Printf("Error fetching workout plan data: %v", err)

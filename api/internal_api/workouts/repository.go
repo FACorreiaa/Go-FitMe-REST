@@ -411,7 +411,7 @@ func (r Repository) UpdateWorkoutPlan(id uuid.UUID, updates map[string]interface
 	return err
 }
 
-func (r Repository) GetWorkoutPlanIdExercises(ctx context.Context, id uuid.UUID) (WorkoutExerciseDay, error) {
+func (r Repository) GetExerciseByIdWorkoutPlan(ctx context.Context, id uuid.UUID) (WorkoutExerciseDay, error) {
 	var workoutExerciseDayList WorkoutExerciseDay
 	query := `
 				SELECT el.*, wpd.day
@@ -481,7 +481,7 @@ func (r Repository) DeleteWorkoutPlanIdExercises(workoutDay string, workoutPlanI
 	return nil
 }
 
-func (r Repository) CreateWorkoutPlanExercise(workoutDay string, workoutPlanID uuid.UUID, exerciseID uuid.UUID) error {
+func (r Repository) CreateExerciseWorkoutPlan(workoutDay string, workoutPlanID uuid.UUID, exerciseID uuid.UUID) error {
 	tx := r.db.MustBegin()
 	defer tx.Rollback()
 
@@ -505,7 +505,7 @@ func (r Repository) CreateWorkoutPlanExercise(workoutDay string, workoutPlanID u
 	return nil
 }
 
-func (r Repository) UpdateWorkoutPlanExercise(workoutDay string, workoutPlanID uuid.UUID, exerciseID uuid.UUID, prevExerciseID uuid.UUID) error {
+func (r Repository) UpdateExerciseByIdWorkoutPlan(workoutDay string, workoutPlanID uuid.UUID, exerciseID uuid.UUID, prevExerciseID uuid.UUID) error {
 	tx := r.db.MustBegin()
 	defer tx.Rollback()
 

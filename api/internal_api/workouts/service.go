@@ -28,11 +28,11 @@ type IWorkout interface {
 	DeleteWorkoutPlan(userID int, workoutPlanID uuid.UUID) error
 	GetWorkoutPlan(ctx context.Context, id uuid.UUID) (WorkoutPlanResponse, error)
 	UpdateWorkoutPlan(id uuid.UUID, updates map[string]interface{}) error
-	GetWorkoutPlanIdExercises(ctx context.Context, id uuid.UUID) (WorkoutExerciseDay, error)
+	GetExerciseByIdWorkoutPlan(ctx context.Context, id uuid.UUID) (WorkoutExerciseDay, error)
 	GetWorkoutPlanExercises(ctx context.Context) ([]WorkoutExerciseDay, error)
 	DeleteWorkoutPlanIdExercises(workoutDay string, workoutPlanID uuid.UUID, exerciseID uuid.UUID) error
-	CreateWorkoutPlanExercise(workoutDay string, workoutPlanID uuid.UUID, exerciseID uuid.UUID) error
-	UpdateWorkoutPlanExercise(workoutDay string, workoutPlanID uuid.UUID, exerciseID uuid.UUID, prevExerciseID uuid.UUID) error
+	CreateExerciseWorkoutPlan(workoutDay string, workoutPlanID uuid.UUID, exerciseID uuid.UUID) error
+	UpdateExerciseByIdWorkoutPlan(workoutDay string, workoutPlanID uuid.UUID, exerciseID uuid.UUID, prevExerciseID uuid.UUID) error
 }
 
 type StructWorkout struct {
@@ -158,8 +158,8 @@ func (s ServiceWorkout) UpdateWorkoutPlan(id uuid.UUID, updates map[string]inter
 	return nil
 }
 
-func (s ServiceWorkout) GetWorkoutPlanIdExercises(ctx context.Context, id uuid.UUID) (WorkoutExerciseDay, error) {
-	workoutPlanExercise, err := s.repo.GetWorkoutPlanIdExercises(ctx, id)
+func (s ServiceWorkout) GetExerciseByIdWorkoutPlan(ctx context.Context, id uuid.UUID) (WorkoutExerciseDay, error) {
+	workoutPlanExercise, err := s.repo.GetExerciseByIdWorkoutPlan(ctx, id)
 	switch {
 	case err == nil:
 	case errors.As(err, &db.ErrObjectNotFound{}):
@@ -194,8 +194,8 @@ func (s ServiceWorkout) DeleteWorkoutPlanIdExercises(workoutDay string, workoutP
 	return nil
 }
 
-func (s ServiceWorkout) CreateWorkoutPlanExercise(workoutDay string, workoutPlanID uuid.UUID, exerciseID uuid.UUID) error {
-	err := s.repo.CreateWorkoutPlanExercise(workoutDay, workoutPlanID, exerciseID)
+func (s ServiceWorkout) CreateExerciseWorkoutPlan(workoutDay string, workoutPlanID uuid.UUID, exerciseID uuid.UUID) error {
+	err := s.repo.CreateExerciseWorkoutPlan(workoutDay, workoutPlanID, exerciseID)
 	switch {
 	case err == nil:
 	case errors.As(err, &db.ErrObjectNotFound{}):
@@ -206,8 +206,8 @@ func (s ServiceWorkout) CreateWorkoutPlanExercise(workoutDay string, workoutPlan
 	return nil
 }
 
-func (s ServiceWorkout) UpdateWorkoutPlanExercise(workoutDay string, workoutPlanID uuid.UUID, exerciseID uuid.UUID, prevExerciseID uuid.UUID) error {
-	err := s.repo.UpdateWorkoutPlanExercise(workoutDay, workoutPlanID, exerciseID, prevExerciseID)
+func (s ServiceWorkout) UpdateExerciseByIdWorkoutPlan(workoutDay string, workoutPlanID uuid.UUID, exerciseID uuid.UUID, prevExerciseID uuid.UUID) error {
+	err := s.repo.UpdateExerciseByIdWorkoutPlan(workoutDay, workoutPlanID, exerciseID, prevExerciseID)
 	switch {
 	case err == nil:
 	case errors.As(err, &db.ErrObjectNotFound{}):

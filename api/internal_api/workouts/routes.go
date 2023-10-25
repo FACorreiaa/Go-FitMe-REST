@@ -14,10 +14,10 @@ func RoutesWorkouts(s *StructWorkout) *chi.Mux {
 	router.Patch("/exercises/exercise/{id}", h.UpdateExercise)
 
 	router.Get("/exercises/workout/plan/exercise", h.GetWorkoutPlanExercises)
-	router.Get("/exercises/workout/plan/exercise/{id}", h.GetWorkoutPlanIdExercises)
-	router.Delete("/exercises/workout/plan/{workoutPlanID}/day/{workoutDay}/exercise/{exerciseID}", h.DeleteWorkoutPlanExercise)
-	router.Patch("/exercises/workout/plan/{workoutPlanID}/day/{workoutDay}/exercise/{prevExerciseID}/{exerciseID}", h.UpdateWorkoutPlanExercise)
-	router.Post("/exercises/workout/plan/{workoutPlanID}/day/{workoutDay}/exercise/{exerciseID}", h.CreateWorkoutPlanExercise)
+	router.Get("/exercises/workout/plan/exercise/{id}", h.GetExerciseByIdWorkoutPlan)
+	router.Delete("/exercises/workout/plan/{workoutPlanID}/day/{workoutDay}/exercise/{exerciseID}", h.DeleteExerciseByIdWorkoutPlan)
+	router.Patch("/exercises/workout/plan/{workoutPlanID}/day/{workoutDay}/exercise/{prevExerciseID}/{exerciseID}", h.UpdateExerciseByIdWorkoutPlan)
+	router.Post("/exercises/workout/plan/{workoutPlanID}/day/{workoutDay}/exercise/{exerciseID}", h.CreateExerciseWorkoutPlan)
 
 	router.Get("/exercises/workout/plan", h.GetWorkoutPlans)
 	router.Get("/exercises/workout/plan/{id}", h.GetWorkoutPlan)
