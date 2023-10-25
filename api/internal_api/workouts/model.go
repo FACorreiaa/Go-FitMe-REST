@@ -114,3 +114,16 @@ type WorkoutExerciseDay struct {
 	UpdatedAt     *time.Time `json:"updated_at" db:"updated_at"`
 	Day           string     `json:"day" db:"day"`
 }
+
+type WorkoutPlanExportData struct {
+	WorkoutDay           string         `json:"workout_day" db:"workout_day"`
+	WorkoutDescription   string         `json:"workout_description" db:"workout_description"`
+	ExerciseName         string         `json:"exercise_name" db:"exercise_name"`
+	ExerciseType         string         `json:"exercise_type" db:"exercise_type"`
+	ExerciseMuscle       string         `json:"exercise_muscle" db:"exercise_muscle"`
+	ExerciseEquipment    string         `json:"exercise_equipment" db:"exercise_equipment"`
+	ExerciseDifficulty   string         `json:"exercise_difficulty" db:"exercise_difficulty"`
+	ExerciseInstructions string         `json:"exercise_instructions" db:"exercise_instructions"`
+	ExerciseVideo        string         `json:"exercise_video" db:"exercise_video"`
+	Exercises            pq.StringArray `json:"exercises" swaggertype:"string"`
+}

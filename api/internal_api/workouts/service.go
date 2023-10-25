@@ -33,6 +33,7 @@ type IWorkout interface {
 	DeleteWorkoutPlanIdExercises(workoutDay string, workoutPlanID uuid.UUID, exerciseID uuid.UUID) error
 	CreateExerciseWorkoutPlan(workoutDay string, workoutPlanID uuid.UUID, exerciseID uuid.UUID) error
 	UpdateExerciseByIdWorkoutPlan(workoutDay string, workoutPlanID uuid.UUID, exerciseID uuid.UUID, prevExerciseID uuid.UUID) error
+	GetCompleteWorkoutData(ctx context.Context, userID int, workoutPlanID uuid.UUID) ([]WorkoutPlanExportData, error)
 }
 
 type StructWorkout struct {
@@ -217,3 +218,17 @@ func (s ServiceWorkout) UpdateExerciseByIdWorkoutPlan(workoutDay string, workout
 	}
 	return nil
 }
+
+func (s ServiceWorkout) GetCompleteWorkoutData(ctx context.Context, userID int, workoutPlanID uuid.UUID) ([]WorkoutPlanExportData, error) {
+	workoutPlan, err := s.repo.GetCompleteWorkoutData(ctx, userID, workoutPlanID)
+	switch {
+	case err == nil:
+	case errors.As(err, &db.ErrObjectNotFound{}):
+		return []WorkoutPlanExportData{}, db.ErrObjectNotFound{}
+	default:
+		return []WorkoutPlanExportData{}, err
+	}
+	return workoutPlan, nil
+}
+
+//func (s ServiceWorkout) ExportWorkoutToPDF() {}

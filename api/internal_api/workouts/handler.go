@@ -558,3 +558,27 @@ func (h Handler) UpdateExerciseByIdWorkoutPlan(w http.ResponseWriter, r *http.Re
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 }
+
+func (h Handler) GetCompleteWorkoutData(w http.ResponseWriter, r *http.Request) {
+	userSession, ok := r.Context().Value(auth.SessionManagerKey{}).(*auth.UserSession)
+	workoutPlanID, err := uuid.Parse(chi.URLParam(r, "workoutPlanID"))
+
+	if !ok {
+		http.Error(w, "User session not found", http.StatusUnauthorized)
+		return
+	}
+
+	// Calculate and save the total exercise session data
+	workoutPlanData, err := h.service.Workout.GetCompleteWorkoutData(r.Context(), userSession.Id, workoutPlanID)
+	if err != nil {
+		http.Error(w, "Error getting workout plan data", http.StatusInternalServerError)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	_ = json.NewEncoder(w).Encode(workoutPlanData)
+
+}
+
+func (h Handler) ExportWorkoutToPDF(w http.ResponseWriter, r *http.Request) {}

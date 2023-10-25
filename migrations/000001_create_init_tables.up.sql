@@ -151,6 +151,22 @@ select * from workout_day;
 select * from workout_plan_detail;
 select * from exercise_list;
 
+SELECT
+    wd.day AS workout_day,
+    wp.description AS workout_description,
+    el.name AS exercise_name,
+    el.type AS exercise_type,
+    el.muscle AS exercise_muscle,
+    el.equipment AS exercise_equipment,
+    el.difficulty AS exercise_difficulty,
+    el.instructions AS exercise_instructions,
+    el.video AS exercise_video
+FROM workout_plan_detail wpd
+         JOIN workout_plan wp ON wpd.workout_plan_id = wp.id
+         JOIN exercise_list el ON el.id = ANY(wpd.exercises)
+         JOIN workout_day wd ON wd.workout_plan_id = '07ef66c2-2d92-4e33-9c83-4c3984c0dc15'
+        AND wp.user_id = 40;
+
 CREATE TABLE IF NOT EXISTS "workout_plan" (
                                               "id" UUID DEFAULT gen_random_uuid() PRIMARY KEY,
                                               "user_id" integer,
@@ -183,20 +199,6 @@ CREATE TABLE IF NOT EXISTS "workout_day" (
                                              "updated_at" timestamp DEFAULT null,
                                              FOREIGN KEY (workout_plan_id) REFERENCES workout_plan(id)
 );
-
--- CREATE TABLE IF NOT EXISTS "workout_plan_detail_exercise" (
---                                                               "workout_plan_detail_id" UUID REFERENCES workout_plan_detail(id) ON DELETE CASCADE,
---                                                               "exercise_id" UUID REFERENCES exercise_list(id),
---                                                               PRIMARY KEY ("workout_plan_detail_id", "exercise_id")
--- );
-
--- CREATE TABLE IF NOT EXISTS "workout_day_exercise" (
---                                                       "id" UUID DEFAULT gen_random_uuid() PRIMARY KEY,
---                                                       "workout_day_id" UUID REFERENCES workout_day(id) ON DELETE CASCADE,
---                                                       "exercise_id" UUID REFERENCES exercise_list(id) ON DELETE CASCADE,
---                                                       FOREIGN KEY (workout_day_id) REFERENCES workout_day(id),
---                                                       FOREIGN KEY (exercise_id) REFERENCES exercise_list(id)
--- );
 
 
 
