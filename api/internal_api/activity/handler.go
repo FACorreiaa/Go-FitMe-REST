@@ -155,7 +155,7 @@ func (h Handler) StartActivityTracker(w http.ResponseWriter, r *http.Request) {
 	}
 
 	exerciseSession := &ExerciseSession{
-		ID:          uuid.New(),
+		ID:          uuid.NewString(),
 		UserID:      userSession.Id,
 		ActivityID:  activity.ID,
 		SessionName: activity.Name,

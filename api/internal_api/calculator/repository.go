@@ -5,7 +5,6 @@ import (
 	"database/sql"
 	"errors"
 	"fmt"
-	"github.com/google/uuid"
 	"github.com/jmoiron/sqlx"
 )
 
@@ -63,7 +62,7 @@ func (r *Repository) GetUserDietGoals(ctx context.Context, userID int) ([]UserMa
 	return macroDistribution, nil
 }
 
-func (r *Repository) GetUserDietGoal(ctx context.Context, planID uuid.UUID) (UserMacroDistribution, error) {
+func (r *Repository) GetUserDietGoal(ctx context.Context, planID string) (UserMacroDistribution, error) {
 	var macroDistribution UserMacroDistribution
 	query := `SELECT id, user_id, age, height, weight,
                       gender, system, activity, activity_description, objective,

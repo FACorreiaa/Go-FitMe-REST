@@ -1,3 +1,4 @@
+
 -- Delete tables
 DROP TABLE IF EXISTS user_personal_data;
 DROP TABLE IF EXISTS user_bio_data;

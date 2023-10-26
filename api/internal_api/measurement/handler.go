@@ -48,8 +48,8 @@ func (h Handler) InsertWeight(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	response, err := h.service.Measurement.InsertWeight(Weight{
-		ID:          uuid.New(),
+	res, err := h.service.Measurement.InsertWeight(Weight{
+		ID:          uuid.NewString(),
 		UserID:      userSession.Id,
 		WeightValue: input.WeightValue,
 		CreatedAt:   time.Now(),
@@ -62,7 +62,7 @@ func (h Handler) InsertWeight(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Header().Set("Content-Type", "application/json")
-	err = json.NewEncoder(w).Encode(response)
+	err = json.NewEncoder(w).Encode(res)
 	if err != nil {
 		log.Println(err)
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
@@ -80,11 +80,7 @@ func (h Handler) InsertWeight(w http.ResponseWriter, r *http.Request) {
 // @Success      200  {array}   Weight
 // @Router       /weight/{id} [patch]
 func (h Handler) UpdateWeight(w http.ResponseWriter, r *http.Request) {
-	id, err := uuid.Parse(chi.URLParam(r, "id"))
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusBadRequest)
-		return
-	}
+	id := chi.URLParam(r, "id")
 
 	userSession, ok := r.Context().Value(auth.SessionManagerKey{}).(*auth.UserSession)
 	if !ok {
@@ -119,11 +115,7 @@ func (h Handler) UpdateWeight(w http.ResponseWriter, r *http.Request) {
 // @Success      200  {array}   Weight
 // @Router       /weight/{id} [delete]
 func (h Handler) DeleteWeight(w http.ResponseWriter, r *http.Request) {
-	id, err := uuid.Parse(chi.URLParam(r, "id"))
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusBadRequest)
-		return
-	}
+	id := chi.URLParam(r, "id")
 
 	userSession, ok := r.Context().Value(auth.SessionManagerKey{}).(*auth.UserSession)
 	if !ok {
@@ -131,7 +123,7 @@ func (h Handler) DeleteWeight(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err = h.service.Measurement.DeleteWeight(id, userSession.Id)
+	err := h.service.Measurement.DeleteWeight(id, userSession.Id)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
@@ -152,11 +144,7 @@ func (h Handler) DeleteWeight(w http.ResponseWriter, r *http.Request) {
 // @Success      200  {array}   Weight
 // @Router       /weight/{id} [get]
 func (h Handler) GetWeight(w http.ResponseWriter, r *http.Request) {
-	id, err := uuid.Parse(chi.URLParam(r, "id"))
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusBadRequest)
-		return
-	}
+	id := chi.URLParam(r, "id")
 
 	userSession, ok := r.Context().Value(auth.SessionManagerKey{}).(*auth.UserSession)
 	if !ok {
@@ -173,7 +161,11 @@ func (h Handler) GetWeight(w http.ResponseWriter, r *http.Request) {
 	// Serialize the response as JSON and write to the response writer
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(weight)
+	err = json.NewEncoder(w).Encode(weight)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 }
 
 // GetWeights godoc
@@ -200,7 +192,11 @@ func (h Handler) GetWeights(w http.ResponseWriter, r *http.Request) {
 	// Serialize the response as JSON and write to the response writer
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(weight)
+	err = json.NewEncoder(w).Encode(weight)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 }
 
 //water intake
@@ -232,7 +228,7 @@ func (h Handler) InsertWaterIntake(w http.ResponseWriter, r *http.Request) {
 	}
 
 	response, err := h.service.Measurement.InsertWaterIntake(WaterIntake{
-		ID:        uuid.New(),
+		ID:        uuid.NewString(),
 		UserID:    userSession.Id,
 		Quantity:  input.Quantity,
 		CreatedAt: time.Now(),
@@ -263,11 +259,7 @@ func (h Handler) InsertWaterIntake(w http.ResponseWriter, r *http.Request) {
 // @Success      200  {object}   WaterIntake
 // @Router       /water/{id} [patch]
 func (h Handler) UpdateWaterIntake(w http.ResponseWriter, r *http.Request) {
-	id, err := uuid.Parse(chi.URLParam(r, "id"))
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusBadRequest)
-		return
-	}
+	id := chi.URLParam(r, "id")
 
 	userSession, ok := r.Context().Value(auth.SessionManagerKey{}).(*auth.UserSession)
 	if !ok {
@@ -302,11 +294,7 @@ func (h Handler) UpdateWaterIntake(w http.ResponseWriter, r *http.Request) {
 // @Success      200  {object}   WaterIntake
 // @Router       /water/{id} [delete]
 func (h Handler) DeleteWaterIntake(w http.ResponseWriter, r *http.Request) {
-	id, err := uuid.Parse(chi.URLParam(r, "id"))
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusBadRequest)
-		return
-	}
+	id := chi.URLParam(r, "id")
 
 	userSession, ok := r.Context().Value(auth.SessionManagerKey{}).(*auth.UserSession)
 	if !ok {
@@ -314,7 +302,7 @@ func (h Handler) DeleteWaterIntake(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err = h.service.Measurement.DeleteWaterIntake(id, userSession.Id)
+	err := h.service.Measurement.DeleteWaterIntake(id, userSession.Id)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
@@ -335,11 +323,7 @@ func (h Handler) DeleteWaterIntake(w http.ResponseWriter, r *http.Request) {
 // @Success      200  {object}   WaterIntake
 // @Router       /water/{id} [get]
 func (h Handler) GetWaterIntake(w http.ResponseWriter, r *http.Request) {
-	id, err := uuid.Parse(chi.URLParam(r, "id"))
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusBadRequest)
-		return
-	}
+	id := chi.URLParam(r, "id")
 
 	userSession, ok := r.Context().Value(auth.SessionManagerKey{}).(*auth.UserSession)
 	if !ok {
@@ -347,7 +331,7 @@ func (h Handler) GetWaterIntake(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	weight, err := h.service.Measurement.GetWaterIntake(id, userSession.Id)
+	res, err := h.service.Measurement.GetWaterIntake(id, userSession.Id)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
@@ -356,7 +340,11 @@ func (h Handler) GetWaterIntake(w http.ResponseWriter, r *http.Request) {
 	// Serialize the response as JSON and write to the response writer
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(weight)
+	err = json.NewEncoder(w).Encode(res)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 }
 
 // GetWaterIntakes godoc
@@ -374,7 +362,7 @@ func (h Handler) GetWaterIntakes(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	weight, err := h.service.Measurement.GetWaterIntakes(userSession.Id)
+	res, err := h.service.Measurement.GetWaterIntakes(userSession.Id)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
@@ -383,7 +371,11 @@ func (h Handler) GetWaterIntakes(w http.ResponseWriter, r *http.Request) {
 	// Serialize the response as JSON and write to the response writer
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(weight)
+	err = json.NewEncoder(w).Encode(res)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 }
 
 //waist line
@@ -413,8 +405,8 @@ func (h Handler) InsertWaistLine(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	response, err := h.service.Measurement.InsertWaistLine(WaistLine{
-		ID:        uuid.New(),
+	res, err := h.service.Measurement.InsertWaistLine(WaistLine{
+		ID:        uuid.NewString(),
 		UserID:    userSession.Id,
 		Quantity:  input.Quantity,
 		CreatedAt: time.Now(),
@@ -427,7 +419,7 @@ func (h Handler) InsertWaistLine(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Header().Set("Content-Type", "application/json")
-	err = json.NewEncoder(w).Encode(response)
+	err = json.NewEncoder(w).Encode(res)
 	if err != nil {
 		log.Println(err)
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
@@ -445,11 +437,7 @@ func (h Handler) InsertWaistLine(w http.ResponseWriter, r *http.Request) {
 // @Success      200  {object}   WaistLine
 // @Router       /waistline/{id} [patch]
 func (h Handler) UpdateWaistLine(w http.ResponseWriter, r *http.Request) {
-	id, err := uuid.Parse(chi.URLParam(r, "id"))
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusBadRequest)
-		return
-	}
+	id := chi.URLParam(r, "id")
 
 	userSession, ok := r.Context().Value(auth.SessionManagerKey{}).(*auth.UserSession)
 	if !ok {
@@ -484,11 +472,7 @@ func (h Handler) UpdateWaistLine(w http.ResponseWriter, r *http.Request) {
 // @Success      200  {object}   WaistLine
 // @Router       /waistline/{id} [delete]
 func (h Handler) DeleteWaistLine(w http.ResponseWriter, r *http.Request) {
-	id, err := uuid.Parse(chi.URLParam(r, "id"))
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusBadRequest)
-		return
-	}
+	id := chi.URLParam(r, "id")
 
 	userSession, ok := r.Context().Value(auth.SessionManagerKey{}).(*auth.UserSession)
 	if !ok {
@@ -496,7 +480,7 @@ func (h Handler) DeleteWaistLine(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err = h.service.Measurement.DeleteWaistLine(id, userSession.Id)
+	err := h.service.Measurement.DeleteWaistLine(id, userSession.Id)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
@@ -517,11 +501,7 @@ func (h Handler) DeleteWaistLine(w http.ResponseWriter, r *http.Request) {
 // @Success      200  {object}   WaistLine
 // @Router       /waistline/{id} [get]
 func (h Handler) GetWaistLine(w http.ResponseWriter, r *http.Request) {
-	id, err := uuid.Parse(chi.URLParam(r, "id"))
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusBadRequest)
-		return
-	}
+	id := chi.URLParam(r, "id")
 
 	userSession, ok := r.Context().Value(auth.SessionManagerKey{}).(*auth.UserSession)
 	if !ok {
@@ -538,7 +518,11 @@ func (h Handler) GetWaistLine(w http.ResponseWriter, r *http.Request) {
 	// Serialize the response as JSON and write to the response writer
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(res)
+	err = json.NewEncoder(w).Encode(res)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 }
 
 // GetWaistLines godoc
@@ -565,5 +549,9 @@ func (h Handler) GetWaistLines(w http.ResponseWriter, r *http.Request) {
 	// Serialize the response as JSON and write to the response writer
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(res)
+	err = json.NewEncoder(w).Encode(res)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 }

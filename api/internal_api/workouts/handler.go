@@ -56,9 +56,9 @@ func (h Handler) GetExercises(w http.ResponseWriter, r *http.Request) {
 // @Success      200  {array}   Exercises
 // @Router       /exercises/{id} [get]
 func (h Handler) GetExerciseByID(w http.ResponseWriter, r *http.Request) {
-	id, err := uuid.Parse(chi.URLParam(r, "id"))
+	id := chi.URLParam(r, "id")
 
-	exercises, err := h.service.Workout.GetExerciseByID(r.Context(), id)
+	res, err := h.service.Workout.GetExerciseByID(r.Context(), id)
 
 	if err != nil {
 		log.Printf("Error fetching exercises data: %v", err)
@@ -71,7 +71,7 @@ func (h Handler) GetExerciseByID(w http.ResponseWriter, r *http.Request) {
 	// Serialize the response as JSON and write to the response writer
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
-	_ = json.NewEncoder(w).Encode(exercises)
+	_ = json.NewEncoder(w).Encode(res)
 }
 
 // InsertExercise godoc
@@ -100,7 +100,7 @@ func (h Handler) InsertExercise(w http.ResponseWriter, r *http.Request) {
 
 	// Assuming you have a service method called InsertNewUserExercise that handles database insert
 	response, err := h.service.Workout.InsertExercise(userSession.Id, Exercises{
-		ID:            uuid.New(),
+		ID:            uuid.NewString(),
 		Name:          newExercise.Name,
 		ExerciseType:  newExercise.ExerciseType,
 		MuscleGroup:   newExercise.MuscleGroup,
@@ -137,11 +137,7 @@ func (h Handler) InsertExercise(w http.ResponseWriter, r *http.Request) {
 // @Success      200  {array}   Exercises
 // @Router       /exercises/{id} [delete]
 func (h Handler) DeleteExercise(w http.ResponseWriter, r *http.Request) {
-	id, err := uuid.Parse(chi.URLParam(r, "id"))
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusBadRequest)
-		return
-	}
+	id := chi.URLParam(r, "id")
 
 	userSession, ok := r.Context().Value(auth.SessionManagerKey{}).(*auth.UserSession)
 	if !ok {
@@ -149,7 +145,7 @@ func (h Handler) DeleteExercise(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err = h.service.Workout.DeleteExercise(userSession.Id, id)
+	err := h.service.Workout.DeleteExercise(userSession.Id, id)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
@@ -170,11 +166,7 @@ func (h Handler) DeleteExercise(w http.ResponseWriter, r *http.Request) {
 // @Success      200  {array}   Exercises
 // @Router       /exercises/{id} [patch]
 func (h Handler) UpdateExercise(w http.ResponseWriter, r *http.Request) {
-	id, err := uuid.Parse(chi.URLParam(r, "id"))
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusBadRequest)
-		return
-	}
+	id := chi.URLParam(r, "id")
 
 	//userSession, ok := r.Context().Value(auth.SessionManagerKey{}).(*user.UserSession)
 	//if !ok {
@@ -189,7 +181,7 @@ func (h Handler) UpdateExercise(w http.ResponseWriter, r *http.Request) {
 	}
 	updates["UpdatedAt"] = time.Now()
 
-	err = h.service.Workout.UpdateExercise(id, updates)
+	err := h.service.Workout.UpdateExercise(id, updates)
 	if err != nil {
 		if strings.Contains(err.Error(), "no rows were updated") {
 			http.Error(w, "Exercise not found", http.StatusBadRequest)
@@ -251,7 +243,7 @@ func (h Handler) CreateWorkoutPlan(w http.ResponseWriter, r *http.Request) {
 	}
 
 	response, err := h.service.Workout.CreateWorkoutPlan(WorkoutPlan{
-		ID:          uuid.New(),
+		ID:          uuid.NewString(),
 		UserID:      userSession.Id,
 		Description: requestBody.WorkoutPlan.Description,
 		Notes:       requestBody.WorkoutPlan.Notes,
@@ -316,7 +308,7 @@ func (h Handler) GetWorkoutPlans(w http.ResponseWriter, r *http.Request) {
 // @Success      200  {array}   WorkoutPlan
 // @Router       /exercises/workout/plan/{id} [get]
 func (h Handler) GetWorkoutPlan(w http.ResponseWriter, r *http.Request) {
-	id, err := uuid.Parse(chi.URLParam(r, "id"))
+	id := chi.URLParam(r, "id")
 
 	workoutPlan, err := h.service.Workout.GetWorkoutPlan(r.Context(), id)
 
@@ -345,11 +337,7 @@ func (h Handler) GetWorkoutPlan(w http.ResponseWriter, r *http.Request) {
 // @Success      200  {array}   WorkoutPlan
 // @Router       /exercises/workout/plan/{id} [delete]
 func (h Handler) DeleteWorkoutPlan(w http.ResponseWriter, r *http.Request) {
-	id, err := uuid.Parse(chi.URLParam(r, "id"))
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusBadRequest)
-		return
-	}
+	id := chi.URLParam(r, "id")
 
 	userSession, ok := r.Context().Value(auth.SessionManagerKey{}).(*auth.UserSession)
 	if !ok {
@@ -357,7 +345,7 @@ func (h Handler) DeleteWorkoutPlan(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err = h.service.Workout.DeleteWorkoutPlan(userSession.Id, id)
+	err := h.service.Workout.DeleteWorkoutPlan(userSession.Id, id)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
@@ -378,11 +366,7 @@ func (h Handler) DeleteWorkoutPlan(w http.ResponseWriter, r *http.Request) {
 // @Success      200  {array}   WorkoutPlan
 // @Router       /exercises/workout/plan/{id} [patch]
 func (h Handler) UpdateWorkoutPlan(w http.ResponseWriter, r *http.Request) {
-	id, err := uuid.Parse(chi.URLParam(r, "id"))
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusBadRequest)
-		return
-	}
+	id := chi.URLParam(r, "id")
 
 	//userSession, ok := r.Context().Value(auth.SessionManagerKey{}).(*user.UserSession)
 	//if !ok {
@@ -397,7 +381,7 @@ func (h Handler) UpdateWorkoutPlan(w http.ResponseWriter, r *http.Request) {
 	}
 	updates["UpdatedAt"] = time.Now()
 
-	err = h.service.Workout.UpdateWorkoutPlan(id, updates)
+	err := h.service.Workout.UpdateWorkoutPlan(id, updates)
 	if err != nil {
 		if strings.Contains(err.Error(), "no rows were updated") {
 			http.Error(w, "workout plan not found", http.StatusBadRequest)
@@ -448,7 +432,7 @@ func (h Handler) GetWorkoutPlanExercises(w http.ResponseWriter, r *http.Request)
 // @Success      200  {array}   WorkoutPlan
 // @Router       /exercises/workout/plan/exercise/{id} [get]
 func (h Handler) GetExerciseByIdWorkoutPlan(w http.ResponseWriter, r *http.Request) {
-	id, err := uuid.Parse(chi.URLParam(r, "id"))
+	id := chi.URLParam(r, "id")
 
 	workoutPlanExercises, err := h.service.Workout.GetExerciseByIdWorkoutPlan(r.Context(), id)
 
@@ -477,11 +461,11 @@ func (h Handler) GetExerciseByIdWorkoutPlan(w http.ResponseWriter, r *http.Reque
 // @Param        exerciseID   path      int  true  "exercise_id"
 // @Router       /exercises/workout/plan/{workoutPlanID}/day/{workoutDay}/exercise/{exerciseID} [delete]
 func (h Handler) DeleteExerciseByIdWorkoutPlan(w http.ResponseWriter, r *http.Request) {
-	workoutPlanID, err := uuid.Parse(chi.URLParam(r, "workoutPlanID"))
+	workoutPlanID := chi.URLParam(r, "workoutPlanID")
 	workoutDay := chi.URLParam(r, "workoutDay")
-	exerciseID, err := uuid.Parse(chi.URLParam(r, "exerciseID"))
+	exerciseID := chi.URLParam(r, "exerciseID")
 
-	err = h.service.Workout.DeleteWorkoutPlanIdExercises(workoutDay, workoutPlanID, exerciseID)
+	err := h.service.Workout.DeleteWorkoutPlanIdExercises(workoutDay, workoutPlanID, exerciseID)
 
 	if err != nil {
 		log.Printf("Error fetching workout plan data: %v", err)
@@ -508,11 +492,11 @@ func (h Handler) DeleteExerciseByIdWorkoutPlan(w http.ResponseWriter, r *http.Re
 // @Success      200  {array}   WorkoutPlan
 // @Router       /exercises/workout/plan/{workoutPlanID}/day/{workoutDay}/exercise/{exerciseID} [post]
 func (h Handler) CreateExerciseWorkoutPlan(w http.ResponseWriter, r *http.Request) {
-	workoutPlanID, err := uuid.Parse(chi.URLParam(r, "workoutPlanID"))
+	workoutPlanID := chi.URLParam(r, "workoutPlanID")
 	workoutDay := chi.URLParam(r, "workoutDay")
-	exerciseID, err := uuid.Parse(chi.URLParam(r, "exerciseID"))
+	exerciseID := chi.URLParam(r, "exerciseID")
 
-	err = h.service.Workout.CreateExerciseWorkoutPlan(workoutDay, workoutPlanID, exerciseID)
+	err := h.service.Workout.CreateExerciseWorkoutPlan(workoutDay, workoutPlanID, exerciseID)
 
 	if err != nil {
 		log.Printf("Error fetching workout plan data: %v", err)
@@ -539,12 +523,12 @@ func (h Handler) CreateExerciseWorkoutPlan(w http.ResponseWriter, r *http.Reques
 // @Param        prevExerciseID   path      int  true  "Exercise ID"
 // @Router       /exercises/workout/plan/{workoutPlanID}/day/{workoutDay}/exercise/{prevExerciseID}/{exerciseID} [patch]
 func (h Handler) UpdateExerciseByIdWorkoutPlan(w http.ResponseWriter, r *http.Request) {
-	workoutPlanID, err := uuid.Parse(chi.URLParam(r, "workoutPlanID"))
+	workoutPlanID := chi.URLParam(r, "workoutPlanID")
 	workoutDay := chi.URLParam(r, "workoutDay")
-	exerciseID, err := uuid.Parse(chi.URLParam(r, "exerciseID"))
-	prevExerciseID, err := uuid.Parse(chi.URLParam(r, "prevExerciseID"))
+	exerciseID := chi.URLParam(r, "exerciseID")
+	prevExerciseID := chi.URLParam(r, "prevExerciseID")
 
-	err = h.service.Workout.UpdateExerciseByIdWorkoutPlan(workoutDay, workoutPlanID, exerciseID, prevExerciseID)
+	err := h.service.Workout.UpdateExerciseByIdWorkoutPlan(workoutDay, workoutPlanID, exerciseID, prevExerciseID)
 
 	if err != nil {
 		log.Printf("Error fetching workout plan data: %v", err)
@@ -559,9 +543,9 @@ func (h Handler) UpdateExerciseByIdWorkoutPlan(w http.ResponseWriter, r *http.Re
 	w.WriteHeader(http.StatusOK)
 }
 
-func (h Handler) GetCompleteWorkoutData(w http.ResponseWriter, r *http.Request) {
+func (h Handler) GetFullWorkoutPlan(w http.ResponseWriter, r *http.Request) {
 	userSession, ok := r.Context().Value(auth.SessionManagerKey{}).(*auth.UserSession)
-	workoutPlanID, err := uuid.Parse(chi.URLParam(r, "workoutPlanID"))
+	workoutPlanID := chi.URLParam(r, "workoutPlanID")
 
 	if !ok {
 		http.Error(w, "User session not found", http.StatusUnauthorized)
@@ -569,7 +553,7 @@ func (h Handler) GetCompleteWorkoutData(w http.ResponseWriter, r *http.Request) 
 	}
 
 	// Calculate and save the total exercise session data
-	workoutPlanData, err := h.service.Workout.GetCompleteWorkoutData(r.Context(), userSession.Id, workoutPlanID)
+	workoutPlanData, err := h.service.Workout.GetFullWorkoutPlan(r.Context(), workoutPlanID, userSession.Id)
 	if err != nil {
 		http.Error(w, "Error getting workout plan data", http.StatusInternalServerError)
 		return
@@ -581,4 +565,4 @@ func (h Handler) GetCompleteWorkoutData(w http.ResponseWriter, r *http.Request) 
 
 }
 
-func (h Handler) ExportWorkoutToPDF(w http.ResponseWriter, r *http.Request) {}
+//func (h Handler) ExportWorkoutToPDF(w http.ResponseWriter, r *http.Request) {}

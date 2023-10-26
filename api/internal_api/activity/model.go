@@ -2,7 +2,6 @@ package activity
 
 import (
 	"database/sql"
-	"github.com/google/uuid"
 	"time"
 )
 
@@ -18,7 +17,7 @@ type Activity struct {
 }
 
 type ExerciseSession struct {
-	ID              uuid.UUID  `json:"id,string" db:"id" pg:"default:gen_random_uuid()"`
+	ID              string     `json:"id,string" db:"id" pg:"default:gen_random_uuid()"`
 	UserID          int        `json:"user_id" db:"user_id"`
 	ActivityID      int        `json:"activity_id" db:"activity_id"`
 	SessionName     string     `json:"session_name" db:"session_name"`
@@ -39,7 +38,7 @@ type Duration struct {
 }
 
 type TotalExerciseSession struct {
-	ID                   uuid.UUID `json:"id,string" db:"id" pg:"default:gen_random_uuid()"`
+	ID                   string    `json:"id,string" db:"id" pg:"default:gen_random_uuid()"`
 	UserID               int       `json:"user_id" db:"user_id"`
 	ActivityID           int       `json:"activity_id" db:"activity_id"`
 	TotalDurationHours   int       `json:"duration_hours" db:"total_duration_hours"`
@@ -51,8 +50,8 @@ type TotalExerciseSession struct {
 }
 
 //type SessionStats struct {
-//	ID                     uuid.UUID `json:"id,string" db:"id" pg:"default:gen_random_uuid()"`
-//	TotalExerciseSessionID uuid.UUID `json:"total_exercise_session_id,string" db:"total_exercise_session_id"`
+//	ID                     string `json:"id,string" db:"id" pg:"default:gen_random_uuid()"`
+//	TotalExerciseSessionID string `json:"total_exercise_session_id,string" db:"total_exercise_session_id"`
 //	ActivityID             int       `json:"activity_id" db:"activity_id"`
 //	UserID                 int       `json:"user_id" db:"user_id"`
 //	SessionName            string    `json:"session_name" db:"session_name"`
@@ -66,7 +65,7 @@ type TotalExerciseSession struct {
 //}
 
 type ExerciseCountStats struct {
-	ID                           uuid.UUID `json:"id,string" db:"id" pg:"default:gen_random_uuid()"`
+	ID                           string    `json:"id,string" db:"id" pg:"default:gen_random_uuid()"`
 	ActivityID                   int       `json:"activity_id,string" db:"activity_id"`
 	UserID                       int       `json:"user_id,string" db:"user_id"`
 	SessionName                  string    `json:"session_name" db:"session_name"`

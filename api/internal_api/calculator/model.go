@@ -1,12 +1,9 @@
 package calculator
 
-import (
-	"github.com/google/uuid"
-	"time"
-)
+import "time"
 
 type UserMacroDistribution struct {
-	ID                              uuid.UUID `json:"id,string" db:"id" pg:"default:gen_random_uuid()"`
+	ID                              string    `json:"id,string" db:"id" pg:"default:gen_random_uuid()"`
 	UserID                          int       `json:"user_id" db:"user_id"`
 	Age                             uint8     `json:"age" db:"age"`
 	Height                          uint8     `json:"height" db:"height"`

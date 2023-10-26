@@ -2,7 +2,6 @@ package measurement
 
 import (
 	"fmt"
-	"github.com/google/uuid"
 	"github.com/jmoiron/sqlx"
 )
 
@@ -38,7 +37,7 @@ func (r *Repository) InsertWeight(w Weight) (Weight, error) {
 	return insertedData, nil
 }
 
-func (r *Repository) UpdateWeight(id uuid.UUID, userID int, updates map[string]interface{}) error {
+func (r *Repository) UpdateWeight(id string, userID int, updates map[string]interface{}) error {
 	query := `
 		UPDATE weight_measure
 		SET weight_value = :weight_value, updated_at = :updated_at
@@ -56,7 +55,7 @@ func (r *Repository) UpdateWeight(id uuid.UUID, userID int, updates map[string]i
 	return err
 }
 
-func (r *Repository) DeleteWeight(id uuid.UUID, userID int) error {
+func (r *Repository) DeleteWeight(id string, userID int) error {
 	query := `
 		DELETE FROM weight_measure
 		WHERE id = $1 AND user_id = $2
@@ -66,7 +65,7 @@ func (r *Repository) DeleteWeight(id uuid.UUID, userID int) error {
 	return err
 }
 
-func (r *Repository) GetWeight(id uuid.UUID, userID int) (Weight, error) {
+func (r *Repository) GetWeight(id string, userID int) (Weight, error) {
 	query := `
 		SELECT id, user_id, weight_value, created_at, updated_at FROM weight_measure
 		WHERE id = $1 AND user_id = $2
@@ -114,7 +113,7 @@ func (r *Repository) InsertWater(w WaterIntake) (WaterIntake, error) {
 	return insertedData, nil
 }
 
-func (r *Repository) UpdateWater(id uuid.UUID, userID int, updates map[string]interface{}) error {
+func (r *Repository) UpdateWater(id string, userID int, updates map[string]interface{}) error {
 	query := `
 		UPDATE water_intake
 		SET quantity = :quantity, updated_at = :updated_at
@@ -132,7 +131,7 @@ func (r *Repository) UpdateWater(id uuid.UUID, userID int, updates map[string]in
 	return err
 }
 
-func (r *Repository) DeleteWater(id uuid.UUID, userID int) error {
+func (r *Repository) DeleteWater(id string, userID int) error {
 	query := `
 		DELETE FROM water_intake
 		WHERE id = $1 AND user_id = $2
@@ -142,7 +141,7 @@ func (r *Repository) DeleteWater(id uuid.UUID, userID int) error {
 	return err
 }
 
-func (r *Repository) GetWater(id uuid.UUID, userID int) (WaterIntake, error) {
+func (r *Repository) GetWater(id string, userID int) (WaterIntake, error) {
 	query := `
 		SELECT id, user_id, quantity, created_at, updated_at FROM water_intake
 		WHERE id = $1 AND user_id = $2
@@ -190,7 +189,7 @@ func (r *Repository) InsertWaistLine(w WaistLine) (WaistLine, error) {
 	return insertedData, nil
 }
 
-func (r *Repository) UpdateWaistLine(id uuid.UUID, userID int, updates map[string]interface{}) error {
+func (r *Repository) UpdateWaistLine(id string, userID int, updates map[string]interface{}) error {
 	query := `
 		UPDATE waist_line
 		SET quantity = :quantity, updated_at = :updated_at
@@ -208,7 +207,7 @@ func (r *Repository) UpdateWaistLine(id uuid.UUID, userID int, updates map[strin
 	return err
 }
 
-func (r *Repository) DeleteWaistLine(id uuid.UUID, userID int) error {
+func (r *Repository) DeleteWaistLine(id string, userID int) error {
 	query := `
 		DELETE FROM waist_line
 		WHERE id = $1 AND user_id = $2
@@ -218,7 +217,7 @@ func (r *Repository) DeleteWaistLine(id uuid.UUID, userID int) error {
 	return err
 }
 
-func (r *Repository) GetWaistLine(id uuid.UUID, userID int) (WaistLine, error) {
+func (r *Repository) GetWaistLine(id string, userID int) (WaistLine, error) {
 	query := `
 		SELECT id, user_id, quantity, created_at, updated_at FROM waist_line
 		WHERE id = $1 AND user_id = $2

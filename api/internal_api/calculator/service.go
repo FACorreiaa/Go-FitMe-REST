@@ -4,7 +4,6 @@ import (
 	"context"
 	"errors"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/helpers/db"
-	"github.com/google/uuid"
 )
 
 type ServiceCalculator struct {
@@ -20,9 +19,8 @@ func NewCalculatorService(repo *Repository) *ServiceCalculator {
 type ICalculator interface {
 	Create(user UserMacroDistribution) (UserMacroDistribution, error)
 	GetAll(ctx context.Context, userID int) ([]UserMacroDistribution, error)
-	Get(ctx context.Context, planID uuid.UUID) (UserMacroDistribution, error)
+	Get(ctx context.Context, planID string) (UserMacroDistribution, error)
 }
-
 type StructCalculator struct {
 	Calculator ICalculator
 }
@@ -52,7 +50,7 @@ func (s ServiceCalculator) GetAll(ctx context.Context, userID int) ([]UserMacroD
 	return userMacros, err
 }
 
-func (s ServiceCalculator) Get(ctx context.Context, planID uuid.UUID) (UserMacroDistribution, error) {
+func (s ServiceCalculator) Get(ctx context.Context, planID string) (UserMacroDistribution, error) {
 	userMacros, err := s.repo.GetUserDietGoal(ctx, planID)
 	switch {
 	case err == nil:

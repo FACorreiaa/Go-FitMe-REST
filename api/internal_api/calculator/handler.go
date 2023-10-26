@@ -261,7 +261,7 @@ func (h Handler) CalculateMacros(w http.ResponseWriter, r *http.Request) {
 
 	macros, err := calculateUserPersonalMacros(params)
 	response, err := h.service.Calculator.Create(UserMacroDistribution{
-		ID:                              uuid.New(),
+		ID:                              uuid.NewString(),
 		UserID:                          userSession.Id,
 		Age:                             params.Age,
 		Height:                          params.Height,
@@ -333,10 +333,7 @@ func (h Handler) GetAllDietMacros(w http.ResponseWriter, r *http.Request) {
 // @Success      200  {array}   UserMacroDistribution
 // @Router       /plan/{id} [get]
 func (h Handler) GetDietMacros(w http.ResponseWriter, r *http.Request) {
-	id, err := uuid.Parse(chi.URLParam(r, "id"))
-	if err != nil {
-		http.Error(w, "Error parsing id", http.StatusInternalServerError)
-	}
+	id := chi.URLParam(r, "id")
 
 	userMacros, err := h.service.Calculator.Get(r.Context(), id)
 	println("err: ", err)

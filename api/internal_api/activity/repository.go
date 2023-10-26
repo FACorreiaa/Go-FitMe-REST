@@ -15,7 +15,7 @@ type Repository struct {
 	db *sqlx.DB
 }
 
-func NewRepository(db *sqlx.DB) (*Repository, error) {
+func NewActivityRepository(db *sqlx.DB) (*Repository, error) {
 	return &Repository{db: db}, nil
 }
 
@@ -161,7 +161,7 @@ func (r Repository) CalculateAndSaveTotalExerciseSession(ctx context.Context, us
 	}
 
 	return &TotalExerciseSession{
-		ID:                   uuid.New(),
+		ID:                   uuid.NewString(),
 		UserID:               userID,
 		TotalDurationHours:   totalDuration.Hours,
 		TotalDurationMinutes: totalDuration.Minutes,

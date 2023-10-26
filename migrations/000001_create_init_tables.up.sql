@@ -146,26 +146,34 @@ CREATE TABLE IF NOT EXISTS "exercise_list" (
   "updated_at" timestamp DEFAULT null
 );
 
-select * from workout_plan;
-select * from workout_day;
-select * from workout_plan_detail;
-select * from exercise_list;
+-- select * from workout_plan;
+-- select * from workout_day;
+-- select * from workout_plan_detail;
+-- select * from exercise_list;
+--
+-- SELECT
+--     wd.day AS workout_day,
+--     wp.description AS workout_description,
+--     el.name AS exercise_name,
+--     el.type AS exercise_type,
+--     el.muscle AS exercise_muscle,
+--     el.equipment AS exercise_equipment,
+--     el.difficulty AS exercise_difficulty,
+--     el.instructions AS exercise_instructions,
+--     el.video AS exercise_video
+-- FROM workout_plan_detail wpd
+--          JOIN workout_plan wp ON wpd.workout_plan_id = wp.id
+--          JOIN exercise_list el ON el.id = ANY(wpd.exercises)
+--          JOIN workout_day wd ON wd.workout_plan_id = '07ef66c2-2d92-4e33-9c83-4c3984c0dc15'
+--         AND wp.user_id = 40;
 
-SELECT
-    wd.day AS workout_day,
-    wp.description AS workout_description,
-    el.name AS exercise_name,
-    el.type AS exercise_type,
-    el.muscle AS exercise_muscle,
-    el.equipment AS exercise_equipment,
-    el.difficulty AS exercise_difficulty,
-    el.instructions AS exercise_instructions,
-    el.video AS exercise_video
-FROM workout_plan_detail wpd
-         JOIN workout_plan wp ON wpd.workout_plan_id = wp.id
-         JOIN exercise_list el ON el.id = ANY(wpd.exercises)
-         JOIN workout_day wd ON wd.workout_plan_id = '07ef66c2-2d92-4e33-9c83-4c3984c0dc15'
-        AND wp.user_id = 40;
+select * from workout_plan;
+select * from workout_plan_detail where workout_plan_id = '9f3d94e7-256b-4995-b95c-b53beb6cf98c';
+SELECT wp.id, wp.user_id, wp.description, wp.notes, wp.rating, wp.created_at,
+       wd.day, wpd.exercises
+FROM workout_plan AS wp
+         JOIN workout_day AS wd ON wp.id = wd.workout_plan_id
+         JOIN workout_plan_detail AS wpd ON wp.id = wpd.workout_plan_id;
 
 CREATE TABLE IF NOT EXISTS "workout_plan" (
                                               "id" UUID DEFAULT gen_random_uuid() PRIMARY KEY,

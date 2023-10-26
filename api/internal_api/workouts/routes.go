@@ -25,7 +25,7 @@ func RoutesWorkouts(s *StructWorkout) *chi.Mux {
 	router.Patch("/exercises/workout/plan/{id}", h.UpdateWorkoutPlan)
 	router.Post("/exercises/workout/plan", h.CreateWorkoutPlan)
 
-	router.Get("/exercises/workout/plan/{workoutPlanID}/data", h.GetCompleteWorkoutData)
-	router.Get("/export-pdf", h.ExportWorkoutToPDF)
+	router.Get("/exercises/workout/plan/{workoutPlanID}/data", h.GetFullWorkoutPlan)
+	//router.Get("/export-pdf", h.ExportWorkoutToPDF)
 	return router
 }

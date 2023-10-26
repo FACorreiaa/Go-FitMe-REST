@@ -138,7 +138,7 @@ func NewServer() (*Server, error) {
 		db:     database,
 	}
 
-	activityRepo, err := activity.NewRepository(s.db)
+	activityRepo, err := activity.NewActivityRepository(s.db)
 	if err != nil {
 		_ = errors.New("error injecting activity service")
 	}
@@ -158,7 +158,7 @@ func NewServer() (*Server, error) {
 		_ = errors.New("error injecting calculator service")
 	}
 
-	workoutRepo, err := workouts.NewWorkoutsRepository(s.db)
+	workoutRepo, err := workouts.NewWorkoutRepository(s.db)
 	if err != nil {
 		_ = errors.New("error injecting calculator service")
 	}

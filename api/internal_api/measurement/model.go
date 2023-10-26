@@ -1,12 +1,9 @@
 package measurement
 
-import (
-	"github.com/google/uuid"
-	"time"
-)
+import "time"
 
 type Weight struct {
-	ID          uuid.UUID  `json:"id,string" db:"id" pg:"default:gen_random_uuid()"`
+	ID          string     `json:"id,string" db:"id" pg:"default:gen_random_uuid()"`
 	UserID      int        `json:"user_id" db:"user_id"`
 	WeightValue float32    `json:"weight_value" db:"weight_value"`
 	CreatedAt   time.Time  `json:"created_at" db:"created_at"`
@@ -14,7 +11,7 @@ type Weight struct {
 }
 
 type WaterIntake struct {
-	ID        uuid.UUID  `json:"id,string" db:"id" pg:"default:gen_random_uuid()"`
+	ID        string     `json:"id,string" db:"id" pg:"default:gen_random_uuid()"`
 	UserID    int        `json:"user_id" db:"user_id"`
 	Quantity  float32    `json:"quantity" db:"quantity"`
 	CreatedAt time.Time  `json:"created_at" db:"created_at"`
@@ -22,7 +19,7 @@ type WaterIntake struct {
 }
 
 type WaistLine struct {
-	ID        uuid.UUID  `json:"id,string" db:"id" pg:"default:gen_random_uuid()"`
+	ID        string     `json:"id,string" db:"id" pg:"default:gen_random_uuid()"`
 	UserID    int        `json:"user_id" db:"user_id"`
 	Quantity  float32    `json:"quantity" db:"quantity"`
 	CreatedAt time.Time  `json:"created_at" db:"created_at"`

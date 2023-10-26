@@ -1,13 +1,12 @@
 package workouts
 
 import (
-	"github.com/google/uuid"
 	"github.com/lib/pq"
 	"time"
 )
 
 type Exercises struct {
-	ID            uuid.UUID  `json:"id,string" db:"id" pg:"default:gen_random_uuid()"`
+	ID            string     `json:"id,string" db:"id" pg:"default:gen_random_uuid()"`
 	Name          string     `json:"name" db:"name"`
 	ExerciseType  string     `json:"type" db:"type"`
 	MuscleGroup   string     `json:"muscle" db:"muscle"`
@@ -21,7 +20,7 @@ type Exercises struct {
 }
 
 type WorkoutPlan struct {
-	ID          uuid.UUID        `json:"id,string" db:"id" pg:"default:gen_random_uuid()"`
+	ID          string           `json:"id,string" db:"id" pg:"default:gen_random_uuid()"`
 	UserID      int              `json:"user_id" db:"user_id"`
 	Description string           `json:"description" db:"description"`
 	Notes       string           `json:"notes" db:"notes"`
@@ -32,23 +31,17 @@ type WorkoutPlan struct {
 }
 
 type WorkoutDay struct {
-	ID            uuid.UUID   `json:"id,string" db:"id" pg:"default:gen_random_uuid()"`
-	WorkoutPlanID uuid.UUID   `json:"workout_plan_id" db:"workout_plan_id"`
+	ID            string      `json:"id,string" db:"id" pg:"default:gen_random_uuid()"`
+	WorkoutPlanID string      `json:"workout_plan_id" db:"workout_plan_id"`
 	Day           string      `json:"day" db:"day"`
 	CreatedAt     time.Time   `json:"created_at" db:"created_at"`
 	UpdatedAt     *time.Time  `json:"updated_at" db:"updated_at"`
 	Exercises     []Exercises `json:"exercises" db:"exercises"`
 }
 
-type WorkoutDayExercise struct {
-	ID           uuid.UUID `json:"id,string" db:"id" pg:"default:gen_random_uuid()"`
-	WorkoutDayID uuid.UUID `db:"workout_day_id"`
-	ExerciseID   uuid.UUID `db:"exercise_id"`
-}
-
 type PlanDay struct {
-	Day         string      `json:"day"`
-	ExerciseIDs []uuid.UUID `json:"exercises"`
+	Day         string   `json:"day"`
+	ExerciseIDs []string `json:"exercises"`
 }
 
 type CreateWorkoutPlanRequest struct {
@@ -57,11 +50,11 @@ type CreateWorkoutPlanRequest struct {
 }
 
 type WorkoutPlanDetail struct {
-	ID            uuid.UUID   `db:"id"`
-	WorkoutPlanID uuid.UUID   `db:"workout_plan_id"`
-	Day           string      `db:"day"`
-	Exercises     []uuid.UUID `db:"exercises"`
-	CreatedAt     time.Time   `db:"created_at"`
+	ID            string    `db:"id"`
+	WorkoutPlanID string    `db:"workout_plan_id"`
+	Day           string    `db:"day"`
+	Exercises     []string  `db:"exercises"`
+	CreatedAt     time.Time `db:"created_at"`
 }
 
 type WorkoutPlanDay struct {
@@ -69,21 +62,8 @@ type WorkoutPlanDay struct {
 	Exercises []Exercises `json:"exercises" db:"exercises"`
 }
 
-type WorkoutDetails struct {
-	WorkoutPlanID uuid.UUID        `json:"workout_plan_id,string" db:"workout_plan_id"`
-	UserID        int              `json:"user_id" db:"user_id"`
-	Day           string           `db:"day"`
-	Description   string           `json:"description" db:"description"`
-	Exercises     pq.StringArray   `json:"exercises" db:"exercises" swaggertype:"string"`
-	Notes         string           `json:"notes" db:"notes"`
-	CreatedAt     time.Time        `json:"created_at" db:"created_at"`
-	UpdatedAt     *time.Time       `json:"updated_at" db:"updated_at"`
-	Rating        int              `json:"rating" db:"rating"`
-	WorkoutDays   []WorkoutPlanDay `json:"workoutDays" db:"-"`
-}
-
 type WorkoutPlanResponse struct {
-	WorkoutPlanID uuid.UUID            `json:"workout_plan_id" db:"workout_plan_id"`
+	WorkoutPlanID string               `json:"workout_plan_id" db:"workout_plan_id"`
 	UserID        int                  `json:"user_id" db:"user_id"`
 	Description   string               `json:"description" db:"description"`
 	WorkoutDays   []WorkoutDayResponse `json:"workoutDays" db:"-"`
@@ -101,7 +81,7 @@ type WorkoutDayResponse struct {
 }
 
 type WorkoutExerciseDay struct {
-	ID            uuid.UUID  `json:"id,string" db:"id" pg:"default:gen_random_uuid()"`
+	ID            string     `json:"id,string" db:"id" pg:"default:gen_random_uuid()"`
 	Name          string     `json:"name" db:"name"`
 	ExerciseType  string     `json:"type" db:"type"`
 	MuscleGroup   string     `json:"muscle" db:"muscle"`
@@ -113,17 +93,4 @@ type WorkoutExerciseDay struct {
 	CreatedAt     time.Time  `json:"created_at" db:"created_at"`
 	UpdatedAt     *time.Time `json:"updated_at" db:"updated_at"`
 	Day           string     `json:"day" db:"day"`
-}
-
-type WorkoutPlanExportData struct {
-	WorkoutDay           string         `json:"workout_day" db:"workout_day"`
-	WorkoutDescription   string         `json:"workout_description" db:"workout_description"`
-	ExerciseName         string         `json:"exercise_name" db:"exercise_name"`
-	ExerciseType         string         `json:"exercise_type" db:"exercise_type"`
-	ExerciseMuscle       string         `json:"exercise_muscle" db:"exercise_muscle"`
-	ExerciseEquipment    string         `json:"exercise_equipment" db:"exercise_equipment"`
-	ExerciseDifficulty   string         `json:"exercise_difficulty" db:"exercise_difficulty"`
-	ExerciseInstructions string         `json:"exercise_instructions" db:"exercise_instructions"`
-	ExerciseVideo        string         `json:"exercise_video" db:"exercise_video"`
-	Exercises            pq.StringArray `json:"exercises" swaggertype:"string"`
 }
