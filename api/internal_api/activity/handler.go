@@ -63,9 +63,7 @@ func (h Handler) GetActivitiesByName(w http.ResponseWriter, r *http.Request) {
 	activities, err := h.service.Activity.GetByName(r.Context(), name)
 	if err != nil {
 		log.Printf("Error fetching activities data: %v", err)
-
 		http.Error(w, "Internal server error", http.StatusInternalServerError)
-
 		return
 	}
 	w.Header().Set("Content-Type", "application/json")

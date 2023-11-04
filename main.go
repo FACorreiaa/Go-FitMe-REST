@@ -44,17 +44,17 @@ func run(ctx context.Context) error {
 		}
 	}
 
-	server, err := server.NewServer()
+	s, err := server.NewServer()
 	//println("err %+v", err)
 	if err != nil {
-		server.Close()
+		s.Close()
 		fmt.Println(err)
 		//log.Fatalf("%+v", err)
 		return err
 	}
 
-	err = server.Run(ctx)
-	defer server.Close()
+	err = s.Run(ctx)
+	defer s.Close()
 	return err
 }
 
