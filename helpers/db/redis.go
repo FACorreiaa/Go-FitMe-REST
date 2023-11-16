@@ -5,12 +5,12 @@ import (
 )
 
 func CreateRedisConnection() *redis.Client {
-	rdb := redis.NewClient(&redis.Options{
+	redisClient := redis.NewClient(&redis.Options{
 		// TODO: switch the port to an env variable
 		Addr:     "localhost:6379",
 		Password: "", // no password set
 		DB:       0,  // use default DB
 	})
 
-	return rdb
+	return redisClient
 }

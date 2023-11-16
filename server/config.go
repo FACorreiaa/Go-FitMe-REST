@@ -24,11 +24,11 @@ type AppServices struct {
 }
 
 type Server struct {
-	logger *zap.Logger
-	router *chi.Mux
-	config ServerConfig
-	rdb    *redis.Client
-	db     *sqlx.DB
+	logger      *zap.Logger
+	router      *chi.Mux
+	config      ServerConfig
+	redisClient *redis.Client
+	db          *sqlx.DB
 }
 
 type ServerConfig struct {

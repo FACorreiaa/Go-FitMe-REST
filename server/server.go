@@ -40,8 +40,8 @@ func (m QueryExecMode) value() string {
 
 func (s *Server) Close() {
 	// Close the Redis client
-	if s.rdb != nil {
-		err := s.rdb.Close()
+	if s.redisClient != nil {
+		err := s.redisClient.Close()
 		if err != nil {
 			s.logger.Error("Failed to close Redis client: %s", zap.Error(err))
 		}
@@ -97,7 +97,7 @@ func NewServer() (*Server, error) {
 		addr = "localhost:6379" // Default value if environment variable is not set
 	}
 
-	rdb := redis.NewClient(&redis.Options{
+	redisClient := redis.NewClient(&redis.Options{
 		Addr:     cnf.Redis.Addr,
 		Password: cnf.Redis.Password, // no password set
 		DB:       cnf.Redis.DB,       // use default DB
@@ -108,7 +108,7 @@ func NewServer() (*Server, error) {
 	defer cancel()
 
 	// Ping the Redis server
-	pong, err := rdb.Ping(ctx).Result()
+	pong, err := redisClient.Ping(ctx).Result()
 	if err != nil {
 		fmt.Println("Failed to ping Redis:", err)
 	}
@@ -131,11 +131,11 @@ func NewServer() (*Server, error) {
 	router := chi.NewRouter()
 
 	s := Server{
-		logger: log,
-		config: cnf,
-		router: router,
-		rdb:    rdb,
-		db:     database,
+		logger:      log,
+		config:      cnf,
+		router:      router,
+		redisClient: redisClient,
+		db:          database,
 	}
 
 	activityRepo, err := activity.NewActivityRepository(s.db)
@@ -173,7 +173,7 @@ func NewServer() (*Server, error) {
 
 	session := &auth.SessionDependencies{
 		DB:    s.db,
-		Redis: s.rdb,
+		Redis: s.redisClient,
 	}
 
 	Register(router, deps, session)
