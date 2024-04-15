@@ -32,7 +32,7 @@ const retries = 25
 
 func NewDatabaseConfig() (*DatabaseConfig, error) {
 	// TODO CONFIG VIPER HERE
-	err := godotenv.Load(".env")
+	err := godotenv.Load()
 	if err != nil {
 		log.Println(err)
 		log.Fatal("Error loading .env file")
@@ -45,15 +45,15 @@ func NewDatabaseConfig() (*DatabaseConfig, error) {
 		}
 	}
 
-	host := GetEnv("DB_HOST", "localhost")
-	port, err := strconv.Atoi(GetEnv("DB_PORT", "5435"))
+	host := os.Getenv("DB_HOST")
+	port, err := strconv.Atoi(os.Getenv("DB_PORT"))
 	if err != nil {
 		return nil, errors.New("invalid DB_PORT")
 	}
-	user := GetEnv("DB_USER", "postgres")
-	pass := GetEnv("DB_PASS", "postgres")
-	dbname := GetEnv("DB_NAME", "aviation-tracker-dev")
-	schema := GetEnv("", "")
+	user := os.Getenv("DB_USER")
+	pass := os.Getenv("DB_PASS")
+	dbname := os.Getenv("DB_NAME")
+	schema := os.Getenv("")
 
 	query := url.Values{
 		"sslmode":  []string{"disable"},

@@ -1,0 +1,2 @@
+mode: "dev"
+dotenv: ".env/dev"
