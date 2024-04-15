@@ -1,6 +1,10 @@
 project_name = stay-healthy-backend
 image_name = stay-healthy-backend
 
+lint: ## Runs linter for .go files
+	@golangci-lint run --config .config/go.yml
+	@echo "Go lint passed successfully"
+
 run-local:
 	go run main.go
 

@@ -5,11 +5,12 @@ import (
 	"database/sql"
 	"errors"
 	"fmt"
+	"strings"
+	"time"
+
 	"github.com/google/uuid"
 	"github.com/jmoiron/sqlx"
 	"github.com/lib/pq"
-	"strings"
-	"time"
 )
 
 type Repository struct {
@@ -529,41 +530,6 @@ func (r Repository) UpdateExerciseByIdWorkoutPlan(workoutDay string, workoutPlan
 
 	return nil
 }
-
-//func (r Repository) GetCompleteWorkoutData(ctx context.Context, userID int, workoutPlanID string) ([]WorkoutPlanExportData, error) {
-//	workoutPlan := make([]WorkoutPlanExportData, 0)
-//	//exercises := make([]Exercises, 0)
-//
-//	query := `
-//		SELECT
-//			wd.day AS workout_day,
-//			wp.description AS workout_description,
-//			el.id AS exercise_id,
-//			el.name AS exercise_name,
-//			el.type AS exercise_type,
-//			el.muscle AS exercise_muscle,
-//			el.equipment AS exercise_equipment,
-//			el.difficulty AS exercise_difficulty,
-//			el.instructions AS exercise_instructions,
-//			el.video AS exercise_video
-//		FROM workout_plan_detail wpd
-//		JOIN workout_plan wp ON wpd.workout_plan_id = wp.id
-//		JOIN exercise_list el ON el.id = ANY(wpd.exercises)
-//		JOIN workout_day wd ON wd.workout_plan_id = wp.id
-//		WHERE wp.id = $1 AND wp.user_id = $2;
-//	`
-//	err := r.db.SelectContext(ctx, &workoutPlan, query, workoutPlanID, userID)
-//
-//	if err != nil {
-//		println(err)
-//		if errors.Is(err, sql.ErrNoRows) {
-//			return workoutPlan, fmt.Errorf("workoutplan id %d not found: %w", workoutPlanID, err)
-//		}
-//		return workoutPlan, fmt.Errorf("failed to scan exercises: %w", err)
-//	}
-//
-//	return workoutPlan, nil
-//}
 
 func (r Repository) GetFullWorkoutPlan(ctx context.Context, workoutPlanID string, userID int) (WorkoutPlan, error) {
 	var workoutPlan WorkoutPlan

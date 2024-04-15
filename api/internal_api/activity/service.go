@@ -3,7 +3,8 @@ package activity
 import (
 	"context"
 	"errors"
-	"github.com/FACorreiaa/Stay-Healthy-Backend/helpers/db"
+
+	"github.com/FACorreiaa/Stay-Healthy-Backend/db"
 )
 
 type ServiceActivity struct {

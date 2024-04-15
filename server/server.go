@@ -4,7 +4,6 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/auth"
 	"net/http"
 	"os"
 	"os/signal"
@@ -12,12 +11,14 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/auth"
+
 	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/activity"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/calculator"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/measurement"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/user"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/workouts"
-	"github.com/FACorreiaa/Stay-Healthy-Backend/helpers/db"
+	"github.com/FACorreiaa/Stay-Healthy-Backend/db"
 	"github.com/FACorreiaa/Stay-Healthy-Backend/server/logs"
 	"github.com/go-chi/chi/v5"
 	"github.com/redis/go-redis/v9"

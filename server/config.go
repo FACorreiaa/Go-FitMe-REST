@@ -39,12 +39,12 @@ type ServerConfig struct {
 }
 
 type Database struct {
-	Host     string `envconfig:"POSTGRES_HOST" required:"true"`
+	Host     string `envconfig:"DB_HOST" required:"true"`
 	Port     int    `envconfig:"POSTGREST_PORT" required:"true"`
-	User     string `envconfig:"POSTGRES_USER" required:"true"`
-	Password string `envconfig:"POSTGRES_PASSWORD" required:"true"`
-	Name     string `envconfig:"POSTGRES_DB" required:"true"`
-	SSLMODE  string `envconfig:"POSTGRES_SSLMODE" required:"true"`
+	User     string `envconfig:"DB_USER" required:"true"`
+	Password string `envconfig:"DB_PASSWORD" required:"true"`
+	Name     string `envconfig:"DB_DB" required:"true"`
+	SSLMODE  string `envconfig:"DB_SSLMODE" required:"true"`
 }
 
 type Redis struct {
@@ -54,8 +54,6 @@ type Redis struct {
 }
 
 // refactor later for Viper
-// https://github.com/techschool/simplebank/blob/master/util/config.go
-// https://maneeshaindrachapa.medium.com/go-with-env-files-using-viper-1eb3d1d1d221
 
 func LoadEnvVariables() (ServerConfig, error) {
 	cnf := ServerConfig{}

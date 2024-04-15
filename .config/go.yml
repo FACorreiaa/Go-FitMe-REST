@@ -1,0 +1,54 @@
+---
+run:
+  concurrency: 4
+  deadline: 2m
+  issues-exit-code: 10
+  tests: true
+
+output:
+  format: colored-line-number
+  print-issued-lines: true
+  print-linter-name: true
+
+linters-settings:
+  gofmt:
+    simplify: true
+  gocyclo:
+    min-complexity: 10
+  depguard:
+    list-type: blacklist
+    include-go-root: false
+    packages:
+      - github.com/ddavecgh/go-spew/spew
+  misspell:
+    locale: US
+
+linters:
+  enable:
+    - bodyclose
+    - errcheck
+    - goconst
+    - gocritic
+    - gocyclo
+    - goimports
+    - gosimple
+    - gosec
+    - govet
+    - misspell
+    - nakedret
+    - staticcheck
+    - stylecheck
+    - unconvert
+    - unparam
+    - unused
+  enable-all: false
+  fast: false
+
+issues:
+  exclude-rules:
+    - path: _test\.go
+      linters:
+        - gocyclo
+  exclude-use-default: true
+  max-issues-per-linter: 0
+  max-same-issues: 0

@@ -3,7 +3,8 @@ package workouts
 import (
 	"context"
 	"errors"
-	"github.com/FACorreiaa/Stay-Healthy-Backend/helpers/db"
+
+	"github.com/FACorreiaa/Stay-Healthy-Backend/db"
 )
 
 type ServiceWorkout struct {

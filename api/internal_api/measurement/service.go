@@ -2,7 +2,8 @@ package measurement
 
 import (
 	"errors"
-	"github.com/FACorreiaa/Stay-Healthy-Backend/helpers/db"
+
+	"github.com/FACorreiaa/Stay-Healthy-Backend/db"
 )
 
 type ServiceMeasurement struct {

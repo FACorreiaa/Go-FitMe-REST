@@ -2,13 +2,14 @@ package workouts
 
 import (
 	"encoding/json"
-	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/auth"
-	"github.com/go-chi/chi/v5"
-	"github.com/google/uuid"
 	"log"
 	"net/http"
 	"strings"
 	"time"
+
+	"github.com/FACorreiaa/Stay-Healthy-Backend/api/internal_api/auth"
+	"github.com/go-chi/chi/v5"
+	"github.com/google/uuid"
 )
 
 type Handler struct {
@@ -368,11 +369,11 @@ func (h Handler) DeleteWorkoutPlan(w http.ResponseWriter, r *http.Request) {
 func (h Handler) UpdateWorkoutPlan(w http.ResponseWriter, r *http.Request) {
 	id := chi.URLParam(r, "id")
 
-	//userSession, ok := r.Context().Value(auth.SessionManagerKey{}).(*user.UserSession)
-	//if !ok {
+	//  userSession, ok := r.Context().Value(auth.SessionManagerKey{}).(*user.UserSession)
+	//  if !ok {
 	//	http.Error(w, "User session not found", http.StatusUnauthorized)
 	//	return
-	//}
+	//  }
 
 	var updates map[string]interface{}
 	if err := json.NewDecoder(r.Body).Decode(&updates); err != nil {
@@ -564,5 +565,3 @@ func (h Handler) GetFullWorkoutPlan(w http.ResponseWriter, r *http.Request) {
 	_ = json.NewEncoder(w).Encode(workoutPlanData)
 
 }
-
-//func (h Handler) ExportWorkoutToPDF(w http.ResponseWriter, r *http.Request) {}
